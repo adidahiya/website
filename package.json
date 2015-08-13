@@ -1,0 +1,10 @@
+{
+  "name": "adidahiya.github.io",
+  "description": "personal website",
+  "main": [],
+  "dependencies": {},
+  "devDependencies": {
+    "cssnext": "^1.8.3",
+    "wiredep": "^2.2.2"
+  }
+}
