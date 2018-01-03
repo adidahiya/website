@@ -1,5 +1,6 @@
 # adidahiya.github.io
 
-### Development
+### Prerequisites
 
-`make` builds project
+- Node 8+
+- Yarn 1+
