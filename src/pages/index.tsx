@@ -8,11 +8,11 @@ const IndexPage = () => (
         <img src={profileImage} alt="profile" width="240px" />
         <h3 style={{ marginTop: 0 }}>portfolio</h3>
         <p>
-            <Link to="projects/">creative projects</Link>
+            <Link to="/projects/">creative projects</Link>
             <br />
             <a href="https://www.github.com/adidahiya">open source software</a>
             <br />
-            <Link to="photos/">selected photographs</Link>
+            <Link to="/photos/">selected photographs</Link>
         </p>
         <h3>links</h3>
         <p>

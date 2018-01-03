@@ -4,8 +4,8 @@
   "private": true,
   "main": "public/index.html",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "gatsby build --prefix-paths",
+    "dev": "gatsby develop",
     "lint": "tslint 'src/**/*.tsx?'",
     "lint-fix": "yarn lint --fix",
     "test": "echo \"No tests\" && exit 0"
