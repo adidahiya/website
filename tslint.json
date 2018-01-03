@@ -1,0 +1,7 @@
+{
+    "extends": "@blueprintjs/tslint-config",
+    "rules": {
+        "file-header": false,
+        "no-default-export": false
+    }
+}
