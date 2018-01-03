@@ -1,0 +1,60 @@
+{
+  "assetsByChunkName": {
+    "component---src-layouts-index-tsx": [
+      "component---src-layouts-index-tsx-b66db609ce23be3bc2c4.js",
+      "component---src-layouts-index-tsx-b66db609ce23be3bc2c4.js.map"
+    ],
+    "path---": [
+      "path----557518bd178906f8d58a.js",
+      "path----557518bd178906f8d58a.js.map"
+    ],
+    "component---src-pages-projects-index-tsx": [
+      "component---src-pages-projects-index-tsx-b7bc2d442ed23ad3f8f5.js",
+      "component---src-pages-projects-index-tsx-b7bc2d442ed23ad3f8f5.js.map"
+    ],
+    "path---projects": [
+      "path---projects-a0e39f21c11f6a62c5ab.js",
+      "path---projects-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---index": [
+      "path---index-a0e39f21c11f6a62c5ab.js",
+      "path---index-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---photos": [
+      "path---photos-a0e39f21c11f6a62c5ab.js",
+      "path---photos-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "commons": [
+      "commons-8573af5eaafbeb643bed.js",
+      "build-js-styles.css",
+      "commons-8573af5eaafbeb643bed.js.map",
+      "build-js-styles.css.map"
+    ],
+    "component---src-pages-404-tsx": [
+      "component---src-pages-404-tsx-360a0b20d0d2db24f575.js",
+      "component---src-pages-404-tsx-360a0b20d0d2db24f575.js.map"
+    ],
+    "path---404-html": [
+      "path---404-html-a0e39f21c11f6a62c5ab.js",
+      "path---404-html-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-index-tsx": [
+      "component---src-pages-index-tsx-083be220633f42985a61.js",
+      "component---src-pages-index-tsx-083be220633f42985a61.js.map"
+    ],
+    "app": [
+      "app-6e91fba602b993a20a12.js",
+      "build-js-styles.css",
+      "app-6e91fba602b993a20a12.js.map",
+      "build-js-styles.css.map"
+    ],
+    "path---404": [
+      "path---404-a0e39f21c11f6a62c5ab.js",
+      "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-photos-tsx": [
+      "component---src-pages-photos-tsx-2618b5bb205dec5ab038.js",
+      "component---src-pages-photos-tsx-2618b5bb205dec5ab038.js.map"
+    ]
+  }
+}
