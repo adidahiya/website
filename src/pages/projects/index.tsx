@@ -1,11 +1,10 @@
-import Link from "gatsby-link";
 import * as React from "react";
 
 import * as styles from "./projects.module.css";
 
 const ProjectsIndexPage = () => (
     <div className={styles.projects}>
-        <h2>Creative Projects</h2>
+        <h2>creative projects</h2>
         <p>
             Below, you'll find my work in information visualization, typography, graphic design, physical computing,
             branding, and various experiments.
@@ -22,8 +21,9 @@ const ProjectsIndexPage = () => (
             <br />
             <a href={require("./mapping-music-genres/poster.pdf")}>60" &times; 40" print</a> &mdash; Spring 2014
             <br />
-            Multi-dimensional graph-based visualization of the development of major musical genres from 1940&mdash;2000
-            (built using data from <a href="http://the.echonest.com/">The Echo Nest</a> APIs).
+            Multi-dimensional graph-based visualization representing the development of and influences between major
+            musical genres from 1940&mdash;2000 (built using data from{" "}
+            <a href="http://the.echonest.com/">The Echo Nest</a> APIs).
         </p>
         <hr />
 
@@ -34,7 +34,7 @@ const ProjectsIndexPage = () => (
             <br />
             <a href="http://www.adidahiya.com/design/edge">Interactive application</a> &mdash; Fall 2013
             <br />
-            An experimental project which attempts to brand the contemporary fringe of art &amp; design through a
+            An experimental project which attempts to brand the contemporary fringe of art &amp; design through a 2D
             visualization which reacts to user input via webcam.{" "}
             <a href="http://vimeo.com/adidahiya/edge">Demo video on Vimeo</a>.
         </p>
@@ -52,7 +52,7 @@ const ProjectsIndexPage = () => (
         </p>
         <hr />
 
-        <h3>Electronic synthesis visualizer</h3>
+        <h3>Electronic Synthesis Visualizer</h3>
         <p>
             <img src={require("./synthesis/synth-vis.png")} />
             <br />
@@ -63,7 +63,7 @@ const ProjectsIndexPage = () => (
         </p>
         <hr />
 
-        <h3>Tweet topic correlations between U.S. counties</h3>
+        <h3>Tweet Topic Correlations Between U.S. Counties</h3>
         <p>
             <img src={require("./tweet-correlations/wwbp-counties.png")} />
             <br />
@@ -75,7 +75,9 @@ const ProjectsIndexPage = () => (
         </p>
         <hr />
 
-        <h3>Buzz, your smart doorman</h3>
+        <h3>
+            <em>Buzz</em>, Your Smart Doorman
+        </h3>
         <p>
             <img src={require("./buzz/header.png")} />
             <img src={require("./buzz/prototype.jpg")} />
@@ -123,7 +125,7 @@ const ProjectsIndexPage = () => (
         </p>
         <hr />
 
-        <h3>Levine custom typeface</h3>
+        <h3>Levine</h3>
         <p>
             <a href={require("./levine-typeface/full-1.png")}>
                 <img src={require("./levine-typeface/preview-1.png")} />
@@ -138,7 +140,7 @@ const ProjectsIndexPage = () => (
         </p>
         <hr />
 
-        <h3>Creative process book</h3>
+        <h3>Creative Process Book</h3>
         <p>
             <img src={require("./process-book/preview.png")} />
             <br />

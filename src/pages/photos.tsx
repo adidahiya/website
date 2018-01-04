@@ -1,4 +1,3 @@
-import Link from "gatsby-link";
 import * as React from "react";
 
 import * as styles from "./photos.module.css";
@@ -22,7 +21,12 @@ const photos = {
             src: "https://farm5.staticflickr.com/4594/39466014101_57f1308b81_z.jpg",
         },
     ],
-    PEOPLE: [],
+    PEOPLE: [
+        {
+            href: "https://www.flickr.com/photos/adidas006/31064456304",
+            src: "https://farm1.staticflickr.com/417/31064456304_eecdabb8c5_z.jpg",
+        },
+    ],
 };
 
 const PhotosPage = () => (
@@ -30,7 +34,7 @@ const PhotosPage = () => (
         <h2>selected photographs</h2>
         <p>
             I take photos for fun&mdash;usually to capture &amp; document beauty on my travels, but also sometimes
-            simply as visual expression through a medium I've become comfortable with over the years. <br /> <br />
+            simply as visual expression. <br /> <br />
             See more on <a href="https://www.flickr.com/photos/adidas006">flickr</a> &rarr;
         </p>
         <h3>abstract</h3>
@@ -89,9 +93,6 @@ const PhotosPage = () => (
                     <img src={p.src} />
                 </a>
             ))}
-            <a href="https://www.flickr.com/photos/adidas006/31064456304">
-                <img src="https://farm1.staticflickr.com/417/31064456304_eecdabb8c5_z.jpg" />
-            </a>
             <a href="https://www.flickr.com/photos/adidas006/9361312375">
                 <img src="https://farm3.staticflickr.com/2823/9361312375_0795cde5f1.jpg" />
             </a>
