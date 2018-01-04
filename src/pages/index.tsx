@@ -5,17 +5,17 @@ import * as profileImage from "../assets/profile.jpg";
 
 const IndexPage = () => (
     <div>
-        <img src={profileImage} alt="profile" width="240px" />
+        <img src={profileImage} alt="profile" width="240px" style={{ height: 240, width: 240 }} />
         <h3 style={{ marginTop: 0 }}>portfolio</h3>
         <p>
             <Link to="/projects/">creative projects</Link>
-            <br />
-            <a href="https://www.github.com/adidahiya">open source software</a>
             <br />
             <Link to="/photos/">selected photographs</Link>
         </p>
         <h3>links</h3>
         <p>
+            <a href="https://www.github.com/adidahiya">github</a>
+            <br />
             <a href="https://www.flickr.com/photos/adidas006">flickr</a>
             <br />
             <a href="https://www.last.fm/user/adidas006">last.fm</a>

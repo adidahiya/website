@@ -2,6 +2,15 @@
     "extends": "@blueprintjs/tslint-config",
     "rules": {
         "file-header": false,
-        "no-default-export": false
+        "no-default-export": false,
+        "no-implicit-dependencies": true,
+        "no-unused-expression": true,
+        "prettier": {
+            "options": {
+                "printWidth": 100,
+                "tabWidth": 4,
+                "trailingComma": "all"
+            }
+        }
     }
 }
