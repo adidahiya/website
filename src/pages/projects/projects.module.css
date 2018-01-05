@@ -8,3 +8,9 @@
 .imageLink {
     background-image: none;
 }
+
+.tocLink {
+    float: right;
+    font-weight: 400;
+    font-size: 1rem;
+}

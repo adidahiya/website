@@ -6,7 +6,7 @@ const typography = new Typography({
     googleFonts: [
         {
             name: "Work Sans",
-            styles: ["600"],
+            styles: ["400", "600"],
         },
         {
             name: "Fira Mono",
