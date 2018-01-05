@@ -72,7 +72,7 @@ webpackJsonp([221374088121123],{
 
 /***/ }),
 
-/***/ 439:
+/***/ 440:
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "static/profile.9c2efcf1.jpg";
@@ -87,7 +87,7 @@ webpackJsonp([221374088121123],{
 	Object.defineProperty(exports, "__esModule", { value: true });
 	const gatsby_link_1 = __webpack_require__(121);
 	const React = __webpack_require__(1);
-	const profileImage = __webpack_require__(439);
+	const profileImage = __webpack_require__(440);
 	const IndexPage = () => React.createElement("div", null, React.createElement("img", { src: profileImage, alt: "profile", width: "240px", style: { height: 240, width: 240 } }), React.createElement("h3", { style: { marginTop: 0 } }, "portfolio"), React.createElement("p", null, React.createElement(gatsby_link_1.default, { to: "/projects/" }, "creative projects"), React.createElement("br", null), React.createElement(gatsby_link_1.default, { to: "/photos/" }, "selected photographs")), React.createElement("h3", null, "links"), React.createElement("p", null, React.createElement("a", { href: "https://www.github.com/adidahiya" }, "github"), React.createElement("br", null), React.createElement("a", { href: "https://www.flickr.com/photos/adidas006" }, "flickr"), React.createElement("br", null), React.createElement("a", { href: "https://www.last.fm/user/adidas006" }, "last.fm"), React.createElement("br", null), React.createElement("a", { href: "https://soundcloud.com/adi-dahiya" }, "soundcloud"), React.createElement("br", null), React.createElement("a", { href: "https://twitter.com/adi_dahiya" }, "twitter"), React.createElement("br", null), React.createElement("a", { href: "https://instagram.com/adidahiya" }, "instagram")));
 	exports.default = IndexPage;
 

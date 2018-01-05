@@ -38,12 +38,12 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var pSlice = Array.prototype.slice;
-	var objectKeys = __webpack_require__(240);
-	var isArguments = __webpack_require__(239);
+	var objectKeys = __webpack_require__(241);
+	var isArguments = __webpack_require__(240);
 	
 	var deepEqual = module.exports = function (actual, expected, opts) {
 	  if (!opts) opts = {};
@@ -139,7 +139,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports) {
 
 	var supportsArgumentsClass = (function(){
@@ -166,7 +166,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports) {
 
 	exports = module.exports = typeof Object.keys === 'function'
@@ -182,7 +182,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -229,7 +229,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 423:
+/***/ 424:
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports.__esModule = true;
@@ -247,15 +247,15 @@ webpackJsonp([22676092666560,60335399758886],{
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _reactSideEffect = __webpack_require__(425);
+	var _reactSideEffect = __webpack_require__(426);
 	
 	var _reactSideEffect2 = _interopRequireDefault(_reactSideEffect);
 	
-	var _deepEqual = __webpack_require__(238);
+	var _deepEqual = __webpack_require__(239);
 	
 	var _deepEqual2 = _interopRequireDefault(_deepEqual);
 	
-	var _HelmetUtils = __webpack_require__(424);
+	var _HelmetUtils = __webpack_require__(425);
 	
 	var _HelmetConstants = __webpack_require__(151);
 	
@@ -597,7 +597,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 424:
+/***/ 425:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {exports.__esModule = true;
@@ -1140,7 +1140,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 425:
+/***/ 426:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1149,11 +1149,11 @@ webpackJsonp([22676092666560,60335399758886],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _exenv = __webpack_require__(247);
+	var _exenv = __webpack_require__(248);
 	
 	var _exenv2 = _interopRequireDefault(_exenv);
 	
-	var _shallowequal = __webpack_require__(429);
+	var _shallowequal = __webpack_require__(430);
 	
 	var _shallowequal2 = _interopRequireDefault(_shallowequal);
 	
@@ -1264,7 +1264,7 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 429:
+/***/ 430:
 /***/ (function(module, exports) {
 
 	module.exports = function shallowEqual(objA, objB, compare, compareContext) {
@@ -1321,28 +1321,28 @@ webpackJsonp([22676092666560,60335399758886],{
 
 /***/ }),
 
-/***/ 436:
+/***/ 437:
 /***/ (function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpi/P//PwMpgImBRDBQGjrBAKsUC1bRe/fuvX//HqsUI2YorV69GqJaUFAwNDQUXcd/DABUhMZABuh+AJoNNBjCVlJSArqNgB+Afj179mxYWBjEJ0Cyo6MDn5NcXFyQuWlpaWgKUDTMnDlz1apVyCJ3794F2oAswjgM0hJAgAEAatqqYsvIfaQAAAAASUVORK5CYII="
 
 /***/ }),
 
-/***/ 437:
+/***/ 438:
 /***/ (function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAOxJREFUeNrsVsENhCAQVHMN2AIt2AItaAlSArZgC5QgJWArWoKUwE1CcjF3BpaI92IfZiXuzu6MY6ydc9WT0VQPRwEoAP8GmKZJCJFU8kp6Wmvdtq21FldiSU13slIKrX0upaQO5cjRdd1xHEgYY/Qqqgb7vqOvZ4ZzDq4ybzCOozHG59u29X1PLCQBgBnwc0lXHoogL0Y+n+AWh9koupwXeuTZYF3Xj7xfS1CkjvtgGIaAs5ZluUXRr7ypUjep8p4Dfp7n+dYGgfF9RF3dhD9tMG14Phgw8r4GwNE9SnFYJERd/osKQAGo3gIMAFwJtpmrZ1aDAAAAAElFTkSuQmCC"
 
 /***/ }),
 
-/***/ 438:
+/***/ 439:
 /***/ (function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAVhJREFUeNrsmOGNgzAMhUl0C7ACK7ACK7ACK7ACK8AKjAAjwAgwAoxAnxoJVS1cY5tTOMn+UdFghecvfgnCbNsW3SlsdLNQQSpIBakgFaSCggia59kY0/f9XQQ1TZPnedu2F8y1iWNZliRJ9l/hbBcQAhjgieO4KAqgCk8oTdNpmhwqXAcmhEZOnoFrQIIgKSRhQVisruv2v0CVZVkwQvMzoGAfcajGcQxje7QzGvltsCxL0apJ8ILHWZuz/W8lm+EnHhci/0vcfoZB4n/LdjseCZ8f3sU4/yTh1YFFGYbhlwS2/38YNazrCmN/7RKkYVNwG8HfEqqqqq7rr2nYMAGSOnnEa2fPTKwa1f+W9+rjmYxMsv+peEhFM/xPI4ReRpOeuf3Q/yiA9mpLdfvr2e4TVP9bqttfz3afcLaH/68nhGPcx+1C/xv9xqiCVJAKUkEq6J8LeggwAO9wSX0n2nsFAAAAAElFTkSuQmCC"
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
@@ -1359,23 +1359,23 @@ webpackJsonp([22676092666560,60335399758886],{
 	const gatsby_link_1 = __webpack_require__(121);
 	const PropTypes = __webpack_require__(2);
 	const React = __webpack_require__(1);
-	const react_helmet_1 = __webpack_require__(423);
-	const styles = __webpack_require__(248);
+	const react_helmet_1 = __webpack_require__(424);
+	const styles = __webpack_require__(249);
 	const Header = () => React.createElement("div", { className: styles.header }, React.createElement("div", null, React.createElement("h1", null, React.createElement(gatsby_link_1.default, { to: "/" }, "Adi Dahiya"))));
 	const META_TAGS = [{ name: "description", content: "Adi Dahiya's website" }, { name: "keywords", content: "portfolio" }];
 	const META_TAGS_WITH_REDIRECT = [...META_TAGS, { "http-equiv": "refresh", content: "0; URL='/'" }];
 	const LINK_TAGS = [{
-	    href: __webpack_require__(436),
+	    href: __webpack_require__(437),
 	    rel: "icon",
 	    sizes: "16x16",
 	    type: "image/png"
 	}, {
-	    href: __webpack_require__(437),
+	    href: __webpack_require__(438),
 	    rel: "icon",
 	    sizes: "32x32",
 	    type: "image/png"
 	}, {
-	    href: __webpack_require__(438),
+	    href: __webpack_require__(439),
 	    rel: "icon",
 	    sizes: "48x48",
 	    type: "image/png"
