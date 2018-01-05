@@ -4,6 +4,6 @@
     max-height: 200px;
 }
 
-.photos a {
+.linkNoDecoration {
     background-image: none;
 }
