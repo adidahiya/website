@@ -8,6 +8,7 @@
     "clean": "rm -rf public/*",
     "dev": "gatsby develop",
     "deploy": "gh-pages -d public -b master",
+    "dist": "run-s clean build deploy",
     "lint": "tslint 'src/**/*.tsx?'",
     "lint-fix": "yarn lint --fix",
     "test": "echo \"No tests\" && exit 0"
@@ -32,6 +33,7 @@
     "gatsby-plugin-typescript": "^1.4.12",
     "gatsby-plugin-typography": "^1.7.10",
     "gh-pages": "^1.1.0",
+    "npm-run-all": "^4.1.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2",
     "typography": "^0.16.6",
