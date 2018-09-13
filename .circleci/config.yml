@@ -36,7 +36,7 @@ jobs:
           command: |
             git config --global user.name "Adi Dahiya (CircleCI)"
             git config --global user.email "adi.dahiya14@gmail.com"
-            yarn deploy --repo https://${GITHUB_ACCESS_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
+            ./node_modules/.bin/gh-pages deploy -d public -b master --repo https://${GITHUB_ACCESS_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 
 workflows:
   version: 2
