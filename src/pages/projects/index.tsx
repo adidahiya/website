@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 
 import { slugify } from "../../utils";
-import * as styles from "./projects.module.css";
+import styles from "./projects.module.css";
 
 // tslint:disable object-literal-sort-keys
 const PROJECTS = [

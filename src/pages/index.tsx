@@ -1,7 +1,7 @@
 import Link from "gatsby-link";
-import * as React from "react";
+import React from "react";
 
-import * as profileImage from "../assets/profile.jpg";
+import profileImage from "../assets/profile.jpg";
 
 const IndexPage = () => (
     <div>

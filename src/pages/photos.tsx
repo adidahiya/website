@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-import * as styles from "./photos.module.css";
+import styles from "./photos.module.css";
 
 const FlickrImg = ({ href, src }: { href: string; src: string }) => (
     <a className={styles.linkNoDecoration} href={href}>

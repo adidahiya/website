@@ -1,9 +1,8 @@
 import Link from "gatsby-link";
-import * as PropTypes from "prop-types";
-import * as React from "react";
+import React from "react";
 import Helmet from "react-helmet";
 
-import * as styles from "./index.module.css";
+import styles from "./index.module.css";
 
 const Header = () => (
     <div className={styles.header}>
@@ -65,10 +64,6 @@ const TemplateWrapper: React.SFC<{
             {isLegacyRoute ? redirectNotice : childContentsWithHeader}
         </>
     );
-};
-
-TemplateWrapper.propTypes = {
-    children: PropTypes.func,
 };
 
 export default TemplateWrapper;
