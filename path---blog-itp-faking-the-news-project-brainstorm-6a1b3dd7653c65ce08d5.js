@@ -1,2 +1,0 @@
-webpackJsonp([0x68c94cc09cac],{277:function(e,t){e.exports={data:{markdownRemark:{html:"<p>some ideas here. maybe elon musk.</p>",frontmatter:{date:"13 September, 2018",title:"Week 1 project brainstorm"},fields:{slug:"/blog/itp/faking-the-news/project-brainstorm/"}}},pathContext:{slug:"/blog/itp/faking-the-news/project-brainstorm/"}}}});
-//# sourceMappingURL=path---blog-itp-faking-the-news-project-brainstorm-6a1b3dd7653c65ce08d5.js.map
