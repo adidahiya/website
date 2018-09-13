@@ -1,0 +1,2 @@
+webpackJsonp([0xa25129398ba8],{123:function(e,t,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var l=a(12),n=l.__importDefault(a(1)),u=function(){return n.default.createElement("div",null,n.default.createElement("h2",null,"Page not found"),n.default.createElement("p",null,"Try going back to the home page."))};t.default=u}});
+//# sourceMappingURL=component---src-pages-404-tsx-fc17e38c3ec76e9ee643.js.map
