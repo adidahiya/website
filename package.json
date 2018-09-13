@@ -8,7 +8,6 @@
     "clean": "rm -rf public/*",
     "dev": "gatsby develop",
     "deploy": "gh-pages -d public -b master",
-    "deploy-ci": "yarn deploy --repo https://${GITHUB_ACCESS_TOKEN}@github.com/adidahiya/adidahiya.github.io.git",
     "dist": "run-s clean build deploy",
     "lint": "tslint 'src/**/*.tsx?' -t codeFrame",
     "test": "echo \"No tests\" && exit 0"

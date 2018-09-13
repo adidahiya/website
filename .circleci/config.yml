@@ -31,7 +31,12 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies-
-      - run: yarn deploy-ci
+      - run:
+          name: "git config"
+          command: >
+            git config user.name "Adi Dahiya (CircleCI)"
+            git config user.email "adi.dahiya14@gmail.com"
+      - run: yarn deploy --repo https://${GITHUB_ACCESS_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 
 workflows:
   version: 2
