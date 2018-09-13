@@ -1,12 +1,15 @@
 import Link from "gatsby-link";
 import React from "react";
 
-import profileImage from "../assets/profile.jpg";
+// import profileImage from "../assets/profile.jpg";
 
 const IndexPage = () => (
     <div>
-        <img src={profileImage} alt="profile" width="240px" style={{ height: 240, width: 240 }} />
-        <h3 style={{ marginTop: 0 }}>portfolio</h3>
+        <h3>blogs</h3>
+        <p>
+            <Link to="/blog/itp/">ITP</Link>
+        </p>
+        <h3>portfolio</h3>
         <p>
             <Link to="/projects/">creative projects</Link>
             <br />
