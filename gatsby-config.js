@@ -10,7 +10,20 @@ module.exports = {
                 path: `${__dirname}/content`,
             },
         },
-        "gatsby-transformer-remark",
+        "gatsby-plugin-sharp",
+        {
+            resolve: "gatsby-transformer-remark",
+            options: {
+                plugins: [
+                    {
+                        resolve: "gatsby-remark-images",
+                        options: {
+                            maxWidth: 888,
+                        },
+                    },
+                ],
+            },
+        },
         "gatsby-plugin-react-helmet",
         "gatsby-plugin-typescript",
         {
