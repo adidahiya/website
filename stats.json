@@ -5,8 +5,8 @@
       "component---src-layouts-index-tsx-4107646019ac3b60df81.js.map"
     ],
     "path---blog-itp": [
-      "path---blog-itp-ae1e42173099f63877ac.js",
-      "path---blog-itp-ae1e42173099f63877ac.js.map"
+      "path---blog-itp-3d27b78637c606165fa5.js",
+      "path---blog-itp-3d27b78637c606165fa5.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -15,6 +15,14 @@
     "component---src-pages-projects-index-tsx": [
       "component---src-pages-projects-index-tsx-f5aeda5b1ea8818f92f6.js",
       "component---src-pages-projects-index-tsx-f5aeda5b1ea8818f92f6.js.map"
+    ],
+    "path---blog-itp-content-and-its-discontents-affordances": [
+      "path---blog-itp-content-and-its-discontents-affordances-e7c4534fac8a55c6af85.js",
+      "path---blog-itp-content-and-its-discontents-affordances-e7c4534fac8a55c6af85.js.map"
+    ],
+    "path---blog-itp-code-of-music-sample-based-instrument": [
+      "path---blog-itp-code-of-music-sample-based-instrument-7f0d95024a0b1f657e69.js",
+      "path---blog-itp-code-of-music-sample-based-instrument-7f0d95024a0b1f657e69.js.map"
     ],
     "component---src-pages-blog-itp-index-tsx": [
       "component---src-pages-blog-itp-index-tsx-76812bc4d48d9b340fdf.js",
@@ -59,9 +67,9 @@
       "component---src-pages-index-tsx-458b24027aea3670510a.js.map"
     ],
     "app": [
-      "app-0dbc38584fc3d9ffb5c5.js",
+      "app-dc574cd3d39a41a92c0d.js",
       "build-js-styles.css",
-      "app-0dbc38584fc3d9ffb5c5.js.map",
+      "app-dc574cd3d39a41a92c0d.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
