@@ -21,7 +21,9 @@ date: "2018-09-20"
 
 ### Assignment
 
-> __Prepare training data for your first deepfakes clip__. Two sets of ~400 images, one for each face. The faces should be isolated and any “bad” images (blurry, cropped incorrectly, anything obstructing the face) should be removed from the set. Use youtube-dl, ffmpeg, autocrop, and face_recognition tools.
+> __Prepare training data for your first deepfakes clip__. Two sets of ~400 images, one for each face. The faces should be isolated and any “bad” images (blurry, cropped incorrectly, anything obstructing the face) should be removed from the set. Use [youtube-dl](https://github.com/rg3/youtube-dl/), [ffmpeg](https://www.ffmpeg.org/), [autocrop](https://github.com/leblancfg/autocrop), and [face_recognition](https://github.com/ageitgey/face_recognition) tools.
+
+Note: [this](https://www.deepfakes.club/tutorial/) is the overall tutorial we plan to follow to make our videos.
 
 I'd like to try working with a clip from the first episode of Comedy Bang! Bang! where Will Forte plays a airline pilot who landed a plane in a mall parking lot because he was stalking his ex-girlfriend:
 
