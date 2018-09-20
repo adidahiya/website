@@ -23,3 +23,16 @@ date: "2018-09-20"
 
 > __Prepare training data for your first deepfakes clip__. Two sets of ~400 images, one for each face. The faces should be isolated and any “bad” images (blurry, cropped incorrectly, anything obstructing the face) should be removed from the set. Use youtube-dl, ffmpeg, autocrop, and face_recognition tools.
 
+I'd like to try working with a clip from the first episode of Comedy Bang! Bang! where Will Forte plays a airline pilot who landed a plane in a mall parking lot because he was stalking his ex-girlfriend:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6NVa8eEUWVI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+I'd like to swap Will's face for Elon Musk's. For the latter, I can get plenty of training images from this recent podcast interview Musk did on the Joe Rogan Experience:
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ycPr5-27vSI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Here's a glimpse at my initial set of training images (I'll probably need to do some color correction and other tweaks):
+
+![will-images](training-images-1.png)
+
+![elon-images](training-images-2.png)
