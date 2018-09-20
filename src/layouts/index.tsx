@@ -95,7 +95,7 @@ class TemplateWrapper extends React.Component<{
     }
 
     private shouldRenderAnalytics() {
-        return window.location.hostname !== "localhost";
+        return this.props.location.hostname !== "localhost";
     }
 }
 
