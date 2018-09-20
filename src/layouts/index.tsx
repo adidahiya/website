@@ -41,29 +41,62 @@ const LINK_TAGS = [
     },
 ];
 
-const TemplateWrapper: React.SFC<{
+declare global {
+    // tslint:disable-next-line interface-name
+    interface Window {
+        // google analytics
+        dataLayer: any;
+    }
+}
+
+class TemplateWrapper extends React.Component<{
     children: () => React.ReactNode;
     location: Location;
-}> = ({ children, location }) => {
-    const isLegacyRoute = location.pathname.indexOf("/public") === 0;
-    const childContentsWithHeader = (
-        <>
-            <Header />
-            <div className={styles.body}>{children()}</div>
-        </>
-    );
-    const redirectNotice = <p>Contents have moved... redirecting to root page</p>;
+}> {
+    public componentDidMount() {
+        if (this.shouldRenderAnalytics()) {
+            // google analytics snippet
+            window.dataLayer = window.dataLayer || [];
+            gtag("js", new Date());
+            gtag("config", "UA-126153749-1");
+        }
 
-    return (
-        <>
-            <Helmet
-                title="Adi Dahiya"
-                link={LINK_TAGS}
-                meta={isLegacyRoute ? META_TAGS_WITH_REDIRECT : META_TAGS}
-            />
-            {isLegacyRoute ? redirectNotice : childContentsWithHeader}
-        </>
-    );
-};
+        function gtag(...args: any[]) {
+            window.dataLayer.push(args);
+        }
+    }
+
+    public render() {
+        const isLegacyRoute = this.props.location.pathname.indexOf("/public") === 0;
+        const childContentsWithHeader = (
+            <>
+                <Header />
+                <div className={styles.body}>{this.props.children()}</div>
+            </>
+        );
+        const redirectNotice = <p>Contents have moved... redirecting to root page</p>;
+
+        return (
+            <>
+                <Helmet
+                    title="Adi Dahiya"
+                    link={LINK_TAGS}
+                    meta={isLegacyRoute ? META_TAGS_WITH_REDIRECT : META_TAGS}
+                />
+                {isLegacyRoute ? redirectNotice : childContentsWithHeader}
+                {this.shouldRenderAnalytics() && (
+                    <script
+                        async={true}
+                        src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1"
+                    />
+                )}
+            </>
+        );
+    }
+
+    private shouldRenderAnalytics() {
+        return window.location.hostname !== "localhost";
+    }
+}
 
 export default TemplateWrapper;

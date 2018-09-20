@@ -1,6 +1,8 @@
 {
     "extends": "@blueprintjs/tslint-config",
     "rules": {
+        "blueprint-classes-constants": false,
+        "blueprint-html-components": false,
         "file-header": false,
         "no-default-export": false,
         "no-implicit-dependencies": true,
