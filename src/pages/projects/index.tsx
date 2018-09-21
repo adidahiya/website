@@ -277,10 +277,11 @@ const ProjectSection = ({
 
 const ProjectsIndexPage = () => (
     <div className={styles.projects}>
-        <h2 id="toc">creative projects</h2>
+        <h2 id="toc">creative projects (2012&mdash;2014)</h2>
         <p>
             Below, you'll find my work in information visualization, typography, graphic design,
-            physical computing, branding, and various experiments.
+            physical computing, branding, and various experiments completed during undergrad studies
+            at UPenn.
         </p>
         <p>
             <ul>{PROJECTS.map(({ name }) => <SectionLink name={name} />)}</ul>

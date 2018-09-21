@@ -16,7 +16,7 @@ const Header = () => (
 
 const META_TAGS = [
     { name: "description", content: "Adi Dahiya's website" },
-    { name: "keywords", content: "portfolio" },
+    { name: "keywords", content: "portfolio, blog, ITP, photography, art, documentation" },
 ];
 const META_TAGS_WITH_REDIRECT = [...META_TAGS, { "http-equiv": "refresh", content: "0; URL='/'" }];
 

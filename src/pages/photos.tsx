@@ -12,8 +12,6 @@ const PhotosPage = () => (
     <div className={styles.photos}>
         <h2>selected photographs</h2>
         <p>
-            I take photos for fun&mdash;usually to capture &amp; document beauty on my travels, but
-            also sometimes simply as visual expression. <br /> <br />
             See more on <a href="https://www.flickr.com/photos/adidas006">flickr</a> &rarr;
         </p>
         <h3>abstract</h3>
