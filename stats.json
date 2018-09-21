@@ -5,8 +5,12 @@
       "component---src-layouts-index-tsx-59242beadbc5575d54e7.js.map"
     ],
     "path---blog-itp": [
-      "path---blog-itp-0e00fa1f7c20e125b0cd.js",
-      "path---blog-itp-0e00fa1f7c20e125b0cd.js.map"
+      "path---blog-itp-b86348111af0e7eab59c.js",
+      "path---blog-itp-b86348111af0e7eab59c.js.map"
+    ],
+    "path---blog-itp-content-and-its-discontents-good-content-mindmapping": [
+      "path---blog-itp-content-and-its-discontents-good-content-mindmapping-5707be4e893c01e3a6f4.js",
+      "path---blog-itp-content-and-its-discontents-good-content-mindmapping-5707be4e893c01e3a6f4.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -39,6 +43,10 @@
     "path---blog-itp-physical-computing-week-2-switches": [
       "path---blog-itp-physical-computing-week-2-switches-c5e4f8ca33a2be47414e.js",
       "path---blog-itp-physical-computing-week-2-switches-c5e4f8ca33a2be47414e.js.map"
+    ],
+    "path---blog-itp-content-and-its-discontents-course-questions": [
+      "path---blog-itp-content-and-its-discontents-course-questions-afebd0c2ed859c9f9221.js",
+      "path---blog-itp-content-and-its-discontents-course-questions-afebd0c2ed859c9f9221.js.map"
     ],
     "path---index": [
       "path---index-a0e39f21c11f6a62c5ab.js",
@@ -79,9 +87,9 @@
       "path---blog-itp-code-of-music-rhythm-15ffb3d199feedaf0b31.js.map"
     ],
     "app": [
-      "app-bb83a2eb997d7abad2b8.js",
+      "app-57eee2750c871eacdb6f.js",
       "build-js-styles.css",
-      "app-bb83a2eb997d7abad2b8.js.map",
+      "app-57eee2750c871eacdb6f.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
