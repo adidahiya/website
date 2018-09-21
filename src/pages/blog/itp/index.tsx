@@ -1,5 +1,6 @@
 import Link from "gatsby-link";
 import { uniq } from "lodash";
+import { DateTime } from "luxon";
 import React from "react";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
@@ -24,25 +25,33 @@ export default ({ data }: any) => {
 };
 
 const Category = (props: { name: string; blogPosts: any[] }) => {
-    const categoryBlogPosts = props.blogPosts.filter(
-        (p: any) => p.fields.slug.indexOf(`${ITP_BLOG_ROOT}${props.name}`) === 0,
-    );
+    const categoryBlogPosts = filterAndSortBlogPosts(props.blogPosts, props.name);
     return (
         <div className="blog-category">
             <h3>{props.name}</h3>
-            <ul>
-                {categoryBlogPosts.map(p => (
-                    <li>
-                        <Link to={p.fields.slug}>{p.frontmatter.title}</Link>
-                        <small className="timestamp" style={{ color: "gray", marginLeft: 20 }}>
-                            ({p.frontmatter.date})
-                        </small>
-                    </li>
-                ))}
-            </ul>
+            <ul>{categoryBlogPosts.map(p => <PostItem key={p.fields.slug} post={p} />)}</ul>
         </div>
     );
 };
+
+const PostItem = ({ post }: { post: any }) => (
+    <li>
+        <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+        <small className="timestamp" style={{ color: "gray", marginLeft: 20 }}>
+            ({post.frontmatter.date})
+        </small>
+    </li>
+);
+
+function filterAndSortBlogPosts(posts: any[], categoryName: string) {
+    return posts
+        .filter((p: any) => p.fields.slug.indexOf(`${ITP_BLOG_ROOT}${categoryName}`) === 0)
+        .sort((p1: any, p2: any) => {
+            const d1 = DateTime.fromFormat(p1.frontmatter.date, "dd LLLL, yyyy");
+            const d2 = DateTime.fromFormat(p2.frontmatter.date, "dd LLLL, yyyy");
+            return -1 * d1.diff(d2).valueOf();
+        });
+}
 
 // @ts-ignore
 export const query = graphql`
