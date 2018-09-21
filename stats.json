@@ -1,32 +1,32 @@
 {
   "assetsByChunkName": {
     "component---src-layouts-index-tsx": [
-      "component---src-layouts-index-tsx-09492adb35773b65b410.js",
-      "component---src-layouts-index-tsx-09492adb35773b65b410.js.map"
+      "component---src-layouts-index-tsx-59242beadbc5575d54e7.js",
+      "component---src-layouts-index-tsx-59242beadbc5575d54e7.js.map"
     ],
     "path---blog-itp": [
-      "path---blog-itp-5f13e20e3acdd4b79ffc.js",
-      "path---blog-itp-5f13e20e3acdd4b79ffc.js.map"
+      "path---blog-itp-0e00fa1f7c20e125b0cd.js",
+      "path---blog-itp-0e00fa1f7c20e125b0cd.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "component---src-pages-projects-index-tsx": [
-      "component---src-pages-projects-index-tsx-f5aeda5b1ea8818f92f6.js",
-      "component---src-pages-projects-index-tsx-f5aeda5b1ea8818f92f6.js.map"
+      "component---src-pages-projects-index-tsx-b02ba55b2794d956b116.js",
+      "component---src-pages-projects-index-tsx-b02ba55b2794d956b116.js.map"
     ],
     "path---blog-itp-content-and-its-discontents-affordances": [
       "path---blog-itp-content-and-its-discontents-affordances-3bda74ee8cff5118da85.js",
       "path---blog-itp-content-and-its-discontents-affordances-3bda74ee8cff5118da85.js.map"
     ],
     "path---blog-itp-code-of-music-sample-based-instrument": [
-      "path---blog-itp-code-of-music-sample-based-instrument-5f598827c6291e9deb36.js",
-      "path---blog-itp-code-of-music-sample-based-instrument-5f598827c6291e9deb36.js.map"
+      "path---blog-itp-code-of-music-sample-based-instrument-138c54bce3e5dd715c66.js",
+      "path---blog-itp-code-of-music-sample-based-instrument-138c54bce3e5dd715c66.js.map"
     ],
     "component---src-pages-blog-itp-index-tsx": [
-      "component---src-pages-blog-itp-index-tsx-76812bc4d48d9b340fdf.js",
-      "component---src-pages-blog-itp-index-tsx-76812bc4d48d9b340fdf.js.map"
+      "component---src-pages-blog-itp-index-tsx-4fa039fce47d535ae35c.js",
+      "component---src-pages-blog-itp-index-tsx-4fa039fce47d535ae35c.js.map"
     ],
     "path---projects": [
       "path---projects-a0e39f21c11f6a62c5ab.js",
@@ -67,17 +67,21 @@
       "path---blog-itp-faking-the-news-deepfakes-3a2c735210c597ccb847.js.map"
     ],
     "component---src-templates-blog-post-tsx": [
-      "component---src-templates-blog-post-tsx-7e0b959ecf9db988a7d1.js",
-      "component---src-templates-blog-post-tsx-7e0b959ecf9db988a7d1.js.map"
+      "component---src-templates-blog-post-tsx-f22dab06687608568084.js",
+      "component---src-templates-blog-post-tsx-f22dab06687608568084.js.map"
     ],
     "component---src-pages-index-tsx": [
-      "component---src-pages-index-tsx-458b24027aea3670510a.js",
-      "component---src-pages-index-tsx-458b24027aea3670510a.js.map"
+      "component---src-pages-index-tsx-b7087a2169966878424f.js",
+      "component---src-pages-index-tsx-b7087a2169966878424f.js.map"
+    ],
+    "path---blog-itp-code-of-music-rhythm": [
+      "path---blog-itp-code-of-music-rhythm-15ffb3d199feedaf0b31.js",
+      "path---blog-itp-code-of-music-rhythm-15ffb3d199feedaf0b31.js.map"
     ],
     "app": [
-      "app-b1625f2397bb2286b5ff.js",
+      "app-bb83a2eb997d7abad2b8.js",
       "build-js-styles.css",
-      "app-b1625f2397bb2286b5ff.js.map",
+      "app-bb83a2eb997d7abad2b8.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
@@ -89,8 +93,8 @@
       "path---blog-itp-code-of-music-intro-music-dcabb043cc53ad0c8df7.js.map"
     ],
     "component---src-pages-photos-tsx": [
-      "component---src-pages-photos-tsx-8c27ad6042faa28fc0e9.js",
-      "component---src-pages-photos-tsx-8c27ad6042faa28fc0e9.js.map"
+      "component---src-pages-photos-tsx-355c9620e7dd190597ff.js",
+      "component---src-pages-photos-tsx-355c9620e7dd190597ff.js.map"
     ]
   }
 }
