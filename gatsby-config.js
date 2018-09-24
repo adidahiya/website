@@ -21,6 +21,8 @@ module.exports = {
                             maxWidth: 888,
                         },
                     },
+                    "gatsby-remark-copy-linked-files",
+                    "gatsby-remark-emoji"
                 ],
             },
         },
