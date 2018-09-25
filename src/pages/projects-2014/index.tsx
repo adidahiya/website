@@ -284,7 +284,7 @@ const ProjectsIndexPage = () => (
             at UPenn.
         </p>
         <p>
-            <ul>{PROJECTS.map(({ name }) => <SectionLink name={name} />)}</ul>
+            <ul>{PROJECTS.map(({ name }) => <SectionLink key={name} name={name} />)}</ul>
         </p>
 
         {PROJECTS.map(({ description }, index) => (
