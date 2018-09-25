@@ -1,8 +1,3 @@
-declare module "*.module.css" {
-    const style: any;
-    export = style;
-}
-
 declare module "*.jpg" {
     const src: any;
     export = src;

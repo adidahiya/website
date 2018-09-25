@@ -1,5 +1,7 @@
+import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import React from "react";
+import DefaultLayout from "../components/defaultLayout";
 
 function getCategoryNameFromSlug(slug: string) {
     return slug.substr("/blog/itp/".length).split("/")[0];
@@ -8,7 +10,7 @@ function getCategoryNameFromSlug(slug: string) {
 export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
-        <div>
+        <DefaultLayout>
             <h4>
                 <Link to="/blog/itp">ITP blog</Link> &middot;{" "}
                 {getCategoryNameFromSlug(post.fields.slug)}
@@ -18,7 +20,7 @@ export default ({ data }: any) => {
                 {post.frontmatter.date}
             </p>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        </div>
+        </DefaultLayout>
     );
 };
 

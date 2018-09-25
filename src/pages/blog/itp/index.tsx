@@ -1,7 +1,9 @@
+import { graphql } from "gatsby";
 import Link from "gatsby-link";
 import { uniq } from "lodash";
 import { DateTime } from "luxon";
 import React from "react";
+import DefaultLayout from "../../../components/defaultLayout";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 
@@ -13,14 +15,14 @@ export default ({ data }: any) => {
     );
 
     return (
-        <div>
+        <DefaultLayout>
             <h4>ITP blog</h4>
             <p>
                 This blog contains notes and documentation from my projects at{" "}
                 <a href="https://tisch.nyu.edu/itp">NYU's ITP program</a>.
             </p>
             <p>{categories.map(c => <Category key={c} name={c} blogPosts={blogPosts} />)}</p>
-        </div>
+        </DefaultLayout>
     );
 };
 

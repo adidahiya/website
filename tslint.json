@@ -4,9 +4,12 @@
         "blueprint-classes-constants": false,
         "blueprint-html-components": false,
         "file-header": false,
+        "member-ordering": false,
         "no-default-export": false,
         "no-implicit-dependencies": true,
+        "no-submodule-imports": false,
         "no-unused-expression": true,
+        "object-literal-sort-keys": false,
         "prettier": {
             "options": {
                 "printWidth": 100,

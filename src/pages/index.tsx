@@ -1,10 +1,11 @@
 import Link from "gatsby-link";
 import React from "react";
+import DefaultLayout from "../components/defaultLayout";
 
 // import profileImage from "../assets/profile.jpg";
 
-const IndexPage = () => (
-    <div>
+export default () => (
+    <DefaultLayout>
         <h3>about</h3>
         <p>
             grad student at NYU's ITP program, based in Brooklyn. <br />
@@ -35,7 +36,5 @@ const IndexPage = () => (
             <br />
             <a href="https://www.last.fm/user/adidas006">last.fm</a>
         </p>
-    </div>
+    </DefaultLayout>
 );
-
-export default IndexPage;

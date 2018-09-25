@@ -11,12 +11,12 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
             node,
             name: "slug",
             value: slug,
-        })
+        });
     }
 }
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
-    const { createPage } = boundActionCreators
+    const { createPage } = boundActionCreators;
     return new Promise((resolve, reject) => {
         graphql(`
             {
@@ -32,12 +32,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
         `).then(result => {
             result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+                const { slug } = node.fields;
                 createPage({
-                    path: node.fields.slug,
+                    path: slug,
                     component: path.resolve(`./src/templates/blogPost.tsx`),
+                    // data passed to context is available in page queries as GraphQL variables.
                     context: {
-                        // Data passed to context is available in page queries as GraphQL variables.
-                        slug: node.fields.slug,
+                        slug,
                     },
                 })
             });

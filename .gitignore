@@ -4,3 +4,4 @@ public/
 .DS_Store
 .*.un~
 .*.swp
+yarn-error.log
