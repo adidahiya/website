@@ -1,7 +1,8 @@
 import p5 from "p5";
+import "p5/lib/addons/p5.dom";
+import "p5/lib/addons/p5.sound";
 import React from "react";
-
-import styles from "./p5.module.css";
+import styles from "./p5Canvas.module.css";
 
 export interface IP5Props {
     /**
@@ -16,7 +17,7 @@ export interface IP5Props {
     sketch: (p: p5) => void;
 }
 
-export class P5 extends React.Component<IP5Props> {
+export class P5Canvas extends React.Component<IP5Props> {
     public static defaultProps: IP5Props = {
         autoFocus: true,
         sketch: () => undefined,

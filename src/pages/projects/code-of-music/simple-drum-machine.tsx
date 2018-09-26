@@ -1,11 +1,9 @@
 import { withPrefix } from "gatsby";
 import Link from "gatsby-link";
 import p5 from "p5";
-import "p5/lib/addons/p5.dom";
-import "p5/lib/addons/p5.sound";
 import React from "react";
 import DefaultLayout from "../../../components/defaultLayout";
-import { P5 } from "../../../components/p5";
+import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 400;
 const BAR_WIDTH = 50;
@@ -85,6 +83,6 @@ export default () => (
             </Link>)
         </p>
         <p>Available keys: A, S, D, F, J</p>
-        <P5 sketch={sketch} />
+        <P5Canvas sketch={sketch} />
     </DefaultLayout>
 );

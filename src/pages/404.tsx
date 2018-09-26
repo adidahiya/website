@@ -1,10 +1,9 @@
 import React from "react";
+import DefaultLayout from "../components/defaultLayout";
 
-const NotFoundPage = () => (
-    <div>
+export default () => (
+    <DefaultLayout>
         <h2>Page not found</h2>
         <p>Try going back to the home page.</p>
-    </div>
+    </DefaultLayout>
 );
-
-export default NotFoundPage;
