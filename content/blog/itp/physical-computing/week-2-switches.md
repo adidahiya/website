@@ -9,6 +9,4 @@ date: "2018-09-19"
 - [_Emotional Design_](http://www.jnd.org/dn.mss/emotion_design_at.html) (Don Norman), chapter 1
 - [_Physical Computing's Greatest Hits (and misses)_](http://www.tigoe.net/blog/category/physicalcomputing/176/) (Tom Igoe)
 
-### Lab 1: Switches & Pushbuttons
-
-[Lab instructions](https://itp.nyu.edu/physcomp/labs/labs-electronics/switches/)
+### [Lab 1](https://itp.nyu.edu/physcomp/labs/labs-electronics/switches/) documentation
