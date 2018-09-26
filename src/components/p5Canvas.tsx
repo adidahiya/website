@@ -1,8 +1,12 @@
 import p5 from "p5";
-import "p5/lib/addons/p5.dom";
-import "p5/lib/addons/p5.sound";
 import React from "react";
 import styles from "./p5Canvas.module.css";
+
+if (typeof window !== "undefined") {
+    // tslint:disable no-var-requires
+    require("p5/lib/addons/p5.dom");
+    require("p5/lib/addons/p5.sound");
+}
 
 export interface IP5Props {
     /**

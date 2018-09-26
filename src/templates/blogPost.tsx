@@ -1,5 +1,4 @@
-import { graphql } from "gatsby";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React from "react";
 import DefaultLayout from "../components/defaultLayout";
 

@@ -10,7 +10,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
                 rules: [
                     // exclude p5 from being loaded in SSR because it accesses window directly
                     {
-                        test: /p5.*/,
+                        test: /p5\/lib.*/g,
                         use: loaders.null(),
                     },
                 ],

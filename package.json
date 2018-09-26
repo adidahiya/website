@@ -5,6 +5,7 @@
   "main": "public/index.html",
   "scripts": {
     "build": "gatsby build",
+    "check": "tsc --pretty --noEmit",
     "clean": "rm -rf public/*",
     "dev": "gatsby develop",
     "deploy": "gh-pages -d public -b master",

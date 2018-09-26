@@ -6,7 +6,7 @@
 // This file was auto-generated. Please do not edit it.
 
 declare module "p5" {
-    export = p5;
+    export default p5;
 }
 
 type UNKNOWN_P5_CONSTANT = any;

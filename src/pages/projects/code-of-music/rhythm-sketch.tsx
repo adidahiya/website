@@ -1,11 +1,13 @@
-import { Link, withPrefix } from "gatsby";
+import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 
-function sketch() {
-    // TODO
+function sketch(p: p5) {
+    p.draw = () => {
+        // TODO
+    };
 }
 
 export default () => (
