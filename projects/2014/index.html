@@ -1,0 +1,811 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/component---src-templates-default-markdown-template-tsx.c13aaf8fe2a35bd76871.css">.defaultLayout-module--header--G28ik{margin-bottom:1.45rem}.defaultLayout-module--header--G28ik>div{margin:0 auto;max-width:920px;padding:1.45rem 1.0875rem}.defaultLayout-module--header--G28ik h1{margin:0}.defaultLayout-module--body--3jKPt{margin:0 auto;max-width:920px;padding:0 1rem 1.5rem}span.gatsby-resp-image-wrapper{margin-bottom:1rem}.gatsby-resp-image-link{text-shadow:none;background-image:none}</style><meta name="generator" content="Gatsby 2.0.8"/><title data-react-helmet="true">Adi Dahiya</title><link data-react-helmet="true" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpi/P//PwMpgImBRDBQGjrBAKsUC1bRe/fuvX//HqsUI2YorV69GqJaUFAwNDQUXcd/DABUhMZABuh+AJoNNBjCVlJSArqNgB+Afj179mxYWBjEJ0Cyo6MDn5NcXFyQuWlpaWgKUDTMnDlz1apVyCJ3794F2oAswjgM0hJAgAEAatqqYsvIfaQAAAAASUVORK5CYII=" rel="icon" sizes="16x16" type="image/png"/><link data-react-helmet="true" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAOxJREFUeNrsVsENhCAQVHMN2AIt2AItaAlSArZgC5QgJWArWoKUwE1CcjF3BpaI92IfZiXuzu6MY6ydc9WT0VQPRwEoAP8GmKZJCJFU8kp6Wmvdtq21FldiSU13slIKrX0upaQO5cjRdd1xHEgYY/Qqqgb7vqOvZ4ZzDq4ybzCOozHG59u29X1PLCQBgBnwc0lXHoogL0Y+n+AWh9koupwXeuTZYF3Xj7xfS1CkjvtgGIaAs5ZluUXRr7ypUjep8p4Dfp7n+dYGgfF9RF3dhD9tMG14Phgw8r4GwNE9SnFYJERd/osKQAGo3gIMAFwJtpmrZ1aDAAAAAElFTkSuQmCC" rel="icon" sizes="32x32" type="image/png"/><link data-react-helmet="true" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAVhJREFUeNrsmOGNgzAMhUl0C7ACK7ACK7ACK7ACK8AKjAAjwAgwAoxAnxoJVS1cY5tTOMn+UdFghecvfgnCbNsW3SlsdLNQQSpIBakgFaSCggia59kY0/f9XQQ1TZPnedu2F8y1iWNZliRJ9l/hbBcQAhjgieO4KAqgCk8oTdNpmhwqXAcmhEZOnoFrQIIgKSRhQVisruv2v0CVZVkwQvMzoGAfcajGcQxje7QzGvltsCxL0apJ8ILHWZuz/W8lm+EnHhci/0vcfoZB4n/LdjseCZ8f3sU4/yTh1YFFGYbhlwS2/38YNazrCmN/7RKkYVNwG8HfEqqqqq7rr2nYMAGSOnnEa2fPTKwa1f+W9+rjmYxMsv+peEhFM/xPI4ReRpOeuf3Q/yiA9mpLdfvr2e4TVP9bqttfz3afcLaH/68nhGPcx+1C/xv9xqiCVJAKUkEq6J8LeggwAO9wSX0n2nsFAAAAAElFTkSuQmCC" rel="icon" sizes="48x48" type="image/png"/><meta data-react-helmet="true" name="description" content="Adi Dahiya&#x27;s website"/><meta data-react-helmet="true" name="keywords" content="portfolio, blog, ITP, photography, art, documentation"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.5 'Fira Mono',sans-serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.8);font-family:'Fira Mono',sans-serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:2rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:1.51572rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:1.31951rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:0.87055rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;color:hsla(0,0%,0%,0.9);font-family:'Work Sans',sans-serif;font-weight:600;text-rendering:optimizeLegibility;font-size:0.81225rem;line-height:1.1;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}ul{margin-left:1.5rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;list-style-position:outside;list-style-image:none;}ol{margin-left:1.5rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;font-size:0.85rem;line-height:1.5rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;font-size:1rem;line-height:1.5rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}blockquote{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0.9375rem;padding-right:0;padding-top:0;margin-bottom:1.5rem;font-size:1.1487rem;line-height:1.5rem;border-left:0.5625rem solid #1ca086;color:hsla(0,0%,0%,0.65);font-style:italic;}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.5rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.5rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.5rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.5rem;margin-bottom:calc(1.5rem / 2);margin-top:calc(1.5rem / 2);}li > ul{margin-left:1.5rem;margin-bottom:calc(1.5rem / 2);margin-top:calc(1.5rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.5rem / 2);}code{font-size:0.85rem;line-height:1.5rem;}kbd{font-size:0.85rem;line-height:1.5rem;}samp{font-size:0.85rem;line-height:1.5rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1rem;padding-right:1rem;padding-top:0.75rem;padding-bottom:calc(0.75rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}a{color:#1ca086;text-decoration:none;text-shadow:.03em 0 #fff,-.03em 0 #fff,0 .03em #fff,0 -.03em #fff,.06em 0 #fff,-.06em 0 #fff,.09em 0 #fff,-.09em 0 #fff,.12em 0 #fff,-.12em 0 #fff,.15em 0 #fff,-.15em 0 #fff;background-image:linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 1px, #1ca086 1px, #1ca086 2px, rgba(0, 0, 0, 0) 2px);}a:hover,a:active{text-shadow:none;background-image:none;}h1,h2,h3,h4,h5,h6{margin-top:2.25rem;margin-bottom:0.75rem;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.5rem;color:hsla(0,0%,0%,0.8);font-style:normal;font-weight:400;}blockquote cite:before{content:"— ";}@media only screen and (max-width:480px){html{font-size:106.25%;line-height:24.65px;}blockquote{border-left:0.28125rem solid #1ca086;color:hsla(0,0%,0%,0.59);padding-left:0.84375rem;font-style:italic;margin-left:-1.125rem;margin-right:0;}}</style><link href="//fonts.googleapis.com/css?family=Work+Sans:400,600|Fira+Mono:400,400i,700,700i" rel="stylesheet" type="text/css"/><link as="script" rel="preload" href="/component---src-templates-default-markdown-template-tsx-dcb82b3ad83ab3065f6b.js"/><link as="script" rel="preload" href="/0-a4e178f9f2f1fa0ec198.js"/><link as="script" rel="preload" href="/app-d8e017ae19175c916c7b.js"/><link as="script" rel="preload" href="/webpack-runtime-823cac1d497e829206b9.js"/><link rel="preload" href="/static/d/306/path---projects-2014-183-1c9-aVldgUbEzqT1FlD2Jyw6HF9N0g.json" as="fetch" crossOrigin="use-credentials"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="defaultLayout-module--header--G28ik"><div><h1><a href="/">Adi Dahiya</a></h1></div></div><div class="defaultLayout-module--body--3jKPt"><h2>creative projects (2012—2014)</h2><div><p>Below, you'll find my work in information visualization, typography, graphic design, physical computing, branding, and various experiments completed during undergrad studies at UPenn.</p>
+<ul>
+<li><a href="#mapping-musical-genres">Mapping Musical Genres</a></li>
+<li><a href="#branding-the-contemporary-fringe">Branding the Contemporary Fringe</a></li>
+<li><a href="#you-are-the-product">You Are The Product</a></li>
+<li><a href="#electronic-synthesis-visualizer">Electronic Synthesis Visualizer</a></li>
+<li><a href="#tweet-correlation">Tweet Topic Correlation Between US Counties</a></li>
+<li><a href="#scrobble-goggles">Scrobble Goggles</a></li>
+<li><a href="#buzz">Buzz, Your Smart Doorman</a></li>
+<li><a href="#losing-my-edge">Losing My Edge</a></li>
+<li><a href="#pennapps">PennApps Hackathon</a></li>
+<li><a href="#nostrand">Nostrand</a></li>
+<li><a href="#levine">Levine</a></li>
+<li><a href="#creative-process-book">Creative Process Book</a></li>
+</ul>
+<hr>
+<h3 id="mapping-musical-genres">Mapping Musical Genres</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/clip-1-fdac310a496b6dd9af864df551393cca-16627.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 680px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB0UlEQVQoz3VS2Y6bMBTl/3+smqrtKE06IWE1izFgMGaLDTbT44kq5aXIQtice+9Z7C36wSQP6ixty7Sl7STWTVlrjbWf/3+O48DbO2W3oCbnIrzS5M5I1rFulqh3Syu1bU/c62Os2c1+fB7epYx+Ed+vUqxLGSZtKZZxM/s/nH1selxn9NqtwTm2wASM8Gnw4ra4FOF75p/yO+ZHTZ73dSU7tenHpiBqVmu/jP0ih3VC5W6M3jf8wof3QZOkpbeaYD5YgHwhmmrgcVu+xRf0hR3QkneMSo6m3SLREUTUrr1v0RllpzwA1GfpB41vjKS8ipqikpyKBkT4JPKezV8s+DzACyxtdjcZo2btuKHse/znzjLo/50HLgJOgR4fC1zEKLggoV8jjgNvD42hAaeQ0UzixtKE03tNfpIrKtW+ITyomNS6bhpbLCY7bKHfowMvRZuLBiJ9RsI6u9KUdFXYFG/x+Ud6xS0oReNXJGqLeuxh2zNOlzNYdfOAFqAA/u3Y17KjggOkv4LBKNBGa+h65odDgJ1h1BlL4U3M4XmG9GCmPSz8fLkVFoeYMSI74zQiOUz1AOpnOakFF4DPkskeOPyGH6+3CjcEVHtnmysGF4D/ArU8oTgcquuIAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="mmg-clip-1"
+        title=""
+        src="/static/clip-1-fdac310a496b6dd9af864df551393cca-16627.png"
+        srcset="/static/clip-1-fdac310a496b6dd9af864df551393cca-e859f.png 222w,
+/static/clip-1-fdac310a496b6dd9af864df551393cca-cae29.png 444w,
+/static/clip-1-fdac310a496b6dd9af864df551393cca-16627.png 680w"
+        sizes="(max-width: 680px) 100vw, 680px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/clip-2-82806e8199c4e67dc5d524c5b578116b-16627.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 680px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB8ElEQVQoz3VSTW/TQBDN/79z5ALlQCWkFkIpqiAlIkrT0iSEfNhpHDt2HDuJ7dhrrz921zbPTksFEnsYrUbz3rx5Mw1/OY1sndMwXCv7UTdYyaGpBqoUbrTUdzglLCI8Dos8L8uyqF/59BoFZ7FjZ8Tz5IHROgP+MP9p3Vw5kx+MhjwiOctElmbkAPy/4Mx3U3KI9xZZzT2p78nDxLFY6DNKRJoUQrAoQB3+UHFs/gxWL06Mb++XzVfqxRv57YvV1SmKwEi3a7o19r96Ruvcvv266X42281N59K6axF9UdY0DeP6XAGy+Vr/8m7d/uDO+tAJC3hCoSVQZ5CDCCMiU4usFbUNVkuoOhN97msStdciiStJlaqiEAx4wDB/oElm55N91wIeScGyZ9nb++uHs5f+YpxnCYMrQtT5wpsPfWVMLd2d3h/xy48nLI7SqoajoAKH6LycijQGa8F5FrhwFWsDqTO6ccY9okmRqTrj292wA+qji4+d6UbjSYwfHAYlkNiKr0wwMCZEPOrEzg8Po0CTscJdvx3vzLqzsUi8fc4ZLgGxUiwEj6M/g9UulKm3A9hXZ4ieNEhcuwLDSVceYML9uIfJRUKRzVmaBV756N9/XwNqD8pkO/jujLpQEW202o8SLHDhr/5YBo4Md/pE+htMcpqtPC1PkAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="mmg-clip-2"
+        title=""
+        src="/static/clip-2-82806e8199c4e67dc5d524c5b578116b-16627.png"
+        srcset="/static/clip-2-82806e8199c4e67dc5d524c5b578116b-e859f.png 222w,
+/static/clip-2-82806e8199c4e67dc5d524c5b578116b-cae29.png 444w,
+/static/clip-2-82806e8199c4e67dc5d524c5b578116b-16627.png 680w"
+        sizes="(max-width: 680px) 100vw, 680px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/poster-photo-9f444063cfd9d5850665c758feba1bde-57fc3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.650390625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAF6c+uLLEA//8QAGhAAAgMBAQAAAAAAAAAAAAAAAgMAARITFP/aAAgBAQABBQJCQJfAI4apqH4H0Qy0f//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/AWf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwEn/8QAHRAAAgEEAwAAAAAAAAAAAAAAAAESESExMlGh4f/aAAgBAQAGPwJNq56NLBGNTXsb5P/EABsQAAICAwEAAAAAAAAAAAAAAAARASExQWGR/9oACAEBAAE/Id3Vsrmp9FG8DrB5MSrdMz//2gAMAwEAAgADAAAAEFAv/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAERMf/aAAgBAwEBPxCqLD//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREx/9oACAECAQE/EIg9P//EABwQAQEBAAIDAQAAAAAAAAAAAAERADGBIUHB4f/aAAgBAQABPxCzhIWzh1bNWtT7jUpAFX0ZkUKD489O5Wu/zmoKItm//9k='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="mmg-poster"
+        title=""
+        src="/static/poster-photo-9f444063cfd9d5850665c758feba1bde-d8a26.jpg"
+        srcset="/static/poster-photo-9f444063cfd9d5850665c758feba1bde-8b83c.jpg 222w,
+/static/poster-photo-9f444063cfd9d5850665c758feba1bde-80e58.jpg 444w,
+/static/poster-photo-9f444063cfd9d5850665c758feba1bde-d8a26.jpg 888w,
+/static/poster-photo-9f444063cfd9d5850665c758feba1bde-7fe1d.jpg 1332w,
+/static/poster-photo-9f444063cfd9d5850665c758feba1bde-5fb99.jpg 1776w,
+/static/poster-photo-9f444063cfd9d5850665c758feba1bde-57fc3.jpg 2048w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="/poster-bc9b6632f349a81d1a34cfdb4a751500.pdf">60" × 40" print</a> — Spring 2014</p>
+<p>Multi-dimensional graph-based visualization representing the development of and influences between major musical genres from 1940—2000 (built using data from <a href="http://the.echonest.com/">The Echo Nest</a> APIs).</p>
+<hr>
+<h3 id="branding-the-contemporary-fringe">Branding the Contemporary Fringe</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-2beac.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 39.08629441624365%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0ElEQVQY00WQCw7EIAhEe//jVkTxuw9su4QYGJgBuWbY6H2uNV9ba/XexxgEjYCGMQ5yghU9V1G1UkrOVbXW2lp7YlVKnpZS8Zxpa2ZUD+5kIBMp900ZyBAQqYG0MFcRgUbJlSip+nDIFRBhIFTMaELlxOjwoq6QYeJk0fmQ7ZDZM7rPYhqL+ViMRMR3RjEysHdy7GkpOS0kjTJyMdb5OWcm8yOcjpT0W5vWxs14g+B/4zYgcSEI3azb386Ah7zX2nv76ef0gPTzk4bNt/oh2A8audOdY5wzQQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="edge-art-render"
+        title=""
+        src="/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-98b5c.png"
+        srcset="/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-6bb4a.png 222w,
+/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-366c9.png 444w,
+/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-98b5c.png 888w,
+/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-efbc2.png 1332w,
+/static/edge-art-render-7e0c825bf0fe4bf4cad6e68d4c808d03-2beac.png 1379w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-f90fe.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 59.834212509419736%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAC10lEQVQozx2R20+ScRjH39taa3MtT7OaRctq062bNl3rpi4st270QicXbRmzNDNrauJhAuIREEQ5CyLng8r7wssLCLwgGHJGOWmIIor9F/10++7Zc/N5vt/neaCmhmd1NRWNr5p7x5b7xjjDs9JJrn5yxUgVmmZkGE2CTq2i0zLbnNK1aPCxdDsLKjcLNAYfU78DNdbXEarLW1q7flBFP2mCCbaKLjItyLF5IIVjUevmGn0MtZtt8PGQoMAcFlkjK8ie2BYVoGHoxZOHtVVVxC/jg7OyUaaCLtzkqLeX9TjX6OVt7gpMATEaFlpCEmtkFYuq8JTOl1F6klpfRu4+gOof3X9cSyANMX7RxZNc3ZzUzNU6RfCu0LQrxSISNCy1RdV4Eki/k1F7kgZ/1hQ8NgYON4M56Om9yoaGl1/JSwM00QRHM7uKcDTbvE2PAPbLbFG5Iy61RjSe1DWTQ0J5UM3RPBo7QRMFqPL2rabXzT3jy/1UAZmxPiOB2Sr7yoZHgu6t2SOAVzgTWm9q488RFi8gkbwleuI4KNr3i47kOVR24+ablg7Sb1bvxPII2FlsYikx/pZXbAms2a9Jz1VgOHRsjReA7PtneOYSkK7UBVRZVva+jfRxYKZ7lD00v0bhGxbWURBbCO/KHVGlK6HBkzpv2hzO2xJntnjBnS650hdAePYfVH234kNnH/EbhTSyODAtGVvSTEtMHL2TD/tAchkWUrr39b40EspZY1e2AHZnSu5sCT+8hB7U1La093T0jH8amu+l8IcZcqrQyFRhXCPOQ/wiy96aI6rxJuFQDg7+RYI5R7LoypTw7CUYAREIz1s6+1q7BonfKZ9HmP1TAjJbSV/dWlBibINLaAnIHBGFK6H3ZzYCh0j42H5wBg7mTJ3bk0Wo/E7Fi8a379q720jDxH7qFU8XkpeUNMCrbBwjDni5KwbMt4JHcCRniYMnnVoSp0gs/x8hYsUUCweYiAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="edge-art-video"
+        title=""
+        src="/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-98b5c.png"
+        srcset="/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-6bb4a.png 222w,
+/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-366c9.png 444w,
+/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-98b5c.png 888w,
+/static/edge-art-video-058d67f5b56f8793f69e9bdf9d1e2cde-f90fe.png 1327w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<iframe src="https://player.vimeo.com/video/79072259" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="http://www.adidahiya.com/design/edge">Interactive application</a> — Fall 2013</p>
+<p>An experimental project which attempts to brand the contemporary fringe of art &#x26; design through a 2D visualization which reacts to user input via webcam.</p>
+<hr>
+<h3 id="you-are-the-product">You Are The Product</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-d8ee0.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.69921875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABAACA//EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAemxKBxI/8QAGRAAAwEBAQAAAAAAAAAAAAAAAQIDABEh/9oACAEBAAEFAkVO1Hd4um5FLUM5vQ0P/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAHBAAAgAHAAAAAAAAAAAAAAAAABEBAhIxMnGh/9oACAEBAAY/AsRVIUwhw6O2j//EABsQAQEBAAIDAAAAAAAAAAAAAAERACFRMUFh/9oACAEBAAE/ITAK+uU+B1msa9nvdZyaQhcKucJM/9oADAMBAAIAAwAAABAjz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABsQAQEAAwEBAQAAAAAAAAAAAAERACExUWHw/9oACAEBAAE/ELIzLtTK4o0Abnw8xOb3H0PcZdK2/ubE3Doj3BBQAoE/Of/Z'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="process"
+        title=""
+        src="/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-d8a26.jpg"
+        srcset="/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-8b83c.jpg 222w,
+/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-80e58.jpg 444w,
+/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-d8a26.jpg 888w,
+/static/process-badfe1e7a8f4b2f48e2a4eefc11620a7-d8ee0.jpg 1024w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/doc-6-347c1642042a831b1ef7aab2233a4bc7-20443.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 683px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 107.02781844802342%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAMBAgQF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQIA/9oADAMBAAIQAxAAAAGVIdsVqwTy+somDf/EABwQAQEAAgIDAAAAAAAAAAAAAAIBABIDIhETIf/aAAgBAQABBQKPZM+FxzqTpG4hPZJ9ydalrn//xAAZEQEBAQADAAAAAAAAAAAAAAABABECITH/2gAIAQMBAT8BXfLW5nUN/8QAGREBAAIDAAAAAAAAAAAAAAAAAAERAhIh/9oACAECAQE/Aaawxnqn/8QAGxAAAgIDAQAAAAAAAAAAAAAAABECISJBkQH/2gAIAQEABj8CxFOyoMcZWN5MqHJHliTrZvp//8QAGhABAQEAAwEAAAAAAAAAAAAAAREAITFRYf/aAAgBAQABPyEAfUk0ayOQmR5Yvbn54Xr7jMLiHmU1D0MsSgzGQ7soAil4z//aAAwDAQACAAMAAAAQjADC/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQARIUH/2gAIAQMBAT8QLJAOQGzyTDt//8QAFxEBAQEBAAAAAAAAAAAAAAAAAREAIf/aAAgBAgEBPxCety7ZmgyLv//EABwQAQACAgMBAAAAAAAAAAAAAAEAESFBMVFhof/aAAgBAQABPxC7OqUJQ4I5AxvsFq1WNXOejUAOW/e4E4DDjLfcK1+WCtr+Q9vogPsENgUDWYFpB6KXHwkEMFvRP//Z'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="doc-6"
+        title=""
+        src="/static/doc-6-347c1642042a831b1ef7aab2233a4bc7-20443.jpg"
+        srcset="/static/doc-6-347c1642042a831b1ef7aab2233a4bc7-12d65.jpg 222w,
+/static/doc-6-347c1642042a831b1ef7aab2233a4bc7-aa933.jpg 444w,
+/static/doc-6-347c1642042a831b1ef7aab2233a4bc7-20443.jpg 683w"
+        sizes="(max-width: 683px) 100vw, 683px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="http://www.adidahiya.com/design/typog">Website</a> — Fall 2013</p>
+<p>A typography-driven project which takes a critical look at the economics of popular free web services–such as Google, Facebook, and Twitter–which invert the traditional product consumption relationship.</p>
+<hr>
+<h3 id="electronic-synthesis-visualizer">Electronic Synthesis Visualizer</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/synth-vis-9123b412c6cbb6f51431fb5f5749e148-3f8ec.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 626px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.61341853035144%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABR0lEQVQoz52SPU8CQRCG789aW9toY4iNlYW9JhLQEGMssLAAA4UfJIYEPA2KCFG4A+64/d6dOfcUUVQg+ja72c0zM+/MOEIIAIj/JYdSyhiTUn6GQByfgIvhsRgTTBilUZk/ZE5EiIhN56TSzl897hVVQO2f6hPU8xw5tuYEjoiMoZkp3KcL9c1c0O4pNO5GTvbCr0a+w4iotWaEihhauVL7sNTYPqZdn0peS2WD2w7GM507496YpF13W0dna/nicuam/MIlq6Uybupg4D6pGMDATPg9uvbDauW5etG6dge0612uZk+Xdob1JtPSepuayBQ8LQDNGRuG0fn6flR/4KAoSTrDuX1mSqlfYOsfAex48c2oMaq6sltKu0RIS41Gke/7nufZEuZlnogPSa0RRJQN+ols5sVl/3ABdotxsnkfl8Uwzt7RV8E17NDWZTteAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="synth-vis"
+        title=""
+        src="/static/synth-vis-9123b412c6cbb6f51431fb5f5749e148-3f8ec.png"
+        srcset="/static/synth-vis-9123b412c6cbb6f51431fb5f5749e148-f9164.png 222w,
+/static/synth-vis-9123b412c6cbb6f51431fb5f5749e148-bf2c1.png 444w,
+/static/synth-vis-9123b412c6cbb6f51431fb5f5749e148-3f8ec.png 626w"
+        sizes="(max-width: 626px) 100vw, 626px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="http://www.adidahiya.com/synth-vis">Interactive application</a> — Spring 2014</a></p>
+<p>A simple browser-based synthesizer that visualizes subtractive synthesis over time. Users can play notes using their keyboard and see ADSR envelopes move across the isometric 3D canvas.</p>
+<hr>
+<h3 id="tweet-correlation">Tweet Topic Correlation Between US Counties</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/wwbp-counties-7072c22d83db5ac1c00e1a90325a6c5d-dc50b.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 530px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 57.92452830188679%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAABuklEQVQoz21SbW+bMBDm//+LfdmH7sOkTsrUrqqyiDbp0qxNA4QGGFCS2KS8pcBix8bsbNpuXXOS0Z3vHt9zD6fdzM9N0/Z9nzHWKhOibZoGHPhWeYZxXJZle8i0a/sLRpuyqjjnEBvxQ388Go+ugiCAMNePr7+fo02iHhX/g8mO1XUFTSDXMIaqPK1LcBjncMU5k/eQlYTegbdlvl4hx3GBm6z5x4CLUO0IoXzPDtCeLXsn/U/TG2ugDy3TDMMQYQSJgWt+G/Tv53NC9xCe+MZR/zRPsjdgymvKavAms2A4Gv/y3ChaikbgqijJbzmoGtVIVzMcts2buTXIcSalAtoI4U7vTuq/+ivxQYA9oaBFN44Ew2EMiAm2Z2HkTaYD27IfHxOF51CSZVkURUVeeCnuXep3P6eLhdv9Gk0VqYdEizbBnXsWPazK8iktqtmtNXHt48mFbVrOwonztOJUSv8MUGAuyOnVh8uhPhr+WKOkY7qKC8Py0zTZSV6HTXUW3I/HNanq7TbwnDXCMcaU0tei5pXbywrudoRSorUvF3KIHAdfP95ODd8PYOfebxXsi1R+2TvTP3tO8AeBbadSSQWRwAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="wwbp-counties"
+        title=""
+        src="/static/wwbp-counties-7072c22d83db5ac1c00e1a90325a6c5d-dc50b.png"
+        srcset="/static/wwbp-counties-7072c22d83db5ac1c00e1a90325a6c5d-c1d2c.png 222w,
+/static/wwbp-counties-7072c22d83db5ac1c00e1a90325a6c5d-5a191.png 444w,
+/static/wwbp-counties-7072c22d83db5ac1c00e1a90325a6c5d-dc50b.png 530w"
+        sizes="(max-width: 530px) 100vw, 530px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="http://www.adidahiya.com/wwbp-counties">Interactive application</a> — Spring 2014</p>
+<p>A force-directed graph visualization which draws attention to particularly unique correlations of topics tweeted in different U.S. counties.</p>
+<p>Data source: Penn's <a href="http://wwbp.org/">World Well-Being Project</a>.</p>
+<hr>
+<h3 id="scrobble-goggles">Scrobble Goggles</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/preview-47fc61e241ec3a3176ee687ac670c215-ca268.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 320px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 62.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC50lEQVQ4y2WSy08TURTGJ5SCsDARBhWkQGkLlFch6oJS0SgxmhQKNuIzcatUFz7wD3BjXImauGEHUlHD0hAXRsTQlkeByCNAWrFAGQohxvRBmXbu59yLbRBv8uXM3MfvnvOdy5mbWqHW6El5RS0p0xtQKqukrAq60kpoSyqg1ZWjWKuHurgUReoSFBZpUVCoQW5eAbL5I+BzjkoZmQdhNJoESRJ57sJFM/JVGvlAGdFoyqDRyvoLKdboUVCkkwG7ECpVQTGO5RfJoFxkZR/GoawcKS09E8Z6kxCP7/Dc6TPnRL2+Ag0NDUQjZ6RS65CaqkT6gQwolWmorKyCwVCDqqpqpCqVbE2hUCAlRQGO46DT6aTqagOOnzgpAOC5GzdvwWa7S5qaLeRj72tMff4Ap8uFwcEvGB0dhUv+Hhsbg9PpYJHOud1uTEy42b/X45Hs9rcsw2g0wnN32u/BUFNLcnJVZPCpGfj2BKIEBvJ6vSz6fD4sLi5iaGgIHo8H+4Y0OTkFk6lBCAZ/81zbleuxrpfP8MPnJzNdtyG8v4/Q9g5WV1exsrLC5Pf7sba2hlAohHg8npQoigzocDhRbzolhENBnrO0WGMbgp8ukL53X/GptxeSFENgYwOB9XVsbW1hXY4USAhhkiSJxVgsxoBOpwyUS2bAy21XMf19huDXFlmfnUUwFGE3R6NRdpBmEonszlEAnUsoAWQZUmBYBra0Wqk/xPGqk5xX5aG/v5/BBgYGMDw8jPHxcczNzWFkZATz8/PMNJodHfQyCqQ+J4HNza3iyqofjx88JNZLVvTZ7Wwz9VAQBBY3aPmBQALwH5C+CtrlSDhEm3It1tP9BrZ2G3nxvJN5RsujMOrb5uZmskEJ7xJKlix7aDTWC5FImOfMZou4sLCIpZ9LpLunB77l5b23//s+9vhHlejysMPBgNsU2GxpFaenZ9Brt5OzjY141NHBmkAzSkASGe0fyZKdLtTVycDtMP8H+X73MG/G1tQAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="scrobble"
+        title=""
+        src="/static/preview-47fc61e241ec3a3176ee687ac670c215-ca268.png"
+        srcset="/static/preview-47fc61e241ec3a3176ee687ac670c215-11209.png 222w,
+/static/preview-47fc61e241ec3a3176ee687ac670c215-ca268.png 320w"
+        sizes="(max-width: 320px) 100vw, 320px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="https://github.com/adidahiya/scrobble-goggles">iOS application</a> — Fall 2013</p>
+<p>Take a photo of an album with your iOS device and use the Google Goggles API to match it. Then, scrobble the tracks from that album to Last.fm.</p>
+<hr>
+<h3 id="buzz">Buzz, Your Smart Doorman</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/header-35e25484276a170ce5bfc0dde3ad0976-d5e12.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 41.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAAB0ElEQVQoz12Sy2tTQRTG858IgoiC4ELFhUhBXfoHdOPGhQquhC4E0V11UZRaSm1FqhQStPXRatH6aJFgQoqpClq1yU1ucm+y0XuT3Efe6a9zpqQVF4fvzPlmvvlmzolUq1VqtRqCbqWi8zAMaDTq1OuhRs25LhXFS8jacdXeIKTqB/xx3J16pC+2LRRStCzSa1/5lEyx9uUbq5/TOI5DEAT6ULPZYCWe4NboOM8WFonNPmdkfJKXb97TbrW2BSVEqFAskkytMhN7wtjEfVY+xll694FMNks+b2LZNpu9rhKZZ/DCZQrqzF912cWhq0w8mNFcpO9OniS4/vOXFok+nlO4TEI5FWfCi9Nup83ThdccPH6GpHJvmCb7jgww9TAKm91dh6VymVKpjG2XMHJ5TLOg0TByFApFLMvWfKfd4sWrJQ4cO825S1cYuj7MteHbLL5dVk9uEvE8TwvmlcDvjQw5JfL9x7oSy2mRTNbQriU2MlntMDY3z55DJ9h7+CT7j57i7OB5HkVnFdfZfbJ8uu/7eF5No68uEgxVXbouueyVPK2aNTI2xd3JaUbvTXPj5h3iiZSeCi0o0f+n/8fjX65fl2mAnmpCTzdCchGTsdsCIt0vMWBXghMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="header"
+        title=""
+        src="/static/header-35e25484276a170ce5bfc0dde3ad0976-98b5c.png"
+        srcset="/static/header-35e25484276a170ce5bfc0dde3ad0976-6bb4a.png 222w,
+/static/header-35e25484276a170ce5bfc0dde3ad0976-366c9.png 444w,
+/static/header-35e25484276a170ce5bfc0dde3ad0976-98b5c.png 888w,
+/static/header-35e25484276a170ce5bfc0dde3ad0976-d5e12.png 1200w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-d8ee0.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.69921875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQCBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHpR15KhZ//xAAXEAEBAQEAAAAAAAAAAAAAAAADAgEA/9oACAEBAAEFAlvDmFul5DxMAsOe/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8Bh//EABwQAAEEAwEAAAAAAAAAAAAAAAEAEBEhAiJBof/aAAgBAQAGPwKStcpB8a1XW//EABoQAQADAAMAAAAAAAAAAAAAAAEAESEQQVH/2gAIAQEAAT8htdhCAGlPHFbVVO3HSxn/2gAMAwEAAgADAAAAEDsv/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8Qqv/EABYRAQEBAAAAAAAAAAAAAAAAAAARMf/aAAgBAgEBPxDSP//EABsQAQACAwEBAAAAAAAAAAAAAAEAESExQXGx/9oACAEBAAE/EEtSo1cusckEq2J8exUoy47DKNhWZVukCvDwizqf/9k='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="prootype"
+        title=""
+        src="/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-d8a26.jpg"
+        srcset="/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-8b83c.jpg 222w,
+/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-80e58.jpg 444w,
+/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-d8a26.jpg 888w,
+/static/prototype-8e20d2c0a00e12aaf881bc66727f1f1e-d8ee0.jpg 1024w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/internals-a3857584fa77016642f621836376f887-d8ee0.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.69921875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwEC/9oADAMBAAIQAxAAAAHP10DJXx7N/8QAGRAAAwEBAQAAAAAAAAAAAAAAAQIDABET/9oACAEBAAEFApxf0gJgc1EDrGZQkuu//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BCf/EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPwFdn//EAB4QAAICAAcAAAAAAAAAAAAAAAABAhEQEiIxQYGR/9oACAEBAAY/Ak3Hp8miNYUxrNuVa8P/xAAcEAACAgMBAQAAAAAAAAAAAAAAAREhMUFRYfD/2gAIAQEAAT8hxlu1pDVY30sOVHGsolJcZmB5b+en/9oADAMBAAIAAwAAABDIz//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EIK//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8QiR//xAAeEAEBAAEDBQAAAAAAAAAAAAABEQBBUaEhMWFxsf/aAAgBAQABPxBngRG4RyWV0aLV7K/MQrOcuEvaNzCg2hGiMHrdMrUOqx4x/9k='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="internals"
+        title=""
+        src="/static/internals-a3857584fa77016642f621836376f887-d8a26.jpg"
+        srcset="/static/internals-a3857584fa77016642f621836376f887-8b83c.jpg 222w,
+/static/internals-a3857584fa77016642f621836376f887-80e58.jpg 444w,
+/static/internals-a3857584fa77016642f621836376f887-d8a26.jpg 888w,
+/static/internals-a3857584fa77016642f621836376f887-d8ee0.jpg 1024w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="/sell-sheet-a8540be9645fedf44fe9beb0f401a331.pdf">Concept, prototype &#x26; marketing materials</a> — Spring 2014</p>
+<p>A “smart” doorbell which sends you an SMS when a visitor arrives.</p>
+<hr>
+<h3 id="losing-my-edge">Losing My Edge</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/photo-e0a6541cf272d08e6610093515f2c5b6-2dc25.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 600px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAE/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABPSGgSOP/xAAaEAACAgMAAAAAAAAAAAAAAAABAgMhABES/9oACAEBAAEFApX00VqRbRhsDcgtf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAICAwAAAAAAAAAAAAAAABARAAEhIjH/2gAIAQEABj8CxfJsUh//xAAYEAEBAQEBAAAAAAAAAAAAAAABABEhQf/aAAgBAQABPyFcMvU01PbLF1ujYnQJnV//2gAMAwEAAgADAAAAEMDP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGRABAAMBAQAAAAAAAAAAAAAAAQARMSFB/9oACAEBAAE/EDzSMOsTqehryG+uQB7DbT7CoWDtRFTZ/9k='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="photo"
+        title=""
+        src="/static/photo-e0a6541cf272d08e6610093515f2c5b6-2dc25.jpg"
+        srcset="/static/photo-e0a6541cf272d08e6610093515f2c5b6-51d2f.jpg 222w,
+/static/photo-e0a6541cf272d08e6610093515f2c5b6-7657a.jpg 444w,
+/static/photo-e0a6541cf272d08e6610093515f2c5b6-2dc25.jpg 600w"
+        sizes="(max-width: 600px) 100vw, 600px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/preview-1ea3114264d33214777b915d38cd0289-71d87.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 600px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 129.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAC4jAAAuIwF4pT92AAADJUlEQVRIx5VVWUtqURj1D/baS74U+CLhQw8SEZS+ZYMkhA+hUFFZQTQQ9dBgUlmazQNFo5bh0EiDNrgu64N97rnnnm7eDdt9ztnHtb/1rfV9x1IqlaDG5+enzI+PD1m/vr5gHPr3zYaFL6ytreHk5EQeFItFpNNpXF5e4urqCpubm1hZWcHBwYEc8hOohT8LCwtoa2vD+Pg4jo+Ptc2Xlxfc3NxgZ2cHe3t7GtA/AdVmNpvFyMgImpub0d3dLREpyre3tzg/Py+LtkQ4OzuLaDQqD+7v7zE/P4/BwUF4PB6cnZ0hn8//HyDpeL1e+P1+oZ/JZLC/v49QKITDw0OJ8PT0tDzKpEVVX19fMTExAbvdDpvNhr6+PhGG+wTkdVmA/GEkbrcbc3NzkjtGTIGYz6OjI1Ge4pRNmflrb29HS0sLurq6EI/Hsbu7i8XFRVxcXAggLWSMkKvxWlOZlClOQ0MDHA4HgsEgtra28P7+Lnu5XO5bIH0BSIRUkmJsbGyIfZizcDiMuro6xGIxFAoFXF9f/wWojK4GgQUwlUrJ5B8JxjyyQlhBzN3b25scpICMJcmU9fb2/o6QJ9FrrIjV1VVZea8GAVk1ejGYipmZGfFqa2ur5FsDZB2TsvIcRXh6esLj46P4cXt7W/LJ8fDwIManiPX19eIM2o7sGJgAMhpOPmAkFCCZTMrKxrC0tIREIiH0rVarOEE1E77PkvX5fH/WcjmDB1D9sbExcURHRwcaGxvR39+vlaZFr5rZpABqcpB6Z2cnqqurUVNTg4GBAU1UUv8RUK8qTV5RUYGenh7JJdMSCARQVVUFp9NpHqFZaan75+dnRCIRiYp5rK2tRVNTEyYnJyXHGuBPLV49o/qjo6PSmVwul0y2OdY7baSJYpzGelWU2cIqKytFBFqKrmAjGR4eFttpERKd5lWnGMEJyGt6jZ8I+pBWWV5ext3dnViHPVQDJBiNzNVI2ywFpM5op6enMTQ0JFWiKsuiXuAp7CqKnj5CRjQ1NSXJp7r6ZkC7EFgrPZUj9U02a1EsPzaL9fV1OVSB6Vkwp6Yql0P5u17I+1+ZZYOXno3aXwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="photo"
+        title=""
+        src="/static/preview-1ea3114264d33214777b915d38cd0289-71d87.png"
+        srcset="/static/preview-1ea3114264d33214777b915d38cd0289-e9ab9.png 222w,
+/static/preview-1ea3114264d33214777b915d38cd0289-e39c4.png 444w,
+/static/preview-1ea3114264d33214777b915d38cd0289-71d87.png 600w"
+        sizes="(max-width: 600px) 100vw, 600px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="/losing-my-edge-8f9713a6b0a7efaf91c1c047adf60ba6.pdf">5" × 7" letterpress print</a> — Fall 2012</p>
+<p>A graphical interpretation of a text using only typography. I used the lyrics from the LCD Soundsystem song <em>Losing My Edge</em>.</p>
+<hr>
+<h3 id="pennapps">PennApps Hackathon</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-4a2c1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 60.67307692307692%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAACtUlEQVQozx2PW0/aABiGe7lll8sutpk5BcGeW85HEUWBBqFYoFJoOZZTOYqAESegs0yYTJMlixfbdItZZrIsW+Jv2N9at+vnfb48H5BJcPEI43W6XCabQ6/3Wi2XvcLdtP/z03Wl0IompdubHx9mF9PBUYqNJ1m2nM03KuXPF7Ov8hSA9Q7/hq8tVcejUbVc8aw46/EtucaPu82DzkG/d/TmeDw6UpDEM0xVEGpSo9PZr6fzeYMLQEmb1Wjvl0rXZ2cnw2OzxSb3e2LAdymPf327u7/9fjWZZVl+OjmfHMvvTieDs/d7rX3B402ZHYCOMGjVyzaztVYsFjNZEoSjgUDUaByIubedvVdS/bzbzXt9laSQS+WCdDQUiqyt+Qwmp2eTAh48fPTiyWOf085srGcjzLbdylG+fj5X5rh2pdyu1mbD4cXrsdwf7hbEYjqd4zg+th2kfC+1OGCdn/MTUCXGFNJpPhyiLKZRgd+t1XvN1tX5VO505OHJoN083e/8uf998/HL9LB32m0NW1XK7wc2EYJ49pR8PmeHtYRqgbOQlNuFELYyu50KeD06vQEjvC6nDl+NhmKHzUaQCtFOa4KmCUwHIDCCgyCiXUY0Ws3CIqRSadUaWL1kRpBllRqHYPWiClQtwUvgwvwirFFDWhDUgCYM1WE44EYxCIQICF4xmA64ZIZlqVU3F6QrPioVY8Mud5oO5+Nxhg5HgrTA7lhJkoT+7VEQAkKEzoFiAYzwmy29Yqma5Kl1T4kXJF7YE0U+HK5ks51M9rDeqIqFXanqIHV1g7lsNMOKbIJRRaZxUo/hYiKR4RKFUFhKZ2J0OLoVrAkpIc5xTCS5E69vM6LXr9QyBLmB4VYEBTAlAIKVM8p7BhRXmBlG9AhCoJiC9CimQzESQZWNBUbsCIpAMP5fUcr/AmtM5XMBcJQxAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="website-2014s"
+        title=""
+        src="/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-98b5c.png"
+        srcset="/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-6bb4a.png 222w,
+/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-366c9.png 444w,
+/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-98b5c.png 888w,
+/static/website-2014s-4a106543c4a0ad450c64eb09ef49ae76-4a2c1.png 1040w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-078ec.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 76.6694146743611%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsSAAALEgHS3X78AAADBUlEQVQozz1QS2/bRhDmrZZFkaJIihIpvkRyl6L4fi2fkmXLVhIbjRM3BYLYVly0lxRpe2pz6aHXALWTIIc05yKXooce+v+6NoIC384u5ttvvpkhmsxdtykUOcBROkOfLvxfnh9uN6s6a6r2QbP3ZWC7GxT9+uLx03WiMbQ16JkC22Ze6gKijt0lCqQhz5GkzAyQIb06jj9ebT799urfT3/98+ffH3/45uf7xXad5WAisyzT7QoMk3sgdW0icQxtPOQZRuVZOAUH1fLZUbsX2WfHx69f//7H+/eXT85WSbRfFaHjCAOWpfvULsnRlK2rBE9TvS92hD4zM4ChaY6pe6o4HXK2YV6dX/z08nsXWgLLiqIsi9KYY/sk2d3Z7XW6DMkQvZ0OQzN9kpIFQR3xk37PEYcnh0eHdbP9+snZ6cMWoXWFOJomOx2OoceCQHYperdLdSmiRwosrwv8SJMmugp0luIoWhrLMstB1ZhZkGfY0YCjSZrudAYMyw/Y20LdvsAJhKLMFdmWJ0ASgTKBmupk2SIKS98vwqBM4iYMqjAs06QxdFcSzYlkyRJQZIhBqMoMwzQCz0XACp1ZijVpukiSBuXLNG3jqMKxLPY9D9kwsmGMgT1UxSHwhZ2xrG2PAr/AVhBEcdT4XhH4ZRhWEEY4XxT7KN+LozoKqyisdW2OLQmsNA0f5aupPscyXAUXxhnLDDBlTL0obIHp6wrUZDBVoak7wAo+iycScOf5vc1Xnpvn2RIDOzgz3FuEm8ID3zt6XLUnm0ffLu9flOuncXlsg/CzGB/sgIGriKKF1ybdRXkC76jZkJPn6OGDlx/W373dvPiQnPwojnTlblO32/aDerE4CYIaFQcIHWT5KooXnldiyraz00dbPKTvZklchwHC+4uTJQCJqrqEOFR8J161h9Ccu3bgQG8OfVODsqhLI9VQ4aI6sC13ZnkOxGwwA74+MeWxjkGU23fV9k327Lp+/iY/v0bnN+XlTX5+01zh/Lty+7a8vMZ5/Add3Pz/qK9uqf8AkFypkvLT/1EAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="website"
+        title=""
+        src="/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-98b5c.png"
+        srcset="/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-6bb4a.png 222w,
+/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-366c9.png 444w,
+/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-98b5c.png 888w,
+/static/website-6357f70d1bcd98d84f55b8d0e6bdd712-078ec.png 1213w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/logo-b0faca748e994b8c7d186b5366ab04e3-0204a.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 819px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 62.14896214896215%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACIUlEQVQoz2P4////PxzgPxgAGX8xAESW4T8FAKT56dNn9+8/ePbs+aNHTx4/fvrkCZD7EIggKi5cuLRs2aq16zauXbdp1ap1q1avX7Fy7d1796GaL126snHjltWr1+/evf/QwaN79x48d+7CzZu3gc4DylZU1ickZqal5wUGRoWExsbEpJqZOy5YuBSk+efPn8eOnayuaW5s6ujs7E9Kzo5PyFi2bPWH9x+B0u/ff2ht7QZyJ02aPmfOwg0bthw4cLiwsOLosRMgzT9+/Ny///CRI8e3bN25cdPWJYtXrF6z4eTJM7dv3wVK37lzNyIiISAwqrSsJjunuLKyobikytXN/9zZiyDN3759O3HiFNC3T589B2q4efPW5ctXgf7cs2f/y1evXrx4CdSjq2fh5Ozj7hHo4xvm5R0SGBTl5OwNlAL5+ePHT5cvX5s0ecaECdPKy+sKCioWLFz24MGjt2/fAWW/fP2alpbX1ze5p2fSps3bli1f3dzS5ezi++37d5DmHz9+7N17oLq6CSixbt2ms2cvbNy4Feg3SGReuny1pKQGGMK5eaVFxVUhIbHJydlVVY3Q0H71+s3hw8fOnj1/8eJloLOvX78FDHZgFEBC++KlK+7uAeHh8a6u/o6O3kB2WFjclCmzoJohaejPHyD6/QsEfoNFoCkMyH/+7AUwFbx88erly9cvX756+PDxly9fUVIY0I1gZ/6DJ1iCKQwACps6ciVVwH0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="logo"
+        title=""
+        src="/static/logo-b0faca748e994b8c7d186b5366ab04e3-0204a.png"
+        srcset="/static/logo-b0faca748e994b8c7d186b5366ab04e3-28931.png 222w,
+/static/logo-b0faca748e994b8c7d186b5366ab04e3-eda12.png 444w,
+/static/logo-b0faca748e994b8c7d186b5366ab04e3-0204a.png 819w"
+        sizes="(max-width: 819px) 100vw, 819px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="http://2014s.pennapps.com/">Website</a> — Fall 2013</p>
+<p>Logo design, website, branding, and creative direction for one of the largest student hackathons in the U.S.</p>
+<hr>
+<h3 id="nostrand">Nostrand</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/preview-87814dd04dada81f1a6e41f7d2a57aa5-71d87.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 600px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAACTpAAAk6QFQJOf4AAADBklEQVQozw3Qa2yTdRQG8P/bt+1gtS1db25LW7q21lVwVzbNtgxxdIMxdhG2Iazy6gDdmG6KgAq6bC6MOW2iQiiXhA+MRKafvYCfEBQMCCHBC1u2ZFGrLohjw/BXn8f3wy9PcpLz5OSIiqZuNO4+yqaXj/OxlQnWPpngMx2jTLxwiA1P7+GO+k4mtR38obqcVyxOThUuZ3pNBa+WFPH24D7+fXiIXwZ8vLY8wnRPB0SR1o+2I5+x/vUTyM6rQLYjD17HQ3BlP4JQtAz1ZXXob9cw1fAELhozcSPDij/iVZiIV+N6NIyZ2mr8sr0N57Mc/LE0BrHizRPYdPoCI237YXXF6HQEmWFYRCEEFdVMnzPIlcEYP8qyckSfHVBNvBwJ8HpRlDP5QX7v9/PX5jrM9mzhZMwPUfXuONYePUt3XS9s7odpsXhpUi1UjIspFCM9S3wMW7KYVASH9cIu3W5dp+5r3ZUldk6GQ/i9Jc7ZxiqI6uQnqD3yBV11L8HmjdFizaHRaKVi1hkfoNOew9zFTo6qgh8YDRzSSzRdjaLwnJ6XzBn8ye3BRE4Op6MhiMr3PkbL2Ff0rOuDw1dIhydCk8lOsy2XqnUpXa585rmiPKQvnzUIjptUvq8a+IZQeFW/+js9b5oX4ZbNzgnVAFE+cBKbx79hSdc7sC9dAZc3H0aDDWZ7EHllG1FQ2gJtTSduRAOY8btxuziMqdJCTFhsmDaomHRk4Zaq4mdbJn970A5RvH0AG459zuaDZ1jS0s38ZTWMhGtZta6X7d0jfE4bZrJvlHNPreK99hpdnAtbGpnO9XJaMTG9toGzAS/nHvXzr5BH/2HrTqx/7Tha3x5Dw74UWjuH0LH1Q/TsPYXN2wagbR3Gwef7cfcVDf8M7cK/Z1LgeAr3KguQVgTmC0O4v7oA8+VhLAQy/xNNm7rk6sR+2fxqSsa3DcpEX1L27h2TXS8ek00bd0ktMSgPPLtH/vnWTrmQGpFzN7+Vd89/KudWFcvZkFsurC+Vdxofl3dKfHK+0n//f//ekSzWX102AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="vinyl-preview"
+        title=""
+        src="/static/preview-87814dd04dada81f1a6e41f7d2a57aa5-71d87.png"
+        srcset="/static/preview-87814dd04dada81f1a6e41f7d2a57aa5-e9ab9.png 222w,
+/static/preview-87814dd04dada81f1a6e41f7d2a57aa5-e39c4.png 444w,
+/static/preview-87814dd04dada81f1a6e41f7d2a57aa5-71d87.png 600w"
+        sizes="(max-width: 600px) 100vw, 600px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="/vinyl-sleeve-8dac464cc0aa1708f16f7d2218965fc3.pdf">12" vinyl cover art</a> — Fall 2012</p>
+<p>A vinyl cover designed to visually evoke the sounds of the song <em>Nostrand</em> by Ratatat.</p>
+<hr>
+<h3 id="levine">Levine</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/full-1-d011e7dc27255584d32edccdda0cec26-fe0cd.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 64.72549019607843%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAC4jAAAuIwF4pT92AAACsklEQVQozy1S2U5TURS9vwOFgtDe+Z57zrnzbUtbKIM1RAwGg0aNVIyhkkjhgUEikxEUDfHBD/BBiY2PaltuWytzBcrgi3/hLprsnOQ8rL3WXmsxum7qumGalmnZCkKSpBCiWZZj2q5DtWyIljut8kCPl3C9LtuLm6VkrNzf5XXaxYTLWLaraQahmoJUw7BgqKYTTDDVdQVlY2YxQr3uUCFCCy4uhGk+RAoR7bsu5EyJQSrmBRFeqhl1sGmBFlUlnCDZmGwa0hZl90bvlvsT39T2g3TqeG6yMpjM6XzeQYwkK0BrmLYgiDwvCoJUl2DanCAaCGVttUCC++mU1+V8Ff3VzNjeyLCXcPK2krdkBpCgE5ibm/0+X1NDQ0Nr6xVCKIGFSP3s4mIYV6eenCzM7j+6dzQzsfvg1o+B3kKYwDCU6gBmWc62nGg0BhOJdAQDrKzikGFko0alL3I4mb7YWDt7vVJbnPvz8cPRTKYQIcDPgNOhcEcgEMSYgOeO41KqtbS0IqKZGG9qQjmm/5qe2B4eqGbSpWS0OpkuXY3mLQmGwZgCeVtbuyhKADYMU5YVjuMhKsRyWUP6kXDO365tD1+Hg3OmeDw3Beb9v1mWEcvyAPD7Wxp9TY2NPqDFhAIzFgTIueiqZ29e1paeVW4mj59P/36/UVue34pb9ZvBMAgGBjwLsuCxpCiqIiOVaDahX2JWpa/j9NXy2erSz6H+2sr8+foLIC92h724xYCxcCmUTL8UDN9LfB1sqngTc9s3ei/erZ+uLu7cHzocHz0YGyldi+dDOGeIDDQEugFsAFYR5lgeorYdF8FSVQXDdgaTu6k7p2vL1aePD8ZHd1O3iz1Aa9YbJisIyvwvMKgXVBUWQcosL1qUfkKBo/GHh5kxaFVtYeZkcRaU1xZmt6J6zpL/Ak3VLTtzO1srAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="levine-1"
+        title=""
+        src="/static/full-1-d011e7dc27255584d32edccdda0cec26-98b5c.png"
+        srcset="/static/full-1-d011e7dc27255584d32edccdda0cec26-6bb4a.png 222w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-366c9.png 444w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-98b5c.png 888w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-efbc2.png 1332w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-839ff.png 1776w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-42443.png 2664w,
+/static/full-1-d011e7dc27255584d32edccdda0cec26-fe0cd.png 5100w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    
+
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-fe0cd.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 64.72549019607843%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAC4jAAAuIwF4pT92AAACmklEQVQozyVSa0/aUBjuv5pu2YIoeOEudwQpUG4tWCgXFQSZEWVucZvLkn1Zsn8zaAstvVFEXJb9kT2NycnJyZvzvO9zeQmZjJjdxuK8vjhljfaJ2eF4t513bwl+58Rlm0bdKpOVM1EpeSinw7OjgJyOzBL+OZUQQwcEqjpHmxdNs9Mwu9zqpj8Nu6YRN36IAec8lzDP6zpXtk6Dlo4CRoPRqpTeYMTALjF2vB5vb4x3NsaOTcG3LXjsFjLunSV8AEvpMCZrbNG6q5RSOkYXEAFZ9CVmR/jnEmP7QsDBe+1iaE84dPAuG++xT5xvtAo1i/v1ekljC9pJXq+VVDoDpbiVQpLQWOrxuqPVKSHoEMO7wuGOGHZODt79tr8CI4gaowVbxECJjMzivuXgTK+XMVkmo4TOFVe3PSkVmBcTCn2sVtIKk5olfWgq5yK8Z2uy/9ZoVlSaVEtp6TgEd7RqbjXsqUwGk7Pr+6F5wS0vm+ZlY31//ffnN1SeH+60el6M7PI+u1qh1GoO5BfnNaWYkpJBvVaUUkFCb9PPX0dovBy0zW7t6ePV8urMvGytRn21QorRPd5r09mi0arizLNxJAr9uJEcseiwAMj5mNnjVsOu3ihZFnCF1agHI6Cf925plZzOFpRCCilq1TxCnufiFlgpJRU6rbE5PIzTytPd4PlhZA5ai4saSFlg/zYIq2USv+Ew3FLK5LLftqIyWvT6y63Zx4bUMG31of909379efh404V/YsjJe2wqncXyvewZYMjJop2JElq98Of7J3ijN+HHCQQvrzvA//v1A0GMnZvIHG4vey3sn1rOILN5JoaKBZapmNFm5oW4Qqcs5m3G7DcXZ1XjlJHIoBDYwXBofpEK5tjQaegAQvD4Dxojo14LbsR7AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="levine-2"
+        title=""
+        src="/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-98b5c.png"
+        srcset="/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-6bb4a.png 222w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-366c9.png 444w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-98b5c.png 888w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-efbc2.png 1332w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-839ff.png 1776w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-42443.png 2664w,
+/static/full-2-24975e198f02bdaa85feb3225ac9ea3a-fe0cd.png 5100w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>Custom typeface &#x26; sample sheet — Fall 2012</p>
+<p>A custom typeface designed from a photograph I took of a building on UPenn's campus.</p>
+<hr>
+<h3 id="creative-process-book">Creative Process Book</h3>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-e0a98.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 888px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.877637130801695%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAC6UlEQVQoz3WS3U+TZxiH32MPZ/YBOln8OFCUj0Jp6cfLtBWU8lYpFJCWIW2gAvYdtW3oSBGKNpWCILKYZh65A3EzxhijEcsCTDGNJmwEtmUsY7DFRGeMf8K1p8RET3bwy3Py5Mrvvu9LKt1h4n+TZ0KbZ6bkUyP7P9ZRmGvEsK+S2AmV1cwoG7dHuaL0sPODUi71d/Hv7yNI2c/vJwvKQrQCptlmoChXj37XQXz2L5hKRel3djFt7ibdEWE+FKNbdmPVO1iajfPyj3Gk9xuVCVCpgO7dqiX/w3LkvYdpPuTGojvGd4qflUCMxVSShfozDOlacJlcXHZ8yUhNF5H2U/z88DKSNgsSKc41sO+jMjR5Mh2OZr5JBJCLqolXeIkf7uSq7ONBc4iN1WGeL0zgNTUT9HhZVRNMNfRyqcKHWuNBKtxWTr6IfMBKuLaNYWsniZCfxdkk+j0WrrhVXqUnUVs8WIqPsPxgmExHL1/bT/PTwxFunejBVqgw1hjAVmBDqs4/ylm5jaf34rz5ZYyUL0jOliJqdXXcqFBZvp7gr5kk1wIhyvYfZVKMOG9WWRcH+Xt5giazE2OBmMShEqzyIs0qQZbCAzz/bYJ/xFKfBWP06VxEuj1kooP8On6RGeUMP9h7cctNnC5vYrSynbFzKo/uJmlRPFRpFAy7D1L6mRlpKhJhJZNgbfYCc30x/HIr931RXv85yYu1cW4kY6xMJ1kM9nPXJHbpGyB+3E+rwcUxY+MmqFjYoNluEDZ8juSwHkcpr+VeQ5i0q5dBSxvf1wSYbz/L/fODBESDnpOtPEmNkLL3UG9uxF6kCCNMFHxStgna1CtHv6mb9HrtIulvB3icvMD6zCQZW5jFjq+4Ho0g76rijiNMf6WPSuGaUWh0ICcruJ6SHe+kt5ucOC0u7EYnUp/qYXooypzVz01XiKbiOn68NcRCOkZdRQPVhTVoxW6yDTTCBu1bZ0vevtmGh8RRvHWduG0e/gNBV9u0b5u7TQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="process-book"
+        title=""
+        src="/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-98b5c.png"
+        srcset="/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-6bb4a.png 222w,
+/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-366c9.png 444w,
+/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-98b5c.png 888w,
+/static/preview-c5a0fe07e28d1b8c607ffb1b3799d089-e0a98.png 1185w"
+        sizes="(max-width: 888px) 100vw, 888px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p><a href="/process-book-f269fcc7f9b9013189cc21aff45244f5.pdf">Booklet</a> — Fall 2012</p>
+<p>A process book containing sketches and concepts for some early graphic design projects. Images are compressed to reduce file size (larger version available upon request).</p></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1"></script></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-default-markdown-template-tsx","jsonName":"projects-2014-183","path":"/projects/2014/"};window.dataPath="306/path---projects-2014-183-1c9-aVldgUbEzqT1FlD2Jyw6HF9N0g";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-d8e017ae19175c916c7b.js"],"component---src-templates-default-markdown-template-tsx":["/component---src-templates-default-markdown-template-tsx.c13aaf8fe2a35bd76871.css","/component---src-templates-default-markdown-template-tsx-dcb82b3ad83ab3065f6b.js"],"component---src-templates-blog-post-tsx":["/component---src-templates-blog-post-tsx.6e28aea9fa5fef8726a5.css","/component---src-templates-blog-post-tsx-71ff4814c28eb51d2690.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx.f503974d0eb868df252d.css","/component---src-pages-404-tsx-7530cc23b495180fc823.js"],"component---src-pages-blog-itp-index-tsx":["/component---src-pages-blog-itp-index-tsx.f503974d0eb868df252d.css","/component---src-pages-blog-itp-index-tsx-fd2208d8e60933d9437f.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx.f503974d0eb868df252d.css","/component---src-pages-index-tsx-657d1883af458eb04891.js"],"component---src-pages-photos-tsx":["/component---src-pages-photos-tsx.58c349f89a1bc13d9c9a.css","/component---src-pages-photos-tsx-80a8a3d2c8d41f66159c.js"],"component---src-pages-projects-code-of-music-rhythm-sketch-tsx":["/component---src-pages-projects-code-of-music-rhythm-sketch-tsx.bad34c3a661daa0582f6.css","/component---src-pages-projects-code-of-music-rhythm-sketch-tsx-56757eda86c9fa2934a5.js"],"component---src-pages-projects-code-of-music-simple-drum-machine-tsx":["/component---src-pages-projects-code-of-music-simple-drum-machine-tsx.bad34c3a661daa0582f6.css","/component---src-pages-projects-code-of-music-simple-drum-machine-tsx-cfaea000554c1eb8d96b.js"]};/*]]>*/</script><script src="/webpack-runtime-823cac1d497e829206b9.js" async=""></script><script src="/app-d8e017ae19175c916c7b.js" async=""></script><script src="/0-a4e178f9f2f1fa0ec198.js" async=""></script><script src="/component---src-templates-default-markdown-template-tsx-dcb82b3ad83ab3065f6b.js" async=""></script></body></html>
