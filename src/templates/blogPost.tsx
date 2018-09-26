@@ -1,11 +1,12 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
 import DefaultLayout from "../components/defaultLayout";
+import styles from "./blogPost.module.css";
 
 const ITP_BLOG_PREFIX = "/blog/itp";
 
 function getCategoryNameFromSlug(slug: string) {
-    return slug.substr(ITP_BLOG_PREFIX.length).split("/")[0];
+    return slug.substr(ITP_BLOG_PREFIX.length + 1).split("/")[0];
 }
 
 export default ({ data }: any) => {
@@ -20,7 +21,7 @@ export default ({ data }: any) => {
             <p className="timestamp" style={{ color: "gray" }}>
                 {post.frontmatter.date}
             </p>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            <div className={styles.postBody} dangerouslySetInnerHTML={{ __html: post.html }} />
         </DefaultLayout>
     );
 };
