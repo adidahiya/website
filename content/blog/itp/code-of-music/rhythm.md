@@ -54,3 +54,7 @@ For accessibility and usability purposes, the actual beeps at the turnstiles sho
 The sounds aren't triggered immediately (although this might be worth trying, I think it would be too random and the resulting rhythms wouldn't feel "musical", just noisy), but rather according to a pre-programmed drum pattern. The software could cycle through patterns on some schedule (perhaps change every 15 min) to keep things interesting. When no one is swiping, there would be no sounds triggered. When a swipe occurs, it would schedule its corresponding sound to trigger _on the next instance of that sound in the drum pattern_. Additional swipes that occur between the original swipe and when the sound actually plays would queue up additional triggers to occur later.
 
 ![turnstiles-2](turnstiles-2.jpg)
+
+#### Code
+
+[Check out my p5.js sketch for the week here](/projects/code-of-music/rhythm-sketch).

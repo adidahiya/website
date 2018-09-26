@@ -13,7 +13,7 @@ date: "2018-09-17"
 
 I used few samples I downloaded from [Splice](http://splice.com/) to create a simple drum machine.
 
-[Here's a link to my code](https://editor.p5js.org/adidahiya/sketches/BJwt8Dau7).
+[Interact with it here](/projects/code-of-music/simple-drum-machine) and check out the code on GitHub.
 
 Here's my short techno-inspired piece:
 
