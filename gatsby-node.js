@@ -3,6 +3,22 @@
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+    if (stage === "build-html") {
+        actions.setWebpackConfig({
+            module: {
+                rules: [
+                    // exclude p5 from being loaded in SSR because it accesses window directly
+                    {
+                        test: /p5.*/,
+                        use: loaders.null(),
+                    },
+                ],
+            },
+        })
+    }
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
     const { createNodeField } = actions;
     if (node.internal.type === "MarkdownRemark") {
