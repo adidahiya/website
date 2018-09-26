@@ -19,10 +19,6 @@ export default ({ data }: any) => {
         <DefaultLayout>
             <h4>ITP blog</h4>
             <p>
-                This blog contains notes and documentation from my projects at{" "}
-                <a href="https://tisch.nyu.edu/itp">NYU's ITP program</a>.
-            </p>
-            <p>
                 {categories.map(c => (
                     <Category key={c} name={c} blogPosts={blogPosts} />
                 ))}

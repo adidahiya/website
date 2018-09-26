@@ -8,7 +8,10 @@ export default () => (
     <DefaultLayout>
         <h3>about</h3>
         <p>
-            grad student at NYU's ITP program, based in Brooklyn. <br />
+            programmer, musician, artist based in Brooklyn. <br />
+            currently a grad student in <a href="https://tisch.nyu.edu/itp">
+                NYU's ITP program
+            </a>. <br />
             interested in music, interaction design, photography, and the social impact of
             technology.
         </p>
