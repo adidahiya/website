@@ -49,9 +49,13 @@ exports.createPages = ({ graphql, actions }) => {
         `).then(result => {
             result.data.allMarkdownRemark.edges.forEach(({ node }) => {
                 const { slug } = node.fields;
+                const component = slug.startsWith("/blog/itp")
+                    ? path.resolve(`./src/templates/blogPost.tsx`)
+                    : path.resolve(`./src/templates/defaultMarkdownTemplate.tsx`);
+
                 createPage({
                     path: slug,
-                    component: path.resolve(`./src/templates/blogPost.tsx`),
+                    component,
                     // data passed to context is available in page queries as GraphQL variables.
                     context: {
                         slug,
