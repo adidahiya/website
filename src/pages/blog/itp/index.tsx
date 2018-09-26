@@ -8,7 +8,9 @@ const ITP_BLOG_ROOT = "/blog/itp/";
 
 export default ({ data }: any) => {
     const { edges } = data.allMarkdownRemark;
-    const blogPosts = edges.map((p: any) => p.node);
+    const blogPosts = edges
+        .map((p: any) => p.node)
+        .filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
     const categories: string[] = uniq(
         blogPosts.map((p: any) => p.fields.slug.substr(ITP_BLOG_ROOT.length).split("/")[0]),
     );
@@ -20,7 +22,11 @@ export default ({ data }: any) => {
                 This blog contains notes and documentation from my projects at{" "}
                 <a href="https://tisch.nyu.edu/itp">NYU's ITP program</a>.
             </p>
-            <p>{categories.map(c => <Category key={c} name={c} blogPosts={blogPosts} />)}</p>
+            <p>
+                {categories.map(c => (
+                    <Category key={c} name={c} blogPosts={blogPosts} />
+                ))}
+            </p>
         </DefaultLayout>
     );
 };
@@ -30,7 +36,11 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
     return (
         <div className="blog-category">
             <h3>{props.name}</h3>
-            <ul>{categoryBlogPosts.map(p => <PostItem key={p.fields.slug} post={p} />)}</ul>
+            <ul>
+                {categoryBlogPosts.map(p => (
+                    <PostItem key={p.fields.slug} post={p} />
+                ))}
+            </ul>
         </div>
     );
 };
