@@ -1,7 +1,7 @@
 import Typography from "typography";
 import fairyGatesTheme from "typography-theme-fairy-gates";
 
-export default new Typography({
+const typography = new Typography({
     ...fairyGatesTheme,
     googleFonts: [
         {
@@ -18,3 +18,6 @@ export default new Typography({
     bodyFontFamily: ["Fira Mono", "sans-serif"],
     headerFontFamily: ["Work Sans", "sans-serif"],
 });
+const { rhythm, scale } = typography;
+
+export { rhythm, scale, typography as default };

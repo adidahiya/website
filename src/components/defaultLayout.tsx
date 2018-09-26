@@ -1,8 +1,10 @@
 import { Location as LocationProvider } from "@reach/router";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import React from "react";
 import Helmet from "react-helmet";
-
+import * as favicon16 from "../assets/favicon-16.png";
+import * as favicon32 from "../assets/favicon-32.png";
+import * as favicon48 from "../assets/favicon-48.png";
 import styles from "./defaultLayout.module.css";
 
 const Header = () => (
@@ -23,19 +25,19 @@ const META_TAGS_WITH_REDIRECT = [...META_TAGS, { "http-equiv": "refresh", conten
 
 const LINK_TAGS = [
     {
-        href: require("../assets/favicon-16.png"),
+        href: favicon16,
         rel: "icon",
         sizes: "16x16",
         type: "image/png",
     },
     {
-        href: require("../assets/favicon-32.png"),
+        href: favicon32,
         rel: "icon",
         sizes: "32x32",
         type: "image/png",
     },
     {
-        href: require("../assets/favicon-48.png"),
+        href: favicon48,
         rel: "icon",
         sizes: "48x48",
         type: "image/png",

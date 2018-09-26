@@ -1,5 +1,4 @@
-import { graphql } from "gatsby";
-import Link from "gatsby-link";
+import { graphql, Link } from "gatsby";
 import { uniq } from "lodash";
 import { DateTime } from "luxon";
 import React from "react";

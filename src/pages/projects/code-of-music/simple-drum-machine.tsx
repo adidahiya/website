@@ -1,5 +1,4 @@
-import { withPrefix } from "gatsby";
-import Link from "gatsby-link";
+import { Link, withPrefix } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import DefaultLayout from "../../../components/defaultLayout";
