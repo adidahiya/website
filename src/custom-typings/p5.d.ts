@@ -10319,7 +10319,7 @@ declare namespace p5 {
      *   @param [timeFromNow] schedule this event to happen
      *   seconds from now
      */
-    amp(volume: number|object, rampTime?: number, timeFromNow?: number): void;
+    amp(volume: number|object, rampTime?: number, timeFromNow?: number): AudioParam;
 
     /**
      *   Send output to a p5.sound or web audio object
@@ -12148,6 +12148,16 @@ type ITALIC = 'italic'
 type BOLD = 'bold'
 type LANDSCAPE = 'landscape'
 type PORTRAIT = 'portrait'
+// HACKHACK: custom
+type ARROW = 'arrow'
+type CROSS = 'cross'
+type HAND = 'hand'
+type MOVE = 'move'
+type TEXT = 'text'
+type WAIT = 'wait'
+type AUTO = 'auto'
+type VIDEO = 'video'
+type AUDIO = 'audio'
 
 // Constants
 type COLOR_MODE =

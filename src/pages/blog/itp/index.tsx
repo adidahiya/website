@@ -1,6 +1,5 @@
 import { graphql, Link } from "gatsby";
 import { uniq } from "lodash";
-import { DateTime } from "luxon";
 import React from "react";
 import { DefaultLayout, Timestamp } from "../../../components";
 
