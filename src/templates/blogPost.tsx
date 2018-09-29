@@ -1,26 +1,18 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
-import DefaultLayout from "../components/defaultLayout";
+import { DefaultLayout, Timestamp } from "../components";
 import styles from "./blogPost.module.css";
-
-const ITP_BLOG_PREFIX = "/blog/itp";
-
-function getCategoryNameFromSlug(slug: string) {
-    return slug.substr(ITP_BLOG_PREFIX.length + 1).split("/")[0];
-}
 
 export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
         <DefaultLayout>
             <h4>
-                <Link to={ITP_BLOG_PREFIX}>ITP blog</Link> &middot;{" "}
-                {getCategoryNameFromSlug(post.fields.slug)}
+                <Link to="/blog/itp">ITP blog</Link> &middot;{" "}
+                <Link to={`/blog/itp/${post.fields.category}`}>{post.fields.category}</Link>
             </h4>
             <h2>{post.frontmatter.title}</h2>
-            <p className="timestamp" style={{ color: "gray" }}>
-                {post.frontmatter.date}
-            </p>
+            <Timestamp date={post.frontmatter.date} />
             <div className={styles.postBody} dangerouslySetInnerHTML={{ __html: post.html }} />
         </DefaultLayout>
     );
@@ -35,6 +27,7 @@ export const query = graphql`
                 title
             }
             fields {
+                category
                 slug
             }
         }

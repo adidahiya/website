@@ -2,7 +2,7 @@ import { graphql, Link } from "gatsby";
 import { uniq } from "lodash";
 import { DateTime } from "luxon";
 import React from "react";
-import DefaultLayout from "../../../components/defaultLayout";
+import { DefaultLayout, Timestamp } from "../../../components";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 
@@ -28,10 +28,12 @@ export default ({ data }: any) => {
 };
 
 const Category = (props: { name: string; blogPosts: any[] }) => {
-    const categoryBlogPosts = filterAndSortBlogPosts(props.blogPosts, props.name);
+    const categoryBlogPosts = filterBlogPosts(props.blogPosts, props.name);
     return (
         <div className="blog-category">
-            <h3>{props.name}</h3>
+            <h3>
+                <Link to={`/blog/itp/${props.name}`}>{props.name}</Link>
+            </h3>
             <ul>
                 {categoryBlogPosts.map(p => (
                     <PostItem key={p.fields.slug} post={p} />
@@ -44,26 +46,18 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
 const PostItem = ({ post }: { post: any }) => (
     <li>
         <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-        <small className="timestamp" style={{ color: "gray", marginLeft: 20 }}>
-            ({post.frontmatter.date})
-        </small>
+        <Timestamp date={post.frontmatter.date} small={true} style={{ marginLeft: 20 }} />
     </li>
 );
 
-function filterAndSortBlogPosts(posts: any[], categoryName: string) {
-    return posts
-        .filter((p: any) => p.fields.slug.indexOf(`${ITP_BLOG_ROOT}${categoryName}`) === 0)
-        .sort((p1: any, p2: any) => {
-            const d1 = DateTime.fromFormat(p1.frontmatter.date, "dd LLLL, yyyy");
-            const d2 = DateTime.fromFormat(p2.frontmatter.date, "dd LLLL, yyyy");
-            return -1 * d1.diff(d2).valueOf();
-        });
+// TODO: do this with GraphQL grouping
+function filterBlogPosts(posts: any[], categoryName: string) {
+    return posts.filter((p: any) => p.fields.slug.indexOf(`${ITP_BLOG_ROOT}${categoryName}`) === 0);
 }
 
-// @ts-ignore
 export const query = graphql`
-    query ContentsQuery {
-        allMarkdownRemark {
+    query {
+        allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
             edges {
                 node {
                     frontmatter {
