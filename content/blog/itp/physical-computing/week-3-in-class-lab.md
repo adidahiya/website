@@ -5,7 +5,7 @@ date: "2018-09-20"
 
 ### In-class lab documentation
 
-While learning about Arduino I/O in class, I made a simple LED blinking pattern.
+While learning about Arduino I/O in class, I made a simple LED blinking pattern. The code invokes a series of digial writes to different output pins (plus some delay so that the effect is visible to human eyes).
 
 <iframe src="https://player.vimeo.com/video/291969836" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 

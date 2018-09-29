@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gatsby build",
     "check": "tsc --pretty --noEmit",
-    "clean": "rm -rf public/*",
+    "clean": "rm -rf public/* .cache/*",
     "dev": "gatsby develop",
     "deploy": "gh-pages -d public -b master",
     "dist": "run-s clean build deploy",
