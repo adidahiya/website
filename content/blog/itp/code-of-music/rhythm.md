@@ -58,3 +58,7 @@ The sounds aren't triggered immediately (although this might be worth trying, I 
 #### Code
 
 [Check out my p5.js sketch for the week here](/projects/code-of-music/rhythm-sketch).
+
+I basically replicated this drum pattern in code:
+
+![rhythm-sketch-midi](rhythm-sketch-midi.jpg)
