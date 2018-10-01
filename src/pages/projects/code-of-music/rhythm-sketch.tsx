@@ -1,57 +1,18 @@
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 import { createLoopWithPlayers } from "../../../utils/toneUtils";
 
+let Tone: any;
+if (typeof window !== "undefined") {
+    // tslint:disable-next-line
+    Tone = require("tone");
+}
+
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
-
-const kit = new Tone.Players({
-    kick: "/sounds/kick.wav",
-    snare: "/sounds/snare.wav",
-    hh: "/sounds/electronic-hi-hat.ogg",
-}).toMaster();
-const drumLoop1 = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
-    if (beat === 0) {
-        if (six === 0 || six === 1 || six === 2) {
-            trigger("kick");
-        }
-        if (six === 3) {
-            trigger("snare");
-        }
-    } else if (beat === 1) {
-        if (six === 0) {
-            trigger("kick");
-        }
-        if (six === 2) {
-            trigger("snare");
-        }
-    } else if (beat === 2) {
-        if (six === 0) {
-            trigger("kick");
-        }
-        if (six === 1) {
-            if (bar > 0) {
-                trigger("kick");
-            }
-        }
-        if (six === 2) {
-            trigger("snare");
-        }
-    } else if (beat === 3) {
-        if (six === 0) {
-            trigger("snare");
-        }
-    }
-});
-const drumLoop2 = createLoopWithPlayers(kit, "16n", ({ bar, trigger }) => {
-    if (bar > 1) {
-        trigger("hh");
-    }
-});
 
 export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo: number }> {
     public state = {
@@ -59,12 +20,64 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
         tempo: 110,
     };
 
-    private loops = [drumLoop1, drumLoop2];
+    private loops: any[] = [];
 
-    constructor(props: {}) {
-        super(props);
+    public componentDidMount() {
         Tone.Transport.bpm.value = this.state.tempo;
         Tone.Transport.timeSignature = [4, 4];
+
+        const kit = new Tone.Players({
+            kick: "/sounds/kick.wav",
+            snare: "/sounds/snare.wav",
+            hh: "/sounds/electronic-hi-hat.ogg",
+        }).toMaster();
+
+        const drumLoop1 = createLoopWithPlayers(
+            Tone,
+            kit,
+            "16n",
+            ({ bar, beat, sixteenth: six, trigger }) => {
+                if (beat === 0) {
+                    if (six === 0 || six === 1 || six === 2) {
+                        trigger("kick");
+                    }
+                    if (six === 3) {
+                        trigger("snare");
+                    }
+                } else if (beat === 1) {
+                    if (six === 0) {
+                        trigger("kick");
+                    }
+                    if (six === 2) {
+                        trigger("snare");
+                    }
+                } else if (beat === 2) {
+                    if (six === 0) {
+                        trigger("kick");
+                    }
+                    if (six === 1) {
+                        if (bar > 0) {
+                            trigger("kick");
+                        }
+                    }
+                    if (six === 2) {
+                        trigger("snare");
+                    }
+                } else if (beat === 3) {
+                    if (six === 0) {
+                        trigger("snare");
+                    }
+                }
+            },
+        );
+
+        const drumLoop2 = createLoopWithPlayers(Tone, kit, "16n", ({ bar, trigger }) => {
+            if (bar > 1) {
+                trigger("hh");
+            }
+        });
+
+        this.loops.push(drumLoop1, drumLoop2);
     }
 
     public componentWillUnmount() {

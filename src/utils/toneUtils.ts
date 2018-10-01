@@ -1,7 +1,6 @@
-import Tone from "tone";
-
 export const createLoopWithPlayers = (
-    players: Tone.Players,
+    Tone: any,
+    players: any,
     interval: string,
     onInterval: (
         args: {
