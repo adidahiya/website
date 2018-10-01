@@ -12,7 +12,7 @@ export default ({ data, pageContext }: any) => {
             <br />
             <ul>
                 {posts.map(({ node: post }: any) => (
-                    <li>
+                    <li key={post.fields.slug}>
                         <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
                         <Timestamp
                             date={post.frontmatter.date}

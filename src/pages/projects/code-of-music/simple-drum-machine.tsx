@@ -77,9 +77,8 @@ export default () => (
     <DefaultLayout>
         <h3>Code of Music</h3>
         <p>
-            Week 1 sample-based instrument (<Link to="/blog/itp/code-of-music/sample-based-instrument">
-                blog post
-            </Link>)
+            Week 1 sample-based instrument (
+            <Link to="/blog/itp/code-of-music/sample-based-instrument">blog post</Link>)
         </p>
         <p>Available keys: A, S, D, F, J</p>
         <P5Canvas sketch={sketch} />
