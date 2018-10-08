@@ -13,8 +13,8 @@ const typography = new Typography({
             styles: ["400", "400i", "700", "700i"],
         },
     ],
-    baseFontSize: "16px",
-    baseLineHeight: 1.5,
+    baseFontSize: "14px",
+    baseLineHeight: 1.4,
     bodyFontFamily: ["Fira Mono", "sans-serif"],
     headerFontFamily: ["Work Sans", "sans-serif"],
 });
