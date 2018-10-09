@@ -147,6 +147,10 @@ export default class extends React.PureComponent<
 
 const minorBluesScale = ["C2", "Eb2", "F2", "Gb2", "G2", "Bb3"];
 function getMinorBluesScaleWithHarmonies(octaveToFilter: number = 0) {
+    if (Tone == null) {
+        return minorBluesScale;
+    }
+
     const octave = octaveToFilter.toString();
 
     return minorBluesScale
