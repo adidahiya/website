@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./p5Canvas.module.css";
 
 if (typeof window !== "undefined") {
-    // tslint:disable no-var-requires
     require("p5/lib/addons/p5.dom");
     require("p5/lib/addons/p5.sound");
 }

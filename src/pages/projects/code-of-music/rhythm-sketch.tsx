@@ -7,7 +7,6 @@ import { createLoopWithPlayers } from "../../../utils/toneUtils";
 
 let Tone: any;
 if (typeof window !== "undefined") {
-    // tslint:disable-next-line
     Tone = require("tone");
 }
 
