@@ -5,7 +5,7 @@ date: "2018-09-10"
 
 ### Course questions
 
-> In-class excercise: attempt to answer some of the central course questions in your own words.
+> In-class exercise: attempt to answer some of the central course questions in your own words.
 
 Rough notes transcribed from notebook:
 

@@ -60,7 +60,7 @@ export const query = graphql`
             edges {
                 node {
                     frontmatter {
-                        date(formatString: "DD MMMM, YYYY")
+                        date(formatString: "D MMMM YYYY")
                         title
                     }
                     wordCount {

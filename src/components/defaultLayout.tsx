@@ -11,7 +11,7 @@ const Header = () => (
     <div className={styles.header}>
         <div>
             <h1>
-                <Link to="/">Adi Dahiya</Link>
+                <Link to="/">adi.🍕</Link>
             </h1>
         </div>
     </div>

@@ -14,7 +14,7 @@ const typography = new Typography({
         },
     ],
     baseFontSize: "14px",
-    baseLineHeight: 1.4,
+    baseLineHeight: 1.5,
     bodyFontFamily: ["Fira Mono", "sans-serif"],
     headerFontFamily: ["Work Sans", "sans-serif"],
 });

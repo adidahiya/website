@@ -12,6 +12,14 @@
     margin: 0;
 }
 
+.header a {
+    background-image: none;
+}
+
+.header a:hover {
+    color: #0a3e34;
+}
+
 .body {
     margin: 0 auto;
     max-width: 920px;

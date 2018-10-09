@@ -6,16 +6,18 @@ import DefaultLayout from "../components/defaultLayout";
 
 export default () => (
     <DefaultLayout>
-        <h3>about</h3>
+        <h3>adi dahiya</h3>
         <p>
-            programmer, musician, artist based in Brooklyn. <br />
-            currently a grad student in <a href="https://tisch.nyu.edu/itp">
-                NYU's ITP program
-            </a>. <br />
+            programmer, artist based in Brooklyn. <br />
+            currently pursuing a master's at{" "}
+            <a href="https://tisch.nyu.edu/itp" target="_blank">
+                NYU ITP
+            </a>
+            . <br />
             interested in music, interaction design, photography, and the social impact of
             technology.
         </p>
-        <h3>blogs</h3>
+        <h3>blog</h3>
         <p>
             <Link to="/blog/itp/">ITP (2018)</Link>
         </p>
@@ -38,6 +40,8 @@ export default () => (
             <a href="https://www.flickr.com/photos/adidas006">flickr</a>
             <br />
             <a href="https://www.last.fm/user/adidas006">last.fm</a>
+            <br />
+            <a href="https://www.goodreads.com/user/show/27078128-adi-dahiya">goodreads</a>
         </p>
     </DefaultLayout>
 );
