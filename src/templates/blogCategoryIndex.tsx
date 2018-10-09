@@ -29,7 +29,10 @@ export default ({ data, pageContext }: any) => {
 export const query = graphql`
     query($category: String!) {
         allMarkdownRemark(
-            filter: { fields: { category: { eq: $category } } }
+            filter: {
+                fields: { category: { eq: $category } }
+                frontmatter: { draft: { ne: true } }
+            }
             sort: { fields: frontmatter___date, order: DESC }
         ) {
             edges {
