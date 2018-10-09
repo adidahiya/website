@@ -68,7 +68,12 @@ export default class extends React.PureComponent<
             <DefaultLayout>
                 <h3>Code of Music</h3>
                 <p>
-                    Week 3 Melody (<Link to="/blog/itp/code-of-music/melody">blog post</Link>)
+                    Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>
+                    ,{" "}
+                    <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/melody-sketch.tsx">
+                        code
+                    </a>
+                    )
                 </p>
                 <button type="button" onClick={this.handlePlayToggle} style={{ marginBottom: 20 }}>
                     {this.state.isPlaying ? "Stop" : "Play"}
