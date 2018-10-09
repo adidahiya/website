@@ -89,7 +89,11 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
                 <h3>Code of Music</h3>
                 <p>
                     Week 2 rhythmic sketch &amp; composition (
-                    <Link to="/blog/itp/code-of-music/rhythm">blog post</Link>)
+                    <Link to="/blog/itp/code-of-music/rhythm">blog post</Link>,
+                    <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/rhythm-sketch.tsx">
+                        code
+                    </a>
+                    )
                 </p>
                 <button type="button" onClick={this.handlePlayToggle} style={{ marginBottom: 20 }}>
                     {this.state.isPlaying ? "Stop" : "Play"}
