@@ -1,14 +1,10 @@
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
+import Tone from "tone";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 import { createLoopWithPlayers } from "../../../utils/toneUtils";
-
-let Tone: any;
-if (typeof window !== "undefined") {
-    Tone = require("tone");
-}
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
