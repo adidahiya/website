@@ -61,7 +61,11 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
             <DefaultLayout>
                 <h3>Code of Music</h3>
                 <p>
-                    Week 5 Harmony (<Link to="/blog/itp/code-of-music/harmony">blog post</Link>)
+                    Week 5 Harmony (<Link to="/blog/itp/code-of-music/harmony">blog post</Link>,{" "}
+                    <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/harmony-sketch.tsx">
+                        code
+                    </a>
+                    )
                 </p>
                 Press any key to play notes. Spacebar toggles drone. <br /> <br />
                 <P5Canvas sketch={this.sketch} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
