@@ -158,6 +158,11 @@ declare module "tone" {
             TransportTime: "transportTime"
         };
 
+        /**
+         * Primitive types are contained in this namespace so that they don't clash with the classes of the same name in Tone.js
+         * For example, a Tone.Frequency is a complex object which can be constructed, but a Types.Frequency type is a primitive
+         * type of value which is accepted as an argument or returned as a result in many Tone.js functions. Both are useful.
+         */
         namespace Types {
             /**
              * Gain is the ratio between input and output of a signal. A gain of 0 is the same as silencing the signal. A gain of 1, causes no change to the incoming signal.
@@ -174,7 +179,7 @@ declare module "tone" {
             /**
              * A cent is a hundredth of a semitone.
              */
-            type Cents = any;
+            type Cents = number;
             /**
              * Beats per minute.
              */
@@ -273,6 +278,7 @@ declare module "tone" {
         // TODO: complete definition
         class Frequency extends TimeBase {
             harmonize(intervals: number[]): Frequency[];
+            transpose(semitones: number): Types.Frequency;
         }
 
 
@@ -486,19 +492,21 @@ declare module "tone" {
         type valueof<T> = T[keyof T];
 
         // TODO: complete definition
-        class Param<U extends valueof<typeof Type>> extends AudioNode {
+        class Param<U extends valueof<typeof Type>, V> extends AudioNode {
             constructor(param: AudioParam, units: U, convert: boolean);
             convert: boolean;
             units: U;
-            value: Number;
+            value: V;
         }
 
         // TODO: complete definition
-        class Signal<U extends valueof<typeof Type>> extends Param<U> {
-
+        class Signal<U extends valueof<typeof Type>, V> extends Param<U, V> {
+            linearRampToValue(value: V): this;
+            exponentialRampToValue(value: V): this;
+            rampTo(value: V): this;
         }
 
-        type BPM = Signal<typeof Type.BPM>;
+        type BPM = Signal<typeof Type.BPM, Types.BPM>;
 
         // TODO: verify against docs
         type State = string;
@@ -508,8 +516,8 @@ declare module "tone" {
             PPQ: number;
             bpm: BPM;
             timeSignature: number | number[];
-            start(time?: Time, offset?: Types.TransportTime): Transport;
-            stop(time?: Time): Transport;
+            start(time?: Types.Time, offset?: Types.TransportTime): Transport;
+            stop(time?: Types.Time): Transport;
             readonly state: State;
         }
 
@@ -522,7 +530,7 @@ declare module "tone" {
 
         // TODO: complete definition
         class Source extends AudioNode {
-            volume: Signal<typeof Type.Decibels>;
+            volume: Signal<typeof Type.Decibels, Types.Decibels>;
             start(time?: Types.Time): this;
             stop(time?: Types.Time): this;
 
@@ -557,31 +565,68 @@ declare module "tone" {
 
         // TODO: complete definition
         class Instrument extends AudioNode {
+            triggerAttackRelease(note: Types.Frequency, duration: Types.Time, time?: Types.Time, velocity?: Types.NormalRange): this;
+            volume: Signal<typeof Type.Decibels, Types.Decibels>;
+            sync(): this;
+            unsync(): this;
+        }
 
+        interface IMonophonicOptions {
+            portamento?: Types.Time;
+        }
+
+        interface MonophonicConstructor {
+            new(options?: IMonophonicOptions): Monophonic;
         }
 
         // TODO: complete definition
         class Monophonic extends Instrument {
-
+            constructor(options?: IMonophonicOptions);
+            portamento: Types.Time;
         }
 
-        interface EnvelopeObject {
-            attack: number;
-            decay: number;
-            sustain: number;
-            release: number;
+        interface IEnvelope {
+            attack?: number;
+            decay?: number;
+            sustain?: number;
+            release?: number;
         }
 
         // TODO: complete definition
         class Synth extends Monophonic {
-            constructor(options: {
-                oscillator: {
+            constructor(options?: IMonophonicOptions & {
+                oscillator?: {
+                    modulationType?: string;
                     type: string;
                 },
-                envelope: EnvelopeObject;
+                envelope?: IEnvelope;
             });
+            frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            envelope: AmplitudeEnvelope;
         }
 
+        // TODO: complete definition
+        class PluckSynth extends Tone.Instrument {
+            constructor(options?: {
+                attackNoise?: number,
+                dampening?: Types.Frequency,
+                resonance?: Types.NormalRange,
+            });
+            attackNoise: number;
+            dampening: Signal<typeof Type.Frequency, Types.Frequency>;
+            resonance: Signal<typeof Type.NormalRange, Types.NormalRange>;
+        }
+
+        // TODO: complete definition
+        class PolySynth<V extends Monophonic> extends Instrument {
+            constructor(polyphony?: number | object, voice?: { new(): V });
+            detune: Signal<typeof Type.Cents, Types.Cents>;
+            voices: V[];
+            triggerAttackRelease(notes: Types.Frequency | Types.Frequency[], durations: Types.Time | Types.Time[], time?: Types.Time, velocity?: Types.NormalRange): this;
+            triggerAttack(notes: Types.Frequency | Types.Frequency[], time?: Types.Time, velocity?: Types.NormalRange): this;
+            triggerRelease(notes: Types.Frequency | Types.Frequency[], time?: Types.Time): this;
+            releaseAll(): this;
+        }
 
         /**
          * ========================================================
@@ -593,7 +638,9 @@ declare module "tone" {
 
         // TODO: complete definition
         class Loop extends Tone {
-            constructor(callback: Function, interval: Time);
+            constructor(callback: Function, interval: Types.Time);
+            start(): this;
+            stop(): this;
         }
 
         // TODO: complete definition
@@ -610,14 +657,14 @@ declare module "tone" {
 
         // TODO: complete definition
         class Envelope extends AudioNode {
-            constructor(envelope: EnvelopeObject);
+            constructor(envelope: IEnvelope);
             constructor(atatck?: number, sustain?: number, decay?: number, release?: number);
             triggerAttackRelease(time?: Types.Time): this;
         }
 
         // TODO: complete definition
         class AmplitudeEnvelope extends Envelope {
-
+            readonly value: number;
         }
     }
 

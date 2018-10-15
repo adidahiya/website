@@ -37,3 +37,11 @@ blockquote {
     line-height: inherit;
     border-left-width: 5px;
 }
+
+p code {
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0.25rem;
+    background: rgba(252, 220, 158, 0.3);
+    border-radius: 3px;
+}
