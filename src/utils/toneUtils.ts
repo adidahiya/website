@@ -1,3 +1,10 @@
+/**
+ * TODO: better typedef
+ * @param Tone Tone
+ * @param players Tone.Players
+ * @param interval Tone.Interval
+ * @param onInterval interval callback
+ */
 export const createLoopWithPlayers = (
     Tone: any,
     players: any,

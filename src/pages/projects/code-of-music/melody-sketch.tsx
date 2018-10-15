@@ -156,8 +156,9 @@ function getMinorBluesScaleWithHarmonies(octaveToFilter: number = 0) {
 
     return minorBluesScale
         .reduce(
-            (harmonies, note) => harmonies.concat(Tone.Frequency(note).harmonize([0, 12, 24, 36])),
-            [],
+            (harmonies, note) =>
+                harmonies.concat(new Tone.Frequency(note).harmonize([0, 12, 24, 36])),
+            [] as Tone.Frequency[],
         )
         .map((freq: any) => freq.toNote())
         .filter((note: string) => {
