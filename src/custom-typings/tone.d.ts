@@ -123,7 +123,11 @@ declare module "tone" {
         /**
          * Global transport object
          */
-        public static Transport: Tone.TransportClass;
+        public static Transport: Tone.TransportSingleton;
+        /**
+         * Global Draw singleton
+         */
+        public static Draw: Tone.DrawSingleton;
     }
 
     namespace Tone {
@@ -512,19 +516,155 @@ declare module "tone" {
             public rampTo(value: V): this;
         }
 
-        type BPM = Signal<typeof Type.BPM, Types.BPM>;
-
-        // TODO: verify against docs
-        type State = string;
-
-        class TransportClass extends Emitter {
-            constructor();
+        /**
+         * Singleton available on the Tone global, should not be constructed
+         */
+        class TransportSingleton extends Emitter {
+            private constructor();
+            /**
+             * Pulses Per Quarter note. This is the smallest resolution the Transport timing supports.
+             * This should be set once on initialization and not set again.
+             * Changing this value after other objects have been created can cause problems.
+             */
             public PPQ: number;
-            public bpm: BPM;
+            /**
+             * The Beats Per Minute of the Transport.
+             */
+            public bpm: Signal<typeof Type.BPM, Types.BPM>;
+            /**
+             * If the transport loops or not.
+             */
+            public loop: boolean;
+            /**
+             * When the Tone.Transport.loop = true, this is the ending position of the loop.
+             */
+            public loopEnd?: Types.Time;
+            /**
+             * When the Tone.Transport.loop = true, this is the starting position of the loop.
+             */
+            public loopStart?: Types.Time;
+            /**
+             * The Transport’s position in Bars:Beats:Sixteenths. Setting the value will jump to that position right away.
+             */
+            public position: Types.BarsBeatsSixteenth;
+            /**
+             * The Transport’s loop position as a normalized value. Always returns 0 if the transport if loop is not true.
+             */
+            public progress: Types.NormalRange;
+            /**
+             * The Transport’s position in seconds Setting the value will jump to that position right away.
+             */
+            public seconds: Types.Seconds;
+            /**
+             * Returns the playback state of the source, either “started”, “stopped”, or “paused”
+             */
+            public readonly state: string;
+            /**
+             * The swing value. Between 0-1 where 1 equal to the note + half the subdivision.
+             */
+            public swing: Types.NormalRange;
+            /**
+             * Set the subdivision which the swing will be applied to. The default value is an 8th note. Value must be less than a quarter note.
+             */
+            public swingSubdivision: Types.Time;
+            /**
+             * The transports current tick position.
+             */
+            public ticks: Types.Ticks;
+            /**
+             * The time signature as just the numerator over 4. For example 4/4 would be just 4 and 6/8 would be 3.
+             */
             public timeSignature: number | number[];
-            public start(time?: Types.Time, offset?: Types.TransportTime): Transport;
-            public stop(time?: Types.Time): Transport;
-            public readonly state: State;
+            /**
+             * Remove scheduled events from the timeline after the given time. Repeated events will be removed if their startTime is after the given time
+             */
+            public cancel(after?: Types.TransportTime): this;
+            /**
+             * Clear the passed in event id from the timeline
+             */
+            public clear(eventId: number): this;
+            /**
+             * Return the elapsed seconds at the given time.
+             */
+            public getSecondsAtTime(time: Types.Time): this;
+            /**
+             * Get the clock’s ticks at the given time.
+             */
+            public getTicksAtTime(time: Types.Time): this;
+            /**
+             * Returns the time aligned to the next subdivision of the Transport. If the Transport is not started, it will return 0.
+             * Note: this will not work precisely during tempo ramps.
+             */
+            public nextSubdivision(subdivision: Types.Time): this;
+            /**
+             * Pause the transport and all sources synced to the transport.
+             */
+            public pause(time?: Types.Time): this;
+            /**
+             * Schedule an event along the timeline.
+             * @returns The id of the event which can be used for canceling the event.
+             */
+            public schedule(callback: Function, time: Types.TransportTime): number;
+            /**
+             * Schedule an event that will be removed after it is invoked.
+             * Note that if the given time is less than the current transport time, the event will be invoked immediately.
+             * @returns The ID of the scheduled event.
+             */
+            public scheduleOnce(callback: Function, time: Types.TransportTime): number;
+            /**
+             * Schedule a repeated event along the timeline. The event will fire at the interval starting at the startTime and for the specified duration.
+             * @returns The ID of the scheduled event. Use this to cancel the event.
+             */
+            public scheduleRepeat(callback: Function, interval: Types.Time, startTime?: Types.TransportTime, duration?: Types.Time): number;
+            /**
+             * Set the loop start and stop at the same time.
+             */
+            public setLoopPoints(startPosition: Types.TransportTime, endPosition: Types.TransportTime): this;
+            /**
+             * Start the transport and all sources synced to the transport.
+             */
+            public start(time?: Types.Time, offset?: Types.TransportTime): this;
+            /**
+             * Stop the transport and all sources synced to the transport.
+             */
+            public stop(time?: Types.Time): this;
+            /**
+             * Attaches the signal to the tempo control signal so that any changes in the tempo will change the signal in the same ratio.
+             * @param ratio Optionally pass in the ratio between the two signals. Otherwise it will be computed based on their current values.
+             */
+            public syncSignal(signal: Signal<any, any>, ratio?: number): this;
+            /**
+             * Toggle the current state of the transport. If it is started, it will stop it, otherwise it will start the Transport.
+             */
+            public toggle(time?: Types.Time): this;
+            /**
+             * Unsyncs a previously synced signal from the transport’s control.
+             * @see Tone.Transport.syncSignal.
+             */
+            public unsyncSignal(signal: Signal<any, any>): this;
+        }
+
+        /**
+         * Global Draw singleton, should not be constructed.
+         */
+        class DrawSingleton extends Tone {
+            private constructor();
+            /**
+             * The amount of time before the scheduled time that the callback can be invoked. Default is half the time of an animation frame (0.008 seconds).
+             */
+            public anticipation: number;
+            /**
+             * The duration after which events are not invoked.
+             */
+            public expiration: number;
+            /**
+             * Cancel events scheduled after the given time
+             */
+            public cancel(time?: Types.Time): this;
+            /**
+             * Schedule a function at the given time to be invoked on the nearest animation frame.
+             */
+            public schedule(callback: Function, time: Types.Time): this;
         }
 
         /**
