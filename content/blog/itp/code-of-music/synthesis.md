@@ -3,7 +3,7 @@ title: Week 4 synthesis
 date: "2018-10-09"
 ---
 
-### Listen
+## Listen
 
 Kaitlyn Aurelia Smith creates amazing sonic landscapes using modular synthesizers. You can hear how she's inspired by forests and nature in this one. The video below is for the whole album _The Kid_, but it's sufficient to hear parts of the first track (_I Am A Thought_) to get the idea.
 
