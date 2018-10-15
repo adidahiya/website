@@ -4,6 +4,7 @@
         "blueprint-classes-constants": false,
         "blueprint-html-components": false,
         "file-header": false,
+        "max-classes-per-file": false,
         "member-ordering": false,
         "no-default-export": false,
         "no-implicit-dependencies": true,

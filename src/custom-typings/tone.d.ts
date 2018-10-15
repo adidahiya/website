@@ -1,51 +1,51 @@
 declare module "tone" {
     class Tone {
         constructor();
-        readonly context: Tone.Context;
+        public readonly context: Tone.Context;
         /**
          * Recieve the input from the desired channelName to the input
          * @param channelName A named channel to send the signal to.
          * @param channelNumber The channel to connect to
          */
-        receive(channelName: string, channelNumber?: number): this;
+        public receive(channelName: string, channelNumber?: number): this;
         /**
          * Send this signal to the channel name.
          * @param channelName A named channel to send the signal to.
          * @param amount The amount of the source to send to the bus.
          * @returns The gain node which connects this node to the desired channel. Can be used to adjust the levels of the send.
          */
-        send(channelName: string, amount: Tone.Types.Decibels): GainNode;
+        public send(channelName: string, amount: Tone.Types.Decibels): GainNode;
         /**
          * Convert a frequency representation into a number.
          */
-        toFrequency(freq: Tone.Frequency): Tone.Types.Hertz;
+        public toFrequency(freq: Tone.Frequency): Tone.Types.Hertz;
         /**
          * Convert Time into seconds. Unlike the method which it overrides, this takes into account transporttime and musical notation. Time : 1.40 Notation: 4n or 1m or 2t Now Relative: +3n Math: 3n+16n or even complicated expressions ((3n*2)/6 + 1)
          */
-        toSeconds(time: Tone.Time): Tone.Types.Seconds;
+        public toSeconds(time: Tone.Time): Tone.Types.Seconds;
         /**
          * Convert a time representation into ticks.
          */
-        toTicks(time: Tone.Time): Tone.Types.Ticks;
+        public toTicks(time: Tone.Time): Tone.Types.Ticks;
         /**
          * Generate a buffer by rendering all of the Tone.js code within the callback using the OfflineAudioContext. The OfflineAudioContext is capable of rendering much faster than real time in many cases. The callback function also passes in an offline instance of Tone.Transport which can be used to schedule events along the Transport. NOTE OfflineAudioContext has the same restrictions as the AudioContext in that on certain platforms (like iOS) it must be invoked by an explicit user action like a click or tap.
          * @param callback All Tone.js nodes which are created and scheduled within this callback are recorded into the output Buffer.
          * @param duration the amount of time to record for.
          */
-        static Offline(callback: Function, duration: Tone.Time): Promise<Tone.Buffer>;
+        public static Offline(callback: Function, duration: Tone.Time): Promise<Tone.Buffer>;
         /**
          * connect together all of the arguments in series
          */
-        static connectSeries(nodes: AudioParam | Tone | AudioNode): Tone;
+        public static connectSeries(nodes: AudioParam | Tone | AudioNode): Tone;
         /**
          * Convert decibels into gain.
          */
-        static dbToGain(db: Tone.Types.Decibels): number;
+        public static dbToGain(db: Tone.Types.Decibels): number;
         /**
          * If the given parameter is undefined, use the fallback. If both given and fallback are object literals, it will return a deep copy which includes all of the parameters from both objects. If a parameter is undefined in given, it will return the fallback property.
          * WARNING: if object is self referential, it will go into an an infinite recursive loop.
          */
-        static defaultArg(given: any, fallback: any): any;
+        public static defaultArg(given: any, fallback: any): any;
         /**
          * TODO: narrower type definition using generics
          * @param values The arguments array
@@ -53,77 +53,77 @@ declare module "tone" {
          * @param constr The class constructor
          * @returns An object composed of the defaults between the class’ defaults and the passed in arguments.
          */
-        static defaults(values: Array<any>, keys: string[], constr: Function | Object): Object;
+        public static defaults(values: any[], keys: string[], constr: Function | Object): Object;
         /**
          * Equal power gain scale. Good for cross-fading.
          * @param percent (0-1)
          * @returns output gain (0-1)
          */
-        static equalPowerScale(percent: Tone.Types.NormalRange): number;
+        public static equalPowerScale(percent: Tone.Types.NormalRange): number;
         /**
          * have a child inherit all of Tone’s (or a parent’s) prototype to inherit the parent’s properties, make sure to call Parent.call(this) in the child’s constructor based on closure library’s inherit function
          * @param parent (optional) parent to inherit from if no parent is supplied, the child will inherit from Tone
          */
-        static extend(child: Function, parent?: Function): void;
+        public static extend(child: Function, parent?: Function): void;
         /**
          * Convert gain to decibels.
          * @param gain (0-1)
          */
-        static gainToDb(gain: number): Tone.Types.Decibels;
+        public static gainToDb(gain: number): Tone.Types.Decibels;
         /**
          * Convert an interval (in semitones) to a frequency ratio.
          * @param interval the number of semitones above the base note
          * @returns the frequency ratio
          */
-        static intervalToFrequencyRatio(interval: Tone.Types.Interval): number;
+        public static intervalToFrequencyRatio(interval: Tone.Types.Interval): number;
         /**
          * Test if the argument is an Array
          */
-        static isArray(arg: any): boolean;
+        public static isArray(arg: any): boolean;
         /**
          * Test if the argument is a boolean.
          */
-        static isBoolean(arg: any): boolean;
+        public static isBoolean(arg: any): boolean;
         /**
          * Test if the argument is not undefined.
          */
-        static isDefined(arg: any): boolean;
+        public static isDefined(arg: any): boolean;
         /**
          * Test if the argument is a function.
          */
-        static isFunction(arg: any): boolean;
+        public static isFunction(arg: any): boolean;
         /**
          * Test if the argument is in the form of a note in scientific pitch notation. e.g. “C4”
          */
-        static isNote(arg: any): boolean;
+        public static isNote(arg: any): boolean;
         /**
          * Test if the argument is a number.
          */
-        static isNumber(arg: any): boolean;
+        public static isNumber(arg: any): boolean;
         /**
          * Test if the argument is an object literatl (i.e. {})
          */
-        static isObject(arg: any): boolean;
+        public static isObject(arg: any): boolean;
         /**
          * Test if the argument is a string
          */
-        static isString(arg: any): boolean;
+        public static isString(arg: any): boolean;
         /**
          * Test if the argument is undefined
          */
-        static isUndef(arg: any): boolean;
+        public static isUndef(arg: any): boolean;
         /**
          * Returns a Promise which resolves when all of the buffers have loaded
          */
-        static loaded(): Promise<void>;
+        public static loaded(): Promise<void>;
         /**
          * Return the current time of the AudioContext clock.
          */
-        static now(): number;
+        public static now(): number;
         /**
          * Global transport object
          */
-        static Transport: Tone.TransportClass;
+        public static Transport: Tone.TransportClass;
     }
 
     namespace Tone {
@@ -134,28 +134,28 @@ declare module "tone" {
          */
 
         const Type: {
-            AudioRange: "audioRange"
-            BPM: "bpm"
-            BarsBeatsSixteenths: "barsBeatsSixteenths"
-            Cents: "cents"
-            Decibels: "db"
-            Default: "number"
-            Degrees: "degrees"
-            Frequency: "frequency"
-            Gain: "gain"
-            Hertz: "hertz"
-            Interval: "interval"
-            MIDI: "midi"
-            Milliseconds: "milliseconds"
-            NormalRange: "normalRange"
-            Notation: "notation"
-            Note: "note"
-            Positive: "positive"
-            Samples: "samples"
-            Seconds: "seconds"
-            Ticks: "ticks"
-            Time: "time"
-            TransportTime: "transportTime"
+            AudioRange: "audioRange";
+            BPM: "bpm";
+            BarsBeatsSixteenths: "barsBeatsSixteenths";
+            Cents: "cents";
+            Decibels: "db";
+            Default: "number";
+            Degrees: "degrees";
+            Frequency: "frequency";
+            Gain: "gain";
+            Hertz: "hertz";
+            Interval: "interval";
+            MIDI: "midi";
+            Milliseconds: "milliseconds";
+            NormalRange: "normalRange";
+            Notation: "notation";
+            Note: "note";
+            Positive: "positive";
+            Samples: "samples";
+            Seconds: "seconds";
+            Ticks: "ticks";
+            Time: "time";
+            TransportTime: "transportTime";
         };
 
         /**
@@ -267,20 +267,17 @@ declare module "tone" {
         // TODO: complete definition
         class TimeBase extends Tone {
             constructor(val: string | number, units?: string);
-            toMilliseconds(): Types.Milliseconds;
+            public toMilliseconds(): Types.Milliseconds;
         }
 
         // TODO: complete definition
-        class Time extends TimeBase {
-
-        }
+        class Time extends TimeBase {}
 
         // TODO: complete definition
         class Frequency extends TimeBase {
-            harmonize(intervals: number[]): Frequency[];
-            transpose(semitones: number): Types.Frequency;
+            public harmonize(intervals: number[]): Frequency[];
+            public transpose(semitones: number): Types.Frequency;
         }
-
 
         /**
          * ========================================================
@@ -290,12 +287,12 @@ declare module "tone" {
 
         class Emitter extends Tone {
             constructor();
-            dispose(): this;
-            emit(event: string, ...args: any[]): this;
-            off(event: string, callback: Function): this;
-            on(event: string, callback: Function): this;
-            once(event: string, callback: Function): this;
-            static mixin(obj: Object | Function): Emitter;
+            public dispose(): this;
+            public emit(event: string, ...args: any[]): this;
+            public off(event: string, callback: Function): this;
+            public on(event: string, callback: Function): this;
+            public once(event: string, callback: Function): this;
+            public static mixin(obj: Object | Function): Emitter;
         }
 
         class Context extends Emitter {
@@ -303,50 +300,50 @@ declare module "tone" {
             /**
              * What the source of the clock is, either “worker” (Web Worker [default]), “timeout” (setTimeout), or “offline” (none).
              */
-            clockSource: string;
+            public clockSource: string;
             /**
              * The type of playback, which affects tradeoffs between audio output latency and responsiveness. In addition to setting the value in seconds, the latencyHint also accepts the strings “interactive” (prioritizes low latency), “playback” (prioritizes sustained playback), “balanced” (balances latency and performance), and “fastest” (lowest latency, might glitch more often).
              */
-            latencyHint: string | number;
+            public latencyHint: string | number;
             /**
              * The amount of time events are scheduled into the future
              */
-            lookAhead: number;
+            public lookAhead: number;
             /**
              * How often the Web Worker callback is invoked. This number corresponds to how responsive the scheduling can be. Context.updateInterval + Context.lookAhead gives you the total latency between scheduling an event and hearing it.
              */
-            updateInterval: number;
+            public updateInterval: number;
             /**
              * Clears a previously scheduled timeout with Tone.context.setTimeout
              */
-            clearTimeout(id: number): this;
+            public clearTimeout(id: number): this;
             /**
              * Promise which is invoked when the context is running. Tries to resume the context if it’s not started.
              */
-            close(): Promise<void>;
-            createConstantSource(): any;
-            createStereoPanner(): any;
+            public close(): Promise<void>;
+            public createConstantSource(): any;
+            public createStereoPanner(): any;
             /**
              * Unlike other dispose methods, this returns a Promise which executes when the context is closed and disposed
              */
             // @ts-ignore
-            dispose(): Promise<this>;
+            public dispose(): Promise<this>;
             /**
              * Generate a looped buffer at some constant value.
              */
-            getConstant(val: number): AudioBufferSourceNode;
+            public getConstant(val: number): AudioBufferSourceNode;
             /**
              * The current audio context time
              */
-            now(): number;
+            public now(): number;
             /**
              * Promise which is invoked when the context is running. Tries to resume the context if it’s not started.
              */
-            read(): Promise<void>;
+            public read(): Promise<void>;
             /**
              * A setTimeout which is gaurenteed by the clock source. Also runs in the offline context.
              */
-            setTimeout(fn: Function, timeout: number): number;
+            public setTimeout(fn: Function, timeout: number): number;
         }
 
         class Buffer extends Tone {
@@ -359,88 +356,93 @@ declare module "tone" {
             /**
              * The duration of the buffer.
              */
-            readonly duration: number;
+            public readonly duration: number;
             /**
              * The length of the buffer in samples
              */
-            readonly length: number;
+            public readonly length: number;
             /**
              * If the buffer is loaded or not
              */
-            readonly loaded: boolean;
+            public readonly loaded: boolean;
             /**
              * The number of discrete audio channels. Returns 0 if no buffer is loaded.
              */
-            readonly numberOfChannels: number;
+            public readonly numberOfChannels: number;
             /**
              * Reverse the buffer.
              */
-            reverse: boolean;
+            public reverse: boolean;
             /**
              * dispose and disconnect
              */
-            dispose(): this;
+            public dispose(): this;
             /**
              * Set the audio buffer from the array. To create a multichannel AudioBuffer, pass in a multidimensional array.
              * @param array The array to fill the audio buffer
              */
-            fromArray(array: Float32Array): this;
+            public fromArray(array: Float32Array): this;
             /**
              * The audio buffer stored in the object.
              */
-            get(): AudioBuffer;
+            public get(): AudioBuffer;
             /**
              * Returns the Float32Array representing the PCM audio data for the specific channel.
              * @param channel The channel number to return
              */
-            getChannelData(channel: number): Float32Array;
+            public getChannelData(channel: number): Float32Array;
             /**
              * Makes an xhr reqest for the selected url then decodes the file as an audio buffer. Invokes the callback once the audio buffer loads.
              * @param url The url of the buffer to load. filetype support depends on the browser.
              */
-            load(url: string): Promise<Tone.Buffer>;
+            public load(url: string): Promise<Tone.Buffer>;
             /**
              * Pass in an AudioBuffer or Tone.Buffer to set the value of this buffer.
              */
-            set(buffer: AudioBuffer | Tone.Buffer): this;
+            public set(buffer: AudioBuffer | Tone.Buffer): this;
             /**
              * Cut a subsection of the array and return a buffer of the subsection. Does not modify the original buffer
              * @param start The time to start the slice
              * @param end The end time to slice. If none is given will default to the end of the buffer
              */
-            slice(start: Tone.Time, end?: Tone.Time): this;
+            public slice(start: Tone.Time, end?: Tone.Time): this;
             /**
              * Get the buffer as an array. Single channel buffers will return a 1-dimensional Float32Array, and multichannel buffers will return multidimensional arrays.
              * @param channel Optionally only copy a single channel from the array.
              */
-            toArray<T>(channel?: number): Array<T>;
+            public toArray<T>(channel?: number): T[];
             /**
              * Sums muliple channels into 1 channel
              * @param channel Optionally only copy a single channel from the array.
              */
-            toMono<T>(channel?: number): Array<T>;
+            public toMono<T>(channel?: number): T[];
             /**
              * Stops all of the downloads in progress
              */
-            static cancelDownloads(): Tone.Buffer;
+            public static cancelDownloads(): Tone.Buffer;
             /**
              * Create a Tone.Buffer from the array. To create a multichannel AudioBuffer, pass in a multidimensional array.
              * @param array The array to fill the audio buffer
              */
-            static fromArray(array: Float32Array): Tone.Buffer;
+            public static fromArray(array: Float32Array): Tone.Buffer;
             /**
              * Creates a Tone.Buffer from a URL, returns a promise which resolves to a Tone.Buffer
              */
-            static fromUrl(url: string): Promise<Tone.Buffer>;
+            public static fromUrl(url: string): Promise<Tone.Buffer>;
             /**
              * Loads a url using XMLHttpRequest.
              */
-            static load(url: string, onload: Function, onerror: Function, onprogress: Function): XMLHttpRequest;
+            public static load(
+                url: string,
+                onload: Function,
+                onerror: Function,
+                onprogress: Function,
+            ): XMLHttpRequest;
             /**
              * Checks a url’s extension to see if the current browser can play that file type.
              * @param url The url/extension to test
              */
-            static supportsType(url: string): boolean;
+            public static supportsType(url: string): boolean;
         }
 
         class AudioNode extends Tone {
@@ -448,44 +450,48 @@ declare module "tone" {
             /**
              * the number of channels used when up-mixing and down-mixing connections to any inputs to the node. The default value is 2 except for specific nodes where its value is specially determined.
              */
-            readonly channelCount: number;
+            public readonly channelCount: number;
             /**
              * determines how channels will be counted when up-mixing and down-mixing connections to any inputs to the node. The default value is “max”. This attribute has no effect for nodes with no inputs.
              */
-            readonly channelCountMode: string;
+            public readonly channelCountMode: string;
             /**
              * determines how individual channels will be treated when up-mixing and down-mixing connections to any inputs to the node. The default value is “speakers”.
              */
-            readonly channelInterpretation: string;
+            public readonly channelInterpretation: string;
             /**
              * Get the audio context belonging to this instance.
              */
-            readonly context: Context;
+            public readonly context: Context;
             /**
              * The number of inputs feeding into the AudioNode. For source nodes, this will be 0.
              */
-            readonly numberOfInputs: number;
+            public readonly numberOfInputs: number;
             /**
              * The number of outputs coming out of the AudioNode.
              */
-            readonly numberOfOutputs: number;
+            public readonly numberOfOutputs: number;
             /**
              * connect the output of a ToneNode to an AudioParam, AudioNode, or ToneNode
              */
-            connect(unit: Tone | AudioParam | AudioNode, outputNum?: number, inputNum?: number): this;
+            public connect(
+                unit: Tone | AudioParam | AudioNode,
+                outputNum?: number,
+                inputNum?: number,
+            ): this;
             /**
              * disconnect the output
              * @param output Either the output index to disconnect if the output is an array, or the node to disconnect from.
              */
-            disconnect(output: number | AudioNode): this;
+            public disconnect(output: number | AudioNode): this;
             /**
              * dispose and disconnect
              */
-            dispose(): this;
+            public dispose(): this;
             /**
              * Connect ‘this’ to the master output. Shorthand for this.connect(Tone.Master)
              */
-            toMaster(): this;
+            public toMaster(): this;
         }
 
         // TODO: extract outside namespace?
@@ -494,16 +500,16 @@ declare module "tone" {
         // TODO: complete definition
         class Param<U extends valueof<typeof Type>, V> extends AudioNode {
             constructor(param: AudioParam, units: U, convert: boolean);
-            convert: boolean;
-            units: U;
-            value: V;
+            public convert: boolean;
+            public units: U;
+            public value: V;
         }
 
         // TODO: complete definition
         class Signal<U extends valueof<typeof Type>, V> extends Param<U, V> {
-            linearRampToValue(value: V): this;
-            exponentialRampToValue(value: V): this;
-            rampTo(value: V): this;
+            public linearRampToValue(value: V): this;
+            public exponentialRampToValue(value: V): this;
+            public rampTo(value: V): this;
         }
 
         type BPM = Signal<typeof Type.BPM, Types.BPM>;
@@ -513,14 +519,13 @@ declare module "tone" {
 
         class TransportClass extends Emitter {
             constructor();
-            PPQ: number;
-            bpm: BPM;
-            timeSignature: number | number[];
-            start(time?: Types.Time, offset?: Types.TransportTime): Transport;
-            stop(time?: Types.Time): Transport;
-            readonly state: State;
+            public PPQ: number;
+            public bpm: BPM;
+            public timeSignature: number | number[];
+            public start(time?: Types.Time, offset?: Types.TransportTime): Transport;
+            public stop(time?: Types.Time): Transport;
+            public readonly state: State;
         }
-
 
         /**
          * ========================================================
@@ -530,16 +535,13 @@ declare module "tone" {
 
         // TODO: complete definition
         class Source extends AudioNode {
-            volume: Signal<typeof Type.Decibels, Types.Decibels>;
-            start(time?: Types.Time): this;
-            stop(time?: Types.Time): this;
-
+            public volume: Signal<typeof Type.Decibels, Types.Decibels>;
+            public start(time?: Types.Time): this;
+            public stop(time?: Types.Time): this;
         }
 
         // TODO: complete definition
-        class Player extends Source {
-
-        }
+        class Player extends Source {}
 
         // TODO: complete definition
         class Players extends AudioNode {
@@ -556,7 +558,6 @@ declare module "tone" {
             constructor(frequency?: Types.Frequency, type?: string);
         }
 
-
         /**
          * ========================================================
          * Instrument
@@ -565,67 +566,260 @@ declare module "tone" {
 
         // TODO: complete definition
         class Instrument extends AudioNode {
-            triggerAttackRelease(note: Types.Frequency, duration: Types.Time, time?: Types.Time, velocity?: Types.NormalRange): this;
-            volume: Signal<typeof Type.Decibels, Types.Decibels>;
-            sync(): this;
-            unsync(): this;
+            /**
+             * Trigger the attack and then the release after the duration.
+             * @param note The note to trigger.
+             * @param duration How long the note should be held for before triggering the release. This value must be greater than 0.
+             * @param time When the note should be triggered.
+             * @param velocity The velocity the note should be triggered at.
+             */
+            public triggerAttackRelease(
+                note: Types.Frequency,
+                duration: Types.Time,
+                time?: Types.Time,
+                velocity?: Types.NormalRange,
+            ): this;
+            /**
+             * The volume of the output in decibels.
+             */
+            public volume: Signal<typeof Type.Decibels, Types.Decibels>;
+            /**
+             * Sync the instrument to the Transport. All subsequent calls of triggerAttack and triggerRelease will be scheduled along the transport.
+             */
+            public sync(): this;
+            /**
+             * Unsync the instrument from the Transport
+             */
+            public unsync(): this;
         }
 
-        interface IMonophonicOptions {
+        /**
+         * Tone.OmniOscillator aggregates Tone.Oscillator, Tone.PulseOscillator, Tone.PWMOscillator, Tone.FMOscillator, Tone.AMOscillator, and
+         * Tone.FatOscillator into one class. The oscillator class can be changed by setting the type. omniOsc.type = "pwm" will set it to the
+         * Tone.PWMOscillator. Prefixing any of the basic types (“sine”, “square4”, etc.) with “fm”, “am”, or “fat” will use the FMOscillator,
+         * AMOscillator or FatOscillator respectively. For example: omniOsc.type = "fatsawtooth" will create set the oscillator to a
+         * FatOscillator of type “sawtooth”.
+         */
+        class OmniOscillator extends Source {
+            constructor(frequency: Types.Frequency, type: string);
+            /**
+             * The number of detuned oscillators
+             */
+            public count: number;
+            /**
+             * The detune control
+             */
+            public detune: Signal<typeof Type.Cents, Types.Cents>;
+            /**
+             * The frequency control
+             */
+            public frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            /**
+             * Harmonicity is the frequency ratio between the carrier and the modulator oscillators.
+             * A harmonicity of 1 gives both oscillators the same frequency. Harmonicity = 2 means a change of an octave.
+             * @see Tone.AMOscillator
+             * @see Tone.FMOscillator
+             */
+            public harmonicity: Signal<typeof Type.Positive, Types.Positive>;
+            /**
+             * The modulationFrequency Signal of the oscillator (only if the oscillator type is set to pwm).
+             * @see Tone.PWMOscillator
+             */
+            public modulationFrequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            /**
+             * The type of the modulator oscillator. Only if the oscillator is set to “am” or “fm” types.
+             * @see Tone.AMOscillator
+             * @see Tone.FMOscillator
+             */
+            public modulationType: string;
+            /**
+             * The partials of the waveform. A partial represents the amplitude at a harmonic.
+             * The first harmonic is the fundamental frequency, the second is the octave and so on following the harmonic series.
+             * Setting this value will automatically set the type to “custom”. The value is an empty array when the type is not “custom”.
+             * This is not available on “pwm” and “pulse” oscillator types.
+             */
+            public partials: number[];
+            /**
+             * The phase of the oscillator in degrees.
+             */
+            public phase: Types.Degrees;
+            /**
+             * The detune spread between the oscillators. If “count” is set to 3 oscillators and the “spread” is set to 40,
+             * the three oscillators would be detuned like this: [-20, 0, 20] for a total detune spread of 40 cents.
+             * @see Tone.FatOscillator
+             */
+            public spread: Types.Cents;
+            /**
+             * The type of the oscillator. Can be any of the basic types: sine, square, triangle, sawtooth.
+             * Or prefix the basic types with “fm”, “am”, or “fat” to use the FMOscillator, AMOscillator or FatOscillator types.
+             * The oscillator could also be set to “pwm” or “pulse”. All of the parameters of the oscillator’s class are accessible
+             * when the oscillator is set to that type, but throws an error when it’s not.
+             */
+            public type: string;
+            /**
+             * The width of the oscillator (only if the oscillator is set to “pulse”)
+             */
+            public width: Types.NormalRange;
+            /**
+             * TODO: documentation
+             */
+            public restart(): this;
+        }
+
+        interface MonophonicOptions {
             portamento?: Types.Time;
         }
 
         interface MonophonicConstructor {
-            new(options?: IMonophonicOptions): Monophonic;
+            new (options?: MonophonicOptions): Monophonic;
         }
 
-        // TODO: complete definition
-        class Monophonic extends Instrument {
-            constructor(options?: IMonophonicOptions);
-            portamento: Types.Time;
+        /**
+         * This is an abstract base class for other monophonic instruments to extend.
+         * IMPORTANT: It does not make any sound on its own and shouldn’t be directly instantiated.
+         */
+        abstract class Monophonic extends Instrument {
+            constructor(options?: MonophonicOptions);
+            /**
+             * The glide time between notes.
+             */
+            public portamento: Types.Time;
+            /**
+             * Get the level of the output at the given time. Measures the envelope(s) value at the time.
+             */
+            public getLevelAtTime(time: Types.Time): Types.NormalRange;
+            /**
+             * Set the note at the given time. If no time is given, the note will set immediately.
+             */
+            public setNote(note: Types.Frequency, time?: Types.Time): this;
+            /**
+             * Trigger the attack of the note optionally with a given velocity.
+             */
+            public triggerAttack(note: Types.Frequency, time?: Types.Time, velocity?: number): this;
+            /**
+             * Trigger the release portion of the envelope
+             */
+            public triggerRelease(time?: Types.Time): this;
         }
 
-        interface IEnvelope {
+        interface OscillatorOptions {
+            modulationType?: string;
+            type: string;
+        }
+
+        interface EnvelopeOptions {
             attack?: number;
             decay?: number;
             sustain?: number;
             release?: number;
         }
 
-        // TODO: complete definition
+        /**
+         * Tone.Synth is composed simply of a Tone.OmniOscillator routed through a Tone.AmplitudeEnvelope.
+         */
         class Synth extends Monophonic {
-            constructor(options?: IMonophonicOptions & {
-                oscillator?: {
-                    modulationType?: string;
-                    type: string;
+            constructor(
+                options?: MonophonicOptions & {
+                    oscillator?: OscillatorOptions;
+                    envelope?: EnvelopeOptions;
                 },
-                envelope?: IEnvelope;
-            });
-            frequency: Signal<typeof Type.Frequency, Types.Frequency>;
-            envelope: AmplitudeEnvelope;
+            );
+            /**
+             * The detune control
+             */
+            public detune: Signal<typeof Type.Cents, Types.Cents>;
+            /**
+             * The amplitude envelope.
+             */
+            public envelope: AmplitudeEnvelope;
+            /**
+             * The frequency control
+             */
+            public frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            /**
+             * The oscillator.
+             */
+            public oscillator: OmniOscillator;
         }
 
-        // TODO: complete definition
-        class PluckSynth extends Tone.Instrument {
+        /**
+         * Karplus-String string synthesis. Often out of tune. Will change when the AudioWorkerNode is available across browsers.
+         */
+        class PluckSynth extends Instrument {
             constructor(options?: {
-                attackNoise?: number,
-                dampening?: Types.Frequency,
-                resonance?: Types.NormalRange,
+                attackNoise?: number;
+                dampening?: Types.Frequency;
+                resonance?: Types.NormalRange;
             });
-            attackNoise: number;
-            dampening: Signal<typeof Type.Frequency, Types.Frequency>;
-            resonance: Signal<typeof Type.NormalRange, Types.NormalRange>;
+            /**
+             * The amount of noise at the attack. Nominal range of [0.1, 20]
+             */
+            public attackNoise: number;
+            /**
+             * The dampening control. i.e. the lowpass filter frequency of the comb filter
+             */
+            public dampening: Signal<typeof Type.Frequency, Types.Frequency>;
+            /**
+             * The resonance control.
+             */
+            public resonance: Signal<typeof Type.NormalRange, Types.NormalRange>;
+            /**
+             * Trigger the note.
+             */
+            public triggerAttack(note: Types.Frequency, time?: Types.Time): this;
         }
 
-        // TODO: complete definition
+        /**
+         * Tone.PolySynth handles voice creation and allocation for any instruments passed in as the second paramter.
+         * PolySynth is not a synthesizer by itself, it merely manages voices of one of the other types of synths,
+         * allowing any of the monophonic synthesizers to be polyphonic.
+         */
         class PolySynth<V extends Monophonic> extends Instrument {
-            constructor(polyphony?: number | object, voice?: { new(): V });
-            detune: Signal<typeof Type.Cents, Types.Cents>;
-            voices: V[];
-            triggerAttackRelease(notes: Types.Frequency | Types.Frequency[], durations: Types.Time | Types.Time[], time?: Types.Time, velocity?: Types.NormalRange): this;
-            triggerAttack(notes: Types.Frequency | Types.Frequency[], time?: Types.Time, velocity?: Types.NormalRange): this;
-            triggerRelease(notes: Types.Frequency | Types.Frequency[], time?: Types.Time): this;
-            releaseAll(): this;
+            constructor(polyphony?: number | object, voiceConstructor?: { new (): V });
+            /**
+             * The detune in cents
+             */
+            public detune: Signal<typeof Type.Cents, Types.Cents>;
+            /**
+             * the array of voices
+             */
+            public voices: V[];
+            /**
+             * Get the synth’s attributes. Given no arguments get will return all available object properties and their corresponding values. Pass in a single attribute to retrieve or an array of attributes. The attribute strings can also include a “.” to access deeper properties.
+             */
+            public get(params?: string[]): any[];
+            /**
+             * Set a member/attribute of the voices.
+             */
+            public set(params: string | object, value: number, rampTime: Types.Time): this;
+            /**
+             * Trigger the attack and release after the specified duration
+             */
+            public triggerAttackRelease(
+                notes: Types.Frequency | Types.Frequency[],
+                durations: Types.Time | Types.Time[],
+                time?: Types.Time,
+                velocity?: Types.NormalRange,
+            ): this;
+            /**
+             * Trigger the attack portion of the note
+             */
+            public triggerAttack(
+                notes: Types.Frequency | Types.Frequency[],
+                time?: Types.Time,
+                velocity?: Types.NormalRange,
+            ): this;
+            /**
+             *  Trigger the release of the note. Unlike monophonic instruments, a note (or array of notes) needs to be passed in as the first argument.
+             */
+            public triggerRelease(
+                notes: Types.Frequency | Types.Frequency[],
+                time?: Types.Time,
+            ): this;
+            /**
+             * Trigger the release portion of all the currently active voices.
+             */
+            public releaseAll(): this;
         }
 
         /**
@@ -639,15 +833,14 @@ declare module "tone" {
         // TODO: complete definition
         class Loop extends Tone {
             constructor(callback: Function, interval: Types.Time);
-            start(): this;
-            stop(): this;
+            public start(): this;
+            public stop(): this;
         }
 
         // TODO: complete definition
         class Pattern extends Loop {
             constructor(callback: Function, values: Types.Note[], pattern?: CtrlPattern);
         }
-
 
         /**
          * ========================================================
@@ -657,14 +850,14 @@ declare module "tone" {
 
         // TODO: complete definition
         class Envelope extends AudioNode {
-            constructor(envelope: IEnvelope);
+            constructor(envelope: EnvelopeOptions);
             constructor(atatck?: number, sustain?: number, decay?: number, release?: number);
-            triggerAttackRelease(time?: Types.Time): this;
+            public triggerAttackRelease(time?: Types.Time): this;
         }
 
         // TODO: complete definition
         class AmplitudeEnvelope extends Envelope {
-            readonly value: number;
+            public readonly value: number;
         }
     }
 
