@@ -78,6 +78,14 @@ export default class extends React.Component {
                         </>
                     );
                     const redirectNotice = <p>Contents have moved... redirecting to root page</p>;
+                    const maybeAnalyticsScript = this.shouldRenderAnalytics(location) ? (
+                        <script
+                            async={true}
+                            src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1"
+                        />
+                    ) : (
+                        undefined
+                    );
 
                     return (
                         <>
@@ -85,14 +93,10 @@ export default class extends React.Component {
                                 title="Adi Dahiya"
                                 link={LINK_TAGS}
                                 meta={isLegacyRoute ? META_TAGS_WITH_REDIRECT : META_TAGS}
-                            />
+                            >
+                                {maybeAnalyticsScript}
+                            </Helmet>
                             {isLegacyRoute ? redirectNotice : childContentsWithHeader}
-                            {this.shouldRenderAnalytics(location) && (
-                                <script
-                                    async={true}
-                                    src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1"
-                                />
-                            )}
                         </>
                     );
                 }}
