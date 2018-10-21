@@ -5,7 +5,9 @@ import Tone from "tone";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 
-require("../../../../static/lib/p5.serialport");
+if (typeof window !== "undefined") {
+    require("../../../../static/lib/p5.serialport");
+}
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
