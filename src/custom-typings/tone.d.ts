@@ -279,8 +279,18 @@ declare module "tone" {
 
         // TODO: complete definition
         class Frequency extends TimeBase {
+            /**
+             * Takes an array of semitone intervals and returns an array of frequencies transposed by those intervals.
+             */
             public harmonize(intervals: number[]): Frequency[];
+            /**
+             * Transposes the frequency by the given number of semitones.
+             */
             public transpose(semitones: number): Types.Frequency;
+            /**
+             * Return the value of the frequency in Scientific Pitch Notation
+             */
+            public toNote(): Types.Note;
         }
 
         /**
