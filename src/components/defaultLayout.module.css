@@ -45,3 +45,11 @@ p code {
     background: rgba(252, 220, 158, 0.3);
     border-radius: 3px;
 }
+
+summary {
+    cursor: pointer;
+}
+
+summary:hover {
+    color: #136757;
+}
