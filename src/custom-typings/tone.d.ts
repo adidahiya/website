@@ -688,10 +688,17 @@ declare module "tone" {
             public volume: Signal<typeof Type.Decibels, Types.Decibels>;
             public start(time?: Types.Time): this;
             public stop(time?: Types.Time): this;
+            public sync(): this;
+            public unsync(): this;
         }
 
         // TODO: complete definition
-        class Player extends Source {}
+        /**
+         * Tone.Player is an audio file player with start, loop, and stop functions.
+         */
+        class Player extends Source {
+            constructor(url: string | AudioBuffer, onload?: Function);
+        }
 
         // TODO: complete definition
         class Players extends AudioNode {
@@ -970,6 +977,24 @@ declare module "tone" {
              * Trigger the release portion of all the currently active voices.
              */
             public releaseAll(): this;
+        }
+
+        /**
+         * ========================================================
+         * Effect
+         * ========================================================
+         */
+
+        // TODO: complete definition
+        class Effect extends AudioNode {
+            constructor(wet?: Types.NormalRange | object);
+        }
+
+        // TODO: complete definition
+        class Distortion extends Effect {
+            constructor(distortion?: number | object);
+            public distortion: Types.NormalRange;
+            public oversample: string;
         }
 
         /**
