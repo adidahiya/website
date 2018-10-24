@@ -5,6 +5,8 @@ import Helmet from "react-helmet";
 import * as favicon16 from "../assets/favicon-16.png";
 import * as favicon32 from "../assets/favicon-32.png";
 import * as favicon48 from "../assets/favicon-48.png";
+import { initGoogleAnalytics } from "../utils/analyticsUtils";
+import { isLegacyRoute, shouldRenderAnalytics } from "../utils/locationUtils";
 import styles from "./defaultLayout.module.css";
 
 const Header = () => (
@@ -44,33 +46,32 @@ const LINK_TAGS = [
     },
 ];
 
-declare global {
-    // tslint:disable-next-line interface-name
-    interface Window {
-        // google analytics
-        dataLayer: any;
-    }
+export function DefaultLayoutHelmet(props: { location: Location }) {
+    const maybeAnalyticsScript = shouldRenderAnalytics(props.location) ? (
+        <script async={true} src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1" />
+    ) : (
+        undefined
+    );
+    return (
+        <Helmet
+            title="Adi Dahiya"
+            link={LINK_TAGS}
+            meta={isLegacyRoute(location) ? META_TAGS_WITH_REDIRECT : META_TAGS}
+        >
+            {maybeAnalyticsScript}
+        </Helmet>
+    );
 }
 
 export default class extends React.Component {
     public componentDidMount() {
-        if (this.shouldRenderAnalytics(window.location)) {
-            // google analytics snippet
-            window.dataLayer = window.dataLayer || [];
-            gtag("js", new Date());
-            gtag("config", "UA-126153749-1");
-        }
-
-        function gtag(...args: any[]) {
-            window.dataLayer.push(args);
-        }
+        initGoogleAnalytics(window.location);
     }
 
     public render() {
         return (
             <LocationProvider>
                 {({ location }) => {
-                    const isLegacyRoute = location.pathname.indexOf("/public") === 0;
                     const childContentsWithHeader = (
                         <>
                             <Header />
@@ -78,33 +79,15 @@ export default class extends React.Component {
                         </>
                     );
                     const redirectNotice = <p>Contents have moved... redirecting to root page</p>;
-                    const maybeAnalyticsScript = this.shouldRenderAnalytics(location) ? (
-                        <script
-                            async={true}
-                            src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1"
-                        />
-                    ) : (
-                        undefined
-                    );
 
                     return (
                         <>
-                            <Helmet
-                                title="Adi Dahiya"
-                                link={LINK_TAGS}
-                                meta={isLegacyRoute ? META_TAGS_WITH_REDIRECT : META_TAGS}
-                            >
-                                {maybeAnalyticsScript}
-                            </Helmet>
+                            <DefaultLayoutHelmet location={location} />
                             {isLegacyRoute ? redirectNotice : childContentsWithHeader}
                         </>
                     );
                 }}
             </LocationProvider>
         );
-    }
-
-    private shouldRenderAnalytics(location: Location) {
-        return location.hostname !== "localhost";
     }
 }
