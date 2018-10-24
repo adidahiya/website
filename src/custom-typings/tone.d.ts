@@ -677,6 +677,12 @@ declare module "tone" {
             public schedule(callback: Function, time: Types.Time): this;
         }
 
+        class Master extends Tone {
+            constructor();
+            public mute: boolean;
+            public volume: Signal<typeof Type.Decibels, Types.Decibels>;
+        }
+
         /**
          * ========================================================
          * Sources
@@ -748,6 +754,12 @@ declare module "tone" {
              * Unsync the instrument from the Transport
              */
             public unsync(): this;
+        }
+
+        type NoiseType = "white" | "pink" | "brown";
+
+        class Noise extends Source {
+            constructor(type: NoiseType);
         }
 
         /**
@@ -899,6 +911,23 @@ declare module "tone" {
             public oscillator: OmniOscillator;
         }
 
+        interface NoiseOptions {
+            type: NoiseType,
+        }
+
+        /**
+         * Tone.NoiseSynth is composed of a noise generator (Tone.Noise), one filter (Tone.Filter), and two envelopes (Tone.Envelop).
+         * One envelope controls the amplitude of the noise and the other is controls the cutoff frequency of the filter.
+         */
+        class NoiseSynth extends Instrument {
+            constructor(
+                options?: {
+                    noise: NoiseOptions,
+                    envelope: EnvelopeOptions,
+                },
+            );
+        }
+
         /**
          * Karplus-String string synthesis. Often out of tune. Will change when the AudioWorkerNode is available across browsers.
          */
@@ -991,10 +1020,27 @@ declare module "tone" {
         }
 
         // TODO: complete definition
+        class AutoFilter extends Effect {
+            constructor(frequency?: Types.Time | object, baseFrequency?: Types.Frequency, octaves?: Types.Frequency);
+            public start(time?: Types.Time): this;
+            public stop(time?: Types.Time): this;
+        }
+
+        // TODO: complete definition
         class Distortion extends Effect {
             constructor(distortion?: number | object);
             public distortion: Types.NormalRange;
             public oversample: string;
+        }
+
+        // TODO: complete definition
+        class FeedbackEffect extends Effect {
+        }
+
+        // TODO: complete definition
+        class FeedbackDelay extends FeedbackEffect {
+            constructor(delayTime?: Types.Time | object, feedback?: Types.NormalRange);
+            public delayTime: Signal<typeof Type.Time, Types.Time>;
         }
 
         /**
