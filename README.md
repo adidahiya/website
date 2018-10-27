@@ -1,4 +1,4 @@
-# adidahiya.github.io
+# adi's website
 
 ## Development
 

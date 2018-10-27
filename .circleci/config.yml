@@ -20,31 +20,8 @@ jobs:
           paths:
             - public
 
-  deploy:
-    docker:
-      - image: circleci/node:10.10-browsers-legacy
-    steps:
-      - checkout
-      - attach_workspace:
-          at: '.'
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run:
-          name: Deploy
-          command: |
-            git config --global user.name "Adi Dahiya (CircleCI)"
-            git config --global user.email "adi.dahiya14@gmail.com"
-            ./node_modules/.bin/gh-pages deploy -d public -b master --repo https://${GITHUB_ACCESS_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
-
 workflows:
   version: 2
-  build_deploy:
+  build:
     jobs:
       - build
-      - deploy:
-          requires: [build]
-          filters:
-            branches:
-              only: [develop]
