@@ -46,8 +46,8 @@ const LINK_TAGS = [
     },
 ];
 
-export function DefaultLayoutHelmet(props: { location: Location }) {
-    const maybeAnalyticsScript = shouldRenderAnalytics(props.location) ? (
+export function DefaultLayoutHelmet({ location }: { location: Location }) {
+    const maybeAnalyticsScript = shouldRenderAnalytics(location) ? (
         <script async={true} src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1" />
     ) : (
         undefined
