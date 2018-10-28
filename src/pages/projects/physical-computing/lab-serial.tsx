@@ -30,7 +30,7 @@ export default class extends React.PureComponent<
     private p5!: p5;
 
     public async componentDidMount() {
-        this.serial = new p5.SerialPort();
+        this.serial = new (p5 as any).SerialPort();
         this.synth = new Tone.Synth({
             oscillator: {
                 // type: "fmsine",
