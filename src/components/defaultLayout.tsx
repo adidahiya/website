@@ -83,7 +83,7 @@ export default class extends React.Component {
                     return (
                         <>
                             <DefaultLayoutHelmet location={location} />
-                            {isLegacyRoute ? redirectNotice : childContentsWithHeader}
+                            {isLegacyRoute(location) ? redirectNotice : childContentsWithHeader}
                         </>
                     );
                 }}
