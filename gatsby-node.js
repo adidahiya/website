@@ -26,17 +26,21 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     if (node.internal.type === "MarkdownRemark") {
         const slug = createFilePath({ node, getNode, basePath: "content" });
-        const category = slug.substr(ITP_BLOG_PREFIX.length + 1).split("/")[0];
+
         createNodeField({
             node,
             name: "slug",
             value: slug,
         });
-        createNodeField({
-            node,
-            name: "category",
-            value: category,
-        })
+
+        if (slug.indexOf(ITP_BLOG_PREFIX) >= 0) {
+            const category = slug.substr(ITP_BLOG_PREFIX.length + 1).split("/")[0];
+            createNodeField({
+                node,
+                name: "category",
+                value: category,
+            });
+        }
     }
 }
 

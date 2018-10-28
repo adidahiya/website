@@ -1,15 +1,15 @@
 import { graphql } from "gatsby";
 import React from "react";
-import DefaultLayout from "../components/defaultLayout";
+import DefaultLayoutWithoutHeader from "../components/defaultLayoutWithoutHeader";
 import styles from "./markdown.module.css";
 
 export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
-        <DefaultLayout>
+        <DefaultLayoutWithoutHeader>
             <h2>{post.frontmatter.title}</h2>
             <div className={styles.container} dangerouslySetInnerHTML={{ __html: post.html }} />
-        </DefaultLayout>
+        </DefaultLayoutWithoutHeader>
     );
 };
 
