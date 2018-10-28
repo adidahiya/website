@@ -31,13 +31,13 @@ export class P5Canvas extends React.Component<IP5Props> {
     };
 
     private containerEl?: HTMLDivElement | null;
-    // @ts-ignore
-    private instance?: p5;
 
     public componentDidMount() {
         if (this.containerEl != null) {
             const { width, height } = this.props;
-            this.instance = new p5((p: p5) => {
+
+            // @ts-ignore
+            const instance = new p5((p: p5) => {
                 this.props.sketch(p);
                 if (width != null && height != null) {
                     // inject some setup code
@@ -48,6 +48,7 @@ export class P5Canvas extends React.Component<IP5Props> {
                     };
                 }
             }, this.containerEl);
+
             if (this.props.autoFocus) {
                 this.containerEl.focus();
             }

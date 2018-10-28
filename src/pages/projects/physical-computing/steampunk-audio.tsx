@@ -44,15 +44,13 @@ export default class extends React.PureComponent<{}, IState> {
     private p5!: p5;
 
     public async componentDidMount() {
-        this.serial = new p5.SerialPort();
+        this.serial = new (p5 as any).SerialPort();
 
         this.distortion = new Tone.Distortion(this.state.distortion);
         this.delay = new Tone.FeedbackDelay(this.state.delayTime).toMaster();
 
         this.sineSynth = new Tone.Synth({
             oscillator: {
-                // type: "fmsine",
-                // modulationType: "triangle",
                 type: "sine",
             },
             envelope: {
