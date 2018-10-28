@@ -5,6 +5,7 @@ import styles from "./p5Canvas.module.css";
 if (typeof window !== "undefined") {
     require("p5/lib/addons/p5.dom");
     require("p5/lib/addons/p5.sound");
+    require("../../static/lib/p5.serialport");
 }
 
 export interface IP5Props {

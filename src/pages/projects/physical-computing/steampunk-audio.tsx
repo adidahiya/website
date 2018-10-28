@@ -6,10 +6,6 @@ import Tone from "tone";
 import DefaultLayoutWithoutHeader from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
-if (typeof window !== "undefined") {
-    require("../../../../static/lib/p5.serialport");
-}
-
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
@@ -133,7 +129,7 @@ export default class extends React.PureComponent<{}, IState> {
             // }
 
             if (data != null && data.trim() !== "") {
-                // expecing data of the form "x, y, z"
+                // expecing data of the form "pitch, roll"
                 const matches = data.match(/(.*)\,\ (.*)/);
                 if (matches != null && matches.length === 3) {
                     const pitch = parseInt(matches[1], 10);
