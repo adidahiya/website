@@ -9,6 +9,7 @@ import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
+const DEFAULT_FILTER_Q = 1.4;
 
 interface IState {
     isPlaying: boolean;
@@ -21,6 +22,7 @@ export default class extends React.PureComponent<{}, IState> {
 
     private monoSynth!: Tone.MonoSynth;
     private parts: Array<Tone.Part | Tone.Loop> = [];
+    private paths: ParticlePath[] = [];
 
     public componentDidMount() {
         Tone.Transport.bpm.value = 120;
@@ -29,7 +31,7 @@ export default class extends React.PureComponent<{}, IState> {
                 type: "square",
             },
             filter: {
-                Q: 2.4,
+                Q: DEFAULT_FILTER_Q,
                 frequency: 1000,
                 type: "lowpass",
                 rolloff: -48,
@@ -42,42 +44,95 @@ export default class extends React.PureComponent<{}, IState> {
             },
             filterEnvelope: {
                 attack: 0.001,
-                decay: 2.51,
+                decay: 0.6,
+                sustain: 0.3,
                 release: 0.5,
-                sustain: 0.1,
-                baseFrequency: "A2",
+                baseFrequency: "C2",
                 octaves: 4,
             },
         }).toMaster();
         this.monoSynth.volume.value = -10;
+        const synthPart = new Tone.Part(
+            (time: Tone.Types.Time, note: Tone.Types.Note) => {
+                const shouldTrigger = this.paths.filter(p => p.isActive()).length > 1;
+                if (shouldTrigger) {
+                    this.monoSynth.triggerAttackRelease(note, "8n", time);
+                }
+            },
+            [
+                ["0:0:0", "F2"],
+                ["0:0:2", "A#2"],
+                ["0:0:3", "C2"],
+                ["0:1:0", "A#2"],
+                ["0:1:3", "F2"],
+                ["0:2:1", "F2"],
+                ["0:2:3", "F2"],
+            ],
+        );
+        synthPart.loop = true;
+        synthPart.humanize = true;
+        this.parts.push(synthPart);
 
         const kit = new Tone.Players({
             kick: "/sounds/kick.wav",
             hh: "/sounds/electronic-hi-hat.ogg",
-            wood: "/sounds/wood.wav",
+            wood: "/sounds/drum-wood-under-rug.m4a",
+            dsClave: "/sounds/drum-synth-clave.m4a",
+            dsGlass: "/sounds/drum-synth-glass.m4a",
+            snareCombo: "/sounds/drum-snare-combo.m4a",
         }).toMaster();
-        kit.volume.value = -10;
+        kit.volume.value = -5;
+        kit.get("kick").volume.value = -10;
+        kit.get("hh").volume.value = -10;
+        kit.get("wood").volume.value = -8;
+
         const drumLoop = createLoopWithPlayers(
             kit,
             "16n",
             ({ bar, beat, sixteenth: six, trigger }) => {
+                console.log(bar, beat, six);
+                const numActivePaths = this.paths.filter(p => p.isActive()).length;
+                const shouldTriggerHH = this.paths.some(p => p.isActive() && p.hue > 50);
+                const shouldTriggerClave = this.paths.some(p => p.isActive() && p.hue < 100);
+                const shouldTriggerGlass = this.paths.some(p => p.isActive() && p.hue > 150);
+                const shouldTriggerWood = numActivePaths > 2;
+                const shouldTriggerSnare = this.paths.some(
+                    p => p.isActive() && p.hue > 100 && p.hue < 200,
+                );
+
+                if (beat === 0) {
+                    if (shouldTriggerWood) {
+                        trigger("wood");
+                    }
+                } else if (beat === 1) {
+                    if (shouldTriggerSnare) {
+                        trigger("snareCombo");
+                    }
+                }
+
                 if (six === 0) {
                     trigger("kick");
                 } else if (six === 2) {
-                    trigger("hh");
+                    if (shouldTriggerHH) {
+                        trigger("hh");
+                    }
                 }
 
                 if (beat === 2) {
                     if (six === 1) {
                         trigger("kick");
                     } else if (six === 3) {
-                        // trigger("wood");
+                        if (shouldTriggerClave) {
+                            trigger("dsClave");
+                        }
                     }
                 }
 
                 if (beat === 3) {
                     if (six === 2) {
-                        // trigger("wood");
+                        if (shouldTriggerGlass) {
+                            trigger("dsGlass");
+                        }
                     }
                 }
             },
@@ -95,9 +150,10 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <h3>Code of Music</h3>
+                <h3>Rhythm Generator</h3>
                 <p>
-                    Midterm project (<Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
+                    Code of Music midterm project (
+                    <Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
                 </p>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
@@ -125,7 +181,6 @@ export default class extends React.PureComponent<{}, IState> {
 
     // adapted from https://p5js.org/examples/hello-p5-drawing.html
     private sketch = (p: p5) => {
-        const paths: ParticlePath[] = [];
         let isPainting = false;
         let current: p5.Vector;
         let previous: p5.Vector;
@@ -169,14 +224,14 @@ export default class extends React.PureComponent<{}, IState> {
 
                 const force = p5.Vector.sub(current, previous);
                 force.mult(0.05);
-                paths[paths.length - 1].add(current, force);
+                this.paths[this.paths.length - 1].add(current, force);
 
                 nextParticleTimer = now + p.random(100);
                 previous.x = current.x;
                 previous.y = current.y;
             }
 
-            for (const path of paths) {
+            for (const path of this.paths) {
                 path.update();
                 path.display();
             }
@@ -187,7 +242,14 @@ export default class extends React.PureComponent<{}, IState> {
             isPainting = true;
             previous.x = p.mouseX;
             previous.y = p.mouseY;
-            paths.push(new ParticlePath(p));
+            this.paths.push(new ParticlePath(p));
+
+            const numActivePaths = this.paths.filter(path => path.isActive()).length;
+            if (numActivePaths > 3) {
+                this.monoSynth.filter.Q.value = p.map(numActivePaths, 2, 16, 1, 8);
+            } else {
+                this.monoSynth.filter.Q.value = DEFAULT_FILTER_Q;
+            }
         };
 
         p.mouseReleased = () => {
@@ -202,12 +264,16 @@ interface IXYCoords {
 }
 
 class ParticlePath {
-    private particles: Particle[];
-    private hue: number;
+    public particles: Particle[];
+    public hue: number;
 
     constructor(private p: p5) {
         this.particles = [];
         this.hue = Math.round(p.random(255));
+    }
+
+    public isActive() {
+        return this.particles.length > 0;
     }
 
     public add(position: IXYCoords, force: IXYCoords) {
@@ -231,7 +297,7 @@ class ParticlePath {
 }
 
 const PARTICLE_SIZE = 10;
-const MAX_LIFESPAN = 500;
+const MAX_LIFESPAN = 200;
 const PARTICLE_SATURATION = 160;
 const PARTICLE_BRIGHTNESS = 160;
 

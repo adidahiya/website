@@ -10,18 +10,18 @@ interface IState {
     isPlaying: boolean;
     filterQ: Tone.Types.Positive;
     filterEnvDecay: number;
-    filterEnvRelease: Tone.Types.NormalRange;
     filterEnvSustain: Tone.Types.NormalRange;
+    filterEnvRelease: Tone.Types.NormalRange;
     tempo: number;
 }
 
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
-        filterQ: 2.4,
-        filterEnvDecay: 2.51,
+        filterQ: 1.4,
+        filterEnvDecay: 0.6,
+        filterEnvSustain: 0.3,
         filterEnvRelease: 0.5,
-        filterEnvSustain: 0,
         tempo: 120,
     };
 
