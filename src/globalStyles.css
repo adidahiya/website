@@ -1,0 +1,20 @@
+/*
+ * Overrides for blueprint's _reset.scss styles
+ */
+
+body {
+    line-height: inherit;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: #1ca086;
+}
+
+a:hover {
+    color: #1ca086;
+    text-decoration: none;
+}

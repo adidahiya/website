@@ -24,6 +24,7 @@
     margin: 0 auto;
     max-width: 920px;
     padding: 0 1rem 1.5rem;
+    font-family: "Fira Mono";
 }
 
 .body pre {
