@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
-import DefaultLayout from "../../../components/defaultLayout";
+import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
@@ -58,7 +58,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
 
     public render() {
         return (
-            <DefaultLayout>
+            <Layout>
                 <h3>Code of Music</h3>
                 <p>
                     Week 5 Harmony (<Link to="/blog/itp/code-of-music/harmony">blog post</Link>,{" "}
@@ -69,7 +69,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
                 </p>
                 Press any key to play notes. Spacebar toggles drone. <br /> <br />
                 <P5Canvas sketch={this.sketch} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
-            </DefaultLayout>
+            </Layout>
         );
     }
 

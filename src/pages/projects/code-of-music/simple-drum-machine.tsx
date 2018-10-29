@@ -1,7 +1,7 @@
 import { Link, withPrefix } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import DefaultLayout from "../../../components/defaultLayout";
+import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 400;
@@ -74,7 +74,7 @@ function sketch(p: p5) {
 }
 
 export default () => (
-    <DefaultLayout>
+    <Layout>
         <h3>Code of Music</h3>
         <p>
             Week 1 sample-based instrument (
@@ -82,5 +82,5 @@ export default () => (
         </p>
         <p>Available keys: A, S, D, F, J</p>
         <P5Canvas sketch={sketch} />
-    </DefaultLayout>
+    </Layout>
 );

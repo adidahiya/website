@@ -1,0 +1,8 @@
+.sliderPanel {
+    display: flex;
+}
+
+:global(.inline-slider-panel .bp3-form-group) {
+    /* BP3 does not account for decimal places in slider labels for this kind of layout */
+    margin-right: 40px;
+}

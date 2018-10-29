@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
-import DefaultLayout from "../../../components/defaultLayout";
+import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
@@ -61,7 +61,7 @@ export default class extends React.PureComponent<
 
     public render() {
         return (
-            <DefaultLayout>
+            <Layout>
                 <h3>Code of Music</h3>
                 <p>
                     Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>
@@ -76,7 +76,7 @@ export default class extends React.PureComponent<
                 </button>{" "}
                 <span>{this.state.scale.join(" ")}</span>
                 <P5Canvas sketch={this.sketch} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
-            </DefaultLayout>
+            </Layout>
         );
     }
 

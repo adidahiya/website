@@ -268,6 +268,9 @@ declare module "tone" {
             type TransportTime = string | number;
         }
 
+        type FilterRolloff = -12 | -24 | -48 | -96;
+        type FilterType = "lowpass" | "highpass" | "bandpass" | "lowshelf" | "highshelf" | "notch" | "allpass" | "peaking";
+
         // TODO: complete definition
         class TimeBase extends Tone {
             constructor(val: string | number, units?: string);
@@ -714,6 +717,9 @@ declare module "tone" {
              * @param onload The function to invoke when all buffers are loaded.
              */
             constructor(urls: { [key: string]: string }, onload?: Function);
+            public loaded: boolean;
+            public get(name: string): Player;
+            public volume: Signal<typeof Type.Decibels, Types.Decibels>;
         }
 
         // TODO: complete definition
@@ -877,22 +883,22 @@ declare module "tone" {
         }
 
         interface EnvelopeOptions {
-            attack?: number;
-            decay?: number;
-            sustain?: number;
-            release?: number;
+            attack?: Types.Time;
+            decay?: Types.Time;
+            sustain?: Types.NormalRange;
+            release?: Types.NormalRange;
+        }
+
+        interface SynthOptions extends MonophonicOptions {
+            oscillator?: OscillatorOptions;
+            envelope?: EnvelopeOptions;
         }
 
         /**
          * Tone.Synth is composed simply of a Tone.OmniOscillator routed through a Tone.AmplitudeEnvelope.
          */
         class Synth extends Monophonic {
-            constructor(
-                options?: MonophonicOptions & {
-                    oscillator?: OscillatorOptions;
-                    envelope?: EnvelopeOptions;
-                },
-            );
+            constructor(options?: SynthOptions);
             /**
              * The detune control
              */
@@ -909,6 +915,40 @@ declare module "tone" {
              * The oscillator.
              */
             public oscillator: OmniOscillator;
+        }
+
+        interface FilterOptions {
+            frequency: Types.Frequency;
+            gain?: Types.Gain;
+            Q: Types.Positive,
+            rolloff: FilterRolloff;
+            type: FilterType;
+        }
+
+        interface FilterEnvelopeOptions extends EnvelopeOptions {
+            baseFrequency: Types.Frequency;
+            octaves: number;
+            exponent?: number;
+        }
+
+        interface MonoSynthOptions extends SynthOptions {
+            filter: FilterOptions;
+            filterEnvelope: FilterEnvelopeOptions;
+        }
+
+        /**
+         * Tone.MonoSynth is composed of one oscillator, one filter, and two envelopes.
+         * The amplitude of the Tone.Oscillator and the cutoff frequency of the Tone.Filter are controlled by Tone.Envelopes.
+         */
+        class MonoSynth extends Monophonic {
+            constructor(options: MonoSynthOptions);
+            public detune: Signal<typeof Type.Cents, Types.Cents>;
+            public envelope: AmplitudeEnvelope;
+            public filter: Filter;
+            public filterEnvelope: FrequencyEnvelope;
+            public frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            public oscillator: OmniOscillator;
+            public dispose(): this;
         }
 
         interface NoiseOptions {
@@ -1063,6 +1103,23 @@ declare module "tone" {
             constructor(callback: Function, values: Types.Note[], pattern?: CtrlPattern);
         }
 
+        // TODO: complete definition
+        class Part extends Event {
+            constructor(callback: (time: Types.Time, note: Types.Note) => void, events: Array<[Types.Time, Types.Note]>);
+            /** TODO: this seems to be an option but is undocumented */
+            public humanize: boolean;
+            public loop: boolean | Types.Positive;
+            public loopEnd: Types.Time;
+            public loopStart: Types.Time;
+            public playbackRate: Types.Positive;
+            public probability: Types.NormalRange;
+            public add(time: Types.Time, value: Types.Note | Event): this;
+            public at(time: Types.TransportTime, value: Types.Note | Event): Event;
+            public cancel(time: Types.TransportTime): this;
+            public start(): this;
+            public stop(): this;
+        }
+
         /**
          * ========================================================
          * Component
@@ -1072,13 +1129,39 @@ declare module "tone" {
         // TODO: complete definition
         class Envelope extends AudioNode {
             constructor(envelope: EnvelopeOptions);
-            constructor(atatck?: number, sustain?: number, decay?: number, release?: number);
+            constructor(attack?: Types.Time, decay?: Types.Time, sustain?: Types.NormalRange, release?: Types.Time);
+            public attack: Types.Time;
+            public decay: Types.Time;
+            public sustain: Types.NormalRange;
+            public release: Types.NormalRange;
             public triggerAttackRelease(time?: Types.Time): this;
         }
 
         // TODO: complete definition
         class AmplitudeEnvelope extends Envelope {
             public readonly value: number;
+        }
+
+        /**
+         * Tone.Filter is a filter which allows for all of the same native methods as the BiquadFilterNode.
+         * Tone.Filter has the added ability to set the filter rolloff at -12 (default), -24 and -48.
+         */
+        class Filter extends AudioNode {
+            constructor(frequency?: Types.Frequency | object, type?: string, rolloff?: FilterRolloff);
+            public Q: Signal<typeof Type.Positive, Types.Positive>;
+            public detune: Signal<typeof Type.Cents, Types.Cents>;
+            public frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            public gain: Signal<"number", number>;
+            public rollof: FilterRolloff;
+            public type: FilterType;
+        }
+
+        // TODO: complete definition
+        /**
+         * Tone.FrequencyEnvelope is a Tone.ScaledEnvelope, but instead of min and max it’s got a baseFrequency and octaves parameter.
+         */
+        class FrequencyEnvelope extends Envelope {
+            constructor(atatck?: Types.Time | object, sustain?: Types.Time, decay?: number, release?: Types.Time);
         }
     }
 
