@@ -5,8 +5,7 @@ import Helmet from "react-helmet";
 import * as favicon16 from "../assets/favicon-16.png";
 import * as favicon32 from "../assets/favicon-32.png";
 import * as favicon48 from "../assets/favicon-48.png";
-import { initGoogleAnalytics } from "../utils/analyticsUtils";
-import { isLegacyRoute, shouldRenderAnalytics } from "../utils/locationUtils";
+import { initGoogleAnalytics, isLegacyRoute, shouldRenderAnalytics } from "../common";
 import styles from "./defaultLayout.module.css";
 
 const Header = () => (

@@ -1,3 +1,5 @@
+// N.B. not sure why this file needs to exist here, but it does for gatsby to build
+
 export function slugify(text: string) {
     return (
         text

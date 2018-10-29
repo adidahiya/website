@@ -2,9 +2,9 @@ import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
+import { createLoopWithPlayers } from "../../../common";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
-import { createLoopWithPlayers } from "../../../utils/toneUtils";
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
@@ -28,7 +28,6 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
         }).toMaster();
 
         const drumLoop1 = createLoopWithPlayers(
-            Tone,
             kit,
             "16n",
             ({ bar, beat, sixteenth: six, trigger }) => {
@@ -66,7 +65,7 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
             },
         );
 
-        const drumLoop2 = createLoopWithPlayers(Tone, kit, "16n", ({ bar, trigger }) => {
+        const drumLoop2 = createLoopWithPlayers(kit, "16n", ({ bar, trigger }) => {
             if (bar > 1) {
                 trigger("hh");
             }
