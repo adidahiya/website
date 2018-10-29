@@ -126,7 +126,6 @@ export default class extends React.PureComponent<{}, IState> {
                     onClick={this.handlePlayToggle}
                     style={{ marginBottom: 20 }}
                     text={this.state.isPlaying ? "Stop" : "Play"}
-                    type="button"
                 />
 
                 <FormGroup label="tempo">
