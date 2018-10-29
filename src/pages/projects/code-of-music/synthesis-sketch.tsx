@@ -204,15 +204,11 @@ export default class extends React.PureComponent<{}, IState> {
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
-            for (const p of this.parts) {
-                p.stop();
-            }
+            this.parts.forEach(p => p.stop());
             this.setState({ isPlaying: false });
         } else {
             Tone.Transport.start();
-            for (const p of this.parts) {
-                p.start();
-            }
+            this.parts.forEach(p => p.start());
             this.setState({ isPlaying: true });
         }
     };

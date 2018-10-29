@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
+import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -19,6 +20,7 @@ export default class extends React.PureComponent<{}, IState> {
     };
 
     private monoSynth!: Tone.MonoSynth;
+    private parts: Array<Tone.Part | Tone.Loop> = [];
 
     public componentDidMount() {
         Tone.Transport.bpm.value = 120;
@@ -48,10 +50,46 @@ export default class extends React.PureComponent<{}, IState> {
             },
         }).toMaster();
         this.monoSynth.volume.value = -10;
+
+        const kit = new Tone.Players({
+            kick: "/sounds/kick.wav",
+            hh: "/sounds/electronic-hi-hat.ogg",
+            wood: "/sounds/wood.wav",
+        }).toMaster();
+        kit.volume.value = -10;
+        const drumLoop = createLoopWithPlayers(
+            kit,
+            "16n",
+            ({ bar, beat, sixteenth: six, trigger }) => {
+                if (six === 0) {
+                    trigger("kick");
+                } else if (six === 2) {
+                    trigger("hh");
+                }
+
+                if (beat === 2) {
+                    if (six === 1) {
+                        trigger("kick");
+                    } else if (six === 3) {
+                        // trigger("wood");
+                    }
+                }
+
+                if (beat === 3) {
+                    if (six === 2) {
+                        // trigger("wood");
+                    }
+                }
+            },
+        );
+        this.parts.push(drumLoop);
     }
 
     public componentWillUnmount() {
         this.monoSynth.dispose();
+        for (const p of this.parts) {
+            p.stop();
+        }
     }
 
     public render() {
@@ -76,9 +114,11 @@ export default class extends React.PureComponent<{}, IState> {
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
+            this.parts.forEach(p => p.stop());
             this.setState({ isPlaying: false });
         } else {
             Tone.Transport.start();
+            this.parts.forEach(p => p.start());
             this.setState({ isPlaying: true });
         }
     };
@@ -93,7 +133,7 @@ export default class extends React.PureComponent<{}, IState> {
         let nextParticleTimer = 0;
         let lastBeatTimer = 0;
 
-        const MAX_BACKGROUND_DARKEN_ON_BEAT = 12;
+        const MAX_BACKGROUND_DARKEN_ON_BEAT = 8;
 
         p.setup = () => {
             current = p.createVector(0, 0);
@@ -190,20 +230,23 @@ class ParticlePath {
     }
 }
 
-const PARTICLE_SIZE = 16;
+const PARTICLE_SIZE = 10;
+const MAX_LIFESPAN = 500;
+const PARTICLE_SATURATION = 160;
+const PARTICLE_BRIGHTNESS = 160;
 
 class Particle {
     public position: p5.Vector;
     public velocity: p5.Vector;
     public drag = 0.95;
-    public lifespan = 255; // also used for alpha values
+    public lifespan = MAX_LIFESPAN;
     private color: p5.Color;
 
     constructor(private p: p5, position: IXYCoords, force: IXYCoords, hue: number) {
         this.p.colorMode(this.p.HSB, 255);
         this.position = p.createVector(position.x, position.y);
         this.velocity = p.createVector(force.x, force.y);
-        this.color = p.color(hue, 128, 200);
+        this.color = p.color(hue, PARTICLE_SATURATION, PARTICLE_BRIGHTNESS);
     }
 
     public update() {
@@ -213,30 +256,30 @@ class Particle {
     }
 
     public display(other?: Particle) {
-        this.setFill(this.lifespan / 2);
+        this.setFill();
         this.p.noStroke();
         this.p.ellipse(this.position.x, this.position.y, PARTICLE_SIZE, PARTICLE_SIZE);
         if (other !== undefined) {
-            this.setStroke(this.lifespan / 2);
+            this.setStroke();
             this.p.line(this.position.x, this.position.y, other.position.x, other.position.y);
         }
     }
 
-    private setFill(alpha: number) {
+    private setFill() {
         this.p.fill(
             this.p.hue(this.color),
             this.p.saturation(this.color),
             this.p.brightness(this.color),
-            alpha,
+            this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128),
         );
     }
 
-    private setStroke(alpha: number) {
+    private setStroke() {
         this.p.stroke(
             this.p.hue(this.color),
             this.p.saturation(this.color),
             this.p.brightness(this.color),
-            alpha,
+            this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128),
         );
     }
 }
