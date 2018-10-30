@@ -5,7 +5,7 @@ date: "2018-10-23"
 
 ### Ideation
 
-The main idea for this project came about when discussing Halloween costumes. Gabriella is a groomsperson in an upcoming wedding where the attire has a Steampunk theme, so we decided to make a Steampunk-style arm with mechanical elements. Scroll to the bottom of this post to see inspiration for the design from the internet.
+The main idea for this project came about when discussing Halloween costumes. Gabriella is a groomsperson in an upcoming wedding where the attire has a Steampunk theme, so we decided to make a Steampunk-style arm with mechanical elements. [Check out this mood board to see inspiration for the design from the internet](https://www.are.na/adi-dahiya/steampunk-gadget-mood-board).
 
 Based on these ideas, we wanted to make the arm control some blinking lights, a spinning fan, and, just for fun (+ serial communication), some distorted radio-transmission sounds playing on a nearby laptop.
 
@@ -46,10 +46,3 @@ On the fabrication side, Gabriella had molded a bird skull to mount on the glove
 ![bird-clay](steampunk-arm-bird-clay.jpg)
 
 ![trim](steampunk-arm-trim.jpg)
-
-### Inspiration images
-
-![inspiration-1](http://i.imgur.com/GFi6bm0.jpg)
-![inspiration-2](http://teemorris.com/wp-content/uploads/2011/02/Nathan-steampunk.jpg)
-![inspiration-3](https://morriscountynj.gov/wp-content/uploads/2016/03/steampunk-51760-lg.jpg)
-![inspiration-4](https://orig00.deviantart.net/4a88/f/2016/059/a/0/12802884_1082230548488027_2062665315376939086_n_by_craftedsteampunk-d9tf0ee.jpg)
