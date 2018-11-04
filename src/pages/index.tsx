@@ -8,14 +8,12 @@ export default () => (
     <DefaultLayout>
         <h3>adi dahiya</h3>
         <p>
-            programmer, artist based in Brooklyn. <br />
-            currently pursuing a master's at{" "}
+            programmer, artist based in Brooklyn. currently @{" "}
             <a href="https://tisch.nyu.edu/itp" target="_blank">
                 NYU ITP
             </a>
             . <br />
-            interested in music, interaction design, photography, and the social impact of
-            technology.
+            interested in dance music, photography, and the social impact of technology.
         </p>
         <h3>blog</h3>
         <p>
