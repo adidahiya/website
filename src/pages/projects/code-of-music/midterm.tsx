@@ -8,7 +8,7 @@ import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
-const CANVAS_HEIGHT = 400;
+const CANVAS_HEIGHT = 500;
 const DEFAULT_FILTER_Q = 1.4;
 
 interface IState {
@@ -51,7 +51,7 @@ export default class extends React.PureComponent<{}, IState> {
                 octaves: 4,
             },
         }).toMaster();
-        this.monoSynth.volume.value = -10;
+        this.monoSynth.volume.value = -25;
         const synthPart = new Tone.Part(
             (time: Tone.Types.Time, note: Tone.Types.Note) => {
                 const shouldTrigger = this.paths.filter(p => p.isActive()).length > 1;
@@ -71,7 +71,8 @@ export default class extends React.PureComponent<{}, IState> {
         );
         synthPart.loop = true;
         synthPart.humanize = true;
-        this.parts.push(synthPart);
+        // disable for now, might bring back more random synth patterns later
+        // this.parts.push(synthPart);
 
         const kit = new Tone.Players({
             kick: "/sounds/kick.wav",
@@ -81,16 +82,18 @@ export default class extends React.PureComponent<{}, IState> {
             dsGlass: "/sounds/drum-synth-glass.m4a",
             snareCombo: "/sounds/drum-snare-combo.m4a",
         }).toMaster();
-        kit.volume.value = -5;
-        kit.get("kick").volume.value = -10;
+        kit.volume.value = 0;
+        kit.get("kick").volume.value = -15;
         kit.get("hh").volume.value = -10;
-        kit.get("wood").volume.value = -8;
+        kit.get("wood").volume.value = 5;
+        kit.get("dsClave").volume.value = 10;
+        kit.get("dsGlass").volume.value = 10;
 
         const drumLoop = createLoopWithPlayers(
             kit,
             "16n",
             ({ bar, beat, sixteenth: six, trigger }) => {
-                console.log(bar, beat, six);
+                // console.log(bar, beat, six);
                 const numActivePaths = this.paths.filter(p => p.isActive()).length;
                 const shouldTriggerHH = this.paths.some(p => p.isActive() && p.hue > 50);
                 const shouldTriggerClave = this.paths.some(p => p.isActive() && p.hue < 100);
@@ -196,27 +199,10 @@ export default class extends React.PureComponent<{}, IState> {
         };
 
         p.draw = () => {
+            p.background(255);
+            p.strokeWeight(1);
             const now = p.millis();
             const lengthOfSixteenth = new Tone.Time("16n").toMilliseconds();
-
-            if (this.state.isPlaying) {
-                const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
-                if (parseInt(sixteenth, 10) === 0) {
-                    lastBeatTimer = now;
-                }
-                const darken = Math.round(
-                    p.map(
-                        now - lastBeatTimer,
-                        0,
-                        lengthOfSixteenth,
-                        0,
-                        MAX_BACKGROUND_DARKEN_ON_BEAT,
-                    ),
-                );
-                p.background(255 - darken);
-            } else {
-                p.background(255);
-            }
 
             if (now > nextParticleTimer && isPainting) {
                 current.x = p.mouseX;
@@ -235,6 +221,32 @@ export default class extends React.PureComponent<{}, IState> {
                 path.update();
                 path.display();
             }
+
+            if (this.state.isPlaying) {
+                const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
+                if (parseInt(sixteenth, 10) === 0) {
+                    lastBeatTimer = now;
+                }
+
+                // draw border pulse, it should be above any other layers in the image
+                const darken = Math.round(
+                    p.map(
+                        now - lastBeatTimer,
+                        0,
+                        lengthOfSixteenth,
+                        0,
+                        MAX_BACKGROUND_DARKEN_ON_BEAT,
+                    ),
+                );
+                // draw border
+                p.stroke(255 - darken);
+                p.noFill();
+                const weight = 4;
+                p.strokeWeight(weight + 2);
+                p.rect(weight, weight, p.width - 2 * weight, p.height - 2 * weight);
+            } else {
+                // no-op
+            }
         };
 
         p.mousePressed = () => {
@@ -245,7 +257,7 @@ export default class extends React.PureComponent<{}, IState> {
             this.paths.push(new ParticlePath(p));
 
             const numActivePaths = this.paths.filter(path => path.isActive()).length;
-            if (numActivePaths > 3) {
+            if (this.monoSynth != null && numActivePaths > 3) {
                 this.monoSynth.filter.Q.value = p.map(numActivePaths, 2, 16, 1, 8);
             } else {
                 this.monoSynth.filter.Q.value = DEFAULT_FILTER_Q;
@@ -280,6 +292,10 @@ class ParticlePath {
         this.particles.push(new Particle(this.p, position, force, this.hue));
     }
 
+    public clear() {
+        this.particles = [];
+    }
+
     public update() {
         this.particles.forEach(p => p.update());
     }
@@ -297,7 +313,7 @@ class ParticlePath {
 }
 
 const PARTICLE_SIZE = 10;
-const MAX_LIFESPAN = 200;
+const MAX_LIFESPAN = 60;
 const PARTICLE_SATURATION = 160;
 const PARTICLE_BRIGHTNESS = 160;
 
@@ -332,20 +348,22 @@ class Particle {
     }
 
     private setFill() {
+        const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
         this.p.fill(
             this.p.hue(this.color),
             this.p.saturation(this.color),
             this.p.brightness(this.color),
-            this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128),
+            alpha,
         );
     }
 
     private setStroke() {
+        const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
         this.p.stroke(
             this.p.hue(this.color),
             this.p.saturation(this.color),
             this.p.brightness(this.color),
-            this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128),
+            alpha,
         );
     }
 }
