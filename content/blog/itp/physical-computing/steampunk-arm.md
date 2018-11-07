@@ -33,16 +33,18 @@ Instead of `p5.sound`, I opted to use `Tone.js` to produce sounds in the web bro
 
 One of the goals of this project was to make the device fully portable and powered by a 9V battery. We tried to get this circuit working where the 9V battery powered many different components, but after many attempts, we gave this up and ended up powering the circuit through the USB port on the MKR 1010. Most of the problems were around supplying enough power to each component in the circuit. With more time, we would definitely revisit this part of the project and tackle this issue again.
 
-> insert circuit diagram
+> circuit diagram
 
 Here's a progress shot as we started cleaning up the wiring:
 
 ![wiring-progress](steampunk-arm-wiring-progress.jpg)
 
-You'll notice the accelerometer wires and flex sensor wires are long and taped together since they will travel the length of the forearm and into the glove. The motor/fan wiring is short since that will be mounted close to the electronics.
+You'll notice the accelerometer wires and flex sensor wires are long and taped together since they will travel the length of the forearm and into the glove. The motor/fan wiring is short since that will be mounted close to the electronics. In retrospect, it might've been smarter to take apart an ethernet cable for the wiring since that construction would have provided better flexibility.
 
 On the fabrication side, Gabriella had molded a bird skull to mount on the glove and attached some fabric trim to the copper-painted foam pieces she created for the arm:
 
 ![bird-clay](steampunk-arm-bird-clay.jpg)
 
 ![trim](steampunk-arm-trim.jpg)
+
+> more details coming soon!
