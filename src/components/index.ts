@@ -3,3 +3,4 @@ export { default as DefaultLayoutWithoutHeader } from "./defaultLayoutWithoutHea
 export * from "./p5Canvas";
 export { default as Timestamp } from "./timestamp";
 export { default as NormalRangeSlider } from "./normalRangeSlider";
+export { default as RealtimePosenet } from "./realtimePosenet";
