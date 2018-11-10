@@ -1,0 +1,40 @@
+.transport {
+    width: calc(100% - 4px);
+    height: 50px;
+    background: lightslategray;
+    border: solid 1px rgb(37, 53, 63);
+    position: relative;
+    box-shadow: 0 1px 3px rgba(37, 53, 63, 0.4);
+    margin-bottom: 20px;
+}
+
+.transportBars {
+    display: flex;
+    height: 100%;
+}
+
+.transportBar {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+.transportBar:not(:last-of-type) {
+    border-right: solid 1px rgb(37, 53, 63);
+}
+
+.transportSixteenth {
+    flex: 1 1 auto;
+}
+
+.transportSixteenth:not(:last-of-type) {
+    border-right: solid 1px rgb(84, 97, 110);
+}
+
+.transportIndicator {
+    position: absolute;
+    width: 2px;
+    top: 0;
+    height: 100%;
+    background: white;
+    transform: translateX(-1px);
+}

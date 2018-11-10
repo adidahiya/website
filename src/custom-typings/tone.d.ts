@@ -1091,6 +1091,14 @@ declare module "tone" {
 
         type CtrlPattern = string;
 
+        class Event extends Tone {
+            constructor(callback: Function, value?: any);
+            public loop: boolean | Tone.Types.Positive;
+            public loopEnd: Tone.Types.Time;
+            public start(): this;
+            public stop(): this;
+        }
+
         // TODO: complete definition
         class Loop extends Tone {
             constructor(callback: Function, interval: Types.Time);
