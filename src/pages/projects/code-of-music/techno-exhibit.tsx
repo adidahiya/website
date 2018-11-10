@@ -4,11 +4,11 @@ import p5 from "p5";
 import React from "react";
 import Tone from "tone";
 // import { createLoopWithPlayers } from "../../../common";
-import { DefaultLayoutWithoutHeader as Layout, Transport } from "../../../components";
-import { P5Canvas } from "../../../components/p5Canvas";
+import { DefaultLayoutWithoutHeader as Layout, SessionView, Transport } from "../../../components";
+// import { P5Canvas } from "../../../components/p5Canvas";
 
-const CANVAS_WIDTH = 888;
-const CANVAS_HEIGHT = 500;
+// const CANVAS_WIDTH = 888;
+// const CANVAS_HEIGHT = 500;
 
 interface IState {
     isPlaying: boolean;
@@ -34,7 +34,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <h3>Techno exhibit</h3>
+                <h3>Techno Landscape</h3>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
                     intent={this.state.isPlaying ? "danger" : "primary"}
@@ -43,7 +43,7 @@ export default class extends React.PureComponent<{}, IState> {
                     text={this.state.isPlaying ? "Stop" : "Play"}
                 />
                 <Transport />
-                <P5Canvas sketch={this.sketch} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
+                <SessionView />
             </Layout>
         );
     }
