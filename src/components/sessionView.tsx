@@ -1,4 +1,4 @@
-import { Classes } from "@blueprintjs/core";
+import { Classes, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
 import { mapValues } from "lodash-es";
 import React from "react";
@@ -29,6 +29,7 @@ export default class extends React.Component<{}, IState> {
     public state: IState = {};
 
     public componentDidMount() {
+        Tone.Transport.bpm.value = 126;
         const simplePlayerUrls = {
             kick: "/sounds/techno-landscape/drums/BD.mp3",
             clickyPerc: "/sounds/techno-landscape/drums/ClickyPerc.mp3",
@@ -46,10 +47,10 @@ export default class extends React.Component<{}, IState> {
         );
 
         const createLoop = (player: Tone.Player, loopEnd: Tone.Types.Time): ISessionLoop => {
-            const e = new Tone.Event(() => {
+            const e = new Tone.Event((time: Tone.Types.Time) => {
                 if (player.loaded) {
                     // console.log("Waiting for player to loade...", player);
-                    player.start();
+                    player.start(time);
                 }
             });
             // e.start();
@@ -61,12 +62,20 @@ export default class extends React.Component<{}, IState> {
                 event: e,
                 player,
                 toggle: () => {
-                    e.loop = !e.loop;
-                    if (!hasStarted) {
+                    const isLooping = e.loop;
+
+                    if (isLooping) {
+                        Tone.Transport.scheduleOnce((time: Tone.Types.Time) => {
+                            player.stop(time);
+                            hasStarted = false;
+                        }, "+1m");
+                    } else if (!hasStarted) {
                         e.start();
                         hasStarted = true;
                     }
-                    this.setState(this.state);
+
+                    e.loop = !isLooping;
+                    // this.setState({ ...this.state });
                 },
             };
         };
@@ -83,7 +92,77 @@ export default class extends React.Component<{}, IState> {
         ).toMaster();
         const brassHookLoops = [
             createLoop(brassHook1Player, "13m"),
-            createLoop(brassHook2Player, "38"),
+            createLoop(brassHook2Player, "38m"),
+        ];
+
+        const padDrone1Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone1(loopEnd35m).mp3",
+        );
+        // padDrone1Player.loop = true;
+        // padDrone1Player.loopEnd = "35m";
+        const padDrone2Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone2(loopEnd30m).mp3",
+        );
+        // padDrone2Player.loop = true;
+        // padDrone2Player.loopEnd = "30m";
+        const padDrone3Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone3(loopEnd20m).mp3",
+        );
+        // padDrone3Player.loop = true;
+        // padDrone3Player.loopEnd = "20m";
+        const padDrone4Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone4(loopEnd27m).mp3",
+        );
+        // padDrone4Player.loop = true;
+        // padDrone4Player.loopEnd = "27m";
+        const padDronePhaser = new Tone.Phaser({
+            frequency: 10, // 2-10
+            octaves: 5,
+            baseFrequency: 500, // 500-1000
+        }).toMaster();
+        padDrone1Player.connect(padDronePhaser);
+        padDrone2Player.connect(padDronePhaser);
+        padDrone3Player.connect(padDronePhaser);
+        padDrone4Player.connect(padDronePhaser);
+        const padDroneLoops = [
+            createLoop(padDrone1Player, "35m"),
+            createLoop(padDrone2Player, "30m"),
+            createLoop(padDrone3Player, "20m"),
+            createLoop(padDrone4Player, "27m"),
+        ];
+
+        const steadySeq1Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq1(loopEnd27m).mp3",
+        );
+        // steadySeq1Player.loop = true;
+        const steadySeq2Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq2(loopEnd24m).mp3",
+        );
+        // steadySeq2Player.loop = true;
+        const steadySeq3Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq3(loopEnd16m).mp3",
+        );
+        // steadySeq3Player.loop = true;
+        const steadySeq4Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq4(loopEnd25m).mp3",
+        );
+        // steadySeq4Player.loop = true;
+        const steadySeqFilter = new Tone.Filter({
+            type: "highpass",
+            frequency: 200,
+            rolloff: -24,
+            Q: 20,
+            gain: 1,
+        }).toMaster();
+        steadySeq1Player.connect(steadySeqFilter);
+        steadySeq2Player.connect(steadySeqFilter);
+        steadySeq3Player.connect(steadySeqFilter);
+        steadySeq4Player.connect(steadySeqFilter);
+        const steadySeqLoops = [
+            createLoop(steadySeq1Player, "27m"),
+            createLoop(steadySeq2Player, "24m"),
+            createLoop(steadySeq3Player, "16m"),
+            createLoop(steadySeq4Player, "25m"),
         ];
 
         this.setState({
@@ -109,6 +188,12 @@ export default class extends React.Component<{}, IState> {
                     },
                     brass: {
                         clips: brassHookLoops,
+                    },
+                    pad: {
+                        clips: padDroneLoops,
+                    },
+                    beeps: {
+                        clips: steadySeqLoops,
                     },
                 },
             },
@@ -143,23 +228,45 @@ export default class extends React.Component<{}, IState> {
             </SessionContext.Provider>
         );
     }
+
+    public componentWillUnmount() {
+        const { sessionContext } = this.state;
+        if (sessionContext === undefined) {
+            return;
+        }
+
+        for (const track of Object.keys(sessionContext.tracks)) {
+            for (const clip of sessionContext.tracks[track].clips) {
+                clip.event
+                    .stop()
+                    .cancel()
+                    .dispose();
+                clip.player.dispose();
+            }
+        }
+    }
 }
 
 interface IClipProps extends ISessionLoop {
     // nothing
 }
 
-class Clip extends React.PureComponent<IClipProps> {
-    public static defaultProps = {
+interface IClipState {
+    isPlaying: boolean;
+}
+
+class Clip extends React.PureComponent<IClipProps, IClipState> {
+    public state: IClipState = {
+        // HACKHACK: should be using player.state for this instead
         isPlaying: false,
     };
 
     public render() {
-        const { player } = this.props;
+        // const { player } = this.props;
         return (
             <div
                 className={classNames(Classes.INTERACTIVE, Classes.CARD, styles.clip, {
-                    [styles.clipPlaying]: player && player.state === "started",
+                    [styles.clipPlaying]: this.state.isPlaying,
                 })}
                 onClick={this.handleClick}
             />
@@ -167,6 +274,12 @@ class Clip extends React.PureComponent<IClipProps> {
     }
 
     private handleClick = () => {
-        this.props.toggle();
+        const { event, toggle } = this.props;
+        this.setState(
+            {
+                isPlaying: event.loop === false,
+            },
+            toggle,
+        );
     };
 }

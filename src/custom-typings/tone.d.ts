@@ -267,6 +267,8 @@ declare module "tone" {
              */
             type TransportTime = string | number;
 
+            type CtrlPattern = string;
+
             /**
              * Playback state of an audio source
              */
@@ -715,6 +717,8 @@ declare module "tone" {
             public readonly loaded: boolean;
             public volume: Signal<typeof Type.Decibels, Types.Decibels>;
             public readonly state: Types.PlaybackState;
+            public loop: boolean;
+            public loopEnd: Types.Time;
         }
 
         // TODO: complete definition
@@ -1091,20 +1095,36 @@ declare module "tone" {
             public delayTime: Signal<typeof Type.Time, Types.Time>;
         }
 
+        // TODO: complete definition
+        class StereoEffect extends Effect {
+        }
+
+        // TODO: complete definition
+        class Phaser extends StereoEffect {
+            constructor(frequency?: Types.Frequency, octaves?: number, baseFrequency?: Types.Frequency);
+            constructor(options: {
+                frequency?: Types.Frequency;
+                octaves?: number,
+                baseFrequency?: Types.Frequency;
+            });
+        }
+
         /**
          * ========================================================
          * Event
          * ========================================================
          */
 
-        type CtrlPattern = string;
-
+        // TODO: complete definition
         class Event extends Tone {
             constructor(callback: Function, value?: any);
             public loop: boolean | Tone.Types.Positive;
             public loopEnd: Tone.Types.Time;
             public start(): this;
             public stop(): this;
+            public cancel(): this;
+            public dispose(): this;
+            public state: Types.PlaybackState;
         }
 
         // TODO: complete definition
@@ -1116,7 +1136,7 @@ declare module "tone" {
 
         // TODO: complete definition
         class Pattern extends Loop {
-            constructor(callback: Function, values: Types.Note[], pattern?: CtrlPattern);
+            constructor(callback: Function, values: Types.Note[], pattern?: Types.CtrlPattern);
         }
 
         // TODO: complete definition

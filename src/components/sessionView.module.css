@@ -18,6 +18,6 @@
     border-radius: 1px;
 }
 
-.clipPlaying {
-    background: #0A6640;
+.clip.clipPlaying {
+    background: #248654;
 }
