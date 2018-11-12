@@ -1,4 +1,5 @@
-import { Button } from "@blueprintjs/core";
+import { Button, Classes, H3 } from "@blueprintjs/core";
+import classNames from "classnames";
 // import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
@@ -6,6 +7,7 @@ import Tone from "tone";
 // import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, SessionView, Transport } from "../../../components";
 // import { P5Canvas } from "../../../components/p5Canvas";
+import styles from "../../../pageStyles/techno-landscape.module.css";
 
 // const CANVAS_WIDTH = 888;
 // const CANVAS_HEIGHT = 500;
@@ -33,8 +35,11 @@ export default class extends React.PureComponent<{}, IState> {
 
     public render() {
         return (
-            <Layout>
-                <h3>Techno Landscape</h3>
+            <Layout
+                className={classNames(Classes.DARK, styles.container)}
+                title="Techno is a landscape"
+            >
+                <H3>Techno is a landscape</H3>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
                     intent={this.state.isPlaying ? "danger" : "primary"}

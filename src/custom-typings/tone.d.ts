@@ -266,6 +266,11 @@ declare module "tone" {
              * @see https://github.com/Tonejs/Tone.js/wiki/TransportTime
              */
             type TransportTime = string | number;
+
+            /**
+             * Playback state of an audio source
+             */
+            type PlaybackState = "started" | "stopped";
         }
 
         type FilterRolloff = -12 | -24 | -48 | -96;
@@ -707,6 +712,9 @@ declare module "tone" {
          */
         class Player extends Source {
             constructor(url: string | AudioBuffer, onload?: Function);
+            public readonly loaded: boolean;
+            public volume: Signal<typeof Type.Decibels, Types.Decibels>;
+            public readonly state: Types.PlaybackState;
         }
 
         // TODO: complete definition
@@ -717,7 +725,7 @@ declare module "tone" {
              * @param onload The function to invoke when all buffers are loaded.
              */
             constructor(urls: { [key: string]: string }, onload?: Function);
-            public loaded: boolean;
+            public readonly loaded: boolean;
             public get(name: string): Player;
             public volume: Signal<typeof Type.Decibels, Types.Decibels>;
         }

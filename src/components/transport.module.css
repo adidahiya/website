@@ -1,8 +1,8 @@
 .transport {
     width: calc(100% - 4px);
     height: 50px;
-    background: lightslategray;
-    border: solid 1px rgb(37, 53, 63);
+    background: #30404D;
+    border: solid 1px #182026;
     position: relative;
     box-shadow: 0 1px 3px rgba(37, 53, 63, 0.4);
     margin-bottom: 20px;
@@ -19,7 +19,7 @@
 }
 
 .transportBar:not(:last-of-type) {
-    border-right: solid 1px rgb(37, 53, 63);
+    border-right: solid 1px #182026;
 }
 
 .transportSixteenth {
@@ -27,7 +27,7 @@
 }
 
 .transportSixteenth:not(:last-of-type) {
-    border-right: solid 1px rgb(84, 97, 110);
+    border-right: solid 1px #202B33;
 }
 
 .transportIndicator {
@@ -35,6 +35,6 @@
     width: 2px;
     top: 0;
     height: 100%;
-    background: white;
+    background: #BFCCD6;
     transform: translateX(-1px);
 }

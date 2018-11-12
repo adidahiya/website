@@ -45,7 +45,12 @@ const LINK_TAGS = [
     },
 ];
 
-export function DefaultLayoutHelmet({ location }: { location: Location }) {
+export interface IDefaultLayoutHelmetProps {
+    title?: string;
+    location: Location;
+}
+
+export function DefaultLayoutHelmet({ location, title }: IDefaultLayoutHelmetProps) {
     const maybeAnalyticsScript = shouldRenderAnalytics(location) ? (
         <script async={true} src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1" />
     ) : (
@@ -53,7 +58,7 @@ export function DefaultLayoutHelmet({ location }: { location: Location }) {
     );
     return (
         <Helmet
-            title="Adi Dahiya"
+            title={title || "Adi's website"}
             link={LINK_TAGS}
             meta={isLegacyRoute(location) ? META_TAGS_WITH_REDIRECT : META_TAGS}
         >
@@ -62,7 +67,11 @@ export function DefaultLayoutHelmet({ location }: { location: Location }) {
     );
 }
 
-export default class extends React.Component {
+interface IProps {
+    title?: string;
+}
+
+export default class extends React.Component<IProps> {
     public componentDidMount() {
         initGoogleAnalytics(window.location);
     }
@@ -81,7 +90,7 @@ export default class extends React.Component {
 
                     return (
                         <>
-                            <DefaultLayoutHelmet location={location} />
+                            <DefaultLayoutHelmet location={location} title={this.props.title} />
                             {isLegacyRoute(location) ? redirectNotice : childContentsWithHeader}
                         </>
                     );
