@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import _ from "lodash";
+import { throttle } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
@@ -174,7 +174,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.serial.on("close", () => console.log("closed"));
     }
 
-    private logValues = _.throttle((x, y, distortion, note) => {
+    private logValues = throttle((x, y, distortion, note) => {
         console.log(`pitch, roll: ${x}, ${y} / dist, note: ${distortion}, ${note}`);
     }, 250);
 
