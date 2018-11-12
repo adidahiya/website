@@ -35,11 +35,8 @@ export default class extends React.PureComponent<{}, IState> {
 
     public render() {
         return (
-            <Layout
-                className={classNames(Classes.DARK, styles.container)}
-                title="Techno is a landscape"
-            >
-                <H3>Techno is a landscape</H3>
+            <Layout className={classNames(Classes.DARK, styles.container)} title="techno session">
+                <p>techno session</p>
                 {/* <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
                     intent={this.state.isPlaying ? "danger" : "primary"}

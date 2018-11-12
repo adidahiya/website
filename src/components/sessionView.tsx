@@ -50,10 +50,12 @@ export default class extends React.Component<{}, IState> {
         const simpleLoopPlayers = mapValues(simplePlayerUrls, (_url, name) =>
             new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toMaster(),
         );
+        simpleLoopPlayers.clickyPerc.volume.value = 5;
+        simpleLoopPlayers.rim.volume.value = 5;
+        simpleLoopPlayers.bass.volume.value = 5;
 
         const createLoop = (player: Tone.Player, loopInterval: Tone.Types.Time): ISessionLoop => {
             player.loop = false;
-            player.sync();
             player.loopEnd = loopInterval;
             let hasStarted = false;
 
@@ -63,6 +65,7 @@ export default class extends React.Component<{}, IState> {
                     if (player.loop) {
                         player.loop = false;
                         Tone.Transport.scheduleOnce((time: Tone.Types.Time) => {
+                            console.log("stopping clip at ", time);
                             player.stop(time);
                             hasStarted = false;
                         }, "+1m");
@@ -76,7 +79,7 @@ export default class extends React.Component<{}, IState> {
                             // start on first beat of next bar
                             const startTime = `${parseInt(bar, 10) + 1}:0:0`;
                             console.log(startTime);
-                            player.start(startTime);
+                            player.sync().start(startTime);
                             hasStarted = true;
                         }
                     }
@@ -91,9 +94,11 @@ export default class extends React.Component<{}, IState> {
         const brassHook1Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook1(loopEnd13m).mp3",
         ).toMaster();
+        brassHook1Player.volume.value = -3;
         const brassHook2Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook2(loopEnd38m).mp3",
         ).toMaster();
+        brassHook2Player.volume.value = -3;
         const brassHookLoops = [
             createLoop(brassHook1Player, "13m"),
             createLoop(brassHook2Player, "38m"),
@@ -102,23 +107,17 @@ export default class extends React.Component<{}, IState> {
         const padDrone1Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/PadDrone1(loopEnd35m).mp3",
         );
-        // padDrone1Player.loop = true;
-        // padDrone1Player.loopEnd = "35m";
+        padDrone1Player.volume.value = 6;
         const padDrone2Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/PadDrone2(loopEnd30m).mp3",
         );
-        // padDrone2Player.loop = true;
-        // padDrone2Player.loopEnd = "30m";
+        padDrone2Player.volume.value = 6;
         const padDrone3Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/PadDrone3(loopEnd20m).mp3",
         );
-        // padDrone3Player.loop = true;
-        // padDrone3Player.loopEnd = "20m";
         const padDrone4Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/PadDrone4(loopEnd27m).mp3",
         );
-        // padDrone4Player.loop = true;
-        // padDrone4Player.loopEnd = "27m";
         const padDronePhaser = new Tone.Phaser({
             frequency: 10, // 2-10
             octaves: 5,

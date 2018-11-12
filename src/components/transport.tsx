@@ -21,6 +21,7 @@ export default class extends React.Component<{}, IState> {
     private transportEvent?: Tone.Event;
 
     public componentDidMount() {
+        Tone.Transport.bpm.value = 126;
         this.transportEvent = new Tone.Event(() => {
             const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
             this.setState({
@@ -37,7 +38,7 @@ export default class extends React.Component<{}, IState> {
     }
 
     public componentWillUnmount() {
-        this.transportEvent!.stop();
+        this.transportEvent!.stop().dispose();
     }
 
     public render() {
