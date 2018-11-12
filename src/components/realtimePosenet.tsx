@@ -1,9 +1,12 @@
 import * as posenet from "@tensorflow-models/posenet";
-import dat from "dat.gui";
 import React from "react";
 import Stats from "stats.js";
-
 import { drawBoundingBox, drawKeypoints, drawSkeleton } from "../common/posenetUtils";
+
+let dat: any;
+if (typeof window !== "undefined") {
+    dat = require("dat.gui");
+}
 
 export interface IRealtimePosenetProps {
     videoHeight: number;

@@ -42,7 +42,8 @@ export default class extends React.Component<{}, IState> {
 
     public render() {
         const { position } = this.state;
-        const isPlaying = Tone.Transport.state === "started";
+        const isPlaying =
+            typeof window === "undefined" ? false : Tone.Transport.state === "started";
         const progress = position.beat * 4 + position.sixteenth;
         const progressPercentage = Math.round((progress / 16) * 100);
 
