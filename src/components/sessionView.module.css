@@ -5,6 +5,11 @@
 .track {
     flex: 1 0 auto;
     padding: 0 5px;
+    width: 14%;
+}
+
+:global(.bp3-slider) {
+    min-width: 100px;
 }
 
 .clips {

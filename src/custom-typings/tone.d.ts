@@ -1099,7 +1099,6 @@ declare module "tone" {
         class StereoEffect extends Effect {
         }
 
-        // TODO: complete definition
         class Phaser extends StereoEffect {
             constructor(frequency?: Types.Frequency, octaves?: number, baseFrequency?: Types.Frequency);
             constructor(options: {
@@ -1107,6 +1106,11 @@ declare module "tone" {
                 octaves?: number,
                 baseFrequency?: Types.Frequency;
             });
+            public Q: Signal<typeof Type.Positive, Types.Positive>;
+            public frequency: Signal<typeof Type.Frequency, Types.Frequency>;
+            public baseFrequency: Types.Frequency;
+            public octaves: Types.Positive;
+            public dispose(): this;
         }
 
         /**

@@ -9,6 +9,7 @@ interface ISessionContext {
     tracks: {
         [trackName: string]: {
             clips: ISessionLoop[];
+            slider?: () => React.ReactNode;
         };
     };
 }
@@ -23,10 +24,15 @@ const SessionContext = React.createContext({ tracks: {} });
 
 interface IState {
     sessionContext?: ISessionContext;
+    padDroneSliderValue: number;
+    steadySeqSliderValue: number;
 }
 
 export default class extends React.Component<{}, IState> {
-    public state: IState = {};
+    public state: IState = {
+        padDroneSliderValue: 2,
+        steadySeqSliderValue: 200,
+    };
 
     public componentDidMount() {
         Tone.Transport.bpm.value = 126;
@@ -130,6 +136,22 @@ export default class extends React.Component<{}, IState> {
             createLoop(padDrone3Player, "20m"),
             createLoop(padDrone4Player, "27m"),
         ];
+        const padDroneSlider = () => (
+            <Slider
+                min={2}
+                max={10}
+                value={this.state.padDroneSliderValue}
+                onChange={val => {
+                    padDronePhaser.frequency.value = val;
+                    const newBaseFreq = mapNumberRange(val, 2, 10, 500, 1000);
+                    padDronePhaser.baseFrequency = newBaseFreq;
+                    this.setState({
+                        padDroneSliderValue: val,
+                    });
+                }}
+                labelRenderer={false}
+            />
+        );
 
         const steadySeq1Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/SteadySeq1(loopEnd27m).mp3",
@@ -164,7 +186,23 @@ export default class extends React.Component<{}, IState> {
             createLoop(steadySeq3Player, "16m"),
             createLoop(steadySeq4Player, "25m"),
         ];
+        const steadySeqSlider = () => (
+            <Slider
+                min={200}
+                max={1000}
+                value={this.state.steadySeqSliderValue}
+                onChange={val => {
+                    steadySeqFilter.frequency.value = val;
+                    steadySeqFilter.Q.value = mapNumberRange(val, 200, 1000, 1, 15);
+                    this.setState({
+                        steadySeqSliderValue: val,
+                    });
+                }}
+                labelRenderer={false}
+            />
+        );
 
+        // HACKHACK deeply nested state :(
         this.setState({
             sessionContext: {
                 tracks: {
@@ -191,9 +229,11 @@ export default class extends React.Component<{}, IState> {
                     },
                     pad: {
                         clips: padDroneLoops,
+                        slider: padDroneSlider,
                     },
                     beeps: {
                         clips: steadySeqLoops,
+                        slider: steadySeqSlider,
                     },
                 },
             },
@@ -222,11 +262,18 @@ export default class extends React.Component<{}, IState> {
                                     <Clip {...clip} key={`clip-${i}`} />
                                 ))}
                             </div>
+                            {this.maybeRenderSlider(tracks[trackName])}
                         </div>
                     ))}
                 </div>
             </SessionContext.Provider>
         );
+    }
+
+    public maybeRenderSlider(track: any) {
+        if (typeof track.slider === "function") {
+            return track.slider();
+        }
     }
 
     public componentWillUnmount() {
@@ -282,4 +329,8 @@ class Clip extends React.PureComponent<IClipProps, IClipState> {
             toggle,
         );
     };
+}
+
+function mapNumberRange(val: number, inMin: number, inMax: number, outMin: number, outMax: number) {
+    return ((val - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
