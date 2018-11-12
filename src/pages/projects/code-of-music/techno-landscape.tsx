@@ -40,38 +40,38 @@ export default class extends React.PureComponent<{}, IState> {
                 title="Techno is a landscape"
             >
                 <H3>Techno is a landscape</H3>
-                <Button
+                {/* <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
                     intent={this.state.isPlaying ? "danger" : "primary"}
                     onClick={this.handlePlayToggle}
                     style={{ marginBottom: 20 }}
                     text={this.state.isPlaying ? "Stop" : "Play"}
-                />
+                /> */}
                 <Transport />
                 <SessionView />
             </Layout>
         );
     }
 
-    private handlePlayToggle = () => {
-        if (Tone.Transport.state === "started") {
-            Tone.Transport.stop();
-            this.parts.forEach(p => p.stop());
-            this.setState({ isPlaying: false });
-        } else {
-            Tone.Transport.start();
-            this.parts.forEach(p => p.start());
-            this.setState({ isPlaying: true });
-        }
-    };
+    // private handlePlayToggle = () => {
+    //     if (Tone.Transport.state === "started") {
+    //         Tone.Transport.stop();
+    //         this.parts.forEach(p => p.stop());
+    //         this.setState({ isPlaying: false });
+    //     } else {
+    //         Tone.Transport.start();
+    //         this.parts.forEach(p => p.start());
+    //         this.setState({ isPlaying: true });
+    //     }
+    // };
 
-    private sketch = (p: p5) => {
-        p.setup = () => {
-            // noop
-        };
+    // private sketch = (p: p5) => {
+    //     p.setup = () => {
+    //         // noop
+    //     };
 
-        p.draw = () => {
-            // noop
-        };
-    };
+    //     p.draw = () => {
+    //         // noop
+    //     };
+    // };
 }

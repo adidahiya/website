@@ -1126,7 +1126,7 @@ declare module "tone" {
             public loopEnd: Tone.Types.Time;
             public start(): this;
             public stop(): this;
-            public cancel(): this;
+            public cancel(time?: Types.TransportTime): this;
             public dispose(): this;
             public state: Types.PlaybackState;
         }
@@ -1136,6 +1136,8 @@ declare module "tone" {
             constructor(callback: Function, interval: Types.Time);
             public start(): this;
             public stop(): this;
+            public readonly state: Types.PlaybackState;
+            public dispose(): this;
         }
 
         // TODO: complete definition

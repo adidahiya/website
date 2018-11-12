@@ -15,7 +15,6 @@ interface ISessionContext {
 }
 
 interface ISessionLoop {
-    event: Tone.Event;
     player: Tone.Player;
     toggle: () => void;
 }
@@ -52,36 +51,35 @@ export default class extends React.Component<{}, IState> {
             new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toMaster(),
         );
 
-        const createLoop = (player: Tone.Player, loopEnd: Tone.Types.Time): ISessionLoop => {
-            const e = new Tone.Event((time: Tone.Types.Time) => {
-                if (player.loaded) {
-                    // console.log("Waiting for player to loade...", player);
-                    player.start(time);
-                }
-            });
-            // e.start();
-            e.loop = false;
-            e.loopEnd = loopEnd;
+        const createLoop = (player: Tone.Player, loopInterval: Tone.Types.Time): ISessionLoop => {
+            player.loop = false;
+            player.sync();
+            player.loopEnd = loopInterval;
             let hasStarted = false;
 
             return {
-                event: e,
                 player,
                 toggle: () => {
-                    const isLooping = e.loop;
-
-                    if (isLooping) {
+                    if (player.loop) {
+                        player.loop = false;
                         Tone.Transport.scheduleOnce((time: Tone.Types.Time) => {
                             player.stop(time);
                             hasStarted = false;
                         }, "+1m");
-                    } else if (!hasStarted) {
-                        e.start();
-                        hasStarted = true;
+                    } else {
+                        player.loop = true;
+                        if (!player.loaded) {
+                            console.log("waiting for player to load...", player);
+                        } else if (!hasStarted) {
+                            // start playing for the first time, synced to Transport
+                            const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
+                            // start on first beat of next bar
+                            const startTime = `${parseInt(bar, 10) + 1}:0:0`;
+                            console.log(startTime);
+                            player.start(startTime);
+                            hasStarted = true;
+                        }
                     }
-
-                    e.loop = !isLooping;
-                    // this.setState({ ...this.state });
                 },
             };
         };
@@ -203,41 +201,44 @@ export default class extends React.Component<{}, IState> {
         );
 
         // HACKHACK deeply nested state :(
-        this.setState({
-            sessionContext: {
-                tracks: {
-                    kick: {
-                        clips: [simpleLoops.kick],
-                    },
-                    "hi hat": {
-                        clips: [
-                            simpleLoops.hh606,
-                            simpleLoops.hhDecayRise,
-                            simpleLoops.hhOff1,
-                            simpleLoops.hhOff2,
-                            simpleLoops.hhOff3,
-                        ],
-                    },
-                    percussion: {
-                        clips: [simpleLoops.clickyPerc, simpleLoops.rim],
-                    },
-                    bass: {
-                        clips: [simpleLoops.bass],
-                    },
-                    brass: {
-                        clips: brassHookLoops,
-                    },
-                    pad: {
-                        clips: padDroneLoops,
-                        slider: padDroneSlider,
-                    },
-                    beeps: {
-                        clips: steadySeqLoops,
-                        slider: steadySeqSlider,
+        this.setState(
+            {
+                sessionContext: {
+                    tracks: {
+                        kick: {
+                            clips: [simpleLoops.kick],
+                        },
+                        "hi hat": {
+                            clips: [
+                                simpleLoops.hh606,
+                                simpleLoops.hhDecayRise,
+                                simpleLoops.hhOff1,
+                                simpleLoops.hhOff2,
+                                simpleLoops.hhOff3,
+                            ],
+                        },
+                        percussion: {
+                            clips: [simpleLoops.clickyPerc, simpleLoops.rim],
+                        },
+                        bass: {
+                            clips: [simpleLoops.bass],
+                        },
+                        brass: {
+                            clips: brassHookLoops,
+                        },
+                        pad: {
+                            clips: padDroneLoops,
+                            slider: padDroneSlider,
+                        },
+                        beeps: {
+                            clips: steadySeqLoops,
+                            slider: steadySeqSlider,
+                        },
                     },
                 },
             },
-        });
+            () => Tone.Transport.start(),
+        );
     }
 
     public render() {
@@ -253,13 +254,13 @@ export default class extends React.Component<{}, IState> {
         return (
             <SessionContext.Provider value={sessionContext}>
                 <div className={styles.sessionView}>
-                    {Object.keys(tracks).map(trackName => (
-                        <div className={styles.track}>
+                    {Object.keys(tracks).map((trackName, i) => (
+                        <div className={styles.track} key={`track=${i}`}>
                             <div>{trackName}</div>
                             <br />
                             <div className={styles.clips}>
-                                {tracks[trackName].clips.map((clip, i) => (
-                                    <Clip {...clip} key={`clip-${i}`} />
+                                {tracks[trackName].clips.map((clip, j) => (
+                                    <Clip {...clip} key={`clip-${j}`} />
                                 ))}
                             </div>
                             {this.maybeRenderSlider(tracks[trackName])}
@@ -284,13 +285,12 @@ export default class extends React.Component<{}, IState> {
 
         for (const track of Object.keys(sessionContext.tracks)) {
             for (const clip of sessionContext.tracks[track].clips) {
-                clip.event
-                    .stop()
-                    .cancel()
-                    .dispose();
+                // clip.loop.stop().dispose();
                 clip.player.dispose();
             }
         }
+
+        Tone.Transport.stop();
     }
 }
 
@@ -309,7 +309,6 @@ class Clip extends React.PureComponent<IClipProps, IClipState> {
     };
 
     public render() {
-        // const { player } = this.props;
         return (
             <div
                 className={classNames(Classes.INTERACTIVE, Classes.CARD, styles.clip, {
@@ -321,13 +320,9 @@ class Clip extends React.PureComponent<IClipProps, IClipState> {
     }
 
     private handleClick = () => {
-        const { event, toggle } = this.props;
-        this.setState(
-            {
-                isPlaying: event.loop === false,
-            },
-            toggle,
-        );
+        const { player, toggle } = this.props;
+        toggle();
+        setTimeout(() => this.setState({ isPlaying: player.loop === true }));
     };
 }
 
