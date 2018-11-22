@@ -1,7 +1,7 @@
 import { Button, Classes, H3 } from "@blueprintjs/core";
 import classNames from "classnames";
 // import { Link } from "gatsby";
-import p5 from "p5";
+// import p5 from "p5";
 import React from "react";
 import Tone from "tone";
 // import { createLoopWithPlayers } from "../../../common";
