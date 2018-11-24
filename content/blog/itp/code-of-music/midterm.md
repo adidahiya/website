@@ -105,4 +105,6 @@ Here's a sample of what the piece looked and sounded like at this point:
 
 ## Iteration & revision
 
-Later, after listening to the bass line for a while, I got tired of it and decided to remove it. This piece didn't have to feel like a full musical composition, and anyway the bass was taking up space which the drums could better occupy in the mix.
+Later, after listening to the bass line for a while, I got tired of it and decided to remove it. This piece didn't have to feel like a full musical composition, and anyway the bass was taking up space which the drums could better occupy in the mix. I also reduced the lifetime of the particles so that they fade out more quickly; this makes it easier for the user to understand how the visuals affect the active audio samples.
+
+<iframe src="https://player.vimeo.com/video/302605287?loop=1&title=0&byline=0&portrait=0" width="640" height="361" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
