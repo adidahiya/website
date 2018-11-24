@@ -7,6 +7,8 @@ date: "2018-11-07"
 
 Lately I've been very interested in electronic dance music and the production of club environments. I just started learning how to mix as a DJ. For my final project, I want to create a device which is useful for live performance, possibly portable enough to bring around with me to gigs.
 
+![dj-booth](final-project-images/dj-booth.jpg)
+
 The basic idea would be to use the BPM of a currently playing track to control some LED visuals. I could get the BPM information into the Arduino either:
 
 1. via MIDI on my computer &rarr; serial data
