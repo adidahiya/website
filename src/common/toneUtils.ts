@@ -14,12 +14,15 @@ export const createLoopWithPlayers = (
     ) => void,
 ) => {
     return new Tone.Loop((time: number) => {
-        if (!players.loaded) {
-            return;
-        }
-
         const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
-        const trigger = (playerName: string) => players.get(playerName).start(time);
+        const trigger = (playerName: string) => {
+            const player = players.get(playerName);
+            if (!player.loaded) {
+                console.log(`Player [${playerName}] not loaded yet or file format is unsupported`);
+                return;
+            }
+            player.start(time);
+        };
         onInterval({
             time,
             bar: parseInt(bar, 10),

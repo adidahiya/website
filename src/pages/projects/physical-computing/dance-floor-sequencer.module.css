@@ -1,0 +1,47 @@
+.pads {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.padRow {
+    display: flex;
+}
+
+.pad {
+    width: 100px;
+    height: 100px;
+    background: #FF6E4A;
+    border: solid 1px white;
+}
+
+.padActive {
+    background: #D13913;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.timelineSequence {
+    display: flex;
+}
+
+.timelineStep {
+    height: 22px;
+    display: flex;
+    background: #5C7080;
+    border: solid 1px white;
+}
+
+.timelineBeat {
+    border-radius: 50%;
+    width: 10px;
+    background: #A7B6C2;
+    margin: 5px;
+}
+
+.timelineBeat.isCurrent {
+    background: white;
+}

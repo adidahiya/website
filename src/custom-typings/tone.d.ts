@@ -128,6 +128,9 @@ declare module "tone" {
          * Global Draw singleton
          */
         public static Draw: Tone.DrawSingleton;
+        public static context: {
+            latencyHint: "interactive" | "playback" | "balanced" | "fastest";
+        };
     }
 
     namespace Tone {
@@ -467,6 +470,7 @@ declare module "tone" {
              * @param url The url/extension to test
              */
             public static supportsType(url: string): boolean;
+            public static on(event: "load", callback: Function): void;
         }
 
         class AudioNode extends Tone {
@@ -717,6 +721,12 @@ declare module "tone" {
             public readonly loaded: boolean;
             public volume: Signal<typeof Type.Decibels, Types.Decibels>;
             public readonly state: Types.PlaybackState;
+            /**
+             * Load the audio file as an audio buffer.
+             * Decodes the audio asynchronously and invokes the callback once the audio buffer loads.
+             * Note: this does not need to be called if a url was passed in to the constructor. Only use this if you want to manually load a new url.
+             */
+            public load(url: string, callback?: Function): void;
             public loop: boolean;
             public loopEnd: Types.Time;
         }
