@@ -10,6 +10,7 @@
         "no-console": false,
         "no-default-export": false,
         "no-implicit-dependencies": true,
+        "no-object-literal-type-assertion": false,
         "no-submodule-imports": false,
         "no-unused-expression": true,
         "no-var-requires": false,

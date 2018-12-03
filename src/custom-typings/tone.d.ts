@@ -1172,6 +1172,10 @@ declare module "tone" {
             public stop(): this;
         }
 
+        class Sequence<T> extends Part {
+            constructor(callback: (time: Types.Time, val: T) => void, events: T[], subdivision: Types.Time);
+        }
+
         /**
          * ========================================================
          * Component

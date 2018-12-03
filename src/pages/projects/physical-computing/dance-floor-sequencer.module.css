@@ -28,20 +28,36 @@
     display: flex;
 }
 
-.timelineStep {
+.timelineBar {
+    display: flex;
+}
+
+.timelineBeat {
     height: 22px;
     display: flex;
     background: #5C7080;
     border: solid 1px white;
 }
 
-.timelineBeat {
+.timelineBeat.isCurrent {
+    background: #394B59;
+}
+
+.timelineSixteenth {
     border-radius: 50%;
     width: 10px;
     background: #A7B6C2;
     margin: 5px;
 }
 
-.timelineBeat.isCurrent {
+.timelineSixteenth.isCurrent:not(.hasNote) {
     background: white;
+}
+
+.timelineSixteenth.hasNote {
+    background: #FF6E4A;
+}
+
+.timelineSixteenth.isCurrent.hasNote {
+    background: #D13913;
 }

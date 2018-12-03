@@ -4,6 +4,11 @@ import React from "react";
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
+// HACKHACK: for some reason this module is getting loaded on other pages..?
+if (typeof window !== "undefined" && window.location.pathname.indexOf("simple-drum-machine") > 0) {
+    require("p5/lib/addons/p5.sound");
+}
+
 const CANVAS_WIDTH = 400;
 const BAR_WIDTH = 50;
 

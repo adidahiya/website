@@ -21,6 +21,7 @@ export const createLoopWithPlayers = (
                 console.log(`Player [${playerName}] not loaded yet or file format is unsupported`);
                 return;
             }
+            // delay by 100ms as suggested in https://github.com/Tonejs/Tone.js/wiki/Performance
             player.start(time);
         };
         onInterval({
