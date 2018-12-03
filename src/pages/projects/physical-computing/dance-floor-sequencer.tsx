@@ -1,6 +1,6 @@
 import { Button, Checkbox, FormGroup, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
-import { max, range } from "lodash-es";
+import { max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
@@ -45,7 +45,7 @@ interface IState {
     position: ITimelinePosition;
     sampleBank: string;
     currentSequence: Sequence;
-    prevSequence: Sequence | undefined;
+    prevSequence: Sequence | undefined | null;
     tempo: number;
 }
 
@@ -161,33 +161,60 @@ export default class extends React.PureComponent<{}, IState> {
                 };
 
                 currentSequence.forEach(playSequence);
-                if (prevSequence !== undefined) {
+                if (prevSequence != null) {
                     prevSequence.forEach(playSequence);
                 }
             },
             range(SIXTEENTHS_PER_BEAT * BEATS_PER_BAR * NUM_BARS),
             "16n",
         );
-        // const currentSequence = createLoopWithPlayers(
+        currentSequencePart.loop = true;
+        currentSequencePart.loopEnd = `${NUM_BARS}m`;
+
+        // const currentSequencePart = createLoopWithPlayers(
         //     this.sampleBankPlayers!,
         //     "16n",
-        //     ({ bar, beat, sixteenth, trigger }) => {
-        //         const { sequences } = this.state;
-        //         // for (const pad of sequences) {
-        //         sequences.forEach((pad, padIndex) => {
-        //             const seq = deserializeSeq(pad);
-        //             const seqIndex = getSeqIndex({ bar, beat, sixteenth });
-        //             // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
-        //             if (seq[seqIndex] === 1 && sixteenth === 0) {
-        //                 console.log(`triggering ${padIndex} in seq`, seq, "on position", [
-        //                     bar,
-        //                     beat,
-        //                 ]);
-        //                 trigger(`${padIndex}`);
+        //     ({ bar, beat, sixteenth, time }) => {
+        //         const { currentSequence, prevSequence } = this.state;
+        //         // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
+        //         const position = { bar, beat, sixteenth };
+        //         const step = getSeqIndex(position);
+
+        //         if (this.state.enableMetronome && sixteenth === 0) {
+        //             if (beat === 3) {
+        //                 metronomePlayers.get("loud").start(time);
+        //             } else {
+        //                 metronomePlayers.get("soft").start(time);
         //             }
-        //         });
+        //         }
+
+        //         const playSequence = (padSequence: string, padIndex: number) => {
+        //             const seq = deserializeSeq(padSequence);
+        //             if (seq[step] === 1) {
+        //                 const player = this.sampleBankPlayers!.get(`${padIndex}`);
+        //                 if (player.loaded) {
+        //                     console.log(
+        //                         `triggering ${padIndex} in seq`,
+        //                         seq,
+        //                         "on position",
+        //                         position,
+        //                     );
+        //                     player.start(time);
+        //                 } else {
+        //                     console.log(
+        //                         `Player [${padIndex}] not loaded yet or file format is unsupported`,
+        //                     );
+        //                 }
+        //             }
+        //         };
+
+        //         currentSequence.forEach(playSequence);
+        //         if (prevSequence != null) {
+        //             prevSequence.forEach(playSequence);
+        //         }
         //     },
         // );
+
         this.parts.push(currentSequencePart);
     }
 
@@ -218,10 +245,10 @@ export default class extends React.PureComponent<{}, IState> {
                     <FormGroup inline={true}>
                         <Button
                             icon={isPlaying ? "stop" : "play"}
-                            intent={isPlaying ? "danger" : "primary"}
+                            intent={isPlaying ? "danger" : "success"}
                             onClick={this.handlePlayToggle}
                             style={{ marginRight: 10 }}
-                            text={isPlaying ? "stop" : "play"}
+                            text={isPlaying ? "stop" : "start"}
                         />
                         <Button
                             icon="delete"
@@ -229,14 +256,14 @@ export default class extends React.PureComponent<{}, IState> {
                             onClick={this.resetCurrentSequence}
                             style={{ marginRight: 10 }}
                             text="Reset"
-                            disabled={currentSequence === EMPTY_SEQUENCE}
+                            disabled={currentSequence === EMPTY_SEQUENCE && prevSequence == null}
                         />
                         <Button
                             icon="chevron-right"
-                            intent="success"
+                            intent="primary"
                             onClick={this.saveSequenceAndAdvanceToNextPlayer}
                             style={{ marginRight: 10 }}
-                            text="Next player"
+                            text="next player"
                             disabled={currentSequence === EMPTY_SEQUENCE}
                         />
                         <Checkbox
@@ -262,8 +289,16 @@ export default class extends React.PureComponent<{}, IState> {
                     </FormGroup>
                 </div>
                 <div className={styles.timeline}>
-                    <TimelineSequence position={position} sequence={prevSequence} />
-                    <TimelineSequence position={position} sequence={currentSequence} />
+                    <TimelineSequence
+                        position={position}
+                        sequence={prevSequence}
+                        onStepClick={noop}
+                    />
+                    <TimelineSequence
+                        position={position}
+                        sequence={currentSequence}
+                        onStepClick={this.handleCurrentSequenceStepClick}
+                    />
                 </div>
                 <br />
                 <div className={styles.pads}>
@@ -339,6 +374,12 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
+    private handleCurrentSequenceStepClick = (position: ITimelinePosition) => {
+        // move transport
+        Tone.Transport.position = positionToBarsBeatsSixteenths(position);
+        this.setState({ position });
+    };
+
     private async loadSampleBank() {
         const { sampleBank } = this.state;
 
@@ -380,9 +421,15 @@ export default class extends React.PureComponent<{}, IState> {
     }
 
     private resetCurrentSequence = () => {
-        this.setState({
-            currentSequence: EMPTY_SEQUENCE,
-        });
+        if (this.state.currentSequence === EMPTY_SEQUENCE) {
+            this.setState({
+                prevSequence: null,
+            });
+        } else {
+            this.setState({
+                currentSequence: EMPTY_SEQUENCE,
+            });
+        }
     };
 
     private saveSequenceAndAdvanceToNextPlayer = () => {
@@ -431,7 +478,8 @@ class Pad extends React.Component<IPadProps> {
 
 interface ITimelineSequenceProps {
     position: ITimelinePosition;
-    sequence: Sequence | undefined;
+    sequence: Sequence | undefined | null;
+    onStepClick: (position: ITimelinePosition) => void;
 }
 
 class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
@@ -467,7 +515,7 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
         const isCurrent =
             position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
         const hasNote =
-            sequence !== undefined &&
+            sequence != null &&
             sequence.some(s => s.charAt(getSeqIndex({ bar, beat, sixteenth })) === "1");
         return (
             <div
@@ -476,6 +524,7 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
                     [styles.hasNote]: hasNote,
                 })}
                 key={sixteenth}
+                onClick={() => this.props.onStepClick({ bar, beat, sixteenth })}
             />
         );
     }
@@ -507,4 +556,12 @@ function getPositionFromStep(step: number): ITimelinePosition {
     const beat = Math.floor(stepWithinBar / SIXTEENTHS_PER_BEAT);
     const sixteenth = stepWithinBar - beat * SIXTEENTHS_PER_BEAT;
     return { bar, beat, sixteenth };
+}
+
+function positionToBarsBeatsSixteenths({
+    bar,
+    beat,
+    sixteenth,
+}: ITimelinePosition): Tone.Types.BarsBeatsSixteenth {
+    return `${bar}:${beat}:${sixteenth}`;
 }
