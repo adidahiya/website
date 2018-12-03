@@ -1,6 +1,6 @@
-import { Button, Checkbox } from "@blueprintjs/core";
+import { Button, Checkbox, FormGroup, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
-import { range } from "lodash-es";
+import { max, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
@@ -12,14 +12,21 @@ const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 /** width & height of the square pad matrix */
 const PAD_DIMENSIONS = 2;
 /** number of steps in the sequencer */
-const NUM_BARS = 1;
+const NUM_BARS = 2;
 /** number of beats in a bar or measure */
 const BEATS_PER_BAR = 4;
 /** number of sixteenths in a beat */
 const SIXTEENTHS_PER_BEAT = 4;
 /** default tempo */
-const DEFAULT_TEMPO = 100;
+const DEFAULT_TEMPO = 120;
+/** get a url for a sound file relevant to this project */
 const soundUrl = (filename: string) => `/sounds/floor-sequencer/${filename}`;
+const EMPTY_SEQUENCE = range(PAD_DIMENSIONS * PAD_DIMENSIONS).map(() =>
+    range(NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT)
+        .map(() => "0")
+        .join(""),
+);
+const LS_KEY = "dance-floor-sequencer";
 
 // tslint:disable no-console
 
@@ -30,14 +37,16 @@ interface ITimelinePosition {
 }
 
 /** indexed by pad number, serialized */
-type Sequences = string[];
+type Sequence = string[];
 
 interface IState {
     isPlaying: boolean;
     enableMetronome: boolean;
     position: ITimelinePosition;
     sampleBank: string;
-    sequences: Sequences;
+    currentSequence: Sequence;
+    prevSequence: Sequence | undefined;
+    tempo: number;
 }
 
 export default class extends React.PureComponent<{}, IState> {
@@ -50,11 +59,9 @@ export default class extends React.PureComponent<{}, IState> {
             sixteenth: 0,
         },
         sampleBank: "808",
-        sequences: range(PAD_DIMENSIONS * PAD_DIMENSIONS).map(() =>
-            range(NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT)
-                .map(() => "0")
-                .join(""),
-        ),
+        currentSequence: EMPTY_SEQUENCE,
+        prevSequence: undefined,
+        tempo: DEFAULT_TEMPO,
     };
 
     private serial: any;
@@ -63,6 +70,17 @@ export default class extends React.PureComponent<{}, IState> {
     private sampleBankPlayers?: Tone.Players;
 
     public async componentDidMount() {
+        const savedSequences = localStorage.getItem(LS_KEY);
+        if (savedSequences != null) {
+            const deserialized = JSON.parse(savedSequences);
+            const latest = max(Object.keys(deserialized).map(key => parseInt(key, 10)));
+            if (latest !== undefined) {
+                this.setState({
+                    prevSequence: deserialized[latest],
+                });
+            }
+        }
+
         this.serial = new (p5 as any).SerialPort();
         // this.bindSerialEventHandlers();
         this.serial.open(ARDUINO_PORT_NAME);
@@ -91,31 +109,39 @@ export default class extends React.PureComponent<{}, IState> {
             soft: soundUrl("metronome-soft.wav"),
         }).toMaster();
         metronomePlayers.get("soft").volume.value = -10;
-        const metronomeLoop = createLoopWithPlayers(metronomePlayers, "4n", ({ beat, trigger }) => {
-            if (!this.state.enableMetronome) {
-                return;
-            }
+        // const metronomeLoop = createLoopWithPlayers(metronomePlayers, "4n", ({ beat, trigger }) => {
+        //     if (!this.state.enableMetronome) {
+        //         return;
+        //     }
 
-            // trigger seems to schedule for the next beat, so queue this up in advance (weird)
-            if (beat === 3) {
-                trigger("loud");
-            } else {
-                trigger("soft");
-            }
-        });
-        this.parts.push(metronomeLoop);
+        //     // trigger seems to schedule for the next beat, so queue this up in advance (weird)
+        //     if (beat === 3) {
+        //         trigger("loud");
+        //     } else {
+        //         trigger("soft");
+        //     }
+        // });
+        // this.parts.push(metronomeLoop);
 
-        // don't await, the loading callbacks aren't working...
+        // don't await this async action, the loading callbacks aren't working...
         this.loadSampleBank();
 
-        const currentSequence = new Tone.Sequence(
+        const currentSequencePart = new Tone.Sequence(
             (time, step) => {
-                const { sequences } = this.state;
-                sequences.forEach((padSequence, padIndex) => {
+                const { currentSequence, prevSequence } = this.state;
+                // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
+                const position = getPositionFromStep(step);
+
+                if (this.state.enableMetronome && position.sixteenth === 0) {
+                    if (position.beat === 3) {
+                        metronomePlayers.get("loud").start(time);
+                    } else {
+                        metronomePlayers.get("soft").start(time);
+                    }
+                }
+
+                const playSequence = (padSequence: string, padIndex: number) => {
                     const seq = deserializeSeq(padSequence);
-                    // const seqIndex = getSeqIndex({ bar, beat, sixteenth });
-                    // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
-                    const position = getPositionFromStep(step);
                     if (seq[step] === 1) {
                         const player = this.sampleBankPlayers!.get(`${padIndex}`);
                         if (player.loaded) {
@@ -132,7 +158,12 @@ export default class extends React.PureComponent<{}, IState> {
                             );
                         }
                     }
-                });
+                };
+
+                currentSequence.forEach(playSequence);
+                if (prevSequence !== undefined) {
+                    prevSequence.forEach(playSequence);
+                }
             },
             range(SIXTEENTHS_PER_BEAT * BEATS_PER_BAR * NUM_BARS),
             "16n",
@@ -157,7 +188,7 @@ export default class extends React.PureComponent<{}, IState> {
         //         });
         //     },
         // );
-        this.parts.push(currentSequence);
+        this.parts.push(currentSequencePart);
     }
 
     public componentWillUnmount() {
@@ -171,28 +202,68 @@ export default class extends React.PureComponent<{}, IState> {
     }
 
     public render() {
-        const { isPlaying, enableMetronome, position, sequences } = this.state;
+        const {
+            isPlaying,
+            enableMetronome,
+            position,
+            currentSequence,
+            prevSequence,
+            tempo,
+        } = this.state;
 
         return (
             <Layout title="dance floor sequencer">
                 <h3>dance floor sequencer</h3>
                 <div className={styles.transportControls}>
-                    <Button
-                        icon={isPlaying ? "stop" : "play"}
-                        intent={isPlaying ? "danger" : "primary"}
-                        onClick={this.handlePlayToggle}
-                        style={{ marginBottom: 20 }}
-                        text={isPlaying ? "stop" : "play"}
-                    />
-                    <Checkbox
-                        checked={enableMetronome}
-                        label="metronome"
-                        onChange={this.handleMetronomeChange}
-                    />
+                    <FormGroup inline={true}>
+                        <Button
+                            icon={isPlaying ? "stop" : "play"}
+                            intent={isPlaying ? "danger" : "primary"}
+                            onClick={this.handlePlayToggle}
+                            style={{ marginRight: 10 }}
+                            text={isPlaying ? "stop" : "play"}
+                        />
+                        <Button
+                            icon="delete"
+                            intent="danger"
+                            onClick={this.resetCurrentSequence}
+                            style={{ marginRight: 10 }}
+                            text="Reset"
+                            disabled={currentSequence === EMPTY_SEQUENCE}
+                        />
+                        <Button
+                            icon="chevron-right"
+                            intent="success"
+                            onClick={this.saveSequenceAndAdvanceToNextPlayer}
+                            style={{ marginRight: 10 }}
+                            text="Next player"
+                            disabled={currentSequence === EMPTY_SEQUENCE}
+                        />
+                        <Checkbox
+                            checked={enableMetronome}
+                            label="metronome"
+                            onChange={this.handleMetronomeChange}
+                            inline={true}
+                            style={{ verticalAlign: "top" }}
+                        />
+                    </FormGroup>
+                    <FormGroup label="tempo">
+                        <Slider
+                            labelStepSize={10}
+                            max={180}
+                            min={110}
+                            onChange={newTempo => {
+                                Tone.Transport.bpm.value = newTempo;
+                                this.setState({ tempo: newTempo });
+                            }}
+                            stepSize={1}
+                            value={tempo}
+                        />
+                    </FormGroup>
                 </div>
                 <div className={styles.timeline}>
-                    <TimelineSequence position={position} sequences={sequences} />
-                    <TimelineSequence position={position} sequences={sequences} />
+                    <TimelineSequence position={position} sequence={prevSequence} />
+                    <TimelineSequence position={position} sequence={currentSequence} />
                 </div>
                 <br />
                 <div className={styles.pads}>
@@ -203,7 +274,9 @@ export default class extends React.PureComponent<{}, IState> {
                                     i={i}
                                     j={j}
                                     position={position}
-                                    sequence={deserializeSeq(sequences[i * PAD_DIMENSIONS + j])}
+                                    sequence={deserializeSeq(
+                                        currentSequence[i * PAD_DIMENSIONS + j],
+                                    )}
                                     onClick={this.getPadClickHandler(i, j)}
                                     key={j}
                                 />
@@ -252,17 +325,17 @@ export default class extends React.PureComponent<{}, IState> {
 
     private getPadClickHandler = (i: number, j: number) => () => {
         // toggle sequence step
-        const { position, sequences } = this.state;
+        const { position, currentSequence } = this.state;
         const padIndex = i * PAD_DIMENSIONS + j;
-        const seq = deserializeSeq(sequences[padIndex]);
+        const seq = deserializeSeq(currentSequence[padIndex]);
         const seqIndex = getSeqIndex(position);
         seq[seqIndex] = seq[seqIndex] === 0 ? 1 : 0;
         const newSeq = serializeSeq(seq);
         // TODO: also serialize the array?
-        const newSequences = [...sequences];
+        const newSequences = [...currentSequence];
         newSequences.splice(padIndex, 1, newSeq);
         this.setState({
-            sequences: newSequences,
+            currentSequence: newSequences,
         });
     };
 
@@ -283,12 +356,6 @@ export default class extends React.PureComponent<{}, IState> {
                         },
                         {} as { [key: string]: string },
                     ),
-                    // {
-                    //     "1": soundUrl(`sample-banks/${sampleBank}/12.wav`),
-                    //     "2": soundUrl(`sample-banks/${sampleBank}/13.wav`),
-                    //     "3": soundUrl(`sample-banks/${sampleBank}/14.wav`),
-                    //     "4": soundUrl(`sample-banks/${sampleBank}/14.wav`),
-                    // },
                     () => {
                         console.log("Loaded initial samples!");
                         resolve();
@@ -308,12 +375,37 @@ export default class extends React.PureComponent<{}, IState> {
                     });
                 });
                 return Promise.all(loaders);
-                // for (const p of Object.keys(this.sampleBankPlayers)) {
-                //     this.sampleBankPlayers.get(p).load(`sample-banks/${sampleBank}/${p}`);
-                // }
             }
         });
     }
+
+    private resetCurrentSequence = () => {
+        this.setState({
+            currentSequence: EMPTY_SEQUENCE,
+        });
+    };
+
+    private saveSequenceAndAdvanceToNextPlayer = () => {
+        const { currentSequence } = this.state;
+        const now = Date.now();
+        let newEntry = {
+            [now]: currentSequence,
+        };
+
+        const existingSequences = localStorage.getItem(LS_KEY);
+        if (existingSequences != null) {
+            newEntry = {
+                ...JSON.parse(existingSequences),
+                ...newEntry,
+            };
+        }
+
+        localStorage.setItem(LS_KEY, JSON.stringify(newEntry));
+        this.setState({
+            prevSequence: currentSequence,
+            currentSequence: EMPTY_SEQUENCE,
+        });
+    };
 }
 
 interface IPadProps {
@@ -339,7 +431,7 @@ class Pad extends React.Component<IPadProps> {
 
 interface ITimelineSequenceProps {
     position: ITimelinePosition;
-    sequences: Sequences;
+    sequence: Sequence | undefined;
 }
 
 class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
@@ -371,12 +463,12 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
     }
 
     private renderSixteenth(bar: number, beat: number, sixteenth: number) {
-        const { position, sequences } = this.props;
+        const { position, sequence } = this.props;
         const isCurrent =
             position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
-        const hasNote = sequences.some(
-            s => s.charAt(getSeqIndex({ bar, beat, sixteenth })) === "1",
-        );
+        const hasNote =
+            sequence !== undefined &&
+            sequence.some(s => s.charAt(getSeqIndex({ bar, beat, sixteenth })) === "1");
         return (
             <div
                 className={classNames(styles.timelineSixteenth, {
@@ -413,6 +505,6 @@ function getPositionFromStep(step: number): ITimelinePosition {
     const bar = Math.floor(step / STEPS_PER_BAR);
     const stepWithinBar = step - bar * STEPS_PER_BAR;
     const beat = Math.floor(stepWithinBar / SIXTEENTHS_PER_BEAT);
-    const sixteenth = beat - beat * SIXTEENTHS_PER_BEAT;
+    const sixteenth = stepWithinBar - beat * SIXTEENTHS_PER_BEAT;
     return { bar, beat, sixteenth };
 }
