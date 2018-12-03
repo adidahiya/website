@@ -4,11 +4,11 @@ import { max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
-import { createLoopWithPlayers } from "../../../common";
+// import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import styles from "./dance-floor-sequencer.module.css";
 
-const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
+const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
 /** width & height of the square pad matrix */
 const PAD_DIMENSIONS = 2;
 /** number of steps in the sequencer */
@@ -84,6 +84,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.serial = new (p5 as any).SerialPort();
         // this.bindSerialEventHandlers();
         this.serial.open(ARDUINO_PORT_NAME);
+        this.bindSerialEventHandlers();
 
         Tone.context.latencyHint = "playback";
         Tone.Transport.bpm.value = DEFAULT_TEMPO;
@@ -330,8 +331,26 @@ export default class extends React.PureComponent<{}, IState> {
             const data = this.serial.readLine();
 
             if (data != null && data.trim() !== "") {
-                // expecing data of the form "pitch, roll"
-                // const matches = data.match(/(.*)\,\ (.*)/);
+                console.log("Serial data: ", data.trim());
+                const triggeredPad = parseInt(data.trim(), 10);
+                // 3 and 1 are switched in the arduino side
+                let i: number;
+                let j: number;
+                switch (triggeredPad) {
+                    case 0:
+                        [i, j] = [0, 0];
+                        break;
+                    case 1:
+                        [i, j] = [1, 1];
+                        break;
+                    case 2:
+                        [i, j] = [1, 0];
+                        break;
+                    case 3:
+                        [i, j] = [1, 1];
+                        break;
+                }
+                this.getPadClickHandler(i!, j!)();
             }
         });
         this.serial.on("error", (err: any) => console.log("error", err));
