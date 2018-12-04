@@ -83,6 +83,7 @@ export default class extends React.PureComponent<{}, IState> {
     private serial: any;
     private transportEvent?: Tone.Event;
     private parts: Array<Tone.Part | Tone.Loop> = [];
+    private metronomePlayers?: Tone.Players;
     private sampleBankPlayers?: Tone.Players;
 
     public async componentDidMount() {
@@ -123,11 +124,11 @@ export default class extends React.PureComponent<{}, IState> {
         this.transportEvent.loopEnd = "16n";
         this.transportEvent.start();
 
-        const metronomePlayers = new Tone.Players({
+        this.metronomePlayers = new Tone.Players({
             loud: soundUrl("metronome-loud.wav"),
             soft: soundUrl("metronome-soft.wav"),
         }).toMaster();
-        metronomePlayers.get("soft").volume.value = -10;
+        this.metronomePlayers.get("soft").volume.value = -10;
         // const metronomeLoop = createLoopWithPlayers(metronomePlayers, "4n", ({ beat, trigger }) => {
         //     if (!this.state.enableMetronome) {
         //         return;
@@ -146,31 +147,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.loadSampleBank();
 
         const currentSequencePart = new Tone.Sequence(
-            (time, step) => {
-                const { currentSequence, prevSequence } = this.state;
-                // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
-                const position = getPositionFromStep(step);
-
-                if (this.state.enableMetronome && position.sixteenth === 0) {
-                    if (position.beat === 0) {
-                        metronomePlayers.get("loud").start(time);
-                    } else {
-                        metronomePlayers.get("soft").start(time);
-                    }
-                }
-
-                const playSequence = (padSequence: string, padIndex: number) => {
-                    const seq = deserializeSeq(padSequence);
-                    if (seq[step] === 1) {
-                        this.playSample(padIndex);
-                    }
-                };
-
-                currentSequence.forEach(playSequence);
-                if (prevSequence != null) {
-                    prevSequence.forEach(playSequence);
-                }
-            },
+            this.handleSequenceStep,
             range(TOTAL_NUM_STEPS),
             "16n",
         );
@@ -392,6 +369,36 @@ export default class extends React.PureComponent<{}, IState> {
             steps: [getStepFromPosition(this.state.position)],
             playImmediately: true,
         });
+    };
+
+    /** Where most of the audio happens. */
+    private handleSequenceStep = (time: Tone.Types.Time, step: number) => {
+        const { currentSequence, prevSequence } = this.state;
+        // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
+        const position = getPositionFromStep(step);
+
+        if (this.state.enableMetronome && position.sixteenth === 0) {
+            if (position.beat === 0) {
+                this.metronomePlayers!.get("loud").start(time);
+            } else {
+                this.metronomePlayers!.get("soft").start(time);
+            }
+        }
+
+        // don't play samples twice
+        const padsPlayedDuringThisStep: number[] = [];
+        const playSequence = (padSequence: string, padIndex: number) => {
+            const seq = deserializeSeq(padSequence);
+            if (seq[step] === 1 && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
+                this.playSample(padIndex);
+                padsPlayedDuringThisStep.push(padIndex);
+            }
+        };
+
+        currentSequence.forEach(playSequence);
+        if (prevSequence != null) {
+            prevSequence.forEach(playSequence);
+        }
     };
 
     private updateCurrentSequence = (options: {
