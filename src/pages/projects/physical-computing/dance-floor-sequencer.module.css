@@ -34,7 +34,7 @@
 }
 
 .timelineBeat {
-    height: 22px;
+    height: 24px;
     display: flex;
     background: #5C7080;
     border: solid 1px white;
@@ -46,19 +46,12 @@
 
 .timelineSixteenth {
     border-radius: 50%;
-    width: 10px;
+    width: 12px;
     background: #A7B6C2;
     margin: 5px;
+    border: solid 1px #5C7080;
 }
 
-.timelineSixteenth.isCurrent:not(.hasNote) {
-    background: white;
-}
-
-.timelineSixteenth.hasNote {
-    background: #FF6E4A;
-}
-
-.timelineSixteenth.isCurrent.hasNote {
-    background: #D13913;
+.timelineSixteenth.isCurrent {
+    border-color: white;
 }

@@ -1,4 +1,5 @@
-import { Button, ButtonGroup, Checkbox, FormGroup, Slider } from "@blueprintjs/core";
+import { Button, ButtonGroup, Checkbox, Colors, FormGroup, Slider } from "@blueprintjs/core";
+import chroma from "chroma-js";
 import classNames from "classnames";
 import { flatMap, flatMapDeep, max, noop, range } from "lodash-es";
 import p5 from "p5";
@@ -29,6 +30,15 @@ const EMPTY_SEQUENCE = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
         .join(""),
 );
 const LS_KEY = "dance-floor-sequencer";
+
+/** Pad colors for the sequence timeline */
+const PAD_COLORS: { [i: number]: string } = {
+    0: Colors.VERMILION5,
+    1: Colors.VIOLET5,
+    2: Colors.LIME4,
+    3: Colors.GOLD4,
+};
+const DEFAULT_STEP_COLOR = Colors.GRAY4;
 
 // tslint:disable no-console
 
@@ -557,10 +567,16 @@ interface IPadProps {
 
 class Pad extends React.Component<IPadProps> {
     public render() {
-        const { position, sequence } = this.props;
+        const { index, position, sequence } = this.props;
         const isActive = sequence[getStepFromPosition(position)] === 1;
-        const classes = classNames(styles.pad, { [styles.padActive]: isActive });
-        return <div className={classes} onClick={this.handleClick} />;
+        const backgroundColor = PAD_COLORS[index];
+        return (
+            <div
+                className={classNames(styles.pad, { [styles.padActive]: isActive })}
+                style={{ backgroundColor }}
+                onClick={this.handleClick}
+            />
+        );
     }
 
     private handleClick = () => {
@@ -604,15 +620,30 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
         const { position, sequence } = this.props;
         const isCurrent =
             position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
-        const hasNote =
-            sequence != null &&
-            sequence.some(s => s.charAt(getStepFromPosition({ bar, beat, sixteenth })) === "1");
+        const step = getStepFromPosition({ bar, beat, sixteenth });
+        let backgroundColor = DEFAULT_STEP_COLOR;
+
+        if (sequence != null) {
+            let hasNote = false;
+            sequence.forEach((padSequence, i) => {
+                if (padSequence.charAt(step) === "1") {
+                    if (hasNote) {
+                        // mix with existing color
+                        backgroundColor = chroma.mix(backgroundColor, PAD_COLORS[i]).hex();
+                    } else {
+                        backgroundColor = PAD_COLORS[i];
+                    }
+                    hasNote = true;
+                }
+            });
+        }
+
         return (
             <div
                 className={classNames(styles.timelineSixteenth, {
                     [styles.isCurrent]: isCurrent,
-                    [styles.hasNote]: hasNote,
                 })}
+                style={{ backgroundColor }}
                 key={sixteenth}
                 onClick={() => this.props.onStepClick({ bar, beat, sixteenth })}
             />

@@ -17,6 +17,7 @@
     "@reach/router": "^1.2.1",
     "@tensorflow-models/posenet": "^0.2.3",
     "@tensorflow/tfjs": "^0.13.5",
+    "chroma-js": "^1.4.1",
     "classnames": "^2.2.6",
     "dat.gui": "^0.7.3",
     "gatsby": "^2.0.54",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@blueprintjs/tslint-config": "^1.7.0",
+    "@types/chroma-js": "^1.4.0",
     "@types/classnames": "^2.2.6",
     "@types/dat.gui": "^0.7.2",
     "@types/lodash-es": "^4.17.1",
