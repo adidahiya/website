@@ -9,8 +9,8 @@ import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import styles from "./dance-floor-sequencer.module.css";
 
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
-/** width & height of the square pad matrix */
-const PAD_DIMENSIONS = 2;
+const PADS_WIDTH = 2;
+const PADS_HEIGHT = 2;
 /** number of steps in the sequencer */
 const NUM_BARS = 2;
 /** number of beats in a bar or measure */
@@ -23,7 +23,7 @@ const TOTAL_NUM_STEPS = NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT;
 const DEFAULT_TEMPO = 120;
 /** get a url for a sound file relevant to this project */
 const soundUrl = (filename: string) => `/sounds/floor-sequencer/${filename}`;
-const EMPTY_SEQUENCE = range(PAD_DIMENSIONS * PAD_DIMENSIONS).map(() =>
+const EMPTY_SEQUENCE = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
     range(TOTAL_NUM_STEPS)
         .map(() => "0")
         .join(""),
@@ -41,9 +41,17 @@ interface ITimelinePosition {
 /** indexed by pad number, serialized */
 type Sequence = string[];
 
+/** identifier for a sample bank */
+type SampleBankId = string;
+
 interface ISequencerStore {
     sequences: {
-        [epochTime: string]: Sequence;
+        [epochTime: string]: {
+            sampleBankId: SampleBankId;
+            sequence: Sequence;
+            // currently not used for playback of non-current sequences, but stored
+            tempo: number;
+        };
     };
 }
 
@@ -83,8 +91,11 @@ export default class extends React.PureComponent<{}, IState> {
             const store: ISequencerStore = JSON.parse(savedSequences);
             const latest = max(Object.keys(store.sequences).map(key => parseInt(key, 10)));
             if (latest !== undefined) {
+                const latestSequence = store.sequences[latest];
                 this.setState({
-                    prevSequence: store.sequences[latest],
+                    prevSequence: latestSequence.sequence,
+                    tempo: latestSequence.tempo,
+                    sampleBank: latestSequence.sampleBankId,
                 });
             }
         }
@@ -141,7 +152,7 @@ export default class extends React.PureComponent<{}, IState> {
                 const position = getPositionFromStep(step);
 
                 if (this.state.enableMetronome && position.sixteenth === 0) {
-                    if (position.beat === 3) {
+                    if (position.beat === 0) {
                         metronomePlayers.get("loud").start(time);
                     } else {
                         metronomePlayers.get("soft").start(time);
@@ -163,8 +174,8 @@ export default class extends React.PureComponent<{}, IState> {
             range(TOTAL_NUM_STEPS),
             "16n",
         );
-        currentSequencePart.loop = true;
-        currentSequencePart.loopEnd = `${NUM_BARS}m`;
+        // currentSequencePart.loop = true;
+        // currentSequencePart.loopEnd = `${NUM_BARS}m`;
 
         // const currentSequencePart = createLoopWithPlayers(
         //     this.sampleBankPlayers!,
@@ -214,6 +225,8 @@ export default class extends React.PureComponent<{}, IState> {
     }
 
     public componentWillUnmount() {
+        Tone.Transport.stop();
+
         if (this.transportEvent != null) {
             this.transportEvent.stop().dispose();
         }
@@ -256,7 +269,7 @@ export default class extends React.PureComponent<{}, IState> {
                         <Button
                             icon="chevron-right"
                             intent="primary"
-                            onClick={this.saveSequenceAndAdvanceToNextPlayer}
+                            onClick={this.saveSequenceAndAdvance}
                             style={{ marginRight: 10 }}
                             text="next player"
                             disabled={currentSequence === EMPTY_SEQUENCE}
@@ -295,14 +308,7 @@ export default class extends React.PureComponent<{}, IState> {
                         onStepClick={this.handleCurrentSequenceStepClick}
                     />
                 </div>
-                <br />
-                <div className={styles.pads}>
-                    {range(PAD_DIMENSIONS).map(i => (
-                        <div className={styles.padRow} key={i}>
-                            {range(PAD_DIMENSIONS).map(j => this.renderPad(i, j))}
-                        </div>
-                    ))}
-                </div>
+                {this.renderPadMatrix()}
                 <FormGroup label="shortcuts" style={{ marginTop: 20 }}>
                     <ButtonGroup>
                         <Button text="4 on the floor" onClick={this.handleFourOnTheFloorShortcut} />
@@ -313,17 +319,29 @@ export default class extends React.PureComponent<{}, IState> {
         );
     }
 
+    private renderPadMatrix = () => {
+        return (
+            <div className={styles.pads}>
+                {range(PADS_WIDTH).map(i => (
+                    <div className={styles.padRow} key={i}>
+                        {range(PADS_HEIGHT).map(j => this.renderPad(i, j))}
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
     /**
      * Pad indices are calculated counting from top left -> bottom right, zero-indexed.
      */
     private renderPad = (i: number, j: number) => {
         const { position, currentSequence } = this.state;
-        const index = i * PAD_DIMENSIONS + j;
+        const index = i * PADS_WIDTH + j;
         return (
             <Pad
                 index={index}
                 position={position}
-                sequence={deserializeSeq(currentSequence[i * PAD_DIMENSIONS + j])}
+                sequence={deserializeSeq(currentSequence[index])}
                 onClick={this.getPadClickHandler(index)}
                 key={j}
             />
@@ -350,13 +368,13 @@ export default class extends React.PureComponent<{}, IState> {
 
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
-            Tone.Transport.stop("+0.1");
+            Tone.Transport.stop();
             this.parts.forEach(p => p.stop());
             this.setState({ isPlaying: false });
         } else {
             // start the Transport 100 milliseconds in the future which is not very perceptible,
             // but can help avoid scheduling errors
-            Tone.Transport.start("+0.1");
+            Tone.Transport.start();
             this.parts.forEach(p => p.start());
             this.setState({ isPlaying: true });
         }
@@ -376,19 +394,16 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private updateCurrentSequence = (
-        options: {
-            padIndex: number;
-            /** Steps to update in a batch */
-            steps: number[];
-            /** Whether to set the step(s) to active, if omitted then this acts as a toggle */
-            activate?: boolean;
-            /** If a single step is being updated, whether to play the sample immediately. @default false */
-            playImmediately?: boolean;
-        },
-        additionalState?: Partial<IState>,
-    ) => {
-        const { padIndex, steps, activate, playImmediately } = options;
+    private updateCurrentSequence = (options: {
+        padIndex: number;
+        /** Steps to update in a batch */
+        steps: number[];
+        /** Whether to set the step(s) to active, if omitted then this acts as a toggle */
+        activate?: boolean;
+        /** If a single step is being updated, whether to play the sample immediately. @default false */
+        playImmediately?: boolean;
+    }) => {
+        const { padIndex, steps, activate, playImmediately = false } = options;
         const { currentSequence } = this.state;
         const seq = deserializeSeq(currentSequence[padIndex]);
         for (const step of steps) {
@@ -400,11 +415,9 @@ export default class extends React.PureComponent<{}, IState> {
         const newSequences = [...currentSequence];
         newSequences.splice(padIndex, 1, newSeq);
         const newState = {
-            currentSequences: newSequences,
-            ...additionalState,
+            currentSequence: newSequences,
         };
-        // not sure why we have to cast here
-        this.setState(newState as IState);
+        this.setState(newState);
 
         if (steps.length === 1 && playImmediately && seq[steps[0]] === 1) {
             // if we are enabling the current step, then trigger the sample right away
@@ -427,7 +440,7 @@ export default class extends React.PureComponent<{}, IState> {
         return new Promise<void>((resolve, _reject) => {
             if (this.sampleBankPlayers == null) {
                 this.sampleBankPlayers = new Tone.Players(
-                    range(PAD_DIMENSIONS * PAD_DIMENSIONS).reduce(
+                    range(PADS_WIDTH * PADS_HEIGHT).reduce(
                         (prev, i) => {
                             return {
                                 ...prev,
@@ -499,14 +512,18 @@ export default class extends React.PureComponent<{}, IState> {
         }
     };
 
-    private saveSequenceAndAdvanceToNextPlayer = () => {
-        const { currentSequence } = this.state;
+    private saveSequenceAndAdvance = () => {
+        const { currentSequence, sampleBank, tempo } = this.state;
         const now = Date.now();
-        const newSequences = {
-            [now]: currentSequence,
+        const currentSequenceEntry = {
+            [now]: {
+                sampleBankId: sampleBank,
+                sequence: currentSequence,
+                tempo,
+            },
         };
         let newStore: ISequencerStore = {
-            sequences: newSequences,
+            sequences: currentSequenceEntry,
         };
 
         const serializedStore = localStorage.getItem(LS_KEY);
@@ -516,7 +533,7 @@ export default class extends React.PureComponent<{}, IState> {
                 ...store,
                 sequences: {
                     ...store.sequences,
-                    ...newSequences,
+                    ...currentSequenceEntry,
                 },
             };
         }
