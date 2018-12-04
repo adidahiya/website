@@ -1,6 +1,6 @@
-import { Button, Checkbox, FormGroup, Slider } from "@blueprintjs/core";
+import { Button, ButtonGroup, Checkbox, FormGroup, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
-import { max, noop, range } from "lodash-es";
+import { flatMap, flatMapDeep, max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
@@ -17,12 +17,14 @@ const NUM_BARS = 2;
 const BEATS_PER_BAR = 4;
 /** number of sixteenths in a beat */
 const SIXTEENTHS_PER_BEAT = 4;
+/** total number of steps */
+const TOTAL_NUM_STEPS = NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT;
 /** default tempo */
 const DEFAULT_TEMPO = 120;
 /** get a url for a sound file relevant to this project */
 const soundUrl = (filename: string) => `/sounds/floor-sequencer/${filename}`;
 const EMPTY_SEQUENCE = range(PAD_DIMENSIONS * PAD_DIMENSIONS).map(() =>
-    range(NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT)
+    range(TOTAL_NUM_STEPS)
         .map(() => "0")
         .join(""),
 );
@@ -58,7 +60,7 @@ interface IState {
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
-        enableMetronome: true,
+        enableMetronome: false,
         position: {
             bar: 0,
             beat: 0,
@@ -149,7 +151,7 @@ export default class extends React.PureComponent<{}, IState> {
                 const playSequence = (padSequence: string, padIndex: number) => {
                     const seq = deserializeSeq(padSequence);
                     if (seq[step] === 1) {
-                        this.safePlaySample(padIndex);
+                        this.playSample(padIndex);
                     }
                 };
 
@@ -158,7 +160,7 @@ export default class extends React.PureComponent<{}, IState> {
                     prevSequence.forEach(playSequence);
                 }
             },
-            range(SIXTEENTHS_PER_BEAT * BEATS_PER_BAR * NUM_BARS),
+            range(TOTAL_NUM_STEPS),
             "16n",
         );
         currentSequencePart.loop = true;
@@ -301,6 +303,12 @@ export default class extends React.PureComponent<{}, IState> {
                         </div>
                     ))}
                 </div>
+                <FormGroup label="shortcuts" style={{ marginTop: 20 }}>
+                    <ButtonGroup>
+                        <Button text="4 on the floor" onClick={this.handleFourOnTheFloorShortcut} />
+                        <Button text="hi-hat 16ths" onClick={this.handleHiHatSixteenthsShortcut} />
+                    </ButtonGroup>
+                </FormGroup>
             </Layout>
         );
     }
@@ -361,27 +369,50 @@ export default class extends React.PureComponent<{}, IState> {
     };
 
     private getPadClickHandler = (padIndex: number) => () => {
-        const { position, currentSequence } = this.state;
+        this.updateCurrentSequence({
+            padIndex,
+            steps: [getStepFromPosition(this.state.position)],
+            playImmediately: true,
+        });
+    };
 
-        // toggle sequence at current step position
+    private updateCurrentSequence = (
+        options: {
+            padIndex: number;
+            /** Steps to update in a batch */
+            steps: number[];
+            /** Whether to set the step(s) to active, if omitted then this acts as a toggle */
+            activate?: boolean;
+            /** If a single step is being updated, whether to play the sample immediately. @default false */
+            playImmediately?: boolean;
+        },
+        additionalState?: Partial<IState>,
+    ) => {
+        const { padIndex, steps, activate, playImmediately } = options;
+        const { currentSequence } = this.state;
         const seq = deserializeSeq(currentSequence[padIndex]);
-        const step = getStepFromPosition(position);
-        const isCurrentStepActive = seq[step] === 1;
-        seq[step] = isCurrentStepActive ? 0 : 1;
+        for (const step of steps) {
+            const isCurrentStepActive = seq[step] === 1;
+            seq[step] = activate ? 1 : isCurrentStepActive ? 0 : 1;
+        }
         const newSeq = serializeSeq(seq);
         // TODO: also serialize the array?
         const newSequences = [...currentSequence];
         newSequences.splice(padIndex, 1, newSeq);
-        this.setState({
-            currentSequence: newSequences,
-        });
+        const newState = {
+            currentSequences: newSequences,
+            ...additionalState,
+        };
+        // not sure why we have to cast here
+        this.setState(newState as IState);
 
-        if (!isCurrentStepActive) {
+        if (steps.length === 1 && playImmediately && seq[steps[0]] === 1) {
             // if we are enabling the current step, then trigger the sample right away
-            this.safePlaySample(padIndex);
+            this.playSample(padIndex);
         }
     };
 
+    /** Move the transport to a particular step */
     private handleCurrentSequenceStepClick = (position: ITimelinePosition) => {
         // move transport
         Tone.Transport.position = positionToBarsBeatsSixteenths(position);
@@ -428,7 +459,7 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
-    private safePlaySample = (padIndex: number, time?: Tone.Types.Time) => {
+    private playSample = (padIndex: number, time?: Tone.Types.Time) => {
         const player = this.sampleBankPlayers!.get(`${padIndex}`);
 
         if (player.loaded) {
@@ -496,6 +527,52 @@ export default class extends React.PureComponent<{}, IState> {
             currentSequence: EMPTY_SEQUENCE,
         });
     };
+
+    private handleFourOnTheFloorShortcut = () => {
+        // HACKHACK: hard coded index
+        const KICK_PAD_INDEX = 2;
+        const kickSeq = deserializeSeq(this.state.currentSequence[KICK_PAD_INDEX]);
+        const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every(
+            i => kickSeq[i] === 1,
+        );
+
+        const steps = flatMap(
+            range(NUM_BARS).map(bar =>
+                range(BEATS_PER_BAR).map(beat => getStepFromPosition({ bar, beat, sixteenth: 0 })),
+            ),
+        );
+
+        this.updateCurrentSequence({
+            padIndex: KICK_PAD_INDEX,
+            steps,
+            // positionOrStep: { bar, beat, sixteenth: 0 },
+            activate: !isShortcutEnabled,
+        });
+    };
+
+    private handleHiHatSixteenthsShortcut = () => {
+        // HACKHACK: hard coded index
+        const HH_PAD_INDEX = 1;
+        const hhSeq = deserializeSeq(this.state.currentSequence[HH_PAD_INDEX]);
+        const isShortcutEnabled = range(TOTAL_NUM_STEPS).every(i => hhSeq[i] === 1);
+
+        // TODO: might be simpler with TOTAL_NUM_STEPS
+        const steps = flatMapDeep(
+            range(NUM_BARS).map(bar =>
+                range(BEATS_PER_BAR).map(beat =>
+                    range(SIXTEENTHS_PER_BEAT).map(sixteenth =>
+                        getStepFromPosition({ bar, beat, sixteenth }),
+                    ),
+                ),
+            ),
+        );
+
+        this.updateCurrentSequence({
+            padIndex: HH_PAD_INDEX,
+            steps,
+            activate: !isShortcutEnabled,
+        });
+    };
 }
 
 interface IPadProps {
@@ -545,14 +622,12 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
                 className={classNames(styles.timelineBeat, { [styles.isCurrent]: isCurrent })}
                 key={beat}
             >
-                {range(SIXTEENTHS_PER_BEAT).map(sixteenth =>
-                    this.renderSixteenth(bar, beat, sixteenth),
-                )}
+                {range(SIXTEENTHS_PER_BEAT).map(sixteenth => this.renderStep(bar, beat, sixteenth))}
             </div>
         );
     }
 
-    private renderSixteenth(bar: number, beat: number, sixteenth: number) {
+    private renderStep(bar: number, beat: number, sixteenth: number) {
         const { position, sequence } = this.props;
         const isCurrent =
             position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
