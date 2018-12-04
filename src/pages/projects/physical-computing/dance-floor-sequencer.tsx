@@ -108,7 +108,8 @@ export default class extends React.PureComponent<{}, IState> {
 
         Tone.Transport.bpm.value = DEFAULT_TEMPO;
         Tone.Transport.loop = true;
-        Tone.Transport.loopEnd = `${NUM_BARS}m`;
+        Tone.Transport.loopStart = "0:0:0";
+        Tone.Transport.loopEnd = `${NUM_BARS}:0:0`;
 
         this.transportEvent = new Tone.Event(() => {
             const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
@@ -129,74 +130,22 @@ export default class extends React.PureComponent<{}, IState> {
             soft: soundUrl("metronome-soft.wav"),
         }).toMaster();
         this.metronomePlayers.get("soft").volume.value = -10;
-        // const metronomeLoop = createLoopWithPlayers(metronomePlayers, "4n", ({ beat, trigger }) => {
-        //     if (!this.state.enableMetronome) {
-        //         return;
-        //     }
-
-        //     // trigger seems to schedule for the next beat, so queue this up in advance (weird)
-        //     if (beat === 3) {
-        //         trigger("loud");
-        //     } else {
-        //         trigger("soft");
-        //     }
-        // });
-        // this.parts.push(metronomeLoop);
 
         // don't await this async action, the loading callbacks aren't working...
         this.loadSampleBank();
 
-        const currentSequencePart = new Tone.Sequence(
-            this.handleSequenceStep,
-            range(TOTAL_NUM_STEPS),
-            "16n",
-        );
+        // const currentSequencePart = new Tone.Sequence(
+        //     this.handleSequenceStep,
+        //     range(TOTAL_NUM_STEPS),
+        //     "16n",
+        // );
         // currentSequencePart.loop = true;
         // currentSequencePart.loopEnd = `${NUM_BARS}m`;
 
-        // const currentSequencePart = createLoopWithPlayers(
-        //     this.sampleBankPlayers!,
-        //     "16n",
-        //     ({ bar, beat, sixteenth, time }) => {
-        //         const { currentSequence, prevSequence } = this.state;
-        //         // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
-        //         const position = { bar, beat, sixteenth };
-        //         const step = getSeqIndex(position);
-
-        //         if (this.state.enableMetronome && sixteenth === 0) {
-        //             if (beat === 3) {
-        //                 metronomePlayers.get("loud").start(time);
-        //             } else {
-        //                 metronomePlayers.get("soft").start(time);
-        //             }
-        //         }
-
-        //         const playSequence = (padSequence: string, padIndex: number) => {
-        //             const seq = deserializeSeq(padSequence);
-        //             if (seq[step] === 1) {
-        //                 const player = this.sampleBankPlayers!.get(`${padIndex}`);
-        //                 if (player.loaded) {
-        //                     console.log(
-        //                         `triggering ${padIndex} in seq`,
-        //                         seq,
-        //                         "on position",
-        //                         position,
-        //                     );
-        //                     player.start(time);
-        //                 } else {
-        //                     console.log(
-        //                         `Player [${padIndex}] not loaded yet or file format is unsupported`,
-        //                     );
-        //                 }
-        //             }
-        //         };
-
-        //         currentSequence.forEach(playSequence);
-        //         if (prevSequence != null) {
-        //             prevSequence.forEach(playSequence);
-        //         }
-        //     },
-        // );
+        const currentSequencePart = new Tone.Loop((time: number) => {
+            const position = getPositionFromBarsBeatsSixteenths(Tone.Transport.position);
+            this.handleSequenceStep(time, getStepFromPosition(position));
+        }, "16n");
 
         this.parts.push(currentSequencePart);
     }
@@ -705,4 +654,13 @@ function positionToBarsBeatsSixteenths({
     sixteenth,
 }: ITimelinePosition): Tone.Types.BarsBeatsSixteenth {
     return `${bar}:${beat}:${sixteenth}`;
+}
+
+function getPositionFromBarsBeatsSixteenths(bbs: Tone.Types.BarsBeatsSixteenth): ITimelinePosition {
+    const [bar, beat, sixteenth] = bbs.split(":");
+    return {
+        bar: parseInt(bar, 10),
+        beat: parseInt(beat, 10),
+        sixteenth: parseInt(sixteenth, 10),
+    };
 }
