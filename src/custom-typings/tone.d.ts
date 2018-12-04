@@ -288,7 +288,12 @@ declare module "tone" {
         }
 
         // TODO: complete definition
-        class Time extends TimeBase {}
+        class Time extends TimeBase {
+            /**
+             * Return the time encoded as Bars:Beats:Sixteenths.
+             */
+            public toBarsBeatsSixteenths(): Types.BarsBeatsSixteenth;
+        }
 
         // TODO: complete definition
         class Frequency extends TimeBase {

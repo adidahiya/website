@@ -39,6 +39,12 @@ interface ITimelinePosition {
 /** indexed by pad number, serialized */
 type Sequence = string[];
 
+interface ISequencerStore {
+    sequences: {
+        [epochTime: string]: Sequence;
+    };
+}
+
 interface IState {
     isPlaying: boolean;
     enableMetronome: boolean;
@@ -72,11 +78,11 @@ export default class extends React.PureComponent<{}, IState> {
     public async componentDidMount() {
         const savedSequences = localStorage.getItem(LS_KEY);
         if (savedSequences != null) {
-            const deserialized = JSON.parse(savedSequences);
-            const latest = max(Object.keys(deserialized).map(key => parseInt(key, 10)));
+            const store: ISequencerStore = JSON.parse(savedSequences);
+            const latest = max(Object.keys(store.sequences).map(key => parseInt(key, 10)));
             if (latest !== undefined) {
                 this.setState({
-                    prevSequence: deserialized[latest],
+                    prevSequence: store.sequences[latest],
                 });
             }
         }
@@ -86,7 +92,6 @@ export default class extends React.PureComponent<{}, IState> {
         this.serial.open(ARDUINO_PORT_NAME);
         this.bindSerialEventHandlers();
 
-        Tone.context.latencyHint = "playback";
         Tone.Transport.bpm.value = DEFAULT_TEMPO;
         Tone.Transport.loop = true;
         Tone.Transport.loopEnd = `${NUM_BARS}m`;
@@ -144,20 +149,7 @@ export default class extends React.PureComponent<{}, IState> {
                 const playSequence = (padSequence: string, padIndex: number) => {
                     const seq = deserializeSeq(padSequence);
                     if (seq[step] === 1) {
-                        const player = this.sampleBankPlayers!.get(`${padIndex}`);
-                        if (player.loaded) {
-                            console.log(
-                                `triggering ${padIndex} in seq`,
-                                seq,
-                                "on position",
-                                position,
-                            );
-                            player.start(time);
-                        } else {
-                            console.log(
-                                `Player [${padIndex}] not loaded yet or file format is unsupported`,
-                            );
-                        }
+                        this.safePlaySample(padIndex);
                     }
                 };
 
@@ -305,24 +297,30 @@ export default class extends React.PureComponent<{}, IState> {
                 <div className={styles.pads}>
                     {range(PAD_DIMENSIONS).map(i => (
                         <div className={styles.padRow} key={i}>
-                            {range(PAD_DIMENSIONS).map(j => (
-                                <Pad
-                                    i={i}
-                                    j={j}
-                                    position={position}
-                                    sequence={deserializeSeq(
-                                        currentSequence[i * PAD_DIMENSIONS + j],
-                                    )}
-                                    onClick={this.getPadClickHandler(i, j)}
-                                    key={j}
-                                />
-                            ))}
+                            {range(PAD_DIMENSIONS).map(j => this.renderPad(i, j))}
                         </div>
                     ))}
                 </div>
             </Layout>
         );
     }
+
+    /**
+     * Pad indices are calculated counting from top left -> bottom right, zero-indexed.
+     */
+    private renderPad = (i: number, j: number) => {
+        const { position, currentSequence } = this.state;
+        const index = i * PAD_DIMENSIONS + j;
+        return (
+            <Pad
+                index={index}
+                position={position}
+                sequence={deserializeSeq(currentSequence[i * PAD_DIMENSIONS + j])}
+                onClick={this.getPadClickHandler(index)}
+                key={j}
+            />
+        );
+    };
 
     private bindSerialEventHandlers() {
         this.serial.on("connected", () => console.log("connected"));
@@ -334,23 +332,8 @@ export default class extends React.PureComponent<{}, IState> {
                 console.log("Serial data: ", data.trim());
                 const triggeredPad = parseInt(data.trim(), 10);
                 // 3 and 1 are switched in the arduino side
-                let i: number;
-                let j: number;
-                switch (triggeredPad) {
-                    case 0:
-                        [i, j] = [0, 0];
-                        break;
-                    case 1:
-                        [i, j] = [1, 1];
-                        break;
-                    case 2:
-                        [i, j] = [1, 0];
-                        break;
-                    case 3:
-                        [i, j] = [1, 1];
-                        break;
-                }
-                this.getPadClickHandler(i!, j!)();
+                const padIndex = triggeredPad === 3 ? 1 : triggeredPad === 1 ? 3 : triggeredPad;
+                this.getPadClickHandler(padIndex)();
             }
         });
         this.serial.on("error", (err: any) => console.log("error", err));
@@ -377,13 +360,14 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private getPadClickHandler = (i: number, j: number) => () => {
-        // toggle sequence step
+    private getPadClickHandler = (padIndex: number) => () => {
         const { position, currentSequence } = this.state;
-        const padIndex = i * PAD_DIMENSIONS + j;
+
+        // toggle sequence at current step position
         const seq = deserializeSeq(currentSequence[padIndex]);
-        const seqIndex = getSeqIndex(position);
-        seq[seqIndex] = seq[seqIndex] === 0 ? 1 : 0;
+        const step = getStepFromPosition(position);
+        const isCurrentStepActive = seq[step] === 1;
+        seq[step] = isCurrentStepActive ? 0 : 1;
         const newSeq = serializeSeq(seq);
         // TODO: also serialize the array?
         const newSequences = [...currentSequence];
@@ -391,6 +375,11 @@ export default class extends React.PureComponent<{}, IState> {
         this.setState({
             currentSequence: newSequences,
         });
+
+        if (!isCurrentStepActive) {
+            // if we are enabling the current step, then trigger the sample right away
+            this.safePlaySample(padIndex);
+        }
     };
 
     private handleCurrentSequenceStepClick = (position: ITimelinePosition) => {
@@ -439,6 +428,21 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
+    private safePlaySample = (padIndex: number, time?: Tone.Types.Time) => {
+        const player = this.sampleBankPlayers!.get(`${padIndex}`);
+
+        if (player.loaded) {
+            if (time !== undefined) {
+                const position = new Tone.Time(time).toBarsBeatsSixteenths();
+                console.log(`Triggering pad ${padIndex} at ${position}`);
+            }
+            player.start(time);
+            window.performance.mark("played sample!");
+        } else {
+            console.log(`Pad ${padIndex} not loaded yet or file format is unsupported`);
+        }
+    };
+
     private resetCurrentSequence = () => {
         if (this.state.currentSequence === EMPTY_SEQUENCE) {
             this.setState({
@@ -449,24 +453,44 @@ export default class extends React.PureComponent<{}, IState> {
                 currentSequence: EMPTY_SEQUENCE,
             });
         }
+
+        const serializedStore = localStorage.getItem(LS_KEY);
+        // this should always be non-null at this point since resetting is disabled until you advance,
+        // but just to be safe...
+        if (serializedStore != null) {
+            const store: ISequencerStore = JSON.parse(serializedStore);
+            // wipe out stored sequences (dangerous!)
+            const newStore = {
+                ...store,
+                sequences: {},
+            };
+            localStorage.setItem(LS_KEY, JSON.stringify(newStore));
+        }
     };
 
     private saveSequenceAndAdvanceToNextPlayer = () => {
         const { currentSequence } = this.state;
         const now = Date.now();
-        let newEntry = {
+        const newSequences = {
             [now]: currentSequence,
         };
+        let newStore: ISequencerStore = {
+            sequences: newSequences,
+        };
 
-        const existingSequences = localStorage.getItem(LS_KEY);
-        if (existingSequences != null) {
-            newEntry = {
-                ...JSON.parse(existingSequences),
-                ...newEntry,
+        const serializedStore = localStorage.getItem(LS_KEY);
+        if (serializedStore != null) {
+            const store: ISequencerStore = JSON.parse(serializedStore);
+            newStore = {
+                ...store,
+                sequences: {
+                    ...store.sequences,
+                    ...newSequences,
+                },
             };
         }
 
-        localStorage.setItem(LS_KEY, JSON.stringify(newEntry));
+        localStorage.setItem(LS_KEY, JSON.stringify(newStore));
         this.setState({
             prevSequence: currentSequence,
             currentSequence: EMPTY_SEQUENCE,
@@ -475,8 +499,7 @@ export default class extends React.PureComponent<{}, IState> {
 }
 
 interface IPadProps {
-    i: number;
-    j: number;
+    index: number;
     position: ITimelinePosition;
     sequence: IPadSequence;
     onClick: () => void;
@@ -485,7 +508,7 @@ interface IPadProps {
 class Pad extends React.Component<IPadProps> {
     public render() {
         const { position, sequence } = this.props;
-        const isActive = sequence[getSeqIndex(position)] === 1;
+        const isActive = sequence[getStepFromPosition(position)] === 1;
         const classes = classNames(styles.pad, { [styles.padActive]: isActive });
         return <div className={classes} onClick={this.handleClick} />;
     }
@@ -535,7 +558,7 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
             position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
         const hasNote =
             sequence != null &&
-            sequence.some(s => s.charAt(getSeqIndex({ bar, beat, sixteenth })) === "1");
+            sequence.some(s => s.charAt(getStepFromPosition({ bar, beat, sixteenth })) === "1");
         return (
             <div
                 className={classNames(styles.timelineSixteenth, {
@@ -555,12 +578,12 @@ function serializeSeq(seq: IPadSequence): string {
     return seq.join("");
 }
 
-// TODO: use binary for an even more compact format
+// TODO: use binary for an even more compact format. but for now this is more debuggable.
 function deserializeSeq(seq: string): IPadSequence {
     return seq.split("").map(s => (s === "0" ? 0 : 1));
 }
 
-function getSeqIndex(position: ITimelinePosition): number {
+function getStepFromPosition(position: ITimelinePosition): number {
     return (
         position.bar * SIXTEENTHS_PER_BEAT * BEATS_PER_BAR +
         position.beat * BEATS_PER_BAR +
