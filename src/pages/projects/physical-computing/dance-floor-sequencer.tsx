@@ -286,44 +286,52 @@ export default class extends React.PureComponent<{}, IState> {
 
     // used for tuning & throttling the serial data communication
     private timeOfLastPadActivations: number[] = [];
-    private padActivationDebounce = 125; // milliseconds
+    private padActivationDebounce = 200; // milliseconds
 
     private bindSerialEventHandlers() {
         this.serial.on("connected", () => console.log("connected"));
         this.serial.on("open", () => console.log("open"));
 
         // can only do this once component is mounted
+        // it's used in this.handleSerialData
         this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
             window.performance.now(),
         );
 
-        this.serial.on("data", () => {
-            const data: string = this.serial.readLine();
-            const now = performance.now();
-
-            if (data != null && data.trim() !== "") {
-                // expecting serialized changes of the form '0000'
-                // 0 = no change, 1 = turned on, 2 = turned off
-                console.log("Serial data: ", data.trim());
-                const changes = data
-                    .trim()
-                    .split("")
-                    .map(s => parseInt(s, 10));
-                changes.forEach((c, i) => {
-                    // prevent thrashing
-                    if (
-                        c === 1 &&
-                        now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
-                    ) {
-                        this.getPadClickHandler(i)();
-                        this.timeOfLastPadActivations[i] = window.performance.now();
-                    }
-                });
-            }
-        });
+        this.serial.on("data", this.handleSerialData);
         this.serial.on("error", (err: any) => console.log("error", err));
         this.serial.on("close", () => console.log("closed"));
     }
+
+    private handleSerialData = () => {
+        const data: string = this.serial.readLine();
+        const now = performance.now();
+
+        if (data != null && data.trim() !== "") {
+            const trimmedData = data.trim();
+            console.log("Serial data: ", trimmedData);
+
+            // expecting serialized changes of the form '0000'
+            // 0 = no change, 1 = turned on, 2 = turned off
+            if (trimmedData.length !== 4) {
+                return;
+            }
+
+            const changes = trimmedData.split("").map(s => parseInt(s, 10));
+            changes.forEach((c, i) => {
+                // re-map indices here, will fix this later in hardware (or just leave it as-is, this is pretty straightforward...)
+                i = ({ 0: 2, 1: 3, 2: 0, 3: 1 } as { [key: number]: number })[i];
+                // prevent thrashing
+                if (
+                    c === 1 &&
+                    now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
+                ) {
+                    this.getPadClickHandler(i)();
+                    this.timeOfLastPadActivations[i] = window.performance.now();
+                }
+            });
+        }
+    };
 
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
@@ -345,12 +353,15 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private getPadClickHandler = (padIndex: number, playImmediately = true) => () => {
-        this.updateCurrentSequence({
-            padIndex,
-            steps: [getStepFromPosition(this.state.position)],
-            playImmediately,
-        });
+    private getPadClickHandler = (padIndex: number) => () => {
+        if (Tone.Transport.state === "started") {
+            this.updateCurrentSequence({
+                padIndex,
+                steps: [getStepFromPosition(this.state.position)],
+            });
+        }
+
+        this.playSample(padIndex);
     };
 
     /** Where most of the audio happens. */
@@ -389,10 +400,8 @@ export default class extends React.PureComponent<{}, IState> {
         steps: number[];
         /** Whether to set the step(s) to active, if omitted then this acts as a toggle */
         activate?: boolean;
-        /** If a single step is being updated, whether to play the sample immediately. @default false */
-        playImmediately?: boolean;
     }) => {
-        const { padIndex, steps, activate, playImmediately = false } = options;
+        const { padIndex, steps, activate } = options;
         const { currentSequence } = this.state;
         const seq = deserializeSeq(currentSequence[padIndex]);
         for (const step of steps) {
@@ -407,11 +416,6 @@ export default class extends React.PureComponent<{}, IState> {
             currentSequence: newSequences,
         };
         this.setState(newState);
-
-        if (steps.length === 1 && playImmediately && seq[steps[0]] === 1) {
-            // if we are enabling the current step, then trigger the sample right away
-            this.playSample(padIndex);
-        }
     };
 
     /** Move the transport to a particular step */

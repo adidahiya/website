@@ -587,7 +587,7 @@ declare module "tone" {
             /**
              * Returns the playback state of the source, either “started”, “stopped”, or “paused”
              */
-            public readonly state: string;
+            public readonly state: "started" | "stopped" | "paused";
             /**
              * The swing value. Between 0-1 where 1 equal to the note + half the subdivision.
              */
