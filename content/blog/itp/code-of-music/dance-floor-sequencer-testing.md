@@ -7,7 +7,7 @@ date: "2018-12-03"
 
 I've changed my final project idea and I'm now building a dance floor step sequencer (combined with physical computing). See my progress from the weekend [here](../../physical-computing/week-12-dance-floor-progress).
 
-Today we did user testing in class. Here's a short clip of one session (the sequencer wasn't recording correctly here, but you get the right idea...)
+Today we did user testing in class. Here's a short clip of one session (the floor switches started to break down near the end of the testing session, but you get the right idea...)
 
 <iframe src="https://player.vimeo.com/video/304268515?loop=1&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
