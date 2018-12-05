@@ -5,7 +5,7 @@ date: "2018-12-01"
 
 ## Dance floor sequencer
 
-After some encouraging feedback in class, I've decided to proceed with the [interactive dance floor project](../week-11-final-dance-floor). I'm also interested in combining this project with my Code of Music final. At a high level, the first iteration of this concept involved beat detection as a user danced to the tracks played during a DJ set and an adjustment of tempo / track in reaction to changes in dancing tempo.
+After some encouraging feedback in class, I've decided to proceed with the [interactive dance floor project](./week-11-final-dance-floor). I'm also interested in combining this project with my Code of Music final. At a high level, the first iteration of this concept involved beat detection as a user danced to the tracks played during a DJ set and an adjustment of tempo / track in reaction to changes in dancing tempo.
 
 I made some new sketches trying to to incorporate a Leap Motion controller and an interactive [t-SNE](https://lvdmaaten.github.io/tsne/) visualization of tracks based on musical similarity, but this seemed like a stretch, so I'm shelving that part for now:
 
