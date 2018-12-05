@@ -183,8 +183,8 @@ export default class extends React.PureComponent<{}, IState> {
         } = this.state;
 
         return (
-            <Layout title="dance floor sequencer">
-                <h3>dance floor sequencer</h3>
+            <Layout title="dance floor MPC">
+                <h3>dance floor MPC</h3>
                 <div className={styles.transportControls}>
                     <FormGroup inline={true}>
                         <Button
