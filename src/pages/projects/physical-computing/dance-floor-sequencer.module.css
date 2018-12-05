@@ -9,14 +9,15 @@
 }
 
 .pad {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background: #FF6E4A;
     border: solid 1px white;
+    opacity: 0.7;
 }
 
 .padActive {
-    background: #D13913;
+    opacity: 1;
 }
 
 .timeline {

@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Checkbox, Colors, FormGroup, Slider } from "@blueprintjs/core";
 import chroma from "chroma-js";
 import classNames from "classnames";
-import { flatMap, flatMapDeep, max, noop, range } from "lodash-es";
+import { flatMap, flatMapDeep, max, noop, range, throttle } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
@@ -284,18 +284,41 @@ export default class extends React.PureComponent<{}, IState> {
         );
     };
 
+    // used for tuning & throttling the serial data communication
+    private timeOfLastPadActivations: number[] = [];
+    private padActivationDebounce = 125; // milliseconds
+
     private bindSerialEventHandlers() {
         this.serial.on("connected", () => console.log("connected"));
         this.serial.on("open", () => console.log("open"));
+
+        // can only do this once component is mounted
+        this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
+            window.performance.now(),
+        );
+
         this.serial.on("data", () => {
-            const data = this.serial.readLine();
+            const data: string = this.serial.readLine();
+            const now = performance.now();
 
             if (data != null && data.trim() !== "") {
+                // expecting serialized changes of the form '0000'
+                // 0 = no change, 1 = turned on, 2 = turned off
                 console.log("Serial data: ", data.trim());
-                const triggeredPad = parseInt(data.trim(), 10);
-                // 3 and 1 are switched in the arduino side
-                const padIndex = triggeredPad === 3 ? 1 : triggeredPad === 1 ? 3 : triggeredPad;
-                this.getPadClickHandler(padIndex)();
+                const changes = data
+                    .trim()
+                    .split("")
+                    .map(s => parseInt(s, 10));
+                changes.forEach((c, i) => {
+                    // prevent thrashing
+                    if (
+                        c === 1 &&
+                        now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
+                    ) {
+                        this.getPadClickHandler(i)();
+                        this.timeOfLastPadActivations[i] = window.performance.now();
+                    }
+                });
             }
         });
         this.serial.on("error", (err: any) => console.log("error", err));
@@ -322,11 +345,11 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private getPadClickHandler = (padIndex: number) => () => {
+    private getPadClickHandler = (padIndex: number, playImmediately = true) => () => {
         this.updateCurrentSequence({
             padIndex,
             steps: [getStepFromPosition(this.state.position)],
-            playImmediately: true,
+            playImmediately,
         });
     };
 
