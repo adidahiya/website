@@ -30,7 +30,7 @@ In preparation for tomorrow's user testing in Physical Computing, I made the swi
 
 <iframe src="https://player.vimeo.com/video/304527287?loop=1&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-I recorded some more testing to produce a video for the winter show application:
+I recorded some more testing to produce a video for [my winter show application](/slices/dance-floor-mpc):
 
 <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/304532875?loop=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
