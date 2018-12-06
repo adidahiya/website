@@ -1,16 +1,19 @@
 import { Button, ButtonGroup, Checkbox, Colors, FormGroup, Slider } from "@blueprintjs/core";
 import chroma from "chroma-js";
 import classNames from "classnames";
-import { flatMap, flatMapDeep, max, noop, range, throttle } from "lodash-es";
+import { debounce, flatMap, flatMapDeep, max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import Tone from "tone";
-// import { createLoopWithPlayers } from "../../../common";
+import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import styles from "./dance-floor-sequencer.module.css";
 
-const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
+/** USB port name for p5.serialport */
+const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14201";
+/** width dimension */
 const PADS_WIDTH = 2;
+/** height dimension */
 const PADS_HEIGHT = 2;
 /** number of steps in the sequencer */
 const NUM_BARS = 2;
@@ -22,14 +25,16 @@ const SIXTEENTHS_PER_BEAT = 4;
 const TOTAL_NUM_STEPS = NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT;
 /** default tempo */
 const DEFAULT_TEMPO = 120;
+/** local storage key */
+const LS_KEY = "dance-floor-sequencer";
 /** get a url for a sound file relevant to this project */
 const soundUrl = (filename: string) => `/sounds/floor-sequencer/${filename}`;
+
 const EMPTY_SEQUENCE = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
     range(TOTAL_NUM_STEPS)
         .map(() => "0")
         .join(""),
 );
-const LS_KEY = "dance-floor-sequencer";
 
 /** Pad colors for the sequence timeline */
 const PAD_COLORS: { [i: number]: string } = {
@@ -73,6 +78,7 @@ interface IState {
     currentSequence: Sequence;
     prevSequence: Sequence | undefined | null;
     tempo: number;
+    isSerialConnectionOpen: boolean;
 }
 
 export default class extends React.PureComponent<{}, IState> {
@@ -88,6 +94,7 @@ export default class extends React.PureComponent<{}, IState> {
         currentSequence: EMPTY_SEQUENCE,
         prevSequence: undefined,
         tempo: DEFAULT_TEMPO,
+        isSerialConnectionOpen: false,
     };
 
     private serial: any;
@@ -113,7 +120,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         this.serial = new (p5 as any).SerialPort();
         // this.bindSerialEventHandlers();
-        this.serial.open(ARDUINO_PORT_NAME);
+        this.openSerialConnection();
         this.bindSerialEventHandlers();
 
         Tone.Transport.bpm.value = DEFAULT_TEMPO;
@@ -121,16 +128,7 @@ export default class extends React.PureComponent<{}, IState> {
         Tone.Transport.loopStart = "0:0:0";
         Tone.Transport.loopEnd = `${NUM_BARS}:0:0`;
 
-        this.transportEvent = new Tone.Event(() => {
-            const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
-            this.setState({
-                position: {
-                    bar: parseInt(bar, 10),
-                    beat: parseInt(beat, 10),
-                    sixteenth: parseInt(sixteenth, 10),
-                },
-            });
-        });
+        this.transportEvent = new Tone.Event(this.handleTransportStepEvent);
         this.transportEvent.loop = true;
         this.transportEvent.loopEnd = "16n";
         this.transportEvent.start();
@@ -174,10 +172,11 @@ export default class extends React.PureComponent<{}, IState> {
 
     public render() {
         const {
-            isPlaying,
-            enableMetronome,
-            position,
             currentSequence,
+            enableMetronome,
+            isPlaying,
+            isSerialConnectionOpen,
+            position,
             prevSequence,
             tempo,
         } = this.state;
@@ -199,7 +198,7 @@ export default class extends React.PureComponent<{}, IState> {
                             intent="danger"
                             onClick={this.resetCurrentSequence}
                             style={{ marginRight: 10 }}
-                            text="Reset"
+                            text="reset"
                             disabled={currentSequence === EMPTY_SEQUENCE && prevSequence == null}
                         />
                         <Button
@@ -251,6 +250,13 @@ export default class extends React.PureComponent<{}, IState> {
                         <Button text="hi-hat 16ths" onClick={this.handleHiHatSixteenthsShortcut} />
                     </ButtonGroup>
                 </FormGroup>
+                <FormGroup label="debugging" style={{ marginTop: 20 }}>
+                    <Button
+                        intent={isSerialConnectionOpen ? "danger" : "success"}
+                        text={isSerialConnectionOpen ? "close serial" : "open serial"}
+                        onClick={this.toggleSerialConnection}
+                    />
+                </FormGroup>
             </Layout>
         );
     }
@@ -284,13 +290,33 @@ export default class extends React.PureComponent<{}, IState> {
         );
     };
 
+    private handleTransportStepEvent = () => {
+        const [barString, beatString, sixteenthString] = Tone.Transport.position.split(":");
+        const bar = parseInt(barString, 10);
+        const beat = parseInt(beatString, 10);
+        const sixteenth = parseInt(sixteenthString, 10);
+
+        this.setState({
+            position: { bar, beat, sixteenth },
+        });
+
+        // tell arduino so LEDs can reflect state
+        if (this.state.isSerialConnectionOpen) {
+            const step = getStepFromPosition({ bar, beat, sixteenth });
+            this.serial.write(`transportStep:${padStart(step, 2, "0")}\n`);
+        }
+    };
+
     // used for tuning & throttling the serial data communication
     private timeOfLastPadActivations: number[] = [];
     private padActivationDebounce = 200; // milliseconds
 
     private bindSerialEventHandlers() {
         this.serial.on("connected", () => console.log("connected"));
-        this.serial.on("open", () => console.log("open"));
+        this.serial.on("open", () => {
+            console.log("open");
+            this.setState({ isSerialConnectionOpen: true });
+        });
 
         // can only do this once component is mounted
         // it's used in this.handleSerialData
@@ -300,12 +326,33 @@ export default class extends React.PureComponent<{}, IState> {
 
         this.serial.on("data", this.handleSerialData);
         this.serial.on("error", (err: any) => console.log("error", err));
-        this.serial.on("close", () => console.log("closed"));
+        this.serial.on("close", () => {
+            console.log("closed");
+            this.setState({ isSerialConnectionOpen: false });
+            // console.log("  attempting to re-open");
+            // this.openSerialConnection();
+        });
     }
+
+    private toggleSerialConnection = () => {
+        if (this.state.isSerialConnectionOpen) {
+            this.closeSerialConnection();
+        } else {
+            this.openSerialConnection();
+        }
+    };
+
+    private openSerialConnection = debounce(() => {
+        this.serial.open(ARDUINO_PORT_NAME);
+    }, 500);
+
+    private closeSerialConnection = debounce(() => {
+        this.serial.close();
+    }, 500);
 
     private handleSerialData = () => {
         const data: string = this.serial.readLine();
-        const now = performance.now();
+        const now = window.performance.now();
 
         if (data != null && data.trim() !== "") {
             const trimmedData = data.trim();
