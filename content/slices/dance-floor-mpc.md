@@ -33,7 +33,8 @@ At this point I think the biggest risk factor for this project is the timely fab
 
 These should give you an idea of my rapid progress over the past few days and how I'm thinking about fabrication:
 
-- [Week 13 - Dance floor MPC progress, part 3](/blog/itp/physical-computing/week-13-dance-floor-mpc-1)
+- [Week 13 - Dance floor MPC progress, part 4](/blog/itp/physical-computing/week-13-dance-floor-mpc-4)
+- [Week 13 - Dance floor MPC progress, part 3](/blog/itp/physical-computing/week-13-dance-floor-mpc-3)
 - [Week 13 - Dance floor sequencer progress, part 2](/blog/itp/physical-computing/week-13-dance-floor-progress)
 - [Week 12 - Dance floor sequencer progress, part 1](/blog/itp/physical-computing/week-12-dance-floor-progress)
 - [Week 12 - Dance floor sequencer](/blog/itp/physical-computing/week-12-dance-floor-sequencer)

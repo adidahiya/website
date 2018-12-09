@@ -99,7 +99,7 @@ export default class extends React.PureComponent<{}, IState> {
 
     private serial: any;
     private transportEvent?: Tone.Event;
-    private parts: Array<Tone.Part | Tone.Loop> = [];
+    private readonly parts: Array<Tone.Part | Tone.Loop> = [];
     private metronomePlayers?: Tone.Players;
     private sampleBankPlayers?: Tone.Players;
 
@@ -137,6 +137,7 @@ export default class extends React.PureComponent<{}, IState> {
             loud: soundUrl("metronome-loud.wav"),
             soft: soundUrl("metronome-soft.wav"),
         }).toMaster();
+        // TODO: sync() each player to transport (but there doesn't seem to be a way to iterate over players automatically...)
         this.metronomePlayers.get("soft").volume.value = -10;
 
         // don't await this async action, the loading callbacks aren't working...
@@ -290,6 +291,8 @@ export default class extends React.PureComponent<{}, IState> {
         );
     };
 
+    // we don't have to use Tone.Draw to sync up visuals because React's rendering pipeline uses
+    // requestAnimationFrame, which is really all `Tone.Draw.schedule()` does anyway
     private handleTransportStepEvent = () => {
         const [barString, beatString, sixteenthString] = Tone.Transport.position.split(":");
         const bar = parseInt(barString, 10);
