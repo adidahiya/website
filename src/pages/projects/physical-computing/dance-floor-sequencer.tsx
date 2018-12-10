@@ -1,4 +1,13 @@
-import { Button, ButtonGroup, Checkbox, Colors, FormGroup, Slider } from "@blueprintjs/core";
+import {
+    Button,
+    ButtonGroup,
+    Checkbox,
+    Classes,
+    Colors,
+    FormGroup,
+    HTMLSelect,
+    Slider,
+} from "@blueprintjs/core";
 import chroma from "chroma-js";
 import classNames from "classnames";
 import { debounce, flatMap, flatMapDeep, max, noop, range } from "lodash-es";
@@ -10,7 +19,7 @@ import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import styles from "./dance-floor-sequencer.module.css";
 
 /** USB port name for p5.serialport */
-const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14201";
+const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
 /** width dimension */
 const PADS_WIDTH = 2;
 /** height dimension */
@@ -25,6 +34,8 @@ const SIXTEENTHS_PER_BEAT = 4;
 const TOTAL_NUM_STEPS = NUM_BARS * BEATS_PER_BAR * SIXTEENTHS_PER_BEAT;
 /** default tempo */
 const DEFAULT_TEMPO = 120;
+/** default swing */
+const DEFAULT_SWING = 0;
 /** local storage key */
 const LS_KEY = "dance-floor-sequencer";
 /** get a url for a sound file relevant to this project */
@@ -45,6 +56,9 @@ const PAD_COLORS: { [i: number]: string } = {
 };
 const DEFAULT_STEP_COLOR = Colors.GRAY4;
 
+/** available sample banks */
+const AVAILABLE_SAMPLE_BANKS = ["808", "909", "yakiman"];
+
 // tslint:disable no-console
 
 interface ITimelinePosition {
@@ -53,12 +67,16 @@ interface ITimelinePosition {
     sixteenth: number;
 }
 
-/** indexed by pad number, serialized */
+/**
+ * indexed by pad number, serialized representation of sequence
+ * 0 = off, 1 = active, 2 = accent
+ */
 type Sequence = string[];
 
 /** identifier for a sample bank */
 type SampleBankId = string;
 
+/** gets serialized to localStorage */
 interface ISequencerStore {
     sequences: {
         [epochTime: string]: {
@@ -78,6 +96,7 @@ interface IState {
     currentSequence: Sequence;
     prevSequence: Sequence | undefined | null;
     tempo: number;
+    swing: Tone.Types.NormalRange;
     isSerialConnectionOpen: boolean;
 }
 
@@ -94,9 +113,11 @@ export default class extends React.PureComponent<{}, IState> {
         currentSequence: EMPTY_SEQUENCE,
         prevSequence: undefined,
         tempo: DEFAULT_TEMPO,
+        swing: DEFAULT_SWING,
         isSerialConnectionOpen: false,
     };
 
+    // TODO: typings
     private serial: any;
     private transportEvent?: Tone.Event;
     private readonly parts: Array<Tone.Part | Tone.Loop> = [];
@@ -143,14 +164,6 @@ export default class extends React.PureComponent<{}, IState> {
         // don't await this async action, the loading callbacks aren't working...
         this.loadSampleBank();
 
-        // const currentSequencePart = new Tone.Sequence(
-        //     this.handleSequenceStep,
-        //     range(TOTAL_NUM_STEPS),
-        //     "16n",
-        // );
-        // currentSequencePart.loop = true;
-        // currentSequencePart.loopEnd = `${NUM_BARS}m`;
-
         const currentSequencePart = new Tone.Loop((time: number) => {
             const position = getPositionFromBarsBeatsSixteenths(Tone.Transport.position);
             this.handleSequenceStep(time, getStepFromPosition(position));
@@ -180,10 +193,15 @@ export default class extends React.PureComponent<{}, IState> {
             position,
             prevSequence,
             tempo,
+            swing,
+            sampleBank,
         } = this.state;
 
         return (
-            <Layout title="dance floor MPC">
+            <Layout
+                title="dance floor MPC"
+                className={classNames(Classes.DARK, styles.layoutContainer)}
+            >
                 <h3>dance floor MPC</h3>
                 <div className={styles.transportControls}>
                     <FormGroup inline={true}>
@@ -218,7 +236,7 @@ export default class extends React.PureComponent<{}, IState> {
                             style={{ verticalAlign: "top" }}
                         />
                     </FormGroup>
-                    <FormGroup label="tempo">
+                    <FormGroup label="tempo and swing" className="tempo-swing-form-group">
                         <Slider
                             labelStepSize={10}
                             max={180}
@@ -229,6 +247,20 @@ export default class extends React.PureComponent<{}, IState> {
                             }}
                             stepSize={1}
                             value={tempo}
+                        />
+                        <Slider
+                            labelStepSize={0.5}
+                            max={1}
+                            min={0}
+                            onChange={newSwing => {
+                                // sometimes Slider returns extra sig figs
+                                newSwing = Math.round(newSwing * 10) / 10;
+                                Tone.Transport.swing = newSwing;
+                                console.log("set swing", newSwing);
+                                this.setState({ swing: newSwing });
+                            }}
+                            stepSize={0.1}
+                            value={swing}
                         />
                     </FormGroup>
                 </div>
@@ -245,6 +277,18 @@ export default class extends React.PureComponent<{}, IState> {
                     />
                 </div>
                 {this.renderPadMatrix()}
+                <FormGroup label="sample bank" style={{ marginTop: 20 }}>
+                    <HTMLSelect
+                        value={sampleBank}
+                        options={AVAILABLE_SAMPLE_BANKS}
+                        onChange={evt => {
+                            const newSampleBank = evt.currentTarget.value;
+                            this.setState({ sampleBank: newSampleBank }, () =>
+                                this.loadSampleBank(),
+                            );
+                        }}
+                    />
+                </FormGroup>
                 <FormGroup label="shortcuts" style={{ marginTop: 20 }}>
                     <ButtonGroup>
                         <Button text="4 on the floor" onClick={this.handleFourOnTheFloorShortcut} />
@@ -359,24 +403,27 @@ export default class extends React.PureComponent<{}, IState> {
 
         if (data != null && data.trim() !== "") {
             const trimmedData = data.trim();
-            console.log("Serial data: ", trimmedData);
 
-            // expecting serialized changes of the form '0000'
-            // 0 = no change, 1 = turned on, 2 = turned off
-            if (trimmedData.length !== 4) {
+            // expecting serialized changes of the form 'padChanges:0000'
+            // 0 = no change, 1 = turned on, 2 = accent, 3 = turned off
+            if (!trimmedData.startsWith("padChanges:")) {
                 return;
             }
 
-            const changes = trimmedData.split("").map(s => parseInt(s, 10));
+            console.log(trimmedData);
+            // interpret change data as numbers
+            const changes = trimmedData
+                .substr("padChanges:".length)
+                .split("")
+                .map(s => parseInt(s, 10));
+            // react to changes if necessary
             changes.forEach((c, i) => {
-                // re-map indices here, will fix this later in hardware (or just leave it as-is, this is pretty straightforward...)
-                i = ({ 0: 2, 1: 3, 2: 0, 3: 1 } as { [key: number]: number })[i];
                 // prevent thrashing
                 if (
-                    c === 1 &&
+                    isStepActive(c) &&
                     now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
                 ) {
-                    this.getPadClickHandler(i)();
+                    this.getPadClickHandler(i, isStepAccent(c))();
                     this.timeOfLastPadActivations[i] = window.performance.now();
                 }
             });
@@ -403,15 +450,22 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private getPadClickHandler = (padIndex: number) => () => {
+    private getPadClickHandler = (padIndex: number, accent = false) => (
+        evt?: React.MouseEvent<HTMLDivElement>,
+    ) => {
+        if (evt != null) {
+            accent = evt.shiftKey;
+        }
+
         if (Tone.Transport.state === "started") {
             this.updateCurrentSequence({
+                accent,
                 padIndex,
                 steps: [getStepFromPosition(this.state.position)],
             });
         }
 
-        this.playSample(padIndex);
+        this.playSample(padIndex, accent);
     };
 
     /** Where most of the audio happens. */
@@ -432,8 +486,8 @@ export default class extends React.PureComponent<{}, IState> {
         const padsPlayedDuringThisStep: number[] = [];
         const playSequence = (padSequence: string, padIndex: number) => {
             const seq = deserializeSeq(padSequence);
-            if (seq[step] === 1 && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
-                this.playSample(padIndex);
+            if (isStepActive(seq[step]) && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
+                this.playSample(padIndex, isStepAccent(seq[step]));
                 padsPlayedDuringThisStep.push(padIndex);
             }
         };
@@ -449,14 +503,23 @@ export default class extends React.PureComponent<{}, IState> {
         /** Steps to update in a batch */
         steps: number[];
         /** Whether to set the step(s) to active, if omitted then this acts as a toggle */
-        activate?: boolean;
+        forceActivate?: boolean;
+        /** Whether this is an accent, only works if we are activating */
+        accent?: boolean;
     }) => {
-        const { padIndex, steps, activate } = options;
+        const { padIndex, steps, forceActivate, accent } = options;
         const { currentSequence } = this.state;
         const seq = deserializeSeq(currentSequence[padIndex]);
         for (const step of steps) {
             const isCurrentStepActive = seq[step] === 1;
-            seq[step] = activate ? 1 : isCurrentStepActive ? 0 : 1;
+            const isActivating = forceActivate || !isCurrentStepActive;
+            if (isActivating && accent) {
+                seq[step] = 2;
+            } else if (isActivating) {
+                seq[step] = 1;
+            } else {
+                seq[step] = 0;
+            }
         }
         const newSeq = serializeSeq(seq);
         // TODO: also serialize the array?
@@ -499,10 +562,11 @@ export default class extends React.PureComponent<{}, IState> {
                 ).toMaster();
                 return;
             } else {
-                const loaders = Object.keys(this.sampleBankPlayers).map(p => {
+                // HACKHACK: cast to access internals
+                const loaders = Object.keys((this.sampleBankPlayers as any)._players).map(p => {
                     return new Promise<void>(innerResolve => {
                         this.sampleBankPlayers!.get(p).load(
-                            `sample-banks/${sampleBank}/${p}`,
+                            soundUrl(`sample-banks/${sampleBank}/${p}.wav`),
                             () => {
                                 console.log("Loaded new samples!");
                                 innerResolve();
@@ -515,7 +579,7 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
-    private playSample = (padIndex: number, time?: Tone.Types.Time) => {
+    private playSample = (padIndex: number, accent: boolean, time?: Tone.Types.Time) => {
         const player = this.sampleBankPlayers!.get(`${padIndex}`);
 
         if (player.loaded) {
@@ -523,8 +587,26 @@ export default class extends React.PureComponent<{}, IState> {
                 const position = new Tone.Time(time).toBarsBeatsSixteenths();
                 console.log(`Triggering pad ${padIndex} at ${position}`);
             }
-            player.start(time);
-            window.performance.mark("played sample!");
+
+            const oldVolume = player.volume.value;
+            const restoreVolumeEvent = new Tone.Event(() => {
+                player.volume.value = oldVolume;
+            });
+
+            if (accent) {
+                // temporarily increase volume for this one
+                player.volume.value = oldVolume + 10;
+            }
+
+            // play it!
+            player.start(time === undefined ? "+0.1" : time);
+
+            if (accent) {
+                restoreVolumeEvent.start(time === undefined ? "+0.1" : time);
+                // player.volume.value = oldVolume;
+            }
+
+            // window.performance.mark("played sample!");
         } else {
             console.log(`Pad ${padIndex} not loaded yet or file format is unsupported`);
         }
@@ -606,7 +688,7 @@ export default class extends React.PureComponent<{}, IState> {
             padIndex: KICK_PAD_INDEX,
             steps,
             // positionOrStep: { bar, beat, sixteenth: 0 },
-            activate: !isShortcutEnabled,
+            forceActivate: !isShortcutEnabled,
         });
     };
 
@@ -630,7 +712,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.updateCurrentSequence({
             padIndex: HH_PAD_INDEX,
             steps,
-            activate: !isShortcutEnabled,
+            forceActivate: !isShortcutEnabled,
         });
     };
 }
@@ -639,7 +721,7 @@ interface IPadProps {
     index: number;
     position: ITimelinePosition;
     sequence: IPadSequence;
-    onClick: () => void;
+    onClick: (evt?: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 class Pad extends React.Component<IPadProps> {
@@ -656,8 +738,8 @@ class Pad extends React.Component<IPadProps> {
         );
     }
 
-    private handleClick = () => {
-        this.props.onClick();
+    private handleClick = (evt: React.MouseEvent<HTMLDivElement>) => {
+        this.props.onClick(evt);
     };
 }
 
@@ -700,10 +782,12 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
         const step = getStepFromPosition({ bar, beat, sixteenth });
         let backgroundColor = DEFAULT_STEP_COLOR;
 
-        if (sequence != null) {
+        if (isCurrent) {
+            backgroundColor = Colors.LIGHT_GRAY5;
+        } else if (sequence != null) {
             let hasNote = false;
             sequence.forEach((padSequence, i) => {
-                if (padSequence.charAt(step) === "1") {
+                if (isStepActive(padSequence.charAt(step))) {
                     if (hasNote) {
                         // mix with existing color
                         backgroundColor = chroma.mix(backgroundColor, PAD_COLORS[i]).hex();
@@ -717,9 +801,7 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
 
         return (
             <div
-                className={classNames(styles.timelineSixteenth, {
-                    [styles.isCurrent]: isCurrent,
-                })}
+                className={styles.timelineSixteenth}
                 style={{ backgroundColor }}
                 key={sixteenth}
                 onClick={() => this.props.onStepClick({ bar, beat, sixteenth })}
@@ -728,7 +810,7 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
     }
 }
 
-type IPadSequence = Array<0 | 1>;
+type IPadSequence = Array<0 | 1 | 2>;
 
 function serializeSeq(seq: IPadSequence): string {
     return seq.join("");
@@ -736,7 +818,17 @@ function serializeSeq(seq: IPadSequence): string {
 
 // TODO: use binary for an even more compact format. but for now this is more debuggable.
 function deserializeSeq(seq: string): IPadSequence {
-    return seq.split("").map(s => (s === "0" ? 0 : 1));
+    return seq.split("").map(s => (s === "0" ? 0 : s === "1" ? 1 : 2));
+}
+
+function isStepActive(stepValue: string | number): boolean {
+    // HACKHACK: messy
+    return stepValue === 1 || stepValue === "1" || stepValue === 2 || stepValue === "2";
+}
+
+function isStepAccent(stepValue: string | number): boolean {
+    // HACKHACK: messy
+    return stepValue === 2 || stepValue === "2";
 }
 
 function getStepFromPosition(position: ITimelinePosition): number {

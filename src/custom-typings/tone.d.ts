@@ -1139,7 +1139,7 @@ declare module "tone" {
             constructor(callback: Function, value?: any);
             public loop: boolean | Tone.Types.Positive;
             public loopEnd: Tone.Types.Time;
-            public start(): this;
+            public start(time?: Tone.Types.Time): this;
             public stop(): this;
             public cancel(time?: Types.TransportTime): this;
             public dispose(): this;

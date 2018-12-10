@@ -1,3 +1,12 @@
+/* dark theme */
+:global(body) {
+    background: #30404D;
+}
+
+.layoutContainer h3 {
+    color: #F5F8FA;
+}
+
 .pads {
     display: flex;
     flex-direction: column;
@@ -12,7 +21,7 @@
     width: 200px;
     height: 200px;
     background: #FF6E4A;
-    border: solid 1px white;
+    border: solid 1px #202B33;
     opacity: 0.7;
 }
 
@@ -35,24 +44,36 @@
 }
 
 .timelineBeat {
-    height: 24px;
+    height: 30px;
     display: flex;
-    background: #5C7080;
-    border: solid 1px white;
+    background: #394B59;
+    border: solid 1px #202B33;
 }
 
 .timelineBeat.isCurrent {
-    background: #394B59;
+    background: #5C7080;
 }
 
 .timelineSixteenth {
     border-radius: 50%;
-    width: 12px;
-    background: #A7B6C2;
-    margin: 5px;
+    width: 20px;
+    margin: 4px;
     border: solid 1px #5C7080;
 }
 
 .timelineSixteenth.isCurrent {
     border-color: white;
+}
+
+/* need globals to override BP3 */
+:global(.tempo-swing-form-group .bp3-form-content) {
+    display: flex;
+}
+
+:global(.tempo-swing-form-group .bp3-slider:not(:last-child)) {
+    margin-right: 50px;
+}
+
+:global(.tempo-swing-form-group .bp3-slider:last-child) {
+    width: 150px;
 }
