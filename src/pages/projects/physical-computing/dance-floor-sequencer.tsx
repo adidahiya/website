@@ -92,9 +92,10 @@ interface IState {
     isPlaying: boolean;
     enableMetronome: boolean;
     position: ITimelinePosition;
-    sampleBank: string;
+    currentSampleBank: string;
     currentSequence: Sequence;
     prevSequence: Sequence | undefined | null;
+    prevSampleBank: string | undefined | null;
     tempo: number;
     swing: Tone.Types.NormalRange;
     isSerialConnectionOpen: boolean;
@@ -109,9 +110,10 @@ export default class extends React.PureComponent<{}, IState> {
             beat: 0,
             sixteenth: 0,
         },
-        sampleBank: "808",
+        currentSampleBank: "808",
         currentSequence: EMPTY_SEQUENCE,
         prevSequence: undefined,
+        prevSampleBank: undefined,
         tempo: DEFAULT_TEMPO,
         swing: DEFAULT_SWING,
         isSerialConnectionOpen: false,
@@ -122,7 +124,7 @@ export default class extends React.PureComponent<{}, IState> {
     private transportEvent?: Tone.Event;
     private readonly parts: Array<Tone.Part | Tone.Loop> = [];
     private metronomePlayers?: Tone.Players;
-    private sampleBankPlayers?: Tone.Players;
+    private sampleBanks: { [bankName: string]: Tone.Players } = {};
 
     public async componentDidMount() {
         const savedSequences = localStorage.getItem(LS_KEY);
@@ -133,9 +135,11 @@ export default class extends React.PureComponent<{}, IState> {
                 const latestSequence = store.sequences[latest];
                 this.setState({
                     prevSequence: latestSequence.sequence,
+                    prevSampleBank: latestSequence.sampleBankId,
                     tempo: latestSequence.tempo,
-                    sampleBank: latestSequence.sampleBankId,
+                    currentSampleBank: latestSequence.sampleBankId,
                 });
+                this.loadSampleBank(latestSequence.sampleBankId);
             }
         }
 
@@ -162,7 +166,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.metronomePlayers.get("soft").volume.value = -10;
 
         // don't await this async action, the loading callbacks aren't working...
-        this.loadSampleBank();
+        this.loadSampleBank(this.state.currentSampleBank);
 
         const currentSequencePart = new Tone.Loop((time: number) => {
             const position = getPositionFromBarsBeatsSixteenths(Tone.Transport.position);
@@ -194,7 +198,7 @@ export default class extends React.PureComponent<{}, IState> {
             prevSequence,
             tempo,
             swing,
-            sampleBank,
+            currentSampleBank,
         } = this.state;
 
         return (
@@ -279,11 +283,11 @@ export default class extends React.PureComponent<{}, IState> {
                 {this.renderPadMatrix()}
                 <FormGroup label="sample bank" style={{ marginTop: 20 }}>
                     <HTMLSelect
-                        value={sampleBank}
+                        value={currentSampleBank}
                         options={AVAILABLE_SAMPLE_BANKS}
                         onChange={evt => {
                             const newSampleBank = evt.currentTarget.value;
-                            this.setState({ sampleBank: newSampleBank }, () =>
+                            this.setState({ currentSampleBank: newSampleBank }, () =>
                                 this.loadSampleBank(),
                             );
                         }}
@@ -465,12 +469,12 @@ export default class extends React.PureComponent<{}, IState> {
             });
         }
 
-        this.playSample(padIndex, accent);
+        this.playSample(this.state.currentSampleBank, padIndex, accent);
     };
 
     /** Where most of the audio happens. */
     private handleSequenceStep = (time: Tone.Types.Time, step: number) => {
-        const { currentSequence, prevSequence } = this.state;
+        const { currentSequence, currentSampleBank, prevSequence, prevSampleBank } = this.state;
         // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
         const position = getPositionFromStep(step);
 
@@ -482,19 +486,28 @@ export default class extends React.PureComponent<{}, IState> {
             }
         }
 
-        // don't play samples twice
+        // don't play samples in the same bank twice
         const padsPlayedDuringThisStep: number[] = [];
-        const playSequence = (padSequence: string, padIndex: number) => {
+        const playSequence = (
+            { padSequence, bankId }: { padSequence: string; bankId: string },
+            padIndex: number,
+        ) => {
             const seq = deserializeSeq(padSequence);
             if (isStepActive(seq[step]) && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
-                this.playSample(padIndex, isStepAccent(seq[step]));
-                padsPlayedDuringThisStep.push(padIndex);
+                this.playSample(bankId, padIndex, isStepAccent(seq[step]));
+                if (currentSampleBank === prevSampleBank) {
+                    padsPlayedDuringThisStep.push(padIndex);
+                }
             }
         };
 
-        currentSequence.forEach(playSequence);
-        if (prevSequence != null) {
-            prevSequence.forEach(playSequence);
+        currentSequence
+            .map(s => ({ padSequence: s, bankId: currentSampleBank }))
+            .forEach(playSequence);
+        if (prevSequence != null && prevSampleBank != null) {
+            prevSequence
+                .map(s => ({ padSequence: s, bankId: prevSampleBank }))
+                .forEach(playSequence);
         }
     };
 
@@ -538,84 +551,82 @@ export default class extends React.PureComponent<{}, IState> {
         this.setState({ position });
     };
 
-    private async loadSampleBank() {
-        const { sampleBank } = this.state;
-
-        console.log(`Loading sample bank [${sampleBank}]...`);
+    private async loadSampleBank(sampleBankId = this.state.currentSampleBank) {
+        console.log(`Loading sample bank [${sampleBankId}]...`);
 
         return new Promise<void>((resolve, _reject) => {
-            if (this.sampleBankPlayers == null) {
-                this.sampleBankPlayers = new Tone.Players(
+            if (this.sampleBanks[sampleBankId] == null) {
+                this.sampleBanks[sampleBankId] = new Tone.Players(
                     range(PADS_WIDTH * PADS_HEIGHT).reduce(
                         (prev, i) => {
                             return {
                                 ...prev,
-                                [`${i}`]: soundUrl(`sample-banks/${sampleBank}/${i}.wav`),
+                                [`${i}`]: soundUrl(`sample-banks/${sampleBankId}/${i}.wav`),
                             };
                         },
                         {} as { [key: string]: string },
                     ),
                     () => {
-                        console.log("Loaded initial samples!");
+                        console.log(`Loaded "${sampleBankId}" samples!`);
                         resolve();
                     },
                 ).toMaster();
-                return;
             } else {
-                // HACKHACK: cast to access internals
-                const loaders = Object.keys((this.sampleBankPlayers as any)._players).map(p => {
-                    return new Promise<void>(innerResolve => {
-                        this.sampleBankPlayers!.get(p).load(
-                            soundUrl(`sample-banks/${sampleBank}/${p}.wav`),
-                            () => {
-                                console.log("Loaded new samples!");
-                                innerResolve();
-                            },
-                        );
-                    });
-                });
-                return Promise.all(loaders);
+                resolve();
             }
+            return;
         });
     }
 
-    private playSample = (padIndex: number, accent: boolean, time?: Tone.Types.Time) => {
-        const player = this.sampleBankPlayers!.get(`${padIndex}`);
-
-        if (player.loaded) {
-            if (time !== undefined) {
-                const position = new Tone.Time(time).toBarsBeatsSixteenths();
-                console.log(`Triggering pad ${padIndex} at ${position}`);
-            }
-
-            const oldVolume = player.volume.value;
-            const restoreVolumeEvent = new Tone.Event(() => {
-                player.volume.value = oldVolume;
-            });
-
-            if (accent) {
-                // temporarily increase volume for this one
-                player.volume.value = oldVolume + 10;
-            }
-
-            // play it!
-            player.start(time === undefined ? "+0.1" : time);
-
-            if (accent) {
-                restoreVolumeEvent.start(time === undefined ? "+0.1" : time);
-                // player.volume.value = oldVolume;
-            }
-
-            // window.performance.mark("played sample!");
-        } else {
-            console.log(`Pad ${padIndex} not loaded yet or file format is unsupported`);
+    private playSample = (
+        bankName: string,
+        padIndex: number,
+        accent: boolean,
+        time?: Tone.Types.Time,
+    ) => {
+        if (
+            this.sampleBanks[bankName] == null ||
+            !this.sampleBanks[bankName].get(`${padIndex}`).loaded
+        ) {
+            console.log(
+                `Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`,
+            );
+            return;
         }
+
+        const player = this.sampleBanks[bankName].get(`${padIndex}`);
+
+        if (time !== undefined) {
+            const position = new Tone.Time(time).toBarsBeatsSixteenths();
+            console.log(`Triggering pad ${padIndex} at ${position}`);
+        }
+
+        const oldVolume = player.volume.value;
+        const restoreVolumeEvent = new Tone.Event(() => {
+            player.volume.value = oldVolume;
+        });
+
+        if (accent) {
+            // temporarily increase volume for this one
+            player.volume.value = oldVolume + 10;
+        }
+
+        // play it!
+        player.start(time === undefined ? "+0.1" : time);
+
+        if (accent) {
+            restoreVolumeEvent.start(time === undefined ? "+0.1" : time);
+            // player.volume.value = oldVolume;
+        }
+
+        // window.performance.mark("played sample!");
     };
 
     private resetCurrentSequence = () => {
         if (this.state.currentSequence === EMPTY_SEQUENCE) {
             this.setState({
                 prevSequence: null,
+                prevSampleBank: null,
             });
         } else {
             this.setState({
@@ -638,11 +649,11 @@ export default class extends React.PureComponent<{}, IState> {
     };
 
     private saveSequenceAndAdvance = () => {
-        const { currentSequence, sampleBank, tempo } = this.state;
+        const { currentSequence, currentSampleBank, tempo } = this.state;
         const now = Date.now();
         const currentSequenceEntry = {
             [now]: {
-                sampleBankId: sampleBank,
+                sampleBankId: currentSampleBank,
                 sequence: currentSequence,
                 tempo,
             },
@@ -666,6 +677,7 @@ export default class extends React.PureComponent<{}, IState> {
         localStorage.setItem(LS_KEY, JSON.stringify(newStore));
         this.setState({
             prevSequence: currentSequence,
+            prevSampleBank: currentSampleBank,
             currentSequence: EMPTY_SEQUENCE,
         });
     };
