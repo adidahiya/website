@@ -119,12 +119,19 @@ export default class extends React.PureComponent<{}, IState> {
         isSerialConnectionOpen: false,
     };
 
-    // TODO: typings
+    // TODO: typings for p5.serial
     private serial: any;
     private transportEvent?: Tone.Event;
     private readonly parts: Array<Tone.Part | Tone.Loop> = [];
     private metronomePlayers?: Tone.Players;
     private sampleBanks: { [bankName: string]: Tone.Players } = {};
+
+    /** queue of events to proces on the next transport step */
+    private playersToRestoreVolume: Array<{
+        sampleBankId: string;
+        padId: string;
+        oldVolume: Tone.Types.Decibels;
+    }> = [];
 
     public async componentDidMount() {
         const savedSequences = localStorage.getItem(LS_KEY);
@@ -346,6 +353,15 @@ export default class extends React.PureComponent<{}, IState> {
         const bar = parseInt(barString, 10);
         const beat = parseInt(beatString, 10);
         const sixteenth = parseInt(sixteenthString, 10);
+
+        // restore volumes for accents
+        for (const { sampleBankId, padId, oldVolume } of this.playersToRestoreVolume) {
+            const player = this.sampleBanks[sampleBankId].get(padId);
+            if (player.loaded) {
+                player.volume.value = oldVolume;
+            }
+        }
+        this.playersToRestoreVolume = [];
 
         this.setState({
             position: { bar, beat, sixteenth },
@@ -584,17 +600,16 @@ export default class extends React.PureComponent<{}, IState> {
         accent: boolean,
         time?: Tone.Types.Time,
     ) => {
-        if (
-            this.sampleBanks[bankName] == null ||
-            !this.sampleBanks[bankName].get(`${padIndex}`).loaded
-        ) {
+        const padId = `${padIndex}`;
+
+        if (this.sampleBanks[bankName] == null || !this.sampleBanks[bankName].get(padId).loaded) {
             console.log(
                 `Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`,
             );
             return;
         }
 
-        const player = this.sampleBanks[bankName].get(`${padIndex}`);
+        const player = this.sampleBanks[bankName].get(padId);
 
         if (time !== undefined) {
             const position = new Tone.Time(time).toBarsBeatsSixteenths();
@@ -602,22 +617,25 @@ export default class extends React.PureComponent<{}, IState> {
         }
 
         const oldVolume = player.volume.value;
-        const restoreVolumeEvent = new Tone.Event(() => {
-            player.volume.value = oldVolume;
-        });
 
         if (accent) {
             // temporarily increase volume for this one
-            player.volume.value = oldVolume + 10;
+            player.volume.value = oldVolume + 8;
+            if (this.state.isPlaying) {
+                this.playersToRestoreVolume.push({
+                    sampleBankId: bankName,
+                    padId,
+                    oldVolume,
+                });
+            } else {
+                requestAnimationFrame(() => {
+                    player.volume.value = oldVolume;
+                });
+            }
         }
 
         // play it!
         player.start(time === undefined ? "+0.1" : time);
-
-        if (accent) {
-            restoreVolumeEvent.start(time === undefined ? "+0.1" : time);
-            // player.volume.value = oldVolume;
-        }
 
         // window.performance.mark("played sample!");
     };
