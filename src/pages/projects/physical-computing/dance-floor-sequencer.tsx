@@ -21,9 +21,11 @@ import styles from "./dance-floor-sequencer.module.css";
 /** USB port name for p5.serialport */
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
 /** width dimension */
-const PADS_WIDTH = 2;
+const PADS_WIDTH = 3;
 /** height dimension */
-const PADS_HEIGHT = 2;
+const PADS_HEIGHT = 3;
+/** which pads are non-interactive */
+const NEUTRAL_PADS = [4];
 /** number of steps in the sequencer */
 const NUM_BARS = 2;
 /** number of beats in a bar or measure */
@@ -40,6 +42,8 @@ const DEFAULT_SWING = 0;
 const LS_KEY = "dance-floor-sequencer";
 /** get a url for a sound file relevant to this project */
 const soundUrl = (filename: string) => `/sounds/floor-sequencer/${filename}`;
+/** all sample banks */
+const ALL_SAMPLE_BANKS = ["808", "909", "yakiman"];
 
 const EMPTY_SEQUENCE = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
     range(TOTAL_NUM_STEPS)
@@ -53,6 +57,11 @@ const PAD_COLORS: { [i: number]: string } = {
     1: Colors.VIOLET5,
     2: Colors.LIME4,
     3: Colors.GOLD4,
+    4: Colors.GRAY3,
+    5: Colors.VERMILION5,
+    6: Colors.VIOLET5,
+    7: Colors.LIME4,
+    8: Colors.GOLD4,
 };
 const DEFAULT_STEP_COLOR = Colors.GRAY4;
 
@@ -90,6 +99,8 @@ interface ISequencerStore {
 
 interface IState {
     isPlaying: boolean;
+    isRecording: boolean;
+    isLightsDemoActive: boolean;
     enableMetronome: boolean;
     position: ITimelinePosition;
     currentSampleBank: string;
@@ -104,6 +115,8 @@ interface IState {
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
+        isRecording: false,
+        isLightsDemoActive: false,
         enableMetronome: false,
         position: {
             bar: 0,
@@ -224,8 +237,15 @@ export default class extends React.PureComponent<{}, IState> {
                             text={isPlaying ? "stop" : "start"}
                         />
                         <Button
+                            icon="record"
+                            intent={this.state.isRecording ? "none" : "danger"}
+                            onClick={this.toggleIsRecording}
+                            style={{ marginRight: 10 }}
+                            text={this.state.isRecording ? "recording..." : "record"}
+                        />
+                        <Button
                             icon="delete"
-                            intent="danger"
+                            intent="none"
                             onClick={this.resetCurrentSequence}
                             style={{ marginRight: 10 }}
                             text="reset"
@@ -307,11 +327,18 @@ export default class extends React.PureComponent<{}, IState> {
                     </ButtonGroup>
                 </FormGroup>
                 <FormGroup label="debugging" style={{ marginTop: 20 }}>
-                    <Button
-                        intent={isSerialConnectionOpen ? "danger" : "success"}
-                        text={isSerialConnectionOpen ? "close serial" : "open serial"}
-                        onClick={this.toggleSerialConnection}
-                    />
+                    <ButtonGroup>
+                        <Button
+                            intent={isSerialConnectionOpen ? "danger" : "success"}
+                            text={isSerialConnectionOpen ? "close serial" : "open serial"}
+                            onClick={this.toggleSerialConnection}
+                        />
+                        <Button
+                            text="flashy lights"
+                            intent={this.state.isLightsDemoActive ? "success" : "primary"}
+                            onClick={this.toggleFlashyLights}
+                        />
+                    </ButtonGroup>
                 </FormGroup>
             </Layout>
         );
@@ -401,6 +428,19 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
+    private toggleFlashyLights = () => {
+        this.setState(
+            {
+                isLightsDemoActive: !this.state.isLightsDemoActive,
+            },
+            () => {
+                if (this.state.isSerialConnectionOpen) {
+                    this.serial.write(`demoLights:${this.state.isLightsDemoActive ? 1 : 0}`);
+                }
+            },
+        );
+    };
+
     private toggleSerialConnection = () => {
         if (this.state.isSerialConnectionOpen) {
             this.closeSerialConnection();
@@ -424,29 +464,44 @@ export default class extends React.PureComponent<{}, IState> {
         if (data != null && data.trim() !== "") {
             const trimmedData = data.trim();
 
-            // expecting serialized changes of the form 'padChanges:0000'
-            // 0 = no change, 1 = turned on, 2 = accent, 3 = turned off
-            if (!trimmedData.startsWith("padChanges:")) {
+            if (trimmedData.startsWith("padChanges:")) {
+                // 0 = no change, 1 = turned on, 2 = accent, 3 = turned off
+                console.log(trimmedData);
+                // interpret change data as numbers
+                const changes = trimmedData
+                    .substr("padChanges:".length)
+                    .split("")
+                    .map(s => parseInt(s, 10));
+                // react to changes if necessary
+                changes.forEach((c, i) => {
+                    // prevent thrashing
+                    if (
+                        isStepActive(c) &&
+                        now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
+                    ) {
+                        this.getPadClickHandler(i, isStepAccent(c))();
+                        this.timeOfLastPadActivations[i] = window.performance.now();
+                    }
+                });
+            } else if (trimmedData.startsWith("buttonStates:")) {
+                const buttonStates = trimmedData
+                    .substr("buttonStates:".length)
+                    .split("")
+                    .map(s => parseInt(s, 10));
+
+                // only one button is pressed at a time
+                if (buttonStates[0] === 1) {
+                    this.switchToNextSampleBank();
+                } else if (buttonStates[1] === 1) {
+                    this.resetCurrentSequence();
+                } else if (buttonStates[2] === 1) {
+                    this.handlePlayToggle();
+                } else if (buttonStates[3] === 1) {
+                    this.toggleIsRecording();
+                }
+            } else {
                 return;
             }
-
-            console.log(trimmedData);
-            // interpret change data as numbers
-            const changes = trimmedData
-                .substr("padChanges:".length)
-                .split("")
-                .map(s => parseInt(s, 10));
-            // react to changes if necessary
-            changes.forEach((c, i) => {
-                // prevent thrashing
-                if (
-                    isStepActive(c) &&
-                    now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
-                ) {
-                    this.getPadClickHandler(i, isStepAccent(c))();
-                    this.timeOfLastPadActivations[i] = window.performance.now();
-                }
-            });
         }
     };
 
@@ -464,6 +519,19 @@ export default class extends React.PureComponent<{}, IState> {
         }
     };
 
+    private toggleIsRecording = () => {
+        this.setState(
+            {
+                isRecording: !this.state.isRecording,
+            },
+            () => {
+                if (this.state.isSerialConnectionOpen) {
+                    this.serial.write(`isRecording:${this.state.isRecording ? 1 : 0}`);
+                }
+            },
+        );
+    };
+
     private handleMetronomeChange = () => {
         this.setState({
             enableMetronome: !this.state.enableMetronome,
@@ -473,19 +541,26 @@ export default class extends React.PureComponent<{}, IState> {
     private getPadClickHandler = (padIndex: number, accent = false) => (
         evt?: React.MouseEvent<HTMLDivElement>,
     ) => {
+        if (NEUTRAL_PADS.indexOf(padIndex) >= 0) {
+            // ignore interaction
+            return;
+        }
+
         if (evt != null) {
             accent = evt.shiftKey;
         }
 
-        if (Tone.Transport.state === "started") {
+        const { currentSampleBank, isRecording, position } = this.state;
+
+        if (Tone.Transport.state === "started" && isRecording) {
             this.updateCurrentSequence({
                 accent,
                 padIndex,
-                steps: [getStepFromPosition(this.state.position)],
+                steps: [getStepFromPosition(position)],
             });
         }
 
-        this.playSample(this.state.currentSampleBank, padIndex, accent);
+        this.playSample(currentSampleBank, padIndex, accent);
     };
 
     /** Where most of the audio happens. */
@@ -567,6 +642,17 @@ export default class extends React.PureComponent<{}, IState> {
         this.setState({ position });
     };
 
+    private samplePadMapping: { [key: number]: string } = {
+        0: "perc-1",
+        1: "perc-2",
+        2: "perc-3",
+        3: "hh-open",
+        5: "hh-closed",
+        6: "kick",
+        7: "tom",
+        8: "snare",
+    };
+
     private async loadSampleBank(sampleBankId = this.state.currentSampleBank) {
         console.log(`Loading sample bank [${sampleBankId}]...`);
 
@@ -575,9 +661,12 @@ export default class extends React.PureComponent<{}, IState> {
                 this.sampleBanks[sampleBankId] = new Tone.Players(
                     range(PADS_WIDTH * PADS_HEIGHT).reduce(
                         (prev, i) => {
+                            const sampleFilename = `${this.samplePadMapping[i]}.wav`;
                             return {
                                 ...prev,
-                                [`${i}`]: soundUrl(`sample-banks/${sampleBankId}/${i}.wav`),
+                                [`${i}`]: soundUrl(
+                                    `sample-banks/${sampleBankId}/${sampleFilename}`,
+                                ),
                             };
                         },
                         {} as { [key: string]: string },
@@ -591,6 +680,18 @@ export default class extends React.PureComponent<{}, IState> {
                 resolve();
             }
             return;
+        });
+    }
+
+    private switchToNextSampleBank() {
+        const { currentSampleBank } = this.state;
+        const currentIndex = ALL_SAMPLE_BANKS.indexOf(currentSampleBank);
+        const nextIndex = currentIndex === ALL_SAMPLE_BANKS.length - 1 ? 0 : currentIndex + 1;
+        const nextSampleBank = ALL_SAMPLE_BANKS[nextIndex];
+        this.setState({ currentSampleBank: nextSampleBank }, () => {
+            if (this.sampleBanks[nextSampleBank] == null) {
+                this.loadSampleBank();
+            }
         });
     }
 
@@ -702,7 +803,7 @@ export default class extends React.PureComponent<{}, IState> {
 
     private handleFourOnTheFloorShortcut = () => {
         // HACKHACK: hard coded index
-        const KICK_PAD_INDEX = 2;
+        const KICK_PAD_INDEX = 6;
         const kickSeq = deserializeSeq(this.state.currentSequence[KICK_PAD_INDEX]);
         const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every(
             i => kickSeq[i] === 1,
@@ -724,7 +825,7 @@ export default class extends React.PureComponent<{}, IState> {
 
     private handleHiHatSixteenthsShortcut = () => {
         // HACKHACK: hard coded index
-        const HH_PAD_INDEX = 1;
+        const HH_PAD_INDEX = 5;
         const hhSeq = deserializeSeq(this.state.currentSequence[HH_PAD_INDEX]);
         const isShortcutEnabled = range(TOTAL_NUM_STEPS).every(i => hhSeq[i] === 1);
 
