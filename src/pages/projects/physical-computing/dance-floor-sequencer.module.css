@@ -1,6 +1,7 @@
 /* dark theme */
-:global(body) {
+.layoutContainer {
     background: #30404D;
+    padding-top: 5px;
 }
 
 .layoutContainer h3 {
