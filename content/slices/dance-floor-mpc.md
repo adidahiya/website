@@ -2,17 +2,39 @@
 title: Dance floor MPC
 ---
 
-by Adi Dahiya
+December 2018
 
-Application for Winter Show, Fall 2018
+Adi Dahiya
 
 ## Project idea
 
-I'm making a matrix of dance floor tiles which act as a controller for a drum rack sampler & step sequencer. The software implements some of the key ideas from an [Akai MPC](https://en.wikipedia.org/wiki/Akai_MPC) and modern production workstations like Ableton. Users are invited to step up to the device, express themselves with a little dance over a 2- or 4-bar phrase, and hear back the resulting rhythm produced by the "Dance floor MPC". Successive users can choose to "collaborate" with the previous user's recorded sequence. This is not a precise production tool, but rather a playful experience which enables anyone to enjoy making beats with their body.
+I set out to create a matrix of dance floor tiles which act as a controller for a drum rack sampler & step sequencer. The software implements some of the key ideas from an [Akai MPC](https://en.wikipedia.org/wiki/Akai_MPC) and modern digital audio workstations like Ableton. Users are invited to step up to the device, express themselves with a little dance over a 2-bar phrase, and hear back the resulting rhythm produced by the "Dance floor MPC". Successive users can choose to "collaborate" with the previous user's recorded sequence. This is not a precise production tool, but rather a playful experience which enables anyone to enjoy making beats with their body.
+
+![winter-show-hardware](winter-show-hardware.jpg)
+
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/307208842?loop=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<br/>
+
+There are 8 interactive tiles and one neutral central tile in this interface. Each interactive tile triggers a different drum sample. I encouraged users to start in the neutral tile and used DDR as a starting point to frame the interaction. The console at the front contains four buttons to control the sequencer software and an LED strip interface which reflects the state of the loop transport. The buttons (from left to right are) play/stop, toggle record mode, reset sequence, and change sample bank:
+
+1. __Play/Stop__ toggles the loop transport, either starting the loop from the beginning or stopping the current playback.
+2. __Record__ toggles whether the sequencer is recording steps to the current sequence. When this is off, the timeline LED strip color is white, and users can trigger drum sounds without committing them to the sequence. When it is on, pad triggers will get quantized to the nearest step and toggle the respective pad in the sequence. Multiple pads can be triggered at a time.
+3. __Reset__ clears the current sequence. If there was a previous sequence active and the current sequence has already been reset, this will clear the previous sequence (so you can start over from scratch).
+4. __Change sample bank__ switches the current sequence to use the next available sample bank. I had 3 sample banks available during the winter show.
+
+In addition, the web UI has a few more controls which are not reflected in the hardware. I sometimes used these while demoing the project at the winter show:
+
+- __Next player__ saves the current sequence and creates a new slot for a new sequence to be recorded. Only two sequences can be active at any time, but they can each use different sample banks and they can be cleared ("reset") individually.
+- __Shortcuts__ for common patterns like four-on-the-floor kick and (closed) hi-hats on every 16th note.
+
+---
+
+## Application for Winter Show
+
+December 9, 2018
 
 ![dance-floor-6](../blog/itp/physical-computing/final-project-images/dance-floor-6.jpg)
-
-## Current status
 
 I have a working hardware prototype constructed mostly of cardboard. In the next week I will rebuild this with sturdier materials (foam pads, U-channel aluminum framing) and add more visible lighting with LED strips.
 
