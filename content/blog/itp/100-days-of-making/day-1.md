@@ -5,7 +5,7 @@ date: "2019-01-29"
 
 ### 100 days of mixing & sound collage
 
-For my 100 days project, I want to create musical experiences using existing sounds objects. I want to practice the craft of mixing audio elements together, taking the core task of a DJ as a starting point for my creative exploration. A couple months ago, I started to truly appreciate, and subsequently learn about, the art of juxtaposing interesting music and mixing it in pleasing ways. I'm taking 100 days in order to quickly deepen my experience with this art form. I want my mixes to have more meaning and purpose behind them. When I DJ, I don’t want to do it just to fill an available sonic space, rather I want the performance to exist because it is expressive and has some kind of story to tell.
+For my 100 days project, I want to create musical experiences using existing sounds objects. I want to practice the craft of mixing audio elements together, taking the core task of a DJ as a starting point for my creative exploration. I'm taking 100 days in order to quickly deepen my experience with the art of juxtaposing interesting music and mixing it in pleasing ways. I want my mixes to have more meaning and purpose behind them. When I DJ, I don’t want to do it just to fill an available sonic space, rather I want the performance to exist because it is expressive and has some kind of story to tell.
 
 I don't want to limit myself one genre, but it's likely that I'll mostly stick to electronic music. Some of the mixes I make may be long, like a traditional DJ slot format, and some might be short, like deconstructions & remixes of tracks. Some might be dance floor ready while others might be meditative and contemplative.
 
@@ -13,7 +13,7 @@ This project will require:
 
 - collecting and cataloging a large amount of interesting music which I personally enjoy (I want to avoid repeating sounds)
 - analyzing the techniques of other DJs and sound artists to learn what makes their work successful
-- creating daily mixes of tracks and sounds
+- __creating daily mixes or sample-based compositions__ (the primary shareable artifact)
 
 Some possible sound sources could be:
 
