@@ -29,4 +29,6 @@ Some tools I plan to use include:
 
 I'm starting off with a relatively straightforward dance mix of some music I've been listening to recently. Check it out on SoundCloud:
 
-> embed
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/567029844&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+
+Oh, and if you want to listen to some other mixes I made in January, [check out this playlist](https://soundcloud.com/adi-dahiya/sets/mixes-1).
