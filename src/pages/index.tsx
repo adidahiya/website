@@ -29,17 +29,13 @@ export default () => (
         <p>
             <a href="https://instagram.com/adidahiya">instagram</a>
             <br />
-            <a href="https://twitter.com/adi_dahiya">twitter</a>
-            <br />
             <a href="https://soundcloud.com/adi-dahiya">soundcloud</a>
+            <br />
+            <a href="https://twitter.com/adi_dahiya">twitter</a>
             <br />
             <a href="https://www.github.com/adidahiya">github</a>
             <br />
             <a href="https://www.flickr.com/photos/adidas006">flickr</a>
-            <br />
-            <a href="https://www.last.fm/user/adidas006">last.fm</a>
-            <br />
-            <a href="https://www.goodreads.com/user/show/27078128-adi-dahiya">goodreads</a>
         </p>
     </DefaultLayout>
 );
