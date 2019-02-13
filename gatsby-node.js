@@ -17,6 +17,8 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
             },
         })
     }
+
+    // TODO: proxy /.netlify/functions/ requests to localhost:9000/
 }
 
 const ITP_BLOG_PREFIX = "/blog/itp";
