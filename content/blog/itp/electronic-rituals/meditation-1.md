@@ -13,8 +13,12 @@ In this prototype, I trigger the ritual and start the walk by checking into Wash
 
 ### Process
 
-Setting up a Twilio API account and Netlify Lambda function, testing the function with Postman and getting a real SMS in iMessage:
+Setting up a Twilio API account and [Netlify Lambda function](https://www.netlify.com/docs/functions/), testing the function with Postman and getting a real SMS in iMessage:
 
 ![process-1](meditation-1-process-1.png)
 
 I also set up a Foursquare API account and wrote the Netlify Lambda function, but had some issues with authentication which I am sure I could work out if I spent a few more hours on debugging. I prioritized enacting the minimum viable version of the ritual over getting this technical part working.
+
+Walking around looked like this:
+
+<iframe src="https://player.vimeo.com/video/317114111?loop=1&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
