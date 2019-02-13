@@ -1,6 +1,6 @@
 node_modules/
 public/
-functions/
+/functions/
 .cache/
 .DS_Store
 .*.un~
