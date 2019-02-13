@@ -11,8 +11,15 @@ export default class extends React.PureComponent {
         // TODO: use GET /.netlify/functions/isAdiWalking to determine boolean state
         return (
             <Layout title="walking ritual">
-                <h3>adi is currently walking around.</h3>
+                <h3>adi is walking around.</h3>
                 <br />
+                <p>
+                    <em>current location</em>: washington square park.
+                </p>
+                <p>
+                    <em>seeking</em>: inspiration for things to do/see/hear/touch/smell right now
+                    which may aid him on his creative journey.
+                </p>
                 <form>
                     <FormGroup>
                         <InputGroup
@@ -25,7 +32,7 @@ export default class extends React.PureComponent {
                                 />
                             }
                             onChange={this.handleMessageChange}
-                            placeholder="send him a message"
+                            placeholder="send him an anonymous message"
                             value={this.state.message}
                         />
                     </FormGroup>
