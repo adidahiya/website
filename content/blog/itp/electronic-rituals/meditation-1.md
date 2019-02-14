@@ -5,11 +5,11 @@ date: "2019-02-13"
 
 ### Walking rituals for creatives
 
-My first meditation explores the ritual act of walking as a creative tool. Walking around helps me (and many others) think better when faced with creative blocks. It allows us to make new connections, process/digest our ideas, develop an internal dialogue, and get inspired by serendipitous events in the world. There is a well-established ritualized practice of walking meditation which I first read about in _The Wisdom of Yoga_ last year. This practice aims to bring mindfulness to the practitioner; for this assignment, my goals are a little different...
+My first meditation explores the ritual act of walking as a creative tool. Walking around helps me (and many others) think better when faced with creative blocks. It allows us to make new connections, process/digest our ideas, develop an internal dialogue, and get inspired by serendipitous events in the world. There is a well-established ritualized practice of walking meditation which I first read about in _The Wisdom of Yoga_ last year. Walking meditation aims to bring mindfulness to the practitioner; however, for this assignment, my goals are a little different...
 
 I have imagined and prototyped a technology-enabled extension to the "creative walk" ritual which allows my friends to send me anonymous messages as guidance or inspiration during the walk. This idea is inspired by event scores and conceptual performance art (which I researched a bit last semester for [Content and its Discontents](../../content-and-its-discontents/ar-study)). As the performer of the ritual, in addition to processing the sights, sounds, and smells of the world around me, I can also use the information sent to me through an online web form which becomes available once I "start" a walk.
 
-In this prototype, I trigger the ritual and start the walk by checking into Washington Square Park on Foursquare. Users to visit the [walking ritual web page](/projects/electronic-rituals/walking-ritual) then see that "Adi is currently walking around" and are prompted to send an anonymous message. This sends me a text via the Twilio API and I can respond (in the real world, not via message) as I wish.
+In this prototype, I trigger the ritual and start the walk by checking into Washington Square Park on Foursquare. My friends who visit the [ritual's interactive web page](/projects/electronic-rituals/walking-ritual) then see that "Adi is currently walking around" and are prompted to send an anonymous message. This sends me a text via the Twilio API and I can respond (in the real world, not via message) as I wish.
 
 Screenshot of the web form here (in case I take it down later):
 
@@ -17,11 +17,11 @@ Screenshot of the web form here (in case I take it down later):
 
 ### Process
 
-I set up a Twilio API account and [Netlify Lambda function](https://www.netlify.com/docs/functions/) on my Gatsby static website. Here's a screenshot testing the SMS-sending function with Postman and getting a real SMS in iMessage ([basic code here](https://github.com/adidahiya/website/blob/a657573607e6532ccf3c6d9be6d03feecb7eb687/server/functions/sendAdiMessage.js)):
+I set up a Twilio API account and [a Netlify Lambda function](https://www.netlify.com/docs/functions/) on my Gatsby static website. Here's a screenshot testing the SMS-sending function with Postman and getting a real SMS in iMessage ([basic code here](https://github.com/adidahiya/website/blob/a657573607e6532ccf3c6d9be6d03feecb7eb687/server/functions/sendAdiMessage.js)):
 
 ![process-1](meditation-1-process-1.png)
 
-I also set up a Foursquare API account and wrote the Netlify Lambda function, but had some issues with authentication which I am sure I could work out if I spent a few more hours on debugging. I prioritized enacting the minimum viable version of the ritual over getting this technical part working.
+I also set up a Foursquare API account and wrote server function to get my latest check-in, but had some issues with authentication which I am sure I could work out if I spent a few more hours on debugging. I prioritized enacting the minimum viable version of the ritual over getting this technical part working.
 
 The logistics of the first enactment of this ritual were pretty rushed; I sent an email to 20 friends with a link to the [interactive page](/projects/electronic-rituals/walking-ritual) when I started the walk. I told them to think of it as "a performance with an event score partially determined by you, my friends" to help them along.
 

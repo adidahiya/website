@@ -3,6 +3,7 @@
     "rules": {
         "blueprint-classes-constants": false,
         "blueprint-html-components": false,
+        "interface-name": false,
         "file-header": false,
         "jsx-no-lambda": false,
         "max-classes-per-file": false,

@@ -1,13 +1,21 @@
-import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
+import { Button, FormGroup, InputGroup, Intent } from "@blueprintjs/core";
 import React from "react";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 
-export default class extends React.PureComponent {
-    public state = {
+interface State {
+    message: string;
+    formState: Intent | undefined;
+}
+
+export default class extends React.PureComponent<{}, State> {
+    public state: State = {
         message: "",
+        formState: undefined,
     };
 
     public render() {
+        const { formState } = this.state;
+
         // TODO: use GET /.netlify/functions/isAdiWalking to determine boolean state
         return (
             <Layout title="walking ritual">
@@ -23,6 +31,7 @@ export default class extends React.PureComponent {
                 <form>
                     <FormGroup>
                         <InputGroup
+                            intent={formState}
                             large={true}
                             rightElement={
                                 <Button
@@ -47,16 +56,25 @@ export default class extends React.PureComponent {
         });
     };
 
-    private handleSubmit = () => {
+    private handleSubmit = async () => {
         const { message } = this.state;
         if (message == null) {
             return;
         }
 
-        fetch("/.netlify/functions/sendAdiMessage", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message }),
-        });
+        try {
+            await fetch("/.netlify/functions/sendAdiMessage", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message }),
+            });
+            this.setState({
+                formState: "success",
+            });
+        } catch (e) {
+            this.setState({
+                formState: "danger",
+            });
+        }
     };
 }
