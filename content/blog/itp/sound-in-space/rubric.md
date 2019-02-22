@@ -12,6 +12,7 @@ The work should have one or more of these elements:
 - it produces a surprising emotional response
 - it leverages utilizes space to emulate a physical experience (falling down, objects moving towards or away from you, being underwater, moving quickly in a vehicle, etc)
 - it is generative and/or infinitely running
+- leverages the specific medium & its affordances appropriately ([see notes on medium specificity & genre](../../content-and-its-discontents/genre))
 
 Anti-goals:
 
