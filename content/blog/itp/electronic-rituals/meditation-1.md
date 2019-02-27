@@ -1,5 +1,5 @@
 ---
-title: Meditation 1
+title: Meditation 1 - electronic ritual
 date: "2019-02-13"
 ---
 
