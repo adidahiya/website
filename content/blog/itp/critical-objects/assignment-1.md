@@ -1,5 +1,5 @@
 ---
-title: Assignment 1
+title: Assignment 1 - Cyclic Packaging
 date: "2019-02-04"
 ---
 
