@@ -540,6 +540,8 @@ declare module "tone" {
 
         // TODO: complete definition
         class Signal<U extends valueof<typeof Type>, V> extends Param<U, V> {
+            public setValueAtTime(value: V, time: Types.Time): this;
+            public linearRampToValueAtTime(value: V, time: Types.Time): this;
             public linearRampToValue(value: V): this;
             public exponentialRampToValue(value: V): this;
             public rampTo(value: V): this;
@@ -752,6 +754,18 @@ declare module "tone" {
         // TODO: complete definition
         class Oscillator extends Source {
             constructor(frequency?: Types.Frequency, type?: string);
+        }
+
+        // TODO: complete definition
+        class BufferSource extends AudioNode {
+            constructor(buffer: AudioBuffer | Tone.Buffer, onload?: Function);
+            public start(time?: Types.Time, offset?: Types.Time, duration?: Types.Time, gain?: Types.Gain, fadeInTime?: Types.Time): this;
+            public stop(time?: Types.Time): this;
+            public loop: boolean;
+            public loopEnd: Types.Time;
+            public playbackRate: Signal<typeof Type.Positive, Types.Positive>;
+            public fadeIn: Types.Time;
+            public fadeOut: Types.Time;
         }
 
         /**
@@ -1084,6 +1098,7 @@ declare module "tone" {
         // TODO: complete definition
         class Effect extends AudioNode {
             constructor(wet?: Types.NormalRange | object);
+            public wet: Signal<typeof Type.NormalRange, Types.NormalRange>;
         }
 
         // TODO: complete definition
@@ -1091,6 +1106,11 @@ declare module "tone" {
             constructor(frequency?: Types.Time | object, baseFrequency?: Types.Frequency, octaves?: Types.Frequency);
             public start(time?: Types.Time): this;
             public stop(time?: Types.Time): this;
+        }
+
+        // TODO: complete definition
+        class Convolver extends Effect {
+            constructor(url?: string, onload?: () => void);
         }
 
         // TODO: complete definition
