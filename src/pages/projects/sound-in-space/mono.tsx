@@ -22,7 +22,8 @@ export default class extends React.PureComponent<{}, IState> {
     private convolver?: Tone.Convolver;
 
     public async componentDidMount() {
-        const lowpass = new Tone.Filter(2000, "lowpass", -12).toMaster();
+        const lowBoost = new Tone.Filter(200, "lowshelf");
+        lowBoost.gain.value = 10;
 
         [this.sampleBuffer, this.sampleBuffer2] = await Promise.all([
             Tone.Buffer.fromUrl(soundUrl("glitches-clicking.mp3")),
@@ -30,8 +31,11 @@ export default class extends React.PureComponent<{}, IState> {
         ]);
         this.sampleBuffer.reverse = true;
 
-        this.convolver = new Tone.Convolver(impulseResponseUrl("echo-chamber")).connect(lowpass);
-        this.convolver.wet.value = 0.5;
+        this.convolver = new Tone.Convolver(impulseResponseUrl("echo-chamber"))
+            .connect(new Tone.Filter(3000, "lowpass", -24))
+            .connect(lowBoost)
+            .connect(Tone.Master);
+        this.convolver.wet.value = 0.8;
 
         this.setState({ buffersLoaded: true });
     }

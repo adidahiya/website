@@ -128,6 +128,10 @@ declare module "tone" {
          * Global Draw singleton
          */
         public static Draw: Tone.DrawSingleton;
+        /**
+         * Global Master node
+         */
+        public static Master: Tone.MasterSingleton;
         public static context: {
             latencyHint: "interactive" | "playback" | "balanced" | "fastest";
         };
@@ -698,7 +702,7 @@ declare module "tone" {
             public schedule(callback: Function, time: Types.Time): this;
         }
 
-        class Master extends Tone {
+        class MasterSingleton extends Tone {
             constructor();
             public mute: boolean;
             public volume: Signal<typeof Type.Decibels, Types.Decibels>;
