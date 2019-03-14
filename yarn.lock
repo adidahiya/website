@@ -12555,6 +12555,11 @@ tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
+tracery-grammar@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/tracery-grammar/-/tracery-grammar-2.7.3.tgz#463e05f017fb6891de4baea7d464199b697acbea"
+  integrity sha1-Rj4F8Bf7aJHeS66n1GQZm2l6y+o=
+
 trim-lines@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/trim-lines/-/trim-lines-1.1.1.tgz#da738ff58fa74817588455e30b11b85289f2a396"

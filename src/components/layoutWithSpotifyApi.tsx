@@ -72,7 +72,7 @@ export default class extends React.PureComponent<IProps, IState> {
                 remoteScripts={[{ src: "https://sdk.scdn.co/spotify-player.js" }]}
             >
                 <br />
-                {loading ? <Spinner /> : children({ player, api: api! })}
+                {loading ? <Spinner size={Spinner.SIZE_LARGE} /> : children({ player, api: api! })}
             </DefaultLayoutWithoutHeader>
         );
     }

@@ -69,8 +69,8 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
             <div style={{ maxWidth: 500, marginRight: 10 }}>
                 <h3>Your top artists</h3>
                 <ul>
-                    {topArtists.items.map(a => (
-                        <li>
+                    {topArtists.items.map((a, i) => (
+                        <li key={i}>
                             <strong>{a.name}</strong> <small>({a.genres.join(", ")})</small>
                         </li>
                     ))}
@@ -90,8 +90,8 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
                 <h3>Playlist "{playlist.name}"</h3>
                 <p>{playlist.tracks.total} tracks</p>
                 <ul>
-                    {playlist.tracks.items.map(t => (
-                        <li>{t.track.name}</li>
+                    {playlist.tracks.items.map((t, i) => (
+                        <li key={i}>{t.track.name}</li>
                     ))}
                 </ul>
             </div>

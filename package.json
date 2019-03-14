@@ -33,6 +33,7 @@
     "spotify-web-api-js": "^1.2.0",
     "stats.js": "^0.17.0",
     "tone": "^13.3.11",
+    "tracery-grammar": "^2.7.3",
     "tslib": "~1.9.3",
     "whatwg-fetch": "^3.0.0"
   },

@@ -5,7 +5,7 @@ date: "2019-03-14"
 
 ### Divining tunes
 
-Inspired by the term _shufflemancy_ I found in the Wikipedia [list of divination techniques](https://en.wikipedia.org/wiki/Methods_of_divination), I sought out to prophesize a Spotify user's musical fate by analyzing their music listening history.
+Inspired by the idea of _shufflemancy_, which I found in the Wikipedia [list of divination techniques](https://en.wikipedia.org/wiki/Methods_of_divination), I sought out to prophesize a Spotify user's musical fate by analyzing their music listening history.
 
 > Work in progress
 
