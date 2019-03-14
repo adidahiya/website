@@ -1,10 +1,14 @@
+///<reference path="../../../../node_modules/spotify-web-api-js/src/typings/spotify-api.d.ts" />
+
 import { Button } from "@blueprintjs/core";
 import React from "react";
-// import { fetchNetlifyFunction } from "../../../common";
+import SpotifyWebApi from "spotify-web-api-js";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 
 interface IState {
     loading: boolean;
+    playlist?: SpotifyApi.PlaylistObjectFull;
+    topArtists?: SpotifyApi.UsersTopArtistsResponse;
 }
 
 export default class extends React.PureComponent<{}, IState> {
@@ -15,16 +19,8 @@ export default class extends React.PureComponent<{}, IState> {
     public async componentDidMount() {
         try {
             await getWebPlaybackSDKPromise();
-            // const tokenResponse = await fetchNetlifyFunction("getSpotifyAccessToken");
-            // const token = await tokenResponse.text();
-
-            // dev token, expires hourly
-            const token =
-                "BQDBNan94x5AjKiiUtZ5m20skV4uAkpfN9ho-qHwuIQj1vMU3DDWj16fWMgDksiD4o5ysGW4tyA0QAbsvbaj0uzh-v02VffVuaT6L3STaFqapoGwZNxLzcf0hO5KT3UL2kfQfOKa96o8btOWqQgBPhkAy5o7lT-V3CZksHY";
-            const player = new (window as any).Spotify.Player({
-                name: "Shufflemancy web player",
-                getOauthToken: (cb: any) => cb(token),
-            });
+            const player = createSpotifyPlayer();
+            const spotifyApi = createSpotifyApi();
 
             // Error handling
             const handleError = ({ message }: any) => console.error(message);
@@ -53,6 +49,27 @@ export default class extends React.PureComponent<{}, IState> {
 
             // Connect to the player!
             player.connect();
+
+            const me = await spotifyApi.getMe();
+            const topArtists = await spotifyApi.getMyTopArtists({
+                limit: 20,
+                time_range: "long_term",
+            });
+
+            const playlists = await spotifyApi.getUserPlaylists(me.id);
+            const existingPlaylist = playlists.items.find(p => p.name === "Shufflemancy");
+            const playlistFull =
+                existingPlaylist !== undefined
+                    ? await spotifyApi.getPlaylist(existingPlaylist.id)
+                    : await spotifyApi.createPlaylist(me.id, {
+                          name: "Shufflemancy",
+                          public: false,
+                          description: "Divining tunes",
+                      });
+            this.setState({
+                playlist: playlistFull,
+                topArtists,
+            });
         } catch (e) {
             console.error(e);
         }
@@ -66,9 +83,52 @@ export default class extends React.PureComponent<{}, IState> {
                 title="shufflemancy"
                 remoteScripts={[{ src: "https://sdk.scdn.co/spotify-player.js" }]}
             >
-                <p>shufflemancy</p>
+                <br />
                 <Button loading={loading} text="Shuffle" />
+                <div style={{ display: "flex" }}>
+                    {this.maybeRenderTopArtists()}
+                    {this.maybeRenderPlaylist()}
+                </div>
             </Layout>
+        );
+    }
+
+    private maybeRenderTopArtists() {
+        const { topArtists } = this.state;
+        if (topArtists === undefined) {
+            return;
+        }
+
+        return (
+            <div style={{ maxWidth: 500, marginRight: 10 }}>
+                <h3>Your top artists</h3>
+                <ul>
+                    {topArtists.items.map(a => (
+                        <li>
+                            <strong>{a.name}</strong> <small>({a.genres.join(", ")})</small>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
+
+    private maybeRenderPlaylist() {
+        const { playlist } = this.state;
+        if (playlist === undefined) {
+            return;
+        }
+
+        return (
+            <div>
+                <h3>Playlist "{playlist.name}"</h3>
+                <p>{playlist.tracks.total} tracks</p>
+                <ul>
+                    {playlist.tracks.items.map(t => (
+                        <li>{t.track.name}</li>
+                    ))}
+                </ul>
+            </div>
         );
     }
 }
@@ -85,4 +145,29 @@ function getWebPlaybackSDKPromise() {
             resolve();
         };
     });
+}
+
+const DEV_TOKEN = process.env.spotify_access_token!;
+
+function createSpotifyPlayer() {
+    /**
+     * globally injected script :(
+     * @see https://github.com/spotify/web-playback-sdk/issues/14
+     */
+    const SpotifyPlayer = (window as any).Spotify.Player;
+
+    // const tokenResponse = await fetchNetlifyFunction("getSpotifyAccessToken");
+    // const token = await tokenResponse.text();
+    const token = DEV_TOKEN;
+
+    return new SpotifyPlayer({
+        name: "Shufflemancy web player",
+        getOauthToken: (cb: any) => cb(token),
+    });
+}
+
+function createSpotifyApi() {
+    const api = new SpotifyWebApi();
+    api.setAccessToken(DEV_TOKEN);
+    return api;
 }
