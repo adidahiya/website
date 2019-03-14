@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: "adidahiya.github.io",
+        title: "adi.pizza",
     },
     plugins: [
         {

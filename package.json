@@ -5,8 +5,8 @@
   "main": "public/index.html",
   "scripts": {
     "build": "run-p build:*",
-    "build:static": "gatsby build",
-    "build:functions": "netlify-lambda build server/functions",
+    "build:static": "NODE_ENV=production gatsby build",
+    "build:functions": "NODE_ENV=production netlify-lambda build server/functions",
     "check": "tsc --pretty --noEmit",
     "clean": "rm -rf public/* .cache/*",
     "dev": "gatsby develop",

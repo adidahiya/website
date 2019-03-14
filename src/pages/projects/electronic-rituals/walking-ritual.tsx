@@ -1,5 +1,6 @@
 import { Button, FormGroup, InputGroup, Intent } from "@blueprintjs/core";
 import React from "react";
+import { fetchNetlifyFunction } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 
 interface State {
@@ -63,7 +64,7 @@ export default class extends React.PureComponent<{}, State> {
         }
 
         try {
-            await fetch("/.netlify/functions/sendAdiMessage", {
+            await fetchNetlifyFunction("sendAdiMessage", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message }),

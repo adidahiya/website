@@ -46,23 +46,39 @@ const LINK_TAGS = [
 ];
 
 export interface IDefaultLayoutHelmetProps {
+    /** Supplied by a Layout component */
     title?: string;
+
+    /** Injected through LocationProvider */
     location: Location;
+
+    /** Additional scripts to load from the web. Use this sparingly... */
+    remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
 }
 
-export function DefaultLayoutHelmet({ location, title }: IDefaultLayoutHelmetProps) {
-    const maybeAnalyticsScript = shouldRenderAnalytics(location) ? (
-        <script async={true} src="https://www.googletagmanager.com/gtag/js?id=UA-126153749-1" />
-    ) : (
-        undefined
-    );
+export function DefaultLayoutHelmet({
+    location,
+    remoteScripts = [],
+    title,
+}: IDefaultLayoutHelmetProps) {
+    if (shouldRenderAnalytics(location)) {
+        remoteScripts.push({
+            async: true,
+            src: "https://www.googletagmanager.com/gtag/js?id=UA-126153749-1",
+        });
+    }
+
+    const scripts = remoteScripts.map(({ async = false, src }) => (
+        <script async={async} src={src} />
+    ));
+
     return (
         <Helmet
             title={title || "Adi's website"}
             link={LINK_TAGS}
             meta={isLegacyRoute(location) ? META_TAGS_WITH_REDIRECT : META_TAGS}
         >
-            {maybeAnalyticsScript}
+            {scripts}
         </Helmet>
     );
 }
