@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@blueprintjs/tslint-config": "^1.7.1",
+    "@hot-loader/react-dom": "^16.8.4",
     "@types/chroma-js": "^1.4.1",
     "@types/classnames": "^2.2.7",
     "@types/dat.gui": "^0.7.2",
