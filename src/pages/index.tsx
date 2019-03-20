@@ -21,6 +21,8 @@ export default () => (
         </p>
         <h3>portfolio</h3>
         <p>
+            <Link to="/projects/2018/">creative projects (2018&mdash;2019)</Link>
+            <br />
             <Link to="/projects/2014/">creative projects (2012&mdash;2014)</Link>
             <br />
             <Link to="/photos/">selected photographs</Link>

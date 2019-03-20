@@ -98,9 +98,13 @@ exports.createPages = ({ graphql, actions }) => {
 
             for (const { node } of data.allMarkdownRemark.edges) {
                 const { slug } = node.fields;
-                const component = slug.startsWith("/blog/itp")
-                    ? path.resolve(`./src/templates/blogPost.tsx`)
-                    : path.resolve(`./src/templates/defaultMarkdownTemplate.tsx`);
+
+                let component = path.resolve(`./src/templates/markdownPage.tsx`);
+                if (slug.startsWith("/blog/itp")) {
+                    component = path.resolve(`./src/templates/blogPost.tsx`);
+                } else if (slug.startsWith("/projects/2014") || slug.startsWith("/projects/2018")) {
+                    component = path.resolve(`./src/templates/markdownPageWithHeader.tsx`);
+                }
 
                 createPage({
                     path: slug,
