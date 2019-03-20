@@ -838,7 +838,7 @@ export default class extends React.PureComponent<{}, IState> {
                     ),
                 ),
             ),
-        );
+        ) as number[];
 
         this.updateCurrentSequence({
             padIndex: HH_PAD_INDEX,

@@ -176,7 +176,7 @@ export default class extends React.PureComponent<{}, IState> {
 
                     <FormGroup label="env sustain" inline={true}>
                         <NormalRangeSlider
-                            onChange={filterEnvSustain => {
+                            onChange={(filterEnvSustain: number) => {
                                 this.monoSynth.filterEnvelope.sustain = filterEnvSustain;
                                 this.setState({ filterEnvSustain });
                             }}
@@ -187,7 +187,7 @@ export default class extends React.PureComponent<{}, IState> {
 
                     <FormGroup label="env release" inline={true}>
                         <NormalRangeSlider
-                            onChange={filterEnvRelease => {
+                            onChange={(filterEnvRelease: number) => {
                                 this.monoSynth.filterEnvelope.release = filterEnvRelease;
                                 this.setState({ filterEnvRelease });
                             }}
