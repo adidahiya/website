@@ -102,7 +102,7 @@ exports.createPages = ({ graphql, actions }) => {
                 let component = path.resolve(`./src/templates/markdownPage.tsx`);
                 if (slug.startsWith("/blog/itp")) {
                     component = path.resolve(`./src/templates/blogPost.tsx`);
-                } else if (slug.startsWith("/projects/2014") || slug.startsWith("/projects/2018")) {
+                } else if (slug.startsWith("/projects")) {
                     component = path.resolve(`./src/templates/markdownPageWithHeader.tsx`);
                 }
 
