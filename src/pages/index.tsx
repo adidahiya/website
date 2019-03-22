@@ -23,7 +23,7 @@ export default () => (
         <p>
             <Link to="/projects/2018/">creative projects (2018&mdash;2019)</Link>
             <br />
-            <Link to="/projects/blueprint/">blueprint (2015&mdash;2018)</Link>
+            <Link to="/projects/blueprint/">blueprint (2015&mdash;2019)</Link>
             <br />
             <Link to="/projects/2014/">creative projects (2012&mdash;2014)</Link>
             <br />
