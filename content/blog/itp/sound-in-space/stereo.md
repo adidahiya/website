@@ -3,6 +3,8 @@ title: Assignment 3 - Stereo
 date: "2019-03-28"
 ---
 
+![stereo-banner](stereo-banner.png)
+
 ### Stereophonic composition
 
 I created a stereo piece for headphones for this assignment. I've been wanting to explore stereo panning since I've rarely used it in my other Ableton compositions. The installation setup is fairly simple, you just listen with standard stereo headphones.
