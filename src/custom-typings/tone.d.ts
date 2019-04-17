@@ -346,6 +346,10 @@ declare module "tone" {
              */
             public lookAhead: number;
             /**
+             * The unwrapped AudioContext.
+             */
+            public readonly rawContext: AudioContext;
+            /**
              * How often the Web Worker callback is invoked. This number corresponds to how responsive the scheduling can be. Context.updateInterval + Context.lookAhead gives you the total latency between scheduling an event and hearing it.
              */
             public updateInterval: number;
@@ -384,11 +388,11 @@ declare module "tone" {
 
         class Buffer extends Tone {
             /**
-             * @param url The url to load, or the audio buffer to set.
+             * @param url The url to load, or the audio buffer to set. If this is not provided, it will be an empty buffer which can be filled with other methods like fromArray().
              * @param onload A callback which is invoked after the buffer is loaded. It’s recommended to use Tone.Buffer.on('load', callback) instead since it will give you a callback when all buffers are loaded.
              * @param onerror The callback to invoke if there is an error
              */
-            constructor(url: AudioBuffer | string, onload?: Function, onerror?: Function);
+            constructor(url?: AudioBuffer | string, onload?: Function, onerror?: Function);
             /**
              * The duration of the buffer.
              */
@@ -417,7 +421,7 @@ declare module "tone" {
              * Set the audio buffer from the array. To create a multichannel AudioBuffer, pass in a multidimensional array.
              * @param array The array to fill the audio buffer
              */
-            public fromArray(array: Float32Array): this;
+            public fromArray(array: Float32Array | Float32Array[]): this;
             /**
              * The audio buffer stored in the object.
              */
@@ -529,6 +533,10 @@ declare module "tone" {
              * Connect ‘this’ to the master output. Shorthand for this.connect(Tone.Master)
              */
             public toMaster(): this;
+        }
+
+        class Gain extends AudioNode {
+            constructor(gain?: number, units?: typeof Type);
         }
 
         // TODO: extract outside namespace?

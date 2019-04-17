@@ -3,15 +3,13 @@ import Tone from "tone";
 export const createLoopWithPlayers = (
     players: Tone.Players,
     interval: string,
-    onInterval: (
-        args: {
-            time: number;
-            bar: number;
-            beat: number;
-            sixteenth: number;
-            trigger: (playerName: string) => void;
-        },
-    ) => void,
+    onInterval: (args: {
+        time: number;
+        bar: number;
+        beat: number;
+        sixteenth: number;
+        trigger: (playerName: string) => void;
+    }) => void,
 ) => {
     return new Tone.Loop((time: number) => {
         const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
