@@ -1,4 +1,5 @@
-import { Button } from "@blueprintjs/core";
+import { Button, FormGroup } from "@blueprintjs/core";
+import { Link } from "gatsby";
 import React from "react";
 import Tone from "tone";
 import { DefaultLayoutWithoutHeader } from "../../../components";
@@ -39,19 +40,24 @@ export default class extends React.PureComponent {
         return (
             <DefaultLayoutWithoutHeader>
                 <h3>random noise generator</h3>
-                <Button
-                    text="Start noise with buffer"
-                    intent="success"
-                    onClick={this.handleStartWithBufferClick}
-                    style={{ marginRight: 20 }}
-                />
-                <Button
-                    text="Start noise with mouse position"
-                    intent="primary"
-                    onClick={this.handleStartWithMousePositionClick}
-                    style={{ marginRight: 20 }}
-                />
-                <Button text="Stop" intent="danger" onClick={this.handleStopClick} />
+                <p>
+                    <Link to="/blog/itp/electronic-rituals/meditation-5">blog post</Link>
+                </p>
+                <FormGroup>
+                    <Button
+                        text="Start brown noise"
+                        intent="success"
+                        onClick={this.handleStartWithBufferClick}
+                        style={{ marginRight: 20 }}
+                    />
+                    <Button
+                        text="Start reactive noise with mouse position"
+                        intent="primary"
+                        onClick={this.handleStartWithMousePositionClick}
+                        style={{ marginRight: 20 }}
+                    />
+                    <Button text="Stop" intent="danger" onClick={this.handleStopClick} />
+                </FormGroup>
             </DefaultLayoutWithoutHeader>
         );
     }
@@ -129,12 +135,8 @@ export default class extends React.PureComponent {
             node.onaudioprocess = e => {
                 for (let channelNum = 0; channelNum < NUM_CHANNELS; channelNum++) {
                     const output = e.outputBuffer.getChannelData(channelNum);
-                    // const myRandom = xorshift(this.mouseBasedRandom());
-                    // const myRandom = xorshift(this.mouseRatio() + 1);
-                    // const myRandom = Math.random;
-                    const myRandom = this.mouseBasedRandom;
                     for (let i = 0; i < bufferSize; i++) {
-                        const white = myRandom() * 2 - 1;
+                        const white = this.mouseAndDateBasedRandom() * 2 - 1;
                         output[i] = (lastOut[channelNum] + 0.02 * white) / 1.02;
                         lastOut[channelNum] = output[i];
                         output[i] *= 1.5; // (roughly) compensate for gain
@@ -146,7 +148,7 @@ export default class extends React.PureComponent {
 
         this.scriptProcessorNodes.push(brownNoise);
         // const gain = new GainNode(toneContext.rawContext, { gain: -20 });
-        // // gain.gain.value = -20;
+        // gain.gain.value = -20;
         // brownNoise.connect(gain).connect(toneContext.rawContext.destination);
         brownNoise.connect(toneContext.rawContext.destination);
     }
@@ -157,6 +159,15 @@ export default class extends React.PureComponent {
         return (((this.mouseX + this.mouseY) * this.mouseRandomState) % 100) / 100;
     };
 
+    private dateState = 0;
+    private mouseAndDateBasedRandom = () => {
+        const m = this.mouseBasedRandom();
+        const d = Date.now();
+        this.dateState++;
+        return (((m + (d % 100)) * this.dateState) % 100) / 100;
+    };
+
+    // @ts-ignore
     private mouseRatioBasedRandom = () => {
         const xRatio = this.mouseX / this.windowWidth;
         const yRatio = this.mouseY / this.windowHeight;
@@ -167,6 +178,7 @@ export default class extends React.PureComponent {
         // return (((xRatio + yRatio) * this.mouseRandomState) % 100) / 100;
     };
 
+    // @ts-ignore
     private mouseRatio = () => {
         const xRatio = this.mouseX / this.windowWidth;
         const yRatio = this.mouseY / this.windowHeight;
@@ -176,6 +188,7 @@ export default class extends React.PureComponent {
 
 // tslint:disable no-bitwise
 
+// @ts-ignore
 function xorshift(seed: number) {
     // let state = 1;
     let state = seed;
