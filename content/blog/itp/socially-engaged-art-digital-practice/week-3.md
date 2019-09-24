@@ -1,0 +1,26 @@
+---
+title: Week 3 - Reading Response
+date: "2019-09-23"
+---
+
+### Reading
+
+- _Digitized Lives_, ch. 1
+- _The Internet as a Public Space_
+- _A Decade Later: The Internet as a Public Space_
+- _Radical Technologies_, ch. 2, pgs. 31-42, 48-55
+- _Algorithms of Oppression_, Introduction
+- _Reddit and the Struggle to Detoxify the Internet_
+- _Weapons of Math Destruction_, ch. 4
+
+### Response
+
+Quite a lot to process in these readings. Some were clearly dated and referred to a more nascent history of the modern internet (even going as far as to capitalize the term as Internet), but they nonetheless proved to be prescient with some accurate foreshadowing. _The Internet As A Public Space_ was notably ahead of its time in pointing out potential dangers which we are grapplign with today. It makes a convincing argument for the spatial metaphor over the media metaphor. It raised some questions for me which were partly addressed by _A Decade Later_, but one thing I'm still unclear on is how local governments are supposed to think of themselves as "points" on the internet rather than tangential to it. The latter article is right in that most distribution platforms today (Google, Twitter, Facebook) have absolved themselves of responsibility of content and are only _now_ (in the past year or so) trying to adjust their policies around freedom of speech. Their defense has been mostly a constitutional one, and they would point to the scale and variety of meaningful user-generated content on their platforms as evidence that this is the future we asked for. Indeed, it is the future we collectively asked for, and without the protections of [Section 230 of the Communications Decency Act](https://en.wikipedia.org/wiki/Section_230_of_the_Communications_Decency_Act), all this content would not have been generated nearly as quickly. If we had seen the dangers (like those outlined in the Reddit article) coming, would we have asked for this future? One can imagine an alternative timeline where the internet expanded more slowly and with more bureaucracy.
+
+The "free speech" problem poses a tough line to straddle for internet platforms like Reddit. I'm of the opinion that many Silicon Valley techno-utopians take the constitutional argument too far (similar to how gun rights advocates take the 2nd amendment too far). We as a society should allow enough free speech such that it does not infringe upon the freedoms of others to engage in a healthy society, and that means minimizing radical hate groups which form online (and are facilitated by the internet's permeability).
+
+Back to _A Decade Later_… a few other points stood out to me. “Vigilance is required to maintain a personally acceptable division of these spaces…” is true, especially if you consider the way some internet spaces have tried to increase safety by forcing users to identify as their unique “real” selves (Facebook). The notion that simultaneity is primarily embodied by mobile devices suggests that it’s important that we are able to straddle a physical space & a virtual one at once. But are we really able to do that? People who engage in their smartphones while in public are usually removed from that physical space, unable to properly multitask, even though they might _seem_ to be in two places at once. To me, the more important concept here seems to be near-instant travel from one internet space to another, a paradigm that enables all sorts of work and leisure which were not possible pre-internet.
+
+In _Digitized Lives_, I appreciated the definition of technology as “a series of devices and practices in the hands and minds of users.” Yes, those devices and practices are wholly the result of the cultural context in which they were created (perhaps influenced by previous technologies which helped shape that cultural context), but by themselves, without humans, they are meaningless. Artificial intelligence fear-mongering can be combatted by reminding ourselves of this fact, even in the face of more recent scares around the technological singularity and general human-level AI. (Aside: I think parts of _Homo Deus_ would be good supplement to this week’s reading topics.) At the same time, _Algorithms of Oppression_ and the Reddit article paint compelling competing narratives. They remind us that neglect of technological consequences and abdication of responsibility can cause harm to society. Search algorithms and online communities which (through neglect) allow harmful stereotypes to propagate and which connect radical extremists to each other should be kept in check by mindful gatekeepers. I’m curious about the "elaborate rules" that have been devised to mitigate the issues in cyber-ethnography (Reed, 15). The “technological imaginary” is a fascinating concept… highly relevant when you consider the relative amount of technical illiteracy today, even amongst young people, who may understand how to use modern digital tools, but have little knowledge of what goes on behind the scenes.
+
+Footnote: as I was doing the readings, I came across a Squarespace ad with the tagline "A website makes it real", which I found funny to think about in relation to this reading, especially this quote: “Still, surprisingly to some, most of the world most of the time is offline, and much still happens there that never gets online” (Reed, 20).
