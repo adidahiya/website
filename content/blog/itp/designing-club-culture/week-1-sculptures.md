@@ -1,5 +1,5 @@
 ---
-title: Week 1 - Assignment
+title: Week 1 - Video Sculptures
 date: "2019-09-11"
 ---
 
