@@ -1,5 +1,5 @@
 ---
-title: Week 3 - Gig Poster
+title: Week 2 - Gig Poster
 date: "2019-09-18"
 ---
 
