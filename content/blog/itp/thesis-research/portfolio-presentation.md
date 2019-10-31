@@ -27,7 +27,7 @@ Physical Computing
 
 ![setup](./music-setup.jpeg)
 
-![buchla](http://www.vintagesynth.com/sites/default/files/2017-05/buchla200e.jpg)
+![buchla](./buchla.jpg)
 
 ### Abstract audiovisual performance
 
