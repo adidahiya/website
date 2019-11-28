@@ -24,5 +24,8 @@ After building this piece and working through its practical considerations, I be
 - hiding the wiring by integrating it into the central ring (more complicated CAD / CNC design)
 - widening the central ring, creating an additional lighting structure in the center (perhaps _not_ using LED strips, as a challenge to myself, since I've only used LED strips in this class so far)
   - some initial ideas here involve a mesh of LEDs similar to Jason Krugman's sculptural work
+  - see sketch below
 - interactive lighting patterns which allow viewers to see themselves affecting the piece, probably through camera or Kinect input
   - I think this will make the piece present better in a non-party setting, like the one in I will be showing during the final presentation / critique. I can play some ambient music and allow viewers to interact with the piece one or two at a time.
+
+![final-sketch-4](final-sketch-4.png)
