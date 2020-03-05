@@ -32,4 +32,4 @@ I felt that my lighting setup was quite succesful despite is simplicity, and it 
 ![dot-nothing-2](dot-nothing-2.jpeg)
 ![dot-nothing-3](dot-nothing-3.jpeg)
 
-Videos coming soon!
+<iframe src="https://player.vimeo.com/video/395821231" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
