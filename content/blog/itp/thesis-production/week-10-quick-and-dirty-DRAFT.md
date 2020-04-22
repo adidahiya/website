@@ -1,6 +1,7 @@
 ---
-title: Week 10 - Quick & Dirty Show
+title: Thesis Week 10 - Quick & Dirty Show
 date: "2020-04-07"
+draft: true
 ---
 
 ### Dance parties are other people
