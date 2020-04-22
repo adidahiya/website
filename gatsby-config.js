@@ -23,15 +23,15 @@ module.exports = {
                     },
                     "gatsby-remark-copy-linked-files",
                     "gatsby-remark-emoji",
+                    {
+                        resolve: "@stayradiated/gatsby-remark-video",
+                        options: {
+                            parentTag: "div",
+                            parentClass: "gatsby-remark-video",
+                            defaultAttributes: {},
+                        },
+                    },
                 ],
-            },
-        },
-        {
-            resolve: "@stayradiated/gatsby-remark-video",
-            options: {
-                parentTag: "div",
-                parentClass: "gatsby-remark-video",
-                defaultAttributes: {},
             },
         },
         "gatsby-plugin-react-helmet",
