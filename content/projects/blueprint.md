@@ -1,5 +1,5 @@
 ---
-title: blueprint (2015-2019)
+title: blueprint (2015-2020)
 ---
 
 I led the development of [Blueprint](https://blueprintjs.com/), [Palantir](https://www.palantir.com/)'s open source UI toolkit and design language. You can view its [GitHub repository here](https://github.com/palantir/blueprint). I helped design its APIs, abstractions, and interactions. I also engaged with the TypeScript and React open source community to continually improve the project.
@@ -8,7 +8,7 @@ I led the development of [Blueprint](https://blueprintjs.com/), [Palantir](https
 
 [![blueprint-light-theme](./blueprint-light-theme.png)](https://dribbble.com/shots/3206741-Blueprint-Kit)
 
-Commit contributions as of March 2019 ([open source](https://github.com/palantir/blueprint/graphs/contributors))
+Commit contributions as of April 2020 ([open source](https://github.com/palantir/blueprint/graphs/contributors))
 
 ![blueprint-commits-oss](./blueprint-commits-oss.png)
 
