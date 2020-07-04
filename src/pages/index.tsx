@@ -31,9 +31,9 @@ export default () => (
         </p>
         <h3>links</h3>
         <p>
-            <a href="https://instagram.com/adidahiya">instagram</a>
+            <a href="https://www.instagram.com/comfortzone.wav">instagram</a>
             <br />
-            <a href="https://soundcloud.com/adi-dahiya">soundcloud</a>
+            <a href="https://soundcloud.com/djcomfortzone">soundcloud</a>
             <br />
             <a href="https://twitter.com/adi_dahiya">twitter</a>
             <br />
