@@ -1,7 +1,7 @@
 import { Location as LocationProvider } from "@reach/router";
 import { Link } from "gatsby";
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import * as favicon16 from "../assets/favicon-16.png";
 import * as favicon32 from "../assets/favicon-32.png";
 import * as favicon48 from "../assets/favicon-48.png";
