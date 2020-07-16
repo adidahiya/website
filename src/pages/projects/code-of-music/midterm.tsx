@@ -4,7 +4,7 @@ import p5 from "p5";
 import React from "react";
 import Tone from "tone";
 import { createLoopWithPlayers } from "../../../common";
-import { DefaultLayoutWithoutHeader as Layout /*, RealtimePosenet */ } from "../../../components";
+import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
@@ -165,7 +165,6 @@ export default class extends React.PureComponent<{}, IState> {
                     style={{ marginBottom: 20 }}
                     text={this.state.isPlaying ? "Stop" : "Play"}
                 />
-                {/* <RealtimePosenet videoWidth={CANVAS_WIDTH} videoHeight={CANVAS_HEIGHT} /> */}
                 <P5Canvas sketch={this.sketch} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
             </Layout>
         );
