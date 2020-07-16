@@ -12,7 +12,7 @@ export default () => (
             <a href="https://tisch.nyu.edu/itp" target="_blank">
                 NYU ITP
             </a>{" "}
-            alum. .
+            alum.
         </p>
         <h3>blog</h3>
         <p>
