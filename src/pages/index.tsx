@@ -9,19 +9,18 @@ export default () => (
         <h3>adi dahiya</h3>
         <p>
             programmer &amp; artist based in Brooklyn, NY. <br />
-            currently pursuing a master's @{" "}
             <a href="https://tisch.nyu.edu/itp" target="_blank">
                 NYU ITP
-            </a>
-            .
+            </a>{" "}
+            alum. .
         </p>
         <h3>blog</h3>
         <p>
-            <Link to="/blog/itp/">ITP (2018)</Link>
+            <Link to="/blog/itp/">ITP (2018&mdash;2020)</Link>
         </p>
         <h3>portfolio</h3>
         <p>
-            <Link to="/projects/2018/">creative projects (2018&mdash;2019)</Link>
+            <Link to="/projects/2018/">creative projects (2018&mdash;2020)</Link>
             <br />
             <Link to="/projects/blueprint/">blueprint (2015&mdash;2019)</Link>
             <br />
