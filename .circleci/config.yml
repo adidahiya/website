@@ -1,9 +1,11 @@
 version: 2.1
 
-aliases:
-  - &docker-node-image
-    - image: cimg/node:18
+executors:
+  default-executor:
+    docker:
+      image: cimg/node:18.12.1
 
+aliases:
   - &restore-node-modules-cache
     name: Restore node_modules cache
     key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
@@ -26,7 +28,7 @@ aliases:
 
 jobs:
   checkout-code:
-    docker: *docker-node-image
+    executor: default-executor
     steps:
       - checkout
       - restore_cache: *restore-pnpm-store
@@ -42,7 +44,7 @@ jobs:
           paths: [packages/*/node_modules]
 
   build:
-    docker: *docker-node-image
+    executor: default-executor
     resource_class: large
     steps:
       - checkout
@@ -55,8 +57,7 @@ jobs:
             - public
 
   check:
-    docker: *docker-node-image
-    resource_class: large
+    executor: default-executor
     steps:
       - checkout
       - restore_cache: *restore-node-modules-cache
