@@ -2,7 +2,7 @@ version: 2
 
 aliases:
   - &docker-node-image
-    - image: circleci/node:18
+    - image: cimg/node:18
 
   - &restore-node-modules-cache
     name: Restore node_modules cache
