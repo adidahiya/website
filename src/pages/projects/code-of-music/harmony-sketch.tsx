@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -20,16 +20,17 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
         x: number;
         y: number;
         time: number;
-        note: Tone.Types.Frequency;
+        note: Tone.Unit.Frequency;
     }> = [];
 
     public componentDidMount() {
         // do Tone setup
         Tone.Transport.bpm.value = 120;
 
-        this.poly = new Tone.PolySynth(2, Tone.Synth).toMaster();
+        this.poly = new Tone.PolySynth({ voice: Tone.Synth, maxPolyphony: 2 }).toMaster();
         this.poly.volume.value = -10;
-        for (const v of this.poly.voices) {
+        // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+        for (const v of this.poly._voices) {
             v.portamento = 100;
         }
 
@@ -103,7 +104,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
         };
 
         const notes = ["C3", "E3"];
-        let frequencies: Tone.Types.Frequency[] = [];
+        let frequencies: Tone.Unit.Frequency[] = [];
 
         p.keyPressed = () => {
             if (p.keyCode === 32) {
@@ -118,7 +119,8 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
             }
 
             this.poly.triggerAttack(notes);
-            frequencies = this.poly.voices.map(v => v.frequency.value);
+            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            frequencies = this.poly._voices.map((v) => v.frequency.value);
             this.notesToDraw.push({
                 x: p.random(0, CANVAS_WIDTH),
                 y: p.random(0, CANVAS_HEIGHT / 2),
@@ -127,9 +129,10 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
             });
 
             // pitch bend
-            for (const v of this.poly.voices) {
+            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            for (const v of this.poly._voices) {
                 const { value } = v.frequency;
-                v.frequency.rampTo(new Tone.Frequency(value).transpose(2));
+                v.frequency.rampTo(Tone.Frequency(value).transpose(2));
             }
         };
 
@@ -144,7 +147,8 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
 
             // reset pitch bend
             let i = 0;
-            for (const v of this.poly.voices) {
+            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            for (const v of this.poly._voices) {
                 v.frequency.rampTo(frequencies[i]);
                 i++;
             }
@@ -152,11 +156,13 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
     };
 
     // callback for each measure
-    private handleMeasure = (time: Tone.Types.Time) => {
-        let note: Tone.Types.Frequency = "C2";
+    private handleMeasure = (time: Tone.Unit.Time) => {
+        let note: Tone.Unit.Frequency = "C2";
         if (this.notesToDraw.length > 1) {
-            console.log(this.poly.voices.map(v => v.frequency.value));
-            note = this.poly.voices[0].frequency.value;
+            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            console.log(this.poly._voices.map((v) => v.frequency.value));
+            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            note = this.poly._voices[0].frequency.value;
         }
         this.droneSynth.triggerAttackRelease(note, "1m", time, 0.5);
     };

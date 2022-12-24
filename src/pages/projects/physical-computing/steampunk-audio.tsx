@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import { throttle } from "lodash-es";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import DefaultLayoutWithoutHeader from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -13,11 +13,11 @@ const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 // tslint:disable no-console
 
 interface IState {
-    delayTime: Tone.Types.Time;
+    delayTime: Tone.Unit.Time;
     distortion: number;
     isPlaying: boolean;
-    noiseVolume: Tone.Types.Decibels;
-    pitch: Tone.Types.Frequency;
+    noiseVolume: Tone.Unit.Decibels;
+    pitch: Tone.Unit.Frequency;
 }
 
 export default class extends React.PureComponent<{}, IState> {
@@ -34,7 +34,7 @@ export default class extends React.PureComponent<{}, IState> {
     private distortion!: Tone.Distortion;
     private delay!: Tone.FeedbackDelay;
     private sineSynth!: Tone.Synth;
-    private noise!: Tone.Source;
+    private noise!: Tone.Noise;
     private player!: Tone.Player;
     private hasStarted = false;
     private p5!: p5;
@@ -63,22 +63,21 @@ export default class extends React.PureComponent<{}, IState> {
         this.noise = new Tone.Noise("brown").start();
         this.noise.volume.value = this.state.noiseVolume;
         const autoFilter = new Tone.AutoFilter({
-            frequency: "8m",
-            min: 800,
-            max: 15000,
+            baseFrequency: "8m",
+            // HACKHACK(adidahiya): convertion from previous options for AutoFilter with min/max
+            // of 800/15000, is this right? need to verify...
+            octaves: 4.2,
         }).toMaster();
         this.noise.connect(autoFilter);
         autoFilter.start();
 
         // repeat quarter notes infinitely
-        const loop = new Tone.Loop((time: Tone.Types.Time) => {
+        const loop = new Tone.Loop((time: Tone.Unit.Time) => {
             this.sineSynth.triggerAttackRelease(this.state.pitch, "2n", time);
         }, "4n");
         loop.start();
 
-        this.player = new Tone.Player("/sounds/Crake.mp3")
-            .connect(this.distortion)
-            .connect(this.delay);
+        this.player = new Tone.Player("/sounds/Crake.mp3").connect(this.distortion).connect(this.delay);
         this.player.volume.value = -10;
         this.player.sync();
         this.player.start();
@@ -89,8 +88,7 @@ export default class extends React.PureComponent<{}, IState> {
             <DefaultLayoutWithoutHeader>
                 <h3>Physical Computing</h3>
                 <p>
-                    Steampunk arm (
-                    <Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)
+                    Steampunk arm (<Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)
                 </p>
                 <button type="button" onClick={this.handlePlayToggle} style={{ marginBottom: 20 }}>
                     {this.state.isPlaying ? "Stop" : "Play"}
@@ -140,13 +138,9 @@ export default class extends React.PureComponent<{}, IState> {
 
                     let note: string;
                     if (pitch > MIN_PITCH && pitch < MAX_PITCH) {
-                        const freq = Math.round(
-                            this.p5.map(pitch, MIN_PITCH, MAX_PITCH, 200, 2000),
-                        );
-                        note = new Tone.Frequency(freq).toNote();
-                        this.noise.volume.value = Math.round(
-                            this.p5.map(pitch, MIN_PITCH, MAX_PITCH, -20, 0),
-                        );
+                        const freq = Math.round(this.p5.map(pitch, MIN_PITCH, MAX_PITCH, 200, 2000));
+                        note = Tone.Frequency(freq).toNote();
+                        this.noise.volume.value = Math.round(this.p5.map(pitch, MIN_PITCH, MAX_PITCH, -20, 0));
                     }
 
                     const MIN_ROLL = 0;

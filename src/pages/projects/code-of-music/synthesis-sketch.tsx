@@ -1,17 +1,17 @@
 import { Button, FormGroup, Slider } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, NormalRangeSlider } from "../../../components";
 import * as styles from "./synthesis-sketch.module.css";
 
 interface IState {
     isPlaying: boolean;
-    filterQ: Tone.Types.Positive;
+    filterQ: Tone.Unit.Positive;
     filterEnvDecay: number;
-    filterEnvSustain: Tone.Types.NormalRange;
-    filterEnvRelease: Tone.Types.NormalRange;
+    filterEnvSustain: Tone.Unit.NormalRange;
+    filterEnvRelease: Tone.Unit.NormalRange;
     tempo: number;
 }
 
@@ -59,8 +59,8 @@ export default class extends React.PureComponent<{}, IState> {
         this.monoSynth.volume.value = -10;
 
         const synthPart = new Tone.Part(
-            (time: Tone.Types.Time, note: Tone.Types.Note) => {
-                this.monoSynth.triggerAttackRelease(note, "8n", time);
+            (time: Tone.Unit.Time, note: string) => {
+                this.monoSynth.triggerAttackRelease(note as Tone.Unit.Note, "8n", time);
             },
             [
                 ["0:0:0", "A2"],
@@ -81,31 +81,27 @@ export default class extends React.PureComponent<{}, IState> {
             wood: "/sounds/wood.wav",
         }).toMaster();
         kit.volume.value = -10;
-        const drumLoop = createLoopWithPlayers(
-            kit,
-            "16n",
-            ({ bar, beat, sixteenth: six, trigger }) => {
-                if (six === 0) {
+        const drumLoop = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
+            if (six === 0) {
+                trigger("kick");
+            } else if (six === 2) {
+                trigger("hh");
+            }
+
+            if (beat === 2) {
+                if (six === 1) {
                     trigger("kick");
-                } else if (six === 2) {
-                    trigger("hh");
+                } else if (six === 3) {
+                    trigger("wood");
                 }
+            }
 
-                if (beat === 2) {
-                    if (six === 1) {
-                        trigger("kick");
-                    } else if (six === 3) {
-                        trigger("wood");
-                    }
+            if (beat === 3) {
+                if (six === 2) {
+                    trigger("wood");
                 }
-
-                if (beat === 3) {
-                    if (six === 2) {
-                        trigger("wood");
-                    }
-                }
-            },
-        );
+            }
+        });
         this.parts.push(drumLoop);
     }
 
@@ -133,7 +129,7 @@ export default class extends React.PureComponent<{}, IState> {
                         labelStepSize={10}
                         max={180}
                         min={110}
-                        onChange={tempo => {
+                        onChange={(tempo) => {
                             Tone.Transport.bpm.value = tempo;
                             this.setState({ tempo });
                         }}
@@ -149,7 +145,7 @@ export default class extends React.PureComponent<{}, IState> {
                             labelStepSize={2}
                             max={12}
                             min={0}
-                            onChange={filterQ => {
+                            onChange={(filterQ) => {
                                 this.monoSynth.filter.Q.value = filterQ;
                                 this.setState({ filterQ });
                             }}
@@ -164,7 +160,7 @@ export default class extends React.PureComponent<{}, IState> {
                             labelStepSize={0.5}
                             max={5}
                             min={0.2}
-                            onChange={filterEnvDecay => {
+                            onChange={(filterEnvDecay) => {
                                 this.monoSynth.filterEnvelope.decay = filterEnvDecay;
                                 this.setState({ filterEnvDecay });
                             }}
@@ -204,11 +200,11 @@ export default class extends React.PureComponent<{}, IState> {
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
-            this.parts.forEach(p => p.stop());
+            this.parts.forEach((p) => p.stop());
             this.setState({ isPlaying: false });
         } else {
             Tone.Transport.start();
-            this.parts.forEach(p => p.start());
+            this.parts.forEach((p) => p.start());
             this.setState({ isPlaying: true });
         }
     };

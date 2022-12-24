@@ -1,19 +1,10 @@
-import {
-    Button,
-    ButtonGroup,
-    Checkbox,
-    Classes,
-    Colors,
-    FormGroup,
-    HTMLSelect,
-    Slider,
-} from "@blueprintjs/core";
+import { Button, ButtonGroup, Checkbox, Classes, Colors, FormGroup, HTMLSelect, Slider } from "@blueprintjs/core";
 import chroma from "chroma-js";
 import classNames from "classnames";
 import { debounce, flatMap, flatMapDeep, max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import * as styles from "./dance-floor-sequencer.module.css";
@@ -108,7 +99,7 @@ interface IState {
     prevSequence: Sequence | undefined | null;
     prevSampleBank: string | undefined | null;
     tempo: number;
-    swing: Tone.Types.NormalRange;
+    swing: Tone.Unit.NormalRange;
     isSerialConnectionOpen: boolean;
 }
 
@@ -134,7 +125,7 @@ export default class extends React.PureComponent<{}, IState> {
 
     // TODO: typings for p5.serial
     private serial: any;
-    private transportEvent?: Tone.Event;
+    private transportEvent?: Tone.ToneEvent;
     private readonly parts: Array<Tone.Part | Tone.Loop> = [];
     private metronomePlayers?: Tone.Players;
     private sampleBanks: { [bankName: string]: Tone.Players } = {};
@@ -143,14 +134,14 @@ export default class extends React.PureComponent<{}, IState> {
     private playersToRestoreVolume: Array<{
         sampleBankId: string;
         padId: string;
-        oldVolume: Tone.Types.Decibels;
+        oldVolume: Tone.Unit.Decibels;
     }> = [];
 
     public async componentDidMount() {
         const savedSequences = localStorage.getItem(LS_KEY);
         if (savedSequences != null) {
             const store: ISequencerStore = JSON.parse(savedSequences);
-            const latest = max(Object.keys(store.sequences).map(key => parseInt(key, 10)));
+            const latest = max(Object.keys(store.sequences).map((key) => parseInt(key, 10)));
             if (latest !== undefined) {
                 const latestSequence = store.sequences[latest];
                 this.setState({
@@ -173,7 +164,7 @@ export default class extends React.PureComponent<{}, IState> {
         Tone.Transport.loopStart = "0:0:0";
         Tone.Transport.loopEnd = `${NUM_BARS}:0:0`;
 
-        this.transportEvent = new Tone.Event(this.handleTransportStepEvent);
+        this.transportEvent = new Tone.ToneEvent(this.handleTransportStepEvent);
         this.transportEvent.loop = true;
         this.transportEvent.loopEnd = "16n";
         this.transportEvent.start();
@@ -183,13 +174,15 @@ export default class extends React.PureComponent<{}, IState> {
             soft: soundUrl("metronome-soft.wav"),
         }).toMaster();
         // TODO: sync() each player to transport (but there doesn't seem to be a way to iterate over players automatically...)
-        this.metronomePlayers.get("soft").volume.value = -10;
+        this.metronomePlayers.player("soft").volume.value = -10;
 
         // don't await this async action, the loading callbacks aren't working...
         this.loadSampleBank(this.state.currentSampleBank);
 
         const currentSequencePart = new Tone.Loop((time: number) => {
-            const position = getPositionFromBarsBeatsSixteenths(Tone.Transport.position);
+            const position = getPositionFromBarsBeatsSixteenths(
+                Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths,
+            );
             this.handleSequenceStep(time, getStepFromPosition(position));
         }, "16n");
 
@@ -222,10 +215,7 @@ export default class extends React.PureComponent<{}, IState> {
         } = this.state;
 
         return (
-            <Layout
-                title="dance floor MPC"
-                className={classNames(Classes.DARK, styles.layoutContainer)}
-            >
+            <Layout title="dance floor MPC" className={classNames(Classes.DARK, styles.layoutContainer)}>
                 <h3>dance floor MPC</h3>
                 <div className={styles.transportControls}>
                     <FormGroup inline={true}>
@@ -272,7 +262,7 @@ export default class extends React.PureComponent<{}, IState> {
                             labelStepSize={10}
                             max={180}
                             min={110}
-                            onChange={newTempo => {
+                            onChange={(newTempo) => {
                                 Tone.Transport.bpm.value = newTempo;
                                 this.setState({ tempo: newTempo });
                             }}
@@ -283,7 +273,7 @@ export default class extends React.PureComponent<{}, IState> {
                             labelStepSize={0.5}
                             max={1}
                             min={0}
-                            onChange={newSwing => {
+                            onChange={(newSwing) => {
                                 // sometimes Slider returns extra sig figs
                                 newSwing = Math.round(newSwing * 10) / 10;
                                 Tone.Transport.swing = newSwing;
@@ -296,11 +286,7 @@ export default class extends React.PureComponent<{}, IState> {
                     </FormGroup>
                 </div>
                 <div className={styles.timeline}>
-                    <TimelineSequence
-                        position={position}
-                        sequence={prevSequence}
-                        onStepClick={noop}
-                    />
+                    <TimelineSequence position={position} sequence={prevSequence} onStepClick={noop} />
                     <TimelineSequence
                         position={position}
                         sequence={currentSequence}
@@ -312,11 +298,9 @@ export default class extends React.PureComponent<{}, IState> {
                     <HTMLSelect
                         value={currentSampleBank}
                         options={AVAILABLE_SAMPLE_BANKS}
-                        onChange={evt => {
+                        onChange={(evt) => {
                             const newSampleBank = evt.currentTarget.value;
-                            this.setState({ currentSampleBank: newSampleBank }, () =>
-                                this.loadSampleBank(),
-                            );
+                            this.setState({ currentSampleBank: newSampleBank }, () => this.loadSampleBank());
                         }}
                     />
                 </FormGroup>
@@ -347,9 +331,9 @@ export default class extends React.PureComponent<{}, IState> {
     private renderPadMatrix = () => {
         return (
             <div className={styles.pads}>
-                {range(PADS_WIDTH).map(i => (
+                {range(PADS_WIDTH).map((i) => (
                     <div className={styles.padRow} key={i}>
-                        {range(PADS_HEIGHT).map(j => this.renderPad(i, j))}
+                        {range(PADS_HEIGHT).map((j) => this.renderPad(i, j))}
                     </div>
                 ))}
             </div>
@@ -376,14 +360,16 @@ export default class extends React.PureComponent<{}, IState> {
     // we don't have to use Tone.Draw to sync up visuals because React's rendering pipeline uses
     // requestAnimationFrame, which is really all `Tone.Draw.schedule()` does anyway
     private handleTransportStepEvent = () => {
-        const [barString, beatString, sixteenthString] = Tone.Transport.position.split(":");
+        const [barString, beatString, sixteenthString] = (
+            Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
+        ).split(":");
         const bar = parseInt(barString, 10);
         const beat = parseInt(beatString, 10);
         const sixteenth = parseInt(sixteenthString, 10);
 
         // restore volumes for accents
         for (const { sampleBankId, padId, oldVolume } of this.playersToRestoreVolume) {
-            const player = this.sampleBanks[sampleBankId].get(padId);
+            const player = this.sampleBanks[sampleBankId].player(padId);
             if (player.loaded) {
                 player.volume.value = oldVolume;
             }
@@ -414,9 +400,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         // can only do this once component is mounted
         // it's used in this.handleSerialData
-        this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
-            window.performance.now(),
-        );
+        this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() => window.performance.now());
 
         this.serial.on("data", this.handleSerialData);
         this.serial.on("error", (err: any) => console.log("error", err));
@@ -471,14 +455,11 @@ export default class extends React.PureComponent<{}, IState> {
                 const changes = trimmedData
                     .substr("padChanges:".length)
                     .split("")
-                    .map(s => parseInt(s, 10));
+                    .map((s) => parseInt(s, 10));
                 // react to changes if necessary
                 changes.forEach((c, i) => {
                     // prevent thrashing
-                    if (
-                        isStepActive(c) &&
-                        now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
-                    ) {
+                    if (isStepActive(c) && now > this.timeOfLastPadActivations[i] + this.padActivationDebounce) {
                         this.getPadClickHandler(i, isStepAccent(c))();
                         this.timeOfLastPadActivations[i] = window.performance.now();
                     }
@@ -487,7 +468,7 @@ export default class extends React.PureComponent<{}, IState> {
                 const buttonStates = trimmedData
                     .substr("buttonStates:".length)
                     .split("")
-                    .map(s => parseInt(s, 10));
+                    .map((s) => parseInt(s, 10));
 
                 // only one button is pressed at a time
                 if (buttonStates[0] === 1) {
@@ -508,13 +489,13 @@ export default class extends React.PureComponent<{}, IState> {
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
-            this.parts.forEach(p => p.stop());
+            this.parts.forEach((p) => p.stop());
             this.setState({ isPlaying: false });
         } else {
             // start the Transport 100 milliseconds in the future which is not very perceptible,
             // but can help avoid scheduling errors
             Tone.Transport.start();
-            this.parts.forEach(p => p.start());
+            this.parts.forEach((p) => p.start());
             this.setState({ isPlaying: true });
         }
     };
@@ -538,51 +519,48 @@ export default class extends React.PureComponent<{}, IState> {
         });
     };
 
-    private getPadClickHandler = (padIndex: number, accent = false) => (
-        evt?: React.MouseEvent<HTMLDivElement>,
-    ) => {
-        if (NEUTRAL_PADS.indexOf(padIndex) >= 0) {
-            // ignore interaction
-            return;
-        }
+    private getPadClickHandler =
+        (padIndex: number, accent = false) =>
+        (evt?: React.MouseEvent<HTMLDivElement>) => {
+            if (NEUTRAL_PADS.indexOf(padIndex) >= 0) {
+                // ignore interaction
+                return;
+            }
 
-        if (evt != null) {
-            accent = evt.shiftKey;
-        }
+            if (evt != null) {
+                accent = evt.shiftKey;
+            }
 
-        const { currentSampleBank, isRecording, position } = this.state;
+            const { currentSampleBank, isRecording, position } = this.state;
 
-        if (Tone.Transport.state === "started" && isRecording) {
-            this.updateCurrentSequence({
-                accent,
-                padIndex,
-                steps: [getStepFromPosition(position)],
-            });
-        }
+            if (Tone.Transport.state === "started" && isRecording) {
+                this.updateCurrentSequence({
+                    accent,
+                    padIndex,
+                    steps: [getStepFromPosition(position)],
+                });
+            }
 
-        this.playSample(currentSampleBank, padIndex, accent);
-    };
+            this.playSample(currentSampleBank, padIndex, accent);
+        };
 
     /** Where most of the audio happens. */
-    private handleSequenceStep = (time: Tone.Types.Time, step: number) => {
+    private handleSequenceStep = (time: Tone.Unit.Time, step: number) => {
         const { currentSequence, currentSampleBank, prevSequence, prevSampleBank } = this.state;
         // this loops on sixteenth notes, but our sequencer currently only has quarter-note resolution
         const position = getPositionFromStep(step);
 
         if (this.state.enableMetronome && position.sixteenth === 0) {
             if (position.beat === 0) {
-                this.metronomePlayers!.get("loud").start(time);
+                this.metronomePlayers!.player("loud").start(time);
             } else {
-                this.metronomePlayers!.get("soft").start(time);
+                this.metronomePlayers!.player("soft").start(time);
             }
         }
 
         // don't play samples in the same bank twice
         const padsPlayedDuringThisStep: number[] = [];
-        const playSequence = (
-            { padSequence, bankId }: { padSequence: string; bankId: string },
-            padIndex: number,
-        ) => {
+        const playSequence = ({ padSequence, bankId }: { padSequence: string; bankId: string }, padIndex: number) => {
             const seq = deserializeSeq(padSequence);
             if (isStepActive(seq[step]) && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
                 this.playSample(bankId, padIndex, isStepAccent(seq[step]));
@@ -592,13 +570,9 @@ export default class extends React.PureComponent<{}, IState> {
             }
         };
 
-        currentSequence
-            .map(s => ({ padSequence: s, bankId: currentSampleBank }))
-            .forEach(playSequence);
+        currentSequence.map((s) => ({ padSequence: s, bankId: currentSampleBank })).forEach(playSequence);
         if (prevSequence != null && prevSampleBank != null) {
-            prevSequence
-                .map(s => ({ padSequence: s, bankId: prevSampleBank }))
-                .forEach(playSequence);
+            prevSequence.map((s) => ({ padSequence: s, bankId: prevSampleBank })).forEach(playSequence);
         }
     };
 
@@ -659,18 +633,13 @@ export default class extends React.PureComponent<{}, IState> {
         return new Promise<void>((resolve, _reject) => {
             if (this.sampleBanks[sampleBankId] == null) {
                 this.sampleBanks[sampleBankId] = new Tone.Players(
-                    range(PADS_WIDTH * PADS_HEIGHT).reduce(
-                        (prev, i) => {
-                            const sampleFilename = `${this.samplePadMapping[i]}.wav`;
-                            return {
-                                ...prev,
-                                [`${i}`]: soundUrl(
-                                    `sample-banks/${sampleBankId}/${sampleFilename}`,
-                                ),
-                            };
-                        },
-                        {} as { [key: string]: string },
-                    ),
+                    range(PADS_WIDTH * PADS_HEIGHT).reduce((prev, i) => {
+                        const sampleFilename = `${this.samplePadMapping[i]}.wav`;
+                        return {
+                            ...prev,
+                            [`${i}`]: soundUrl(`sample-banks/${sampleBankId}/${sampleFilename}`),
+                        };
+                    }, {} as { [key: string]: string }),
                     () => {
                         console.log(`Loaded "${sampleBankId}" samples!`);
                         resolve();
@@ -695,25 +664,18 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
-    private playSample = (
-        bankName: string,
-        padIndex: number,
-        accent: boolean,
-        time?: Tone.Types.Time,
-    ) => {
+    private playSample = (bankName: string, padIndex: number, accent: boolean, time?: Tone.Unit.Time) => {
         const padId = `${padIndex}`;
 
-        if (this.sampleBanks[bankName] == null || !this.sampleBanks[bankName].get(padId).loaded) {
-            console.log(
-                `Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`,
-            );
+        if (this.sampleBanks[bankName] == null || !this.sampleBanks[bankName].player(padId).loaded) {
+            console.log(`Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`);
             return;
         }
 
-        const player = this.sampleBanks[bankName].get(padId);
+        const player = this.sampleBanks[bankName].player(padId);
 
         if (time !== undefined) {
-            const position = new Tone.Time(time).toBarsBeatsSixteenths();
+            const position = Tone.Time(time).toBarsBeatsSixteenths();
             console.log(`Triggering pad ${padIndex} at ${position}`);
         }
 
@@ -805,13 +767,11 @@ export default class extends React.PureComponent<{}, IState> {
         // HACKHACK: hard coded index
         const KICK_PAD_INDEX = 6;
         const kickSeq = deserializeSeq(this.state.currentSequence[KICK_PAD_INDEX]);
-        const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every(
-            i => kickSeq[i] === 1,
-        );
+        const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every((i) => kickSeq[i] === 1);
 
         const steps = flatMap(
-            range(NUM_BARS).map(bar =>
-                range(BEATS_PER_BAR).map(beat => getStepFromPosition({ bar, beat, sixteenth: 0 })),
+            range(NUM_BARS).map((bar) =>
+                range(BEATS_PER_BAR).map((beat) => getStepFromPosition({ bar, beat, sixteenth: 0 })),
             ),
         );
 
@@ -827,15 +787,13 @@ export default class extends React.PureComponent<{}, IState> {
         // HACKHACK: hard coded index
         const HH_PAD_INDEX = 5;
         const hhSeq = deserializeSeq(this.state.currentSequence[HH_PAD_INDEX]);
-        const isShortcutEnabled = range(TOTAL_NUM_STEPS).every(i => hhSeq[i] === 1);
+        const isShortcutEnabled = range(TOTAL_NUM_STEPS).every((i) => hhSeq[i] === 1);
 
         // TODO: might be simpler with TOTAL_NUM_STEPS
         const steps = flatMapDeep(
-            range(NUM_BARS).map(bar =>
-                range(BEATS_PER_BAR).map(beat =>
-                    range(SIXTEENTHS_PER_BEAT).map(sixteenth =>
-                        getStepFromPosition({ bar, beat, sixteenth }),
-                    ),
+            range(NUM_BARS).map((bar) =>
+                range(BEATS_PER_BAR).map((beat) =>
+                    range(SIXTEENTHS_PER_BEAT).map((sixteenth) => getStepFromPosition({ bar, beat, sixteenth })),
                 ),
             ),
         ) as number[];
@@ -884,9 +842,9 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
     public render() {
         return (
             <div className={styles.timelineSequence}>
-                {range(NUM_BARS).map(bar => (
+                {range(NUM_BARS).map((bar) => (
                     <div className={styles.timelineBar} key={bar}>
-                        {range(BEATS_PER_BAR).map(beat => this.renderBeat(bar, beat))}
+                        {range(BEATS_PER_BAR).map((beat) => this.renderBeat(bar, beat))}
                     </div>
                 ))}
             </div>
@@ -897,19 +855,15 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
         const { position } = this.props;
         const isCurrent = position.bar === bar && position.beat === beat;
         return (
-            <div
-                className={classNames(styles.timelineBeat, { [styles.isCurrent]: isCurrent })}
-                key={beat}
-            >
-                {range(SIXTEENTHS_PER_BEAT).map(sixteenth => this.renderStep(bar, beat, sixteenth))}
+            <div className={classNames(styles.timelineBeat, { [styles.isCurrent]: isCurrent })} key={beat}>
+                {range(SIXTEENTHS_PER_BEAT).map((sixteenth) => this.renderStep(bar, beat, sixteenth))}
             </div>
         );
     }
 
     private renderStep(bar: number, beat: number, sixteenth: number) {
         const { position, sequence } = this.props;
-        const isCurrent =
-            position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
+        const isCurrent = position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
         const step = getStepFromPosition({ bar, beat, sixteenth });
         let backgroundColor = DEFAULT_STEP_COLOR;
 
@@ -949,7 +903,7 @@ function serializeSeq(seq: IPadSequence): string {
 
 // TODO: use binary for an even more compact format. but for now this is more debuggable.
 function deserializeSeq(seq: string): IPadSequence {
-    return seq.split("").map(s => (s === "0" ? 0 : s === "1" ? 1 : 2));
+    return seq.split("").map((s) => (s === "0" ? 0 : s === "1" ? 1 : 2));
 }
 
 function isStepActive(stepValue: string | number): boolean {
@@ -963,11 +917,7 @@ function isStepAccent(stepValue: string | number): boolean {
 }
 
 function getStepFromPosition(position: ITimelinePosition): number {
-    return (
-        position.bar * SIXTEENTHS_PER_BEAT * BEATS_PER_BAR +
-        position.beat * BEATS_PER_BAR +
-        position.sixteenth
-    );
+    return position.bar * SIXTEENTHS_PER_BEAT * BEATS_PER_BAR + position.beat * BEATS_PER_BAR + position.sixteenth;
 }
 
 function getPositionFromStep(step: number): ITimelinePosition {
@@ -979,15 +929,11 @@ function getPositionFromStep(step: number): ITimelinePosition {
     return { bar, beat, sixteenth };
 }
 
-function positionToBarsBeatsSixteenths({
-    bar,
-    beat,
-    sixteenth,
-}: ITimelinePosition): Tone.Types.BarsBeatsSixteenth {
+function positionToBarsBeatsSixteenths({ bar, beat, sixteenth }: ITimelinePosition): Tone.Unit.BarsBeatsSixteenths {
     return `${bar}:${beat}:${sixteenth}`;
 }
 
-function getPositionFromBarsBeatsSixteenths(bbs: Tone.Types.BarsBeatsSixteenth): ITimelinePosition {
+function getPositionFromBarsBeatsSixteenths(bbs: Tone.Unit.BarsBeatsSixteenths): ITimelinePosition {
     const [bar, beat, sixteenth] = bbs.split(":");
     return {
         bar: parseInt(bar, 10),

@@ -2,7 +2,7 @@ import { Classes } from "@blueprintjs/core";
 import classNames from "classnames";
 // import { Link } from "gatsby";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { DefaultLayoutWithoutHeader as Layout, SessionView, Transport } from "../../../components";
 import * as styles from "../../../pageStyles/techno-landscape.module.css";
 

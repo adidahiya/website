@@ -1,6 +1,6 @@
 import { Button } from "@blueprintjs/core";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import * as styles from "./mono.module.css";
 
@@ -17,8 +17,8 @@ export default class extends React.PureComponent<{}, IState> {
         buffersLoaded: false,
     };
 
-    private sampleBuffer?: Tone.Buffer;
-    private sampleBuffer2?: Tone.Buffer;
+    private sampleBuffer?: Tone.ToneAudioBuffer;
+    private sampleBuffer2?: Tone.ToneAudioBuffer;
     private convolver?: Tone.Convolver;
 
     public async componentDidMount() {
@@ -34,8 +34,9 @@ export default class extends React.PureComponent<{}, IState> {
         this.convolver = new Tone.Convolver(impulseResponseUrl("echo-chamber"))
             .connect(new Tone.Filter(3000, "lowpass", -24))
             .connect(lowBoost)
-            .connect(Tone.Master);
-        this.convolver.wet.value = 0.8;
+            .toDestination();
+        // TODO(adidahiya): figure out a way to bring back this dry/wet setting in Tone.js v14
+        // this.convolver.wet.value = 0.8;
 
         this.setState({ buffersLoaded: true });
     }
@@ -45,12 +46,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         return (
             <Layout className={styles.container} title="Mono composition">
-                <Button
-                    loading={!buffersLoaded}
-                    text="play"
-                    intent="success"
-                    onClick={this.handleClick}
-                />
+                <Button loading={!buffersLoaded} text="play" intent="success" onClick={this.handleClick} />
             </Layout>
         );
     }

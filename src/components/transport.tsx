@@ -1,5 +1,5 @@
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import * as styles from "./transport.module.css";
 
 interface IState {
@@ -18,12 +18,12 @@ export default class extends React.Component<{}, IState> {
             sixteenth: 0,
         },
     };
-    private transportEvent?: Tone.Event;
+    private transportEvent?: Tone.ToneEvent;
 
     public componentDidMount() {
         Tone.Transport.bpm.value = 126;
-        this.transportEvent = new Tone.Event(() => {
-            const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
+        this.transportEvent = new Tone.ToneEvent(() => {
+            const [bar, beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
             this.setState({
                 position: {
                     bar: parseInt(bar, 10),
@@ -43,8 +43,7 @@ export default class extends React.Component<{}, IState> {
 
     public render() {
         const { position } = this.state;
-        const isPlaying =
-            typeof window === "undefined" ? false : Tone.Transport.state === "started";
+        const isPlaying = typeof window === "undefined" ? false : Tone.Transport.state === "started";
         const progress = position.beat * 4 + position.sixteenth;
         const progressPercentage = Math.round((progress / 16) * 100);
 
@@ -56,12 +55,7 @@ export default class extends React.Component<{}, IState> {
                     <TransportBar />
                     <TransportBar />
                 </div>
-                {isPlaying && (
-                    <div
-                        className={styles.transportIndicator}
-                        style={{ left: `${progressPercentage}%` }}
-                    />
-                )}
+                {isPlaying && <div className={styles.transportIndicator} style={{ left: `${progressPercentage}%` }} />}
             </div>
         );
     }
