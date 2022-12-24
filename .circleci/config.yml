@@ -2,19 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:18
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: yarn install
+            - v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+      - run: pnpm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn build
+          key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+      - run: pnpm build
       - persist_to_workspace:
           root: '.'
           paths:

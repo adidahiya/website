@@ -3,6 +3,9 @@ module.exports = {
         title: "adi.pizza",
     },
     plugins: [
+        "gatsby-plugin-pnpm",
+        "gatsby-plugin-image",
+        "gatsby-plugin-sharp",
         {
             resolve: "gatsby-source-filesystem",
             options: {
@@ -10,7 +13,6 @@ module.exports = {
                 path: `${__dirname}/content`,
             },
         },
-        "gatsby-plugin-sharp",
         {
             resolve: "gatsby-transformer-remark",
             options: {
@@ -43,5 +45,6 @@ module.exports = {
             },
         },
         "gatsby-plugin-catch-links",
+        "gatsby-transformer-sharp",
     ],
 };

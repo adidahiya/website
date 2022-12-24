@@ -1,17 +1,28 @@
 // @ts-check
 
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const path = require("path");
+const sharp = require("sharp");
 const { createFilePath } = require("gatsby-source-filesystem");
+const webpack = require("webpack");
+
+// HACKHACK(@adidahiya): encountered a weird segmentation fault when trying to build Gatsby 5
+// sites in any compatible version of Node.js (v18 or v19) on my MacBook Pro (Intel, 2019).
+// Stumbled acros this blog post which suggested that SIMD instructions in the `sharp` image
+// processing library may be the problem, and it seems like turning them off does fix the issue.
+// See https://florian.ec/blog/gatsby-build-netlify-segmentation-fault/
+sharp.cache(false);
+sharp.simd(false);
+
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
 exports.onCreateWebpackConfig = ({ actions, getConfig, stage }) => {
     const config = getConfig();
 
-    if (stage.startsWith("develop") && config.resolve) {
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            "react-dom": "@hot-loader/react-dom",
-        };
-    }
+    // TODO(adidahiya): verify this is unnecessary with gatsby v5?
+    // if (!IS_PRODUCTION) {
+    //     config.plugins.push(new ReactRefreshWebpackPlugin(), new webpack.HotModuleReplacementPlugin());
+    // }
 
     if (stage === "build-html") {
         actions.setWebpackConfig({
@@ -24,11 +35,11 @@ exports.onCreateWebpackConfig = ({ actions, getConfig, stage }) => {
                     },
                 ],
             },
-        })
+        });
     }
 
     // TODO: proxy /.netlify/functions/ requests to localhost:9000/
-}
+};
 
 const ITP_BLOG_PREFIX = "/blog/itp";
 
@@ -53,7 +64,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
             });
         }
     }
-}
+};
 
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions;
@@ -91,8 +102,8 @@ exports.createPages = ({ graphql, actions }) => {
                         component: path.resolve(`./src/templates/blogCategoryIndex.tsx`),
                         context: {
                             category,
-                        }
-                    })
+                        },
+                    });
                 }
             }
 
@@ -113,10 +124,10 @@ exports.createPages = ({ graphql, actions }) => {
                     context: {
                         slug,
                     },
-                })
+                });
             }
 
-            resolve();
+            resolve(undefined);
         });
-    })
+    });
 };

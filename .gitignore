@@ -6,3 +6,4 @@ public/
 .*.un~
 .*.swp
 yarn-error.log
+/.netlify
