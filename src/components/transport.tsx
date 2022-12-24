@@ -1,6 +1,6 @@
 import React from "react";
 import Tone from "tone";
-import styles from "./transport.module.css";
+import * as styles from "./transport.module.css";
 
 interface IState {
     position: {

@@ -14,11 +14,7 @@ export default ({ data, pageContext }: any) => {
                 {posts.map(({ node: post }: any) => (
                     <li key={post.fields.slug}>
                         <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-                        <Timestamp
-                            date={post.frontmatter.date}
-                            small={true}
-                            style={{ marginLeft: 20 }}
-                        />
+                        <Timestamp date={post.frontmatter.date} small={true} style={{ marginLeft: 20 }} />
                     </li>
                 ))}
             </ul>

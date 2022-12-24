@@ -1,6 +1,6 @@
 import p5 from "p5";
 import React from "react";
-import styles from "./p5Canvas.module.css";
+import * as styles from "./p5Canvas.module.css";
 
 if (typeof window !== "undefined") {
     // require("p5/lib/addons/p5.sound");
@@ -58,11 +58,7 @@ export class P5Canvas extends React.Component<IP5Props> {
     public render() {
         const { width, height } = this.props;
         return (
-            <div
-                className={styles.processingSketch}
-                ref={r => (this.containerEl = r)}
-                style={{ width, height }}
-            />
+            <div className={styles.processingSketch} ref={(r) => (this.containerEl = r)} style={{ width, height }} />
         );
     }
 }

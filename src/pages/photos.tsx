@@ -1,6 +1,6 @@
 import React from "react";
 import DefaultLayout from "../components/defaultLayout";
-import styles from "./photos.module.css";
+import * as styles from "./photos.module.css";
 
 const FlickrImg = ({ href, src }: { href: string; src: string }) => (
     <a className={styles.linkNoDecoration} href={href}>
@@ -34,7 +34,9 @@ export default () => (
                         href: "https://www.flickr.com/photos/adidas006/6586272521",
                         src: "https://farm8.staticflickr.com/7154/6586272521_cdc7f0ca95.jpg",
                     },
-                ].map((p, key) => <FlickrImg {...p} key={key} />)}
+                ].map((p, key) => (
+                    <FlickrImg {...p} key={key} />
+                ))}
             </p>
 
             <h3>landscapes, nature</h3>
@@ -80,7 +82,9 @@ export default () => (
                         href: "https://www.flickr.com/photos/adidas006/8020495995",
                         src: "https://farm9.staticflickr.com/8177/8020495995_11db1bcf9c.jpg",
                     },
-                ].map((p, key) => <FlickrImg {...p} key={key} />)}
+                ].map((p, key) => (
+                    <FlickrImg {...p} key={key} />
+                ))}
             </p>
             <h3>people</h3>
             <p>
@@ -105,7 +109,9 @@ export default () => (
                         href: "https://www.flickr.com/photos/adidas006/11019290125",
                         src: "https://farm6.staticflickr.com/5538/11019290125_8396036a9e_z.jpg",
                     },
-                ].map((p, key) => <FlickrImg {...p} key={key} />)}
+                ].map((p, key) => (
+                    <FlickrImg {...p} key={key} />
+                ))}
             </p>
         </div>
     </DefaultLayout>

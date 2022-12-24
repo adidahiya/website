@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
 import { DefaultLayout, Timestamp } from "../components";
-import styles from "./blogPost.module.css";
+import * as styles from "./blogPost.module.css";
 import "./markdown.module.css";
 
 export default ({ data }: any) => {

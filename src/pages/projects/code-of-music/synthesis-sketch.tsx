@@ -4,7 +4,7 @@ import React from "react";
 import Tone from "tone";
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, NormalRangeSlider } from "../../../components";
-import styles from "./synthesis-sketch.module.css";
+import * as styles from "./synthesis-sketch.module.css";
 
 interface IState {
     isPlaying: boolean;

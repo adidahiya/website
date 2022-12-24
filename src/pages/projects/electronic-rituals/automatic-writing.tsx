@@ -1,8 +1,8 @@
 import { Button, EditableText, FormGroup } from "@blueprintjs/core";
 import React from "react";
 import { DefaultLayoutWithoutHeader } from "../../../components";
-import styles from "./automatic-writing.module.css";
-import encouragingWords from "./corpora/encouraging_words.json";
+import * as styles from "./automatic-writing.module.css";
+// import encouragingWords from "./corpora/encouraging_words.json";
 
 interface IState {
     hasStarted: boolean;

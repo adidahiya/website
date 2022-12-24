@@ -16,7 +16,7 @@ import React from "react";
 import Tone from "tone";
 import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
-import styles from "./dance-floor-sequencer.module.css";
+import * as styles from "./dance-floor-sequencer.module.css";
 
 /** USB port name for p5.serialport */
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";

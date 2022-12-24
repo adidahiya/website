@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { mapValues } from "lodash-es";
 import React from "react";
 import Tone from "tone";
-import styles from "./sessionView.module.css";
+import * as styles from "./sessionView.module.css";
 
 interface ISessionContext {
     tracks: {
