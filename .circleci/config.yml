@@ -66,10 +66,10 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  build_check:
     jobs:
       - checkout-code
-      - build
+      - build:
           requires: [checkout-code]
-      - check
+      - check:
           requires: [checkout-code]
