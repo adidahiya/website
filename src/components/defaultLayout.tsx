@@ -2,11 +2,11 @@ import { Location as LocationProvider } from "@reach/router";
 import { Link } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
-import * as favicon16 from "../assets/favicon-16.png";
-import * as favicon32 from "../assets/favicon-32.png";
-import * as favicon48 from "../assets/favicon-48.png";
+import favicon16 from "../assets/favicon-16.png";
+import favicon32 from "../assets/favicon-32.png";
+import favicon48 from "../assets/favicon-48.png";
 import { initGoogleAnalytics, isLegacyRoute, shouldRenderAnalytics } from "../common";
-import styles from "./defaultLayout.module.css";
+import * as styles from "./defaultLayout.module.css";
 
 const Header = () => (
     <div className={styles.header}>
@@ -56,11 +56,7 @@ export interface IDefaultLayoutHelmetProps {
     remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
 }
 
-export function DefaultLayoutHelmet({
-    location,
-    remoteScripts = [],
-    title,
-}: IDefaultLayoutHelmetProps) {
+export function DefaultLayoutHelmet({ location, remoteScripts = [], title }: IDefaultLayoutHelmetProps) {
     if (shouldRenderAnalytics(location)) {
         remoteScripts.push({
             async: true,
@@ -68,8 +64,8 @@ export function DefaultLayoutHelmet({
         });
     }
 
-    const scripts = remoteScripts.map(({ async = false, src }) => (
-        <script async={async} src={src} />
+    const scripts = remoteScripts.map(({ async = false, src }, index) => (
+        <script async={async} src={src} key={`script-${index}`} />
     ));
 
     return (
@@ -83,11 +79,12 @@ export function DefaultLayoutHelmet({
     );
 }
 
-interface IProps {
+interface Props {
+    children?: React.ReactNode;
     title?: string;
 }
 
-export default class extends React.Component<IProps> {
+export default class extends React.Component<Props> {
     public componentDidMount() {
         initGoogleAnalytics(window.location);
     }

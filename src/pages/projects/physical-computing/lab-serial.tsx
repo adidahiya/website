@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -15,10 +15,7 @@ const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 
 // tslint:disable no-console
 
-export default class extends React.PureComponent<
-    {},
-    { isPlaying: boolean; pitch: Tone.Types.Frequency }
-> {
+export default class extends React.PureComponent<{}, { isPlaying: boolean; pitch: Tone.Unit.Frequency }> {
     public state = {
         isPlaying: false,
         pitch: "C4",
@@ -48,7 +45,7 @@ export default class extends React.PureComponent<
         // this.synth.sync();
 
         // repeat quarter notes infinitely
-        const loop = new Tone.Loop((time: Tone.Types.Time) => {
+        const loop = new Tone.Loop((time: Tone.Unit.Time) => {
             this.synth.triggerAttackRelease(this.state.pitch, "2n", time);
         }, "4n");
         loop.start();
@@ -97,7 +94,7 @@ export default class extends React.PureComponent<
                     const duration1 = parseInt(matches[1], 10);
                     const mappedPitch = this.p5.map(duration1, 0, 10, 200, 2000);
                     this.setState({
-                        pitch: new Tone.Frequency(mappedPitch).toNote(),
+                        pitch: Tone.Frequency(mappedPitch).toNote(),
                     });
                 }
             }

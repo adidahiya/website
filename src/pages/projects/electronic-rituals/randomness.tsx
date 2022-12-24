@@ -1,14 +1,14 @@
 import { Button, FormGroup } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { DefaultLayoutWithoutHeader } from "../../../components";
 
 const NUM_CHANNELS = 2;
 
 export default class extends React.PureComponent {
     private toneContext?: Tone.Context;
-    private bufferSources: Tone.BufferSource[] = [];
+    private bufferSources: Tone.ToneBufferSource[] = [];
     private scriptProcessorNodes: ScriptProcessorNode[] = [];
 
     private mouseX = 0;
@@ -21,7 +21,7 @@ export default class extends React.PureComponent {
         console.log(noise);
 
         this.toneContext = new Tone.Context();
-        Tone.Master.volume.value = -20;
+        Tone.Destination.volume.value = -20;
 
         document.addEventListener("mousemove", (e: MouseEvent) => {
             this.mouseX = e.clientX;
@@ -127,12 +127,8 @@ export default class extends React.PureComponent {
                 lastOut[channelNum] = 0.0;
             }
 
-            const node = toneContext.rawContext.createScriptProcessor(
-                bufferSize,
-                NUM_CHANNELS,
-                NUM_CHANNELS,
-            );
-            node.onaudioprocess = e => {
+            const node = toneContext.rawContext.createScriptProcessor(bufferSize, NUM_CHANNELS, NUM_CHANNELS);
+            node.onaudioprocess = (e) => {
                 for (let channelNum = 0; channelNum < NUM_CHANNELS; channelNum++) {
                     const output = e.outputBuffer.getChannelData(channelNum);
                     for (let i = 0; i < bufferSize; i++) {

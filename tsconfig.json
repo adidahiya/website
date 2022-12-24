@@ -1,5 +1,5 @@
 {
-    "version": "3.3.4000",
+    "version": "4.9.4",
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "outDir": "./dist",
@@ -8,10 +8,7 @@
         "experimentalDecorators": true,
         "importHelpers": true,
         "jsx": "react",
-        "lib": [
-          "dom",
-          "es2015"
-        ],
+        "lib": ["dom", "es2015"],
         "module": "es2015",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
@@ -21,12 +18,12 @@
         "pretty": true,
         "removeComments": false,
         "resolveJsonModule": true,
+        // HACKHACK(adidahiya): need to fix @types/eslint and gatsby/index.d.ts errors
+        "skipLibCheck": true,
         "sourceMap": false,
         "strict": true,
         "stripInternal": true,
-        "target": "es5"
+        "target": "es2015"
     },
-    "include": [
-        "./src"
-    ]
+    "include": ["./src"]
 }

@@ -2,7 +2,7 @@ import { Button } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import { P5Canvas } from "../../../components/p5Canvas";
@@ -53,10 +53,10 @@ export default class extends React.PureComponent<{}, IState> {
         }).toMaster();
         this.monoSynth.volume.value = -25;
         const synthPart = new Tone.Part(
-            (time: Tone.Types.Time, note: Tone.Types.Note) => {
-                const shouldTrigger = this.paths.filter(p => p.isActive()).length > 1;
+            (time: Tone.Unit.Time, note: string) => {
+                const shouldTrigger = this.paths.filter((p) => p.isActive()).length > 1;
                 if (shouldTrigger) {
-                    this.monoSynth.triggerAttackRelease(note, "8n", time);
+                    this.monoSynth.triggerAttackRelease(note as Tone.Unit.Note, "8n", time);
                 }
             },
             [
@@ -83,63 +83,57 @@ export default class extends React.PureComponent<{}, IState> {
             snareCombo: "/sounds/drum-snare-combo.m4a",
         }).toMaster();
         kit.volume.value = 0;
-        kit.get("kick").volume.value = -15;
-        kit.get("hh").volume.value = -10;
-        kit.get("wood").volume.value = 5;
-        kit.get("dsClave").volume.value = 10;
-        kit.get("dsGlass").volume.value = 10;
+        kit.player("kick").volume.value = -15;
+        kit.player("hh").volume.value = -10;
+        kit.player("wood").volume.value = 5;
+        kit.player("dsClave").volume.value = 10;
+        kit.player("dsGlass").volume.value = 10;
 
-        const drumLoop = createLoopWithPlayers(
-            kit,
-            "16n",
-            ({ bar, beat, sixteenth: six, trigger }) => {
-                // console.log(bar, beat, six);
-                const numActivePaths = this.paths.filter(p => p.isActive()).length;
-                const shouldTriggerHH = this.paths.some(p => p.isActive() && p.hue > 50);
-                const shouldTriggerClave = this.paths.some(p => p.isActive() && p.hue < 100);
-                const shouldTriggerGlass = this.paths.some(p => p.isActive() && p.hue > 150);
-                const shouldTriggerWood = numActivePaths > 2;
-                const shouldTriggerSnare = this.paths.some(
-                    p => p.isActive() && p.hue > 100 && p.hue < 200,
-                );
+        const drumLoop = createLoopWithPlayers(kit, "16n", ({ beat, sixteenth: six, trigger }) => {
+            // console.log(bar, beat, six);
+            const numActivePaths = this.paths.filter((p) => p.isActive()).length;
+            const shouldTriggerHH = this.paths.some((p) => p.isActive() && p.hue > 50);
+            const shouldTriggerClave = this.paths.some((p) => p.isActive() && p.hue < 100);
+            const shouldTriggerGlass = this.paths.some((p) => p.isActive() && p.hue > 150);
+            const shouldTriggerWood = numActivePaths > 2;
+            const shouldTriggerSnare = this.paths.some((p) => p.isActive() && p.hue > 100 && p.hue < 200);
 
-                if (beat === 0) {
-                    if (shouldTriggerWood) {
-                        trigger("wood");
-                    }
-                } else if (beat === 1) {
-                    if (shouldTriggerSnare) {
-                        trigger("snareCombo");
-                    }
+            if (beat === 0) {
+                if (shouldTriggerWood) {
+                    trigger("wood");
                 }
+            } else if (beat === 1) {
+                if (shouldTriggerSnare) {
+                    trigger("snareCombo");
+                }
+            }
 
-                if (six === 0) {
+            if (six === 0) {
+                trigger("kick");
+            } else if (six === 2) {
+                if (shouldTriggerHH) {
+                    trigger("hh");
+                }
+            }
+
+            if (beat === 2) {
+                if (six === 1) {
                     trigger("kick");
-                } else if (six === 2) {
-                    if (shouldTriggerHH) {
-                        trigger("hh");
+                } else if (six === 3) {
+                    if (shouldTriggerClave) {
+                        trigger("dsClave");
                     }
                 }
+            }
 
-                if (beat === 2) {
-                    if (six === 1) {
-                        trigger("kick");
-                    } else if (six === 3) {
-                        if (shouldTriggerClave) {
-                            trigger("dsClave");
-                        }
+            if (beat === 3) {
+                if (six === 2) {
+                    if (shouldTriggerGlass) {
+                        trigger("dsGlass");
                     }
                 }
-
-                if (beat === 3) {
-                    if (six === 2) {
-                        if (shouldTriggerGlass) {
-                            trigger("dsGlass");
-                        }
-                    }
-                }
-            },
-        );
+            }
+        });
         this.parts.push(drumLoop);
     }
 
@@ -155,8 +149,7 @@ export default class extends React.PureComponent<{}, IState> {
             <Layout>
                 <h3>Rhythm Generator</h3>
                 <p>
-                    Code of Music midterm project (
-                    <Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
+                    Code of Music midterm project (<Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
                 </p>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
@@ -173,11 +166,11 @@ export default class extends React.PureComponent<{}, IState> {
     private handlePlayToggle = () => {
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
-            this.parts.forEach(p => p.stop());
+            this.parts.forEach((p) => p.stop());
             this.setState({ isPlaying: false });
         } else {
             Tone.Transport.start();
-            this.parts.forEach(p => p.start());
+            this.parts.forEach((p) => p.start());
             this.setState({ isPlaying: true });
         }
     };
@@ -202,7 +195,7 @@ export default class extends React.PureComponent<{}, IState> {
             p.background(255);
             p.strokeWeight(1);
             const now = p.millis();
-            const lengthOfSixteenth = new Tone.Time("16n").toMilliseconds();
+            const lengthOfSixteenth = Tone.Time("16n").toMilliseconds();
 
             if (now > nextParticleTimer && isPainting) {
                 current.x = p.mouseX;
@@ -223,20 +216,14 @@ export default class extends React.PureComponent<{}, IState> {
             }
 
             if (this.state.isPlaying) {
-                const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
+                const [_bar, _beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
                 if (parseInt(sixteenth, 10) === 0) {
                     lastBeatTimer = now;
                 }
 
                 // draw border pulse, it should be above any other layers in the image
                 const darken = Math.round(
-                    p.map(
-                        now - lastBeatTimer,
-                        0,
-                        lengthOfSixteenth,
-                        0,
-                        MAX_BACKGROUND_DARKEN_ON_BEAT,
-                    ),
+                    p.map(now - lastBeatTimer, 0, lengthOfSixteenth, 0, MAX_BACKGROUND_DARKEN_ON_BEAT),
                 );
                 // draw border
                 p.stroke(255 - darken);
@@ -256,7 +243,7 @@ export default class extends React.PureComponent<{}, IState> {
             previous.y = p.mouseY;
             this.paths.push(new ParticlePath(p));
 
-            const numActivePaths = this.paths.filter(path => path.isActive()).length;
+            const numActivePaths = this.paths.filter((path) => path.isActive()).length;
             if (this.monoSynth != null && numActivePaths > 3) {
                 this.monoSynth.filter.Q.value = p.map(numActivePaths, 2, 16, 1, 8);
             } else {
@@ -297,7 +284,7 @@ class ParticlePath {
     }
 
     public update() {
-        this.particles.forEach(p => p.update());
+        this.particles.forEach((p) => p.update());
     }
 
     public display() {
@@ -349,21 +336,11 @@ class Particle {
 
     private setFill() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.fill(
-            this.p.hue(this.color),
-            this.p.saturation(this.color),
-            this.p.brightness(this.color),
-            alpha,
-        );
+        this.p.fill(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
     }
 
     private setStroke() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.stroke(
-            this.p.hue(this.color),
-            this.p.saturation(this.color),
-            this.p.brightness(this.color),
-            alpha,
-        );
+        this.p.stroke(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
     }
 }

@@ -14,11 +14,7 @@ export default ({ data, pageContext }: any) => {
                 {posts.map(({ node: post }: any) => (
                     <li key={post.fields.slug}>
                         <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-                        <Timestamp
-                            date={post.frontmatter.date}
-                            small={true}
-                            style={{ marginLeft: 20 }}
-                        />
+                        <Timestamp date={post.frontmatter.date} small={true} style={{ marginLeft: 20 }} />
                     </li>
                 ))}
             </ul>
@@ -27,13 +23,10 @@ export default ({ data, pageContext }: any) => {
 };
 
 export const query = graphql`
-    query($category: String!) {
+    query ($category: String!) {
         allMarkdownRemark(
-            filter: {
-                fields: { category: { eq: $category } }
-                frontmatter: { draft: { ne: true } }
-            }
-            sort: { fields: frontmatter___date, order: DESC }
+            filter: { fields: { category: { eq: $category } }, frontmatter: { draft: { ne: true } } }
+            sort: { frontmatter: { date: DESC } }
         ) {
             edges {
                 node {

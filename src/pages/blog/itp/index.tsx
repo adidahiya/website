@@ -7,9 +7,7 @@ const ITP_BLOG_ROOT = "/blog/itp/";
 
 export default ({ data }: any) => {
     const { edges } = data.allMarkdownRemark;
-    const blogPosts = edges
-        .map((p: any) => p.node)
-        .filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
+    const blogPosts = edges.map((p: any) => p.node).filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
     const categories: string[] = uniq(
         blogPosts.map((p: any) => p.fields.slug.substr(ITP_BLOG_ROOT.length).split("/")[0]),
     );
@@ -18,7 +16,7 @@ export default ({ data }: any) => {
         <DefaultLayout>
             <h4>ITP blog</h4>
             <p>
-                {categories.map(c => (
+                {categories.map((c) => (
                     <Category key={c} name={c} blogPosts={blogPosts} />
                 ))}
             </p>
@@ -34,7 +32,7 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
                 <Link to={`/blog/itp/${props.name}`}>{props.name}</Link>
             </h3>
             <ul>
-                {categoryBlogPosts.map(p => (
+                {categoryBlogPosts.map((p) => (
                     <PostItem key={p.fields.slug} post={p} />
                 ))}
             </ul>
@@ -56,10 +54,7 @@ function filterBlogPosts(posts: any[], categoryName: string) {
 
 export const query = graphql`
     query {
-        allMarkdownRemark(
-            sort: { fields: frontmatter___date, order: DESC }
-            filter: { frontmatter: { draft: { ne: true } } }
-        ) {
+        allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { draft: { ne: true } } }) {
             edges {
                 node {
                     frontmatter {

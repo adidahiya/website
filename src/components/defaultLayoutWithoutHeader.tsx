@@ -2,10 +2,12 @@ import { Location as LocationProvider } from "@reach/router";
 import React from "react";
 import { initGoogleAnalytics } from "../common";
 import { DefaultLayoutHelmet } from "./defaultLayout";
-import styles from "./defaultLayout.module.css";
+import * as styles from "./defaultLayout.module.css";
 
 interface IProps {
     className?: string;
+
+    children?: React.ReactNode;
 
     /** Page title */
     title?: string;
@@ -26,11 +28,7 @@ export default class extends React.Component<IProps> {
                 {({ location }) => {
                     return (
                         <div className={className}>
-                            <DefaultLayoutHelmet
-                                location={location}
-                                title={title}
-                                remoteScripts={remoteScripts}
-                            />
+                            <DefaultLayoutHelmet location={location} title={title} remoteScripts={remoteScripts} />
                             <div className={styles.body}>{this.props.children}</div>
                         </div>
                     );

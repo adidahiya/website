@@ -1,17 +1,14 @@
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
-import Tone from "tone";
+import * as Tone from "tone";
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
-export default class extends React.PureComponent<
-    {},
-    { isPlaying: boolean; scale: string[]; octaveToFilter: number }
-> {
+export default class extends React.PureComponent<{}, { isPlaying: boolean; scale: string[]; octaveToFilter: number }> {
     public state = {
         isPlaying: false,
         scale: getMinorBluesScaleWithHarmonies(),
@@ -41,10 +38,7 @@ export default class extends React.PureComponent<
             (time: number, note: any) => {
                 this.isPatternPlaying = true;
                 this.synth.triggerAttackRelease(note, "16t", time);
-                setTimeout(
-                    () => (this.isPatternPlaying = false),
-                    new Tone.Time("16t").toMilliseconds(),
-                );
+                setTimeout(() => (this.isPatternPlaying = false), Tone.Time("16t").toMilliseconds());
             },
             this.state.scale,
             "randomWalk",
@@ -64,8 +58,7 @@ export default class extends React.PureComponent<
             <Layout>
                 <h3>Code of Music</h3>
                 <p>
-                    Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>
-                    ,{" "}
+                    Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>,{" "}
                     <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/melody-sketch.tsx">
                         code
                     </a>
@@ -156,9 +149,8 @@ function getMinorBluesScaleWithHarmonies(octaveToFilter: number = 0) {
 
     return minorBluesScale
         .reduce(
-            (harmonies, note) =>
-                harmonies.concat(new Tone.Frequency(note).harmonize([0, 12, 24, 36])),
-            [] as Tone.Frequency[],
+            (harmonies, note) => harmonies.concat(Tone.Frequency(note).harmonize([0, 12, 24, 36])),
+            [] as Tone.FrequencyClass[],
         )
         .map((freq: any) => freq.toNote())
         .filter((note: string) => {

@@ -1,4 +1,4 @@
-import Tone from "tone";
+import * as Tone from "tone";
 
 export const createLoopWithPlayers = (
     players: Tone.Players,
@@ -12,9 +12,9 @@ export const createLoopWithPlayers = (
     }) => void,
 ) => {
     return new Tone.Loop((time: number) => {
-        const [bar, beat, sixteenth] = Tone.Transport.position.split(":");
+        const [bar, beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
         const trigger = (playerName: string) => {
-            const player = players.get(playerName);
+            const player = players.player(playerName);
             if (!player.loaded) {
                 console.log(`Player [${playerName}] not loaded yet or file format is unsupported`);
                 return;

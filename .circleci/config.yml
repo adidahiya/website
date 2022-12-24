@@ -1,27 +1,72 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+
+executors:
+  default-executor:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:18.12.1
+
+aliases:
+  - &restore-node-modules-cache
+    name: Restore node_modules cache
+    key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+
+  - &restore-pnpm-store
+    name: Restore pnpm store
+    key: v1-pnpm-store
+
+  - &save-node-modules-cache
+    name: Save node_modules cache
+    paths:
+      - node_modules
+    key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+
+  - &save-pnpm-store
+    name: Save pnpm store
+    paths:
+      - ~/.pnpm-store
+    key: v1-pnpm-store
+
+jobs:
+  checkout-code:
+    executor: default-executor
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn build
+      - restore_cache: *restore-pnpm-store
+      - restore_cache: *restore-node-modules-cache
+      - run: pnpm install
+      - run:
+          name: Check if pnpm-lock.yml changed during install
+          command: git diff --exit-code
+      - save_cache: *save-node-modules-cache
+      - save_cache: *save-pnpm-store
+
+  build:
+    executor: default-executor
+    resource_class: large
+    steps:
+      - checkout
+      - restore_cache: *restore-node-modules-cache
+      - attach_workspace: { at: "." }
+      - run: pnpm build
       - persist_to_workspace:
           root: '.'
           paths:
             - public
 
+  check:
+    executor: default-executor
+    steps:
+      - checkout
+      - restore_cache: *restore-node-modules-cache
+      - attach_workspace: { at: "." }
+      - run: pnpm check
+
 workflows:
   version: 2
-  build:
+  build_check:
     jobs:
-      - build
+      - checkout-code
+      - build:
+          requires: [checkout-code]
+      - check:
+          requires: [checkout-code]

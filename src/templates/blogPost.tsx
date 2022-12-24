@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
 import { DefaultLayout, Timestamp } from "../components";
-import styles from "./blogPost.module.css";
+import * as styles from "./blogPost.module.css";
 import "./markdown.module.css";
 
 export default ({ data }: any) => {
@@ -20,7 +20,7 @@ export default ({ data }: any) => {
 };
 
 export const query = graphql`
-    query($slug: String!) {
+    query ($slug: String!) {
         markdownRemark(fields: { slug: { eq: $slug } }) {
             html
             frontmatter {
