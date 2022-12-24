@@ -8,10 +8,7 @@
         "experimentalDecorators": true,
         "importHelpers": true,
         "jsx": "react",
-        "lib": [
-          "dom",
-          "es2015"
-        ],
+        "lib": ["dom", "es2015"],
         "module": "es2015",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
@@ -24,9 +21,7 @@
         "sourceMap": false,
         "strict": true,
         "stripInternal": true,
-        "target": "es5"
+        "target": "es2015"
     },
-    "include": [
-        "./src"
-    ]
+    "include": ["./src"]
 }
