@@ -75,7 +75,7 @@ export default class extends React.Component<{}, IState> {
                             console.log("waiting for player to load...", player);
                         } else if (!hasStarted) {
                             // start playing for the first time, synced to Transport
-                            const [bar, beat, sixteenth] = (
+                            const [bar, _beat, _sixteenth] = (
                                 Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
                             ).split(":");
                             // start on first beat of next bar

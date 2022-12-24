@@ -81,7 +81,7 @@ export default class extends React.PureComponent<{}, IState> {
             wood: "/sounds/wood.wav",
         }).toMaster();
         kit.volume.value = -10;
-        const drumLoop = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
+        const drumLoop = createLoopWithPlayers(kit, "16n", ({ beat, sixteenth: six, trigger }) => {
             if (six === 0) {
                 trigger("kick");
             } else if (six === 2) {

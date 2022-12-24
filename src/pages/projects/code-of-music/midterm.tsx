@@ -53,10 +53,10 @@ export default class extends React.PureComponent<{}, IState> {
         }).toMaster();
         this.monoSynth.volume.value = -25;
         const synthPart = new Tone.Part(
-            (time: Tone.Unit.Time, note: Tone.Unit.Note) => {
+            (time: Tone.Unit.Time, note: string) => {
                 const shouldTrigger = this.paths.filter((p) => p.isActive()).length > 1;
                 if (shouldTrigger) {
-                    this.monoSynth.triggerAttackRelease(note, "8n", time);
+                    this.monoSynth.triggerAttackRelease(note as Tone.Unit.Note, "8n", time);
                 }
             },
             [
@@ -89,7 +89,7 @@ export default class extends React.PureComponent<{}, IState> {
         kit.player("dsClave").volume.value = 10;
         kit.player("dsGlass").volume.value = 10;
 
-        const drumLoop = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
+        const drumLoop = createLoopWithPlayers(kit, "16n", ({ beat, sixteenth: six, trigger }) => {
             // console.log(bar, beat, six);
             const numActivePaths = this.paths.filter((p) => p.isActive()).length;
             const shouldTriggerHH = this.paths.some((p) => p.isActive() && p.hue > 50);
@@ -216,7 +216,7 @@ export default class extends React.PureComponent<{}, IState> {
             }
 
             if (this.state.isPlaying) {
-                const [bar, beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
+                const [_bar, _beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
                 if (parseInt(sixteenth, 10) === 0) {
                     lastBeatTimer = now;
                 }

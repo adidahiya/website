@@ -13,7 +13,7 @@
         "dist": "run-s clean build",
         "lint": "tslint 'src/**/*.tsx?' -t codeFrame",
         "serve-functions": "netlify dev --functions server/functions",
-        "test": "echo \"No tests\" && exit 0",
+        "test": "run-s typecheck",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {

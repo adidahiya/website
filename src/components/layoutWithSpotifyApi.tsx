@@ -1,6 +1,4 @@
-///<reference path="../../node_modules/spotify-web-api-js/src/typings/spotify-api.d.ts" />
-
-import { Spinner } from "@blueprintjs/core";
+import { Spinner, SpinnerSize } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import DefaultLayoutWithoutHeader from "./defaultLayoutWithoutHeader";
@@ -72,7 +70,7 @@ export default class extends React.PureComponent<IProps, IState> {
                 remoteScripts={[{ src: "https://sdk.scdn.co/spotify-player.js" }]}
             >
                 <br />
-                {loading ? <Spinner size={Spinner.SIZE_LARGE} /> : children({ player, api: api! })}
+                {loading ? <Spinner size={SpinnerSize.LARGE} /> : children({ player, api: api! })}
             </DefaultLayoutWithoutHeader>
         );
     }

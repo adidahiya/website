@@ -1,5 +1,3 @@
-///<reference path="../../../../node_modules/spotify-web-api-js/src/typings/spotify-api.d.ts" />
-
 import { Button } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -19,7 +17,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
     public state: IState = {};
 
     public async componentDidMount() {
-        const { spotifyPlayer, spotifyApi } = this.props;
+        const { spotifyApi } = this.props;
 
         try {
             const me = await spotifyApi.getMe();
@@ -29,7 +27,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
             });
 
             const playlists = await spotifyApi.getUserPlaylists(me.id);
-            const existingPlaylist = playlists.items.find(p => p.name === "Shufflemancy");
+            const existingPlaylist = playlists.items.find((p) => p.name === "Shufflemancy");
             const playlistFull =
                 existingPlaylist !== undefined
                     ? await spotifyApi.getPlaylist(existingPlaylist.id)
