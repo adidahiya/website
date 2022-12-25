@@ -55,14 +55,11 @@ jobs:
 
   check:
     executor: default-executor
-    environment:
-      JUNIT_REPORT_PATH: reports
     parallelism: 3
     steps:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
-      - run: mkdir -p ./reports
       - run:
           command: |
             case $CIRCLE_NODE_INDEX in \
@@ -71,7 +68,6 @@ jobs:
             2) pnpm check:format ;; \
             esac
           when: always
-      - store_test_results: { path: ./reports }
 
 workflows:
   version: 2
