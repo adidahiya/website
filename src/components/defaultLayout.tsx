@@ -4,7 +4,6 @@ import { Link } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-
 import favicon16 from "../assets/favicon-16.png";
 import favicon32 from "../assets/favicon-32.png";
 import favicon48 from "../assets/favicon-48.png";
