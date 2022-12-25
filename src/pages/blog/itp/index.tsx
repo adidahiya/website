@@ -1,20 +1,24 @@
+import { H3, H4 } from "@blueprintjs/core";
 import { graphql, Link } from "gatsby";
 import { uniq } from "lodash-es";
 import React from "react";
+
 import { DefaultLayout, Timestamp } from "../../../components";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 
 export default ({ data }: any) => {
     const { edges } = data.allMarkdownRemark;
-    const blogPosts = edges.map((p: any) => p.node).filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
+    const blogPosts = edges
+        .map((p: any) => p.node)
+        .filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
     const categories: string[] = uniq(
         blogPosts.map((p: any) => p.fields.slug.substr(ITP_BLOG_ROOT.length).split("/")[0]),
     );
 
     return (
         <DefaultLayout>
-            <h4>ITP blog</h4>
+            <H4>ITP blog</H4>
             <p>
                 {categories.map((c) => (
                     <Category key={c} name={c} blogPosts={blogPosts} />
@@ -28,9 +32,9 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
     const categoryBlogPosts = filterBlogPosts(props.blogPosts, props.name);
     return (
         <div className="blog-category">
-            <h3>
+            <H3>
                 <Link to={`/blog/itp/${props.name}`}>{props.name}</Link>
-            </h3>
+            </H3>
             <ul>
                 {categoryBlogPosts.map((p) => (
                     <PostItem key={p.fields.slug} post={p} />
@@ -54,7 +58,10 @@ function filterBlogPosts(posts: any[], categoryName: string) {
 
 export const query = graphql`
     query {
-        allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { draft: { ne: true } } }) {
+        allMarkdownRemark(
+            sort: { frontmatter: { date: DESC } }
+            filter: { frontmatter: { draft: { ne: true } } }
+        ) {
             edges {
                 node {
                     frontmatter {

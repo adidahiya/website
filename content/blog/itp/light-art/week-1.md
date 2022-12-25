@@ -13,7 +13,6 @@ The photo illustrates how our perception of colors can be framed and influenced 
 
 I'm curious how I can use knowledge of this effect to create a durational light effect where gradual changes lead the observer to forget that their eyes are adjusting to a new environment. I remember James Turrell's [_Perfectly Clear_ installation at Mass MoCA](https://massmoca.org/event/james-turrell/) exhibiting this phenomenon; after looking in the main direction of the piece (towards the seamless wall), the lights in the anteroom appeared much warmer than they initially were before the durational piece started.
 
-
 ## Production Assignment
 
 In this assignment I experimented with cloth as a light diffusion material. I have seen a lot of light work using paper or plastic to diffuse light, but fabrics are less common. I was curious to see how the folds in a piece of cloth would create highlights and shadows when lit from behind, rather then in front as it usually is when we imagine the material.

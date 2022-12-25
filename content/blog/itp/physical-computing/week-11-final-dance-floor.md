@@ -32,5 +32,3 @@ At first I thought I might use pneumatics (e.g. [programmable air's impact senso
 ![dance-floor-2](final-project-images/dance-floor-2.jpg)
 
 ## Interaction loop
-
-

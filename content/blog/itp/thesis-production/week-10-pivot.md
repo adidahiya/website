@@ -15,42 +15,42 @@ The first step was research into existing technology and social patterns. I coll
 
 Clubs and music institutions (in no particular order):
 
-- [ALL by yourself](https://xx88xx.github.io/all/) (Shanghai)
-- [Room 2 Radio](https://www.facebook.com/events/195248955242718) (Sydney)
-- [Resident Advisor: Club Quarantäne](https://clubquarantaene.stream/) (London)
-- [Boiler Room: Streatming from Isolation](https://boilerroom.tv/article/statement-covid-19) (London)
-- [Corona d'Amore](https://coronadamore.club/) (Berlin)
-- [United We Stream](https://unitedwestream.berlin/) (Berlin)
-- [Club Quarantine](https://www.instagram.com/clubquarantine/?hl=en) (Toronto)
-- [Virtually Nowadays](nowadays.nyc/) (NYC)
-- [House of Yes](https://houseofyes.org/) digital events (NYC)
+-   [ALL by yourself](https://xx88xx.github.io/all/) (Shanghai)
+-   [Room 2 Radio](https://www.facebook.com/events/195248955242718) (Sydney)
+-   [Resident Advisor: Club Quarantäne](https://clubquarantaene.stream/) (London)
+-   [Boiler Room: Streatming from Isolation](https://boilerroom.tv/article/statement-covid-19) (London)
+-   [Corona d'Amore](https://coronadamore.club/) (Berlin)
+-   [United We Stream](https://unitedwestream.berlin/) (Berlin)
+-   [Club Quarantine](https://www.instagram.com/clubquarantine/?hl=en) (Toronto)
+-   [Virtually Nowadays](nowadays.nyc/) (NYC)
+-   [House of Yes](https://houseofyes.org/) digital events (NYC)
 
 Smaller, more grassroots & DIY virtual events in NYC:
 
-- [TFW party](https://tfw.nyc/)
-- [Pleasure Jams](http://pleasurejams.com/party/)
-- [The Get Down](https://www.thegetdownnyc.com/)
-- [Lunchbox NYC](https://www.lunchboxnyc.org/livestream/)
+-   [TFW party](https://tfw.nyc/)
+-   [Pleasure Jams](http://pleasurejams.com/party/)
+-   [The Get Down](https://www.thegetdownnyc.com/)
+-   [Lunchbox NYC](https://www.lunchboxnyc.org/livestream/)
 
 ### Web services for virtual events
 
 This is obviously an incomprehensive list, and it ignores bespoke platforms (like the ones created for Club Quarantäne and Corona D'Amore)... but these are the most popular things I'm seeing right now:
 
-- Zoom
-    - The most popular, it allows you to see people in the party and has an integrated chat feature
-- Youtube Live
-    - Doesn't allow copyrighted content, i.e. prerecorded music performed in a DJ set
-- Instagram Live
-    - Also prohibits copyrighted content, but appears to be more lax
-- Twitch
-    - Robust free streaming service which is easy to set up, has integrated chat
-- Livestream
-    - Used by The Lot Radio and Virtually Nowadays, but costs money
+-   Zoom
+    -   The most popular, it allows you to see people in the party and has an integrated chat feature
+-   Youtube Live
+    -   Doesn't allow copyrighted content, i.e. prerecorded music performed in a DJ set
+-   Instagram Live
+    -   Also prohibits copyrighted content, but appears to be more lax
+-   Twitch
+    -   Robust free streaming service which is easy to set up, has integrated chat
+-   Livestream
+    -   Used by The Lot Radio and Virtually Nowadays, but costs money
 
 Some of these are sourced from collective knowledge gathering in these google docs:
 
-- ["Virtual Music Events Directory"](https://docs.google.com/document/d/11wWL_7I4BG76t0V2kw1a4yIeWxUSfGwMQFYdUWAgSnA/preview#heading=h.5j1gxckv68dw)
-- ["Streaming Party Options"](https://docs.google.com/document/d/1Wv3f6HD5hjOoPuGO64reTxVbkFOXwd7V_D_L4W4O_CU/edit#) + ["Audio Simulcast Setup"](https://docs.google.com/document/d/1nrZSQPRXWoyDS1KSEgVrBwBa0ujQZhhzBnM3pVPcL9U/edit?usp=sharing) (TFW, Pleasure Jams)
+-   ["Virtual Music Events Directory"](https://docs.google.com/document/d/11wWL_7I4BG76t0V2kw1a4yIeWxUSfGwMQFYdUWAgSnA/preview#heading=h.5j1gxckv68dw)
+-   ["Streaming Party Options"](https://docs.google.com/document/d/1Wv3f6HD5hjOoPuGO64reTxVbkFOXwd7V_D_L4W4O_CU/edit#) + ["Audio Simulcast Setup"](https://docs.google.com/document/d/1nrZSQPRXWoyDS1KSEgVrBwBa0ujQZhhzBnM3pVPcL9U/edit?usp=sharing) (TFW, Pleasure Jams)
 
 ### My kind of virtual party
 

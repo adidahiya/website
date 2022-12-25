@@ -7,11 +7,11 @@ date: "2019-02-14"
 
 I reviewed the patches from last week and there were a few Jitter objects which I found really interesting, worth further exploration:
 
-- jit.rota zoom with boundmode 3 (clip)
-- jit.ameba
-- jit.plur (my computer seems to be too slow to run this at any reasonable frame rate...)
-- jit.scanslide
-- jit.slide (unbalanced slide feels very psychedelic / hallucinatory)
+-   jit.rota zoom with boundmode 3 (clip)
+-   jit.ameba
+-   jit.plur (my computer seems to be too slow to run this at any reasonable frame rate...)
+-   jit.scanslide
+-   jit.slide (unbalanced slide feels very psychedelic / hallucinatory)
 
 Here's a screen capture of a few simple elements hooked up with [the videos I collected last week](../week-1):
 

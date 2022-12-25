@@ -5,13 +5,13 @@ date: "2019-09-23"
 
 ### Reading
 
-- _Digitized Lives_, ch. 1
-- _The Internet as a Public Space_
-- _A Decade Later: The Internet as a Public Space_
-- _Radical Technologies_, ch. 2, pgs. 31-42, 48-55
-- _Algorithms of Oppression_, Introduction
-- _Reddit and the Struggle to Detoxify the Internet_
-- _Weapons of Math Destruction_, ch. 4
+-   _Digitized Lives_, ch. 1
+-   _The Internet as a Public Space_
+-   _A Decade Later: The Internet as a Public Space_
+-   _Radical Technologies_, ch. 2, pgs. 31-42, 48-55
+-   _Algorithms of Oppression_, Introduction
+-   _Reddit and the Struggle to Detoxify the Internet_
+-   _Weapons of Math Destruction_, ch. 4
 
 ### Response
 

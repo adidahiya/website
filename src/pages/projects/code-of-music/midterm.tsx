@@ -1,8 +1,11 @@
-import { Button } from "@blueprintjs/core";
+/* eslint-disable max-classes-per-file */
+
+import { Button, H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import { P5Canvas } from "../../../components/p5Canvas";
@@ -15,6 +18,7 @@ interface IState {
     isPlaying: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state = {
         isPlaying: false,
@@ -50,7 +54,7 @@ export default class extends React.PureComponent<{}, IState> {
                 baseFrequency: "C2",
                 octaves: 4,
             },
-        }).toMaster();
+        }).toDestination();
         this.monoSynth.volume.value = -25;
         const synthPart = new Tone.Part(
             (time: Tone.Unit.Time, note: string) => {
@@ -81,7 +85,7 @@ export default class extends React.PureComponent<{}, IState> {
             dsClave: "/sounds/drum-synth-clave.m4a",
             dsGlass: "/sounds/drum-synth-glass.m4a",
             snareCombo: "/sounds/drum-snare-combo.m4a",
-        }).toMaster();
+        }).toDestination();
         kit.volume.value = 0;
         kit.player("kick").volume.value = -15;
         kit.player("hh").volume.value = -10;
@@ -96,7 +100,9 @@ export default class extends React.PureComponent<{}, IState> {
             const shouldTriggerClave = this.paths.some((p) => p.isActive() && p.hue < 100);
             const shouldTriggerGlass = this.paths.some((p) => p.isActive() && p.hue > 150);
             const shouldTriggerWood = numActivePaths > 2;
-            const shouldTriggerSnare = this.paths.some((p) => p.isActive() && p.hue > 100 && p.hue < 200);
+            const shouldTriggerSnare = this.paths.some(
+                (p) => p.isActive() && p.hue > 100 && p.hue < 200,
+            );
 
             if (beat === 0) {
                 if (shouldTriggerWood) {
@@ -147,9 +153,10 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <h3>Rhythm Generator</h3>
+                <H3>Rhythm Generator</H3>
                 <p>
-                    Code of Music midterm project (<Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
+                    Code of Music midterm project (
+                    <Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
                 </p>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
@@ -216,14 +223,22 @@ export default class extends React.PureComponent<{}, IState> {
             }
 
             if (this.state.isPlaying) {
-                const [_bar, _beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
+                const [_bar, _beat, sixteenth] = (
+                    Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
+                ).split(":");
                 if (parseInt(sixteenth, 10) === 0) {
                     lastBeatTimer = now;
                 }
 
                 // draw border pulse, it should be above any other layers in the image
                 const darken = Math.round(
-                    p.map(now - lastBeatTimer, 0, lengthOfSixteenth, 0, MAX_BACKGROUND_DARKEN_ON_BEAT),
+                    p.map(
+                        now - lastBeatTimer,
+                        0,
+                        lengthOfSixteenth,
+                        0,
+                        MAX_BACKGROUND_DARKEN_ON_BEAT,
+                    ),
                 );
                 // draw border
                 p.stroke(255 - darken);
@@ -336,11 +351,21 @@ class Particle {
 
     private setFill() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.fill(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
+        this.p.fill(
+            this.p.hue(this.color),
+            this.p.saturation(this.color),
+            this.p.brightness(this.color),
+            alpha,
+        );
     }
 
     private setStroke() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.stroke(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
+        this.p.stroke(
+            this.p.hue(this.color),
+            this.p.saturation(this.color),
+            this.p.brightness(this.color),
+            alpha,
+        );
     }
 }

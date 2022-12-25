@@ -5,11 +5,11 @@ date: "2019-10-21"
 
 ### Reading
 
-- Tahir Carl Karmali's work
-- Data centers
-- _Power, Pollution, and the Internet_
-- _Radical Technologies_, chapter 4
-- _Digitized Lives_, chapter 2
+-   Tahir Carl Karmali's work
+-   Data centers
+-   _Power, Pollution, and the Internet_
+-   _Radical Technologies_, chapter 4
+-   _Digitized Lives_, chapter 2
 
 ### Response
 

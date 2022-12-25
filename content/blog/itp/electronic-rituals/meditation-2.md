@@ -63,6 +63,6 @@ This ended up looking pretty awful because Spark AR Studio _downsizes all assets
 
 You can see the results of my meditation in the gif above. I think with a bit of polishing, this could actually be published as a real Instagram Story filter. The main things I would change are:
 
-- Improve the texture image resolution so it is more readable
-- Fix the orientation of the texture image so it's not mirrored horizontally
-- Add some lighting effects to make the selfie image feel more removed from regular (#nofilter) life, more like a ritual
+-   Improve the texture image resolution so it is more readable
+-   Fix the orientation of the texture image so it's not mirrored horizontally
+-   Add some lighting effects to make the selfie image feel more removed from regular (#nofilter) life, more like a ritual

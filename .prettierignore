@@ -1,0 +1,8 @@
+/.cache
+/.netlify
+/functions
+/node_modules
+/public
+/static
+generated/
+src/custom-typings

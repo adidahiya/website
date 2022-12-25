@@ -1,7 +1,9 @@
+import { H1 } from "@blueprintjs/core";
 import { Location as LocationProvider } from "@reach/router";
 import { Link } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
+
 import favicon16 from "../assets/favicon-16.png";
 import favicon32 from "../assets/favicon-32.png";
 import favicon48 from "../assets/favicon-48.png";
@@ -11,9 +13,9 @@ import * as styles from "./defaultLayout.module.css";
 const Header = () => (
     <div className={styles.header}>
         <div>
-            <h1>
+            <H1>
                 <Link to="/">adi.🍕</Link>
-            </h1>
+            </H1>
         </div>
     </div>
 );
@@ -56,7 +58,11 @@ export interface IDefaultLayoutHelmetProps {
     remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
 }
 
-export function DefaultLayoutHelmet({ location, remoteScripts = [], title }: IDefaultLayoutHelmetProps) {
+export function DefaultLayoutHelmet({
+    location,
+    remoteScripts = [],
+    title,
+}: IDefaultLayoutHelmetProps) {
     if (shouldRenderAnalytics(location)) {
         remoteScripts.push({
             async: true,

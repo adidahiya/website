@@ -1,5 +1,7 @@
+import { H2 } from "@blueprintjs/core";
 import { graphql } from "gatsby";
 import React from "react";
+
 import DefaultLayout from "../components/defaultLayout";
 import * as styles from "./markdown.module.css";
 
@@ -7,7 +9,7 @@ export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
         <DefaultLayout>
-            <h2>{post.frontmatter.title}</h2>
+            <H2>{post.frontmatter.title}</H2>
             <div className={styles.container} dangerouslySetInnerHTML={{ __html: post.html }} />
         </DefaultLayout>
     );

@@ -9,11 +9,11 @@ I presented my thesis project again, this time adding the word "experimental" he
 
 I'm interested in many aspects of club culture:
 
-- Spaces for freedom, anonymity, and "production of new selves"
-- "Dance-floor democracy" vs. membership and exclusivity vs. "underground" scenes
-- Inclusive, safe spaces for marginalized communities
-- Art objects at the rave
-- Nightclubs as multidisciplinary meeting points for creative people
-- Curation of multidisciplinary programming including DJs, live bands, and visual art
-- Aesthetic comfort zones and the presentation of new, challenging club music
-- Lighting, space, and architectural design
+-   Spaces for freedom, anonymity, and "production of new selves"
+-   "Dance-floor democracy" vs. membership and exclusivity vs. "underground" scenes
+-   Inclusive, safe spaces for marginalized communities
+-   Art objects at the rave
+-   Nightclubs as multidisciplinary meeting points for creative people
+-   Curation of multidisciplinary programming including DJs, live bands, and visual art
+-   Aesthetic comfort zones and the presentation of new, challenging club music
+-   Lighting, space, and architectural design

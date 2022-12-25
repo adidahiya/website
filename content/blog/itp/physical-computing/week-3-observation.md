@@ -7,11 +7,11 @@ date: "2018-09-26"
 
 I observed some bar patrons using pinball machines at Sunshine Laundromat in Greenpoint. This is interactive technology which people learn over time and can potentially master (that's how they get good at the game). Players have to watch the table for various signals:
 
-- position of the paddles
-- location of the pinball (there may be multiple balls in some games)
-- position of various obstacles on the table which might move
-- status of power-ups or bonus point triggers
-- messages on the screen to indicate timing of certain events which give bonus points
+-   position of the paddles
+-   location of the pinball (there may be multiple balls in some games)
+-   position of various obstacles on the table which might move
+-   status of power-ups or bonus point triggers
+-   messages on the screen to indicate timing of certain events which give bonus points
 
 Beginning players often have trouble processing all of this information at once, so they are not able to make optimized choices about where to guide the pinball to get the most points. That's not usually their priority, though. Beginners are usually just trying to keep the game going for as long as possible so they can keep scoring points.
 

@@ -32,12 +32,12 @@ The interaction loop would go something like this:
 
 Some feedback / ideas / questions after presenting the initial idea:
 
-- consider whether the device should incite hate speech or deter it... if it does incite it, be very careful and deal with the consequences
-- consider recording the last person's words / screaming into the device to play it back, an embodiment of the echo chamber effect
-- put an LCD monitor behind the mirror and show relevant tweets, making a more direct connection with the internet content this work is trying to reference
-- if it's a portal, where is the portal taking you?
-- what emotion does this interaction evoke? awe (typically associated with infinity mirrors) or anger?
-- if the work is about viral sharing of content, how does that get expressed, if at all?
+-   consider whether the device should incite hate speech or deter it... if it does incite it, be very careful and deal with the consequences
+-   consider recording the last person's words / screaming into the device to play it back, an embodiment of the echo chamber effect
+-   put an LCD monitor behind the mirror and show relevant tweets, making a more direct connection with the internet content this work is trying to reference
+-   if it's a portal, where is the portal taking you?
+-   what emotion does this interaction evoke? awe (typically associated with infinity mirrors) or anger?
+-   if the work is about viral sharing of content, how does that get expressed, if at all?
 
 ## Prototype 1
 

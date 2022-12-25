@@ -1,14 +1,20 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
-export default class extends React.PureComponent<{}, { isPlaying: boolean; scale: string[]; octaveToFilter: number }> {
+export default class extends React.PureComponent<
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    {},
+    { isPlaying: boolean; scale: string[]; octaveToFilter: number }
+> {
     public state = {
         isPlaying: false,
         scale: getMinorBluesScaleWithHarmonies(),
@@ -31,14 +37,17 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; scale
                 sustain: 1.0,
                 release: 2,
             },
-        }).toMaster();
+        }).toDestination();
         this.synth.volume.value = -10;
 
         this.pattern = new Tone.Pattern(
             (time: number, note: any) => {
                 this.isPatternPlaying = true;
                 this.synth.triggerAttackRelease(note, "16t", time);
-                setTimeout(() => (this.isPatternPlaying = false), Tone.Time("16t").toMilliseconds());
+                setTimeout(
+                    () => (this.isPatternPlaying = false),
+                    Tone.Time("16t").toMilliseconds(),
+                );
             },
             this.state.scale,
             "randomWalk",
@@ -56,9 +65,10 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; scale
     public render() {
         return (
             <Layout>
-                <h3>Code of Music</h3>
+                <H3>Code of Music</H3>
                 <p>
-                    Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>,{" "}
+                    Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>
+                    ,{" "}
                     <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/melody-sketch.tsx">
                         code
                     </a>

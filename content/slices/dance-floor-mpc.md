@@ -18,15 +18,15 @@ I set out to create a matrix of dance floor tiles which act as a controller for 
 
 There are 8 interactive tiles and one neutral central tile in this interface. Each interactive tile triggers a different drum sample. I encouraged users to start in the neutral tile and used DDR as a starting point to frame the interaction. The console at the front contains four buttons to control the sequencer software and an LED strip interface which reflects the state of the loop transport. The buttons (from left to right are) play/stop, toggle record mode, reset sequence, and change sample bank:
 
-1. __Play/Stop__ toggles the loop transport, either starting the loop from the beginning or stopping the current playback.
-2. __Record__ toggles whether the sequencer is recording steps to the current sequence. When this is off, the timeline LED strip color is white, and users can trigger drum sounds without committing them to the sequence. When it is on, pad triggers will get quantized to the nearest step and toggle the respective pad in the sequence. Multiple pads can be triggered at a time.
-3. __Reset__ clears the current sequence. If there was a previous sequence active and the current sequence has already been reset, this will clear the previous sequence (so you can start over from scratch).
-4. __Change sample bank__ switches the current sequence to use the next available sample bank. I had 3 sample banks available during the winter show.
+1. **Play/Stop** toggles the loop transport, either starting the loop from the beginning or stopping the current playback.
+2. **Record** toggles whether the sequencer is recording steps to the current sequence. When this is off, the timeline LED strip color is white, and users can trigger drum sounds without committing them to the sequence. When it is on, pad triggers will get quantized to the nearest step and toggle the respective pad in the sequence. Multiple pads can be triggered at a time.
+3. **Reset** clears the current sequence. If there was a previous sequence active and the current sequence has already been reset, this will clear the previous sequence (so you can start over from scratch).
+4. **Change sample bank** switches the current sequence to use the next available sample bank. I had 3 sample banks available during the winter show.
 
 In addition, the web UI has a few more controls which are not reflected in the hardware. I sometimes used these while demoing the project at the winter show:
 
-- __Next player__ saves the current sequence and creates a new slot for a new sequence to be recorded. Only two sequences can be active at any time, but they can each use different sample banks and they can be cleared ("reset") individually.
-- __Shortcuts__ for common patterns like four-on-the-floor kick and (closed) hi-hats on every 16th note.
+-   **Next player** saves the current sequence and creates a new slot for a new sequence to be recorded. Only two sequences can be active at any time, but they can each use different sample banks and they can be cleared ("reset") individually.
+-   **Shortcuts** for common patterns like four-on-the-floor kick and (closed) hi-hats on every 16th note.
 
 ### Video documentation
 
@@ -65,8 +65,8 @@ In this video you see me controlling some parts of the experience by clicking bu
 
 Relevant deadlines:
 
-- Due as a Code of Music final on Monday, December 10
-- Due as a Physical Computing final on Wednesday, December 12
+-   Due as a Code of Music final on Monday, December 10
+-   Due as a Physical Computing final on Wednesday, December 12
 
 At this point I think the biggest risk factor for this project is the timely fabrication of sturdy tiles. I plan to dedicate nearly all of Thurs-Sun to this build, and I think the above deadlines will help as a forcing function to get the project in a good state.
 
@@ -74,11 +74,11 @@ At this point I think the biggest risk factor for this project is the timely fab
 
 These should give you an idea of my rapid progress over the past few days and how I'm thinking about fabrication:
 
-- [Week 13 - Dance floor MPC progress, part 4](/blog/itp/physical-computing/week-13-dance-floor-mpc-4)
-- [Week 13 - Dance floor MPC progress, part 3](/blog/itp/physical-computing/week-13-dance-floor-mpc-3)
-- [Week 13 - Dance floor sequencer progress, part 2](/blog/itp/physical-computing/week-13-dance-floor-progress)
-- [Week 12 - Dance floor sequencer progress, part 1](/blog/itp/physical-computing/week-12-dance-floor-progress)
-- [Week 12 - Dance floor sequencer](/blog/itp/physical-computing/week-12-dance-floor-sequencer)
+-   [Week 13 - Dance floor MPC progress, part 4](/blog/itp/physical-computing/week-13-dance-floor-mpc-4)
+-   [Week 13 - Dance floor MPC progress, part 3](/blog/itp/physical-computing/week-13-dance-floor-mpc-3)
+-   [Week 13 - Dance floor sequencer progress, part 2](/blog/itp/physical-computing/week-13-dance-floor-progress)
+-   [Week 12 - Dance floor sequencer progress, part 1](/blog/itp/physical-computing/week-12-dance-floor-progress)
+-   [Week 12 - Dance floor sequencer](/blog/itp/physical-computing/week-12-dance-floor-sequencer)
 
 ![dance-floor-8](../blog/itp/physical-computing/final-project-images/dance-floor-8.jpg)
 

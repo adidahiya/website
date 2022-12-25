@@ -1,13 +1,18 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
+/* eslint-disable no-underscore-dangle */
+
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, { isDronePlaying: boolean }> {
     public state = {
         isDronePlaying: false,
@@ -27,7 +32,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
         // do Tone setup
         Tone.Transport.bpm.value = 120;
 
-        this.poly = new Tone.PolySynth({ voice: Tone.Synth, maxPolyphony: 2 }).toMaster();
+        this.poly = new Tone.PolySynth({ voice: Tone.Synth, maxPolyphony: 2 }).toDestination();
         this.poly.volume.value = -10;
         // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
         for (const v of this.poly._voices) {
@@ -44,7 +49,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
                 decay: 0.3,
                 release: 2,
             },
-        }).toMaster();
+        }).toDestination();
         this.droneSynth.volume.value = -10;
 
         this.loop = new Tone.Loop(this.handleMeasure, "1m");
@@ -60,7 +65,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
     public render() {
         return (
             <Layout>
-                <h3>Code of Music</h3>
+                <H3>Code of Music</H3>
                 <p>
                     Week 5 Harmony (<Link to="/blog/itp/code-of-music/harmony">blog post</Link>,{" "}
                     <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/harmony-sketch.tsx">
@@ -160,6 +165,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
         let note: Tone.Unit.Frequency = "C2";
         if (this.notesToDraw.length > 1) {
             // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            // eslint-disable-next-line no-console
             console.log(this.poly._voices.map((v) => v.frequency.value));
             // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
             note = this.poly._voices[0].frequency.value;

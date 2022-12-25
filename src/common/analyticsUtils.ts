@@ -1,7 +1,6 @@
 import { shouldRenderAnalytics } from "./locationUtils";
 
 declare global {
-    // tslint:disable-next-line interface-name
     interface Window {
         // google analytics
         dataLayer: any;

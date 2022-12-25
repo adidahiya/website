@@ -1,5 +1,6 @@
 import p5 from "p5";
 import React from "react";
+
 import * as styles from "./p5Canvas.module.css";
 
 if (typeof window !== "undefined") {
@@ -10,6 +11,7 @@ if (typeof window !== "undefined") {
 export interface IP5Props {
     /**
      * Should the canvas element automatically get focus?
+     *
      * @default true
      */
     autoFocus?: boolean;
@@ -41,6 +43,7 @@ export class P5Canvas extends React.Component<IP5Props> {
                 this.props.sketch(p);
                 if (width != null && height != null) {
                     // inject some setup code
+                    // eslint-disable-next-line @typescript-eslint/unbound-method
                     const oldSetup = p.setup;
                     p.setup = () => {
                         p.createCanvas(width, height);
@@ -58,7 +61,11 @@ export class P5Canvas extends React.Component<IP5Props> {
     public render() {
         const { width, height } = this.props;
         return (
-            <div className={styles.processingSketch} ref={(r) => (this.containerEl = r)} style={{ width, height }} />
+            <div
+                className={styles.processingSketch}
+                ref={(r) => (this.containerEl = r)}
+                style={{ width, height }}
+            />
         );
     }
 }

@@ -1,7 +1,9 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -13,9 +15,13 @@ const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 
-// tslint:disable no-console
+/* eslint-disable no-console */
 
-export default class extends React.PureComponent<{}, { isPlaying: boolean; pitch: Tone.Unit.Frequency }> {
+export default class extends React.PureComponent<
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    {},
+    { isPlaying: boolean; pitch: Tone.Unit.Frequency }
+> {
     public state = {
         isPlaying: false,
         pitch: "C4",
@@ -40,7 +46,7 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; pitch
                 sustain: 1.0,
                 release: 2,
             },
-        }).toMaster();
+        }).toDestination();
         // this.synth.volume.value = -5;
         // this.synth.sync();
 
@@ -54,7 +60,7 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; pitch
     public render() {
         return (
             <DefaultLayout>
-                <h3>Physical Computing</h3>
+                <H3>Physical Computing</H3>
                 <p>
                     Week 6 serial communication labs (
                     <Link to="/blog/itp/physical-computing/week-6-labs">blog post</Link>)

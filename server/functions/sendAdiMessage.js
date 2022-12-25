@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import twilio from "twilio";
 
 /**
@@ -15,15 +17,17 @@ export function handler(event, context, callback) {
     const { message } = JSON.parse(event.body);
 
     const client = new twilio(twilio_client_id, twilio_client_secret);
-    client.messages.create({
-        body: message,
-        to: "+19082940182",
-        from: "+19082937178",
-    }).then((responseMessage) => {
-        console.log(responseMessage.sid);
-        callback(null, {
-            statusCode: 200,
-            body: responseMessage.sid,
+    client.messages
+        .create({
+            body: message,
+            to: "+19082940182",
+            from: "+19082937178",
+        })
+        .then((responseMessage) => {
+            // console.log(responseMessage.sid);
+            callback(null, {
+                statusCode: 200,
+                body: responseMessage.sid,
+            });
         });
-    });
 }

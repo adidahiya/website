@@ -25,9 +25,9 @@ I built a cardboard prototype with aluminum plate contact switches. These were f
 
 I need to think more deeply about how I will make this a good Code of Music final project. There are a lot of decisions to make about the sequencer, like:
 
-- how to adjust tempo
-- if the number of steps can be adjusted
-- are accents possible?
-- can users create cross-rhythms?
-- where do the sounds come from and can they be changed?
-- will there be quantization and/or swing?
+-   how to adjust tempo
+-   if the number of steps can be adjusted
+-   are accents possible?
+-   can users create cross-rhythms?
+-   where do the sounds come from and can they be changed?
+-   will there be quantization and/or swing?

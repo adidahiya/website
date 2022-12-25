@@ -55,11 +55,19 @@ jobs:
 
   check:
     executor: default-executor
+    parallelism: 3
     steps:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
-      - run: pnpm check
+      - run:
+          command: |
+            case $CIRCLE_NODE_INDEX in \
+            0) pnpm check:types ;; \
+            1) pnpm check:lint ;; \
+            2) pnpm check:format ;; \
+            esac
+          when: always
 
 workflows:
   version: 2

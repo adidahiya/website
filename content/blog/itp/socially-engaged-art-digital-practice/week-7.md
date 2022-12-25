@@ -5,22 +5,22 @@ date: "2019-10-21"
 
 ### Reading
 
-- Ethics
-    - Claire Bishop: Artificial Hells: Participant Art and the Politics of Spectatorship
-    - _Weapons of Math Destruction_, chapters 1 and 5
-    - _A Hacker Manifesto_ by Mackenzie Wark, _Hacker_ chapter
-    - _Ethics for Socially Engaged Art_ by Ben Kinmont and Laurel George
-    - _Situated Encounters with Socially Engaged Art_
-- Intellectual Property
-    - _The Public Domain_ by James Boyle, chapters 4 and 5
-    - Creative Commons
-    - _Never Mind the Bollocks: Shepard Fairey's Fight for Appropriation, Fair Use, and Free Culture_ by Evelyn McDonnell
-    - Open Source Initiative
-    - Free the Orphans project
+-   Ethics
+    -   Claire Bishop: Artificial Hells: Participant Art and the Politics of Spectatorship
+    -   _Weapons of Math Destruction_, chapters 1 and 5
+    -   _A Hacker Manifesto_ by Mackenzie Wark, _Hacker_ chapter
+    -   _Ethics for Socially Engaged Art_ by Ben Kinmont and Laurel George
+    -   _Situated Encounters with Socially Engaged Art_
+-   Intellectual Property
+    -   _The Public Domain_ by James Boyle, chapters 4 and 5
+    -   Creative Commons
+    -   _Never Mind the Bollocks: Shepard Fairey's Fight for Appropriation, Fair Use, and Free Culture_ by Evelyn McDonnell
+    -   Open Source Initiative
+    -   Free the Orphans project
 
 ### Response
 
-Lots to digest in this week's reading. I think _Weapons of Math Destruction_ provided quite a good layman explanation of why some forms of computer algorithms (based on models) can be more reliable / just / "impartial" than others by pointing to the transparency and volume of up-to-date representative data in Moneyball-esque endeavors vs. biased proxy data used in WMDs. I liked the succinct definition of models as "opinions embedded in mathematics" (21). The main takeaway for me in chapter 1 was the rubric for detecting WMDs: __opacity, scale, and potential for damage to society__.
+Lots to digest in this week's reading. I think _Weapons of Math Destruction_ provided quite a good layman explanation of why some forms of computer algorithms (based on models) can be more reliable / just / "impartial" than others by pointing to the transparency and volume of up-to-date representative data in Moneyball-esque endeavors vs. biased proxy data used in WMDs. I liked the succinct definition of models as "opinions embedded in mathematics" (21). The main takeaway for me in chapter 1 was the rubric for detecting WMDs: **opacity, scale, and potential for damage to society**.
 
 Chapter 5 of _Weapons of Math Destruction_ was also quite compelling with its analysis of predictive policing. It provided some needed color to our discussion from last week's self-taught class where we talked about CompStat for a few minutes. This quote stuck out for me: "... while PredPol delivers a perfectly useful and even high-minded software tool, it is also a do-it-yourself WMD" (91), along with the (now common) knowledge that most people think collecting more data for their models is a good thing. I think what we need here to achieve "Big Data justice" is more literacy and education around statistical methods so that police departments and prison systems know when they are using data to "justify the workings of the system but not to question or improve the system" (98).
 

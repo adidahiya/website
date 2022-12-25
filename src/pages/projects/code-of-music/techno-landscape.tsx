@@ -3,6 +3,7 @@ import classNames from "classnames";
 // import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
+
 import { DefaultLayoutWithoutHeader as Layout, SessionView, Transport } from "../../../components";
 import * as styles from "../../../pageStyles/techno-landscape.module.css";
 
@@ -10,6 +11,7 @@ interface IState {
     isPlaying: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state = {
         isPlaying: false,

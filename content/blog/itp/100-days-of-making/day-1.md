@@ -11,23 +11,23 @@ I don't want to limit myself one genre, but it's likely that I'll mostly stick t
 
 This project will require:
 
-- collecting and cataloging a large amount of interesting music which I personally enjoy (I want to avoid repeating sounds)
-- analyzing the techniques of other DJs and sound artists to learn what makes their work successful
-- __creating daily mixes or sample-based compositions__ (the primary shareable artifact)
+-   collecting and cataloging a large amount of interesting music which I personally enjoy (I want to avoid repeating sounds)
+-   analyzing the techniques of other DJs and sound artists to learn what makes their work successful
+-   **creating daily mixes or sample-based compositions** (the primary shareable artifact)
 
 Some possible sound sources could be:
 
-- full-formed song compositions from other artists (the most immediately available source)
-- track stems from existing compositions
-- simple rhythmic or melodic loops
-- drones
-- field recordings
-- speeches and spoken word recordings
+-   full-formed song compositions from other artists (the most immediately available source)
+-   track stems from existing compositions
+-   simple rhythmic or melodic loops
+-   drones
+-   field recordings
+-   speeches and spoken word recordings
 
 Some tools I plan to use include:
 
-- Pioneer DJ controller / CDJs + mixer
-- Ableton Live + Push 2 controller
+-   Pioneer DJ controller / CDJs + mixer
+-   Ableton Live + Push 2 controller
 
 I'm starting off with a relatively straightforward dance mix of some music I've been listening to recently. Check it out on SoundCloud:
 

@@ -31,6 +31,6 @@ Finally, here's the paper mockup of the lighting controller, the actual device w
 
 I had to clearly explain to every tester that this device is not meant to be used by everyone, but rather it's designed for DJs who are familiar with similar controllers already. It was a little tough to pull out feedback from some classmates, but I did receive some questions / concerns which I hadn't thought of:
 
-- what happens if you press multiple buttons at the bottom of this controller?
-- what happens if you slide the faders before triggering a light pattern?
-- what about using less of a square box and more fun geometric shapes?
+-   what happens if you press multiple buttons at the bottom of this controller?
+-   what happens if you slide the faders before triggering a light pattern?
+-   what about using less of a square box and more fun geometric shapes?

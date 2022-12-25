@@ -1,12 +1,14 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
+
 import DefaultLayout from "../components/defaultLayout";
 
 // import profileImage from "../assets/profile.jpg";
 
 export default () => (
     <DefaultLayout>
-        <h3>adi dahiya</h3>
+        <H3>adi dahiya</H3>
         <p>
             programmer &amp; artist based in Brooklyn, NY. <br />
             <a href="https://tisch.nyu.edu/itp" target="_blank">
@@ -14,11 +16,11 @@ export default () => (
             </a>{" "}
             alum.
         </p>
-        <h3>blog</h3>
+        <H3>blog</H3>
         <p>
             <Link to="/blog/itp/">ITP (2018&mdash;2020)</Link>
         </p>
-        <h3>portfolio</h3>
+        <H3>portfolio</H3>
         <p>
             <Link to="/projects/2018/">creative projects (2018&mdash;2020)</Link>
             <br />
@@ -28,7 +30,7 @@ export default () => (
             <br />
             <Link to="/photos/">selected photographs</Link>
         </p>
-        <h3>links</h3>
+        <H3>links</H3>
         <p>
             <a href="https://www.instagram.com/comfortzone.wav">instagram</a>
             <br />

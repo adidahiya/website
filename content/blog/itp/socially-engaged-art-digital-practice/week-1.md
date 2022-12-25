@@ -5,12 +5,12 @@ date: "2019-09-09"
 
 ### Reading
 
-- _How the Art of Social Practice Is Changing the World, One Row House at a Time_ by Carolyn Miranda, Artnet News, 2014
-- _A Strong Couple: New Media and Socially Engaged Art_
-- First part of _Dangling Conversations: Ongoing Knowledge Generation in Proyecto Paladar_ by Elizabeth Grady
-- _Education for Socially Engaged Art_ by Pablo Helguera, Introduction and Chapter 1
-- _Radical Technologies_ by Adam Greenfield, Introduction and Chapter 10
-- _Living as Form_ by Nato Thompson
+-   _How the Art of Social Practice Is Changing the World, One Row House at a Time_ by Carolyn Miranda, Artnet News, 2014
+-   _A Strong Couple: New Media and Socially Engaged Art_
+-   First part of _Dangling Conversations: Ongoing Knowledge Generation in Proyecto Paladar_ by Elizabeth Grady
+-   _Education for Socially Engaged Art_ by Pablo Helguera, Introduction and Chapter 1
+-   _Radical Technologies_ by Adam Greenfield, Introduction and Chapter 10
+-   _Living as Form_ by Nato Thompson
 
 ### Response
 

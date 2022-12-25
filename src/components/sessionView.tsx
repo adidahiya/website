@@ -1,8 +1,11 @@
+/* eslint-disable max-classes-per-file, no-console, react/jsx-no-bind */
+
 import { Classes, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
 import { mapValues } from "lodash-es";
 import React from "react";
 import * as Tone from "tone";
+
 import * as styles from "./sessionView.module.css";
 
 interface ISessionContext {
@@ -27,6 +30,7 @@ interface IState {
     steadySeqSliderValue: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.Component<{}, IState> {
     public state: IState = {
         padDroneSliderValue: 2,
@@ -48,7 +52,7 @@ export default class extends React.Component<{}, IState> {
         };
         // use individual Players so that we can control individual levels
         const simpleLoopPlayers = mapValues(simplePlayerUrls, (_url, name) =>
-            new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toMaster(),
+            new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toDestination(),
         );
         simpleLoopPlayers.clickyPerc.volume.value = 5;
         simpleLoopPlayers.rim.volume.value = 5;
@@ -89,31 +93,44 @@ export default class extends React.Component<{}, IState> {
             };
         };
 
-        const simpleLoops = mapValues<typeof simpleLoopPlayers, ISessionLoop>(simpleLoopPlayers, (_p, name) =>
-            createLoop(simpleLoopPlayers[name as keyof typeof simplePlayerUrls], "1m"),
+        const simpleLoops = mapValues<typeof simpleLoopPlayers, ISessionLoop>(
+            simpleLoopPlayers,
+            (_p, name) =>
+                createLoop(simpleLoopPlayers[name as keyof typeof simplePlayerUrls], "1m"),
         );
 
         const brassHook1Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook1(loopEnd13m).mp3",
-        ).toMaster();
+        ).toDestination();
         brassHook1Player.volume.value = -3;
         const brassHook2Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook2(loopEnd38m).mp3",
-        ).toMaster();
+        ).toDestination();
         brassHook2Player.volume.value = -3;
-        const brassHookLoops = [createLoop(brassHook1Player, "13m"), createLoop(brassHook2Player, "38m")];
+        const brassHookLoops = [
+            createLoop(brassHook1Player, "13m"),
+            createLoop(brassHook2Player, "38m"),
+        ];
 
-        const padDrone1Player = new Tone.Player("/sounds/techno-landscape/instruments/PadDrone1(loopEnd35m).mp3");
+        const padDrone1Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone1(loopEnd35m).mp3",
+        );
         padDrone1Player.volume.value = 6;
-        const padDrone2Player = new Tone.Player("/sounds/techno-landscape/instruments/PadDrone2(loopEnd30m).mp3");
+        const padDrone2Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone2(loopEnd30m).mp3",
+        );
         padDrone2Player.volume.value = 6;
-        const padDrone3Player = new Tone.Player("/sounds/techno-landscape/instruments/PadDrone3(loopEnd20m).mp3");
-        const padDrone4Player = new Tone.Player("/sounds/techno-landscape/instruments/PadDrone4(loopEnd27m).mp3");
+        const padDrone3Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone3(loopEnd20m).mp3",
+        );
+        const padDrone4Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/PadDrone4(loopEnd27m).mp3",
+        );
         const padDronePhaser = new Tone.Phaser({
             frequency: 10, // 2-10
             octaves: 5,
             baseFrequency: 500, // 500-1000
-        }).toMaster();
+        }).toDestination();
         padDrone1Player.connect(padDronePhaser);
         padDrone2Player.connect(padDronePhaser);
         padDrone3Player.connect(padDronePhaser);
@@ -141,13 +158,21 @@ export default class extends React.Component<{}, IState> {
             />
         );
 
-        const steadySeq1Player = new Tone.Player("/sounds/techno-landscape/instruments/SteadySeq1(loopEnd27m).mp3");
+        const steadySeq1Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq1(loopEnd27m).mp3",
+        );
         // steadySeq1Player.loop = true;
-        const steadySeq2Player = new Tone.Player("/sounds/techno-landscape/instruments/SteadySeq2(loopEnd24m).mp3");
+        const steadySeq2Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq2(loopEnd24m).mp3",
+        );
         // steadySeq2Player.loop = true;
-        const steadySeq3Player = new Tone.Player("/sounds/techno-landscape/instruments/SteadySeq3(loopEnd16m).mp3");
+        const steadySeq3Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq3(loopEnd16m).mp3",
+        );
         // steadySeq3Player.loop = true;
-        const steadySeq4Player = new Tone.Player("/sounds/techno-landscape/instruments/SteadySeq4(loopEnd25m).mp3");
+        const steadySeq4Player = new Tone.Player(
+            "/sounds/techno-landscape/instruments/SteadySeq4(loopEnd25m).mp3",
+        );
         // steadySeq4Player.loop = true;
         const steadySeqFilter = new Tone.Filter({
             type: "highpass",
@@ -155,7 +180,7 @@ export default class extends React.Component<{}, IState> {
             rolloff: -24,
             Q: 20,
             gain: 1,
-        }).toMaster();
+        }).toDestination();
         steadySeq1Player.connect(steadySeqFilter);
         steadySeq2Player.connect(steadySeqFilter);
         steadySeq3Player.connect(steadySeqFilter);
@@ -183,6 +208,7 @@ export default class extends React.Component<{}, IState> {
         );
 
         // HACKHACK deeply nested state :(
+        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState(
             {
                 sessionContext: {
@@ -276,10 +302,7 @@ export default class extends React.Component<{}, IState> {
     }
 }
 
-// tslint:disable-next-line:no-empty-interface
-interface IClipProps extends ISessionLoop {
-    // nothing
-}
+type IClipProps = ISessionLoop;
 
 interface IClipState {
     isPlaying: boolean;

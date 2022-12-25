@@ -28,4 +28,3 @@ autocrop -i ./frames-720p -o ./will-forte-frames-720p
 
 I started training in FakeApp with my first batch of images (~380 per face) around 6:20pm today and after about 4 hours, I started to see loss values close to 0.02.
 I hope to come back later and keep training with frames from other clips.
-

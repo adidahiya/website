@@ -5,13 +5,13 @@ date: "2019-02-04"
 
 Our first assignment was simply to build a critical object. My partner (Shu-Ju Lin) and I brainstormed a bunch of topics to critique, briefly listed here:
 
-- capitalism / wealth redistribution / the fact that billionaires exist and that's a normal thing
-- Spotify as a gatekeeper for music discovery and its business model which doesn't sufficiently support small artists
-- paying for "free" web services with your personal information (I did a project related to this a while back: [you are the product](https://adi.pizza/projects/2014/#you-are-the-product))
-- smartphones are the new cigarettes (partly inspired by this [recent GQ article](https://www.gq.com/story/cal-newport-digital-minimalism))
-- excess plastic and trash created through packaging goods, shipping them long distances ([article 1](https://www.bloomberg.com/opinion/articles/2018-09-17/amazon-amzn-boxes-are-choking-the-rest-of-us), [article 2](https://www.vice.com/en_us/article/xd573w/japans-excessive-packaging-fetish-299))
-- the current supreme court gun control case in NY ([article](https://www.nytimes.com/2019/01/22/us/politics/supreme-court-guns-nyc-license.html))
-- food waste created in American households
+-   capitalism / wealth redistribution / the fact that billionaires exist and that's a normal thing
+-   Spotify as a gatekeeper for music discovery and its business model which doesn't sufficiently support small artists
+-   paying for "free" web services with your personal information (I did a project related to this a while back: [you are the product](https://adi.pizza/projects/2014/#you-are-the-product))
+-   smartphones are the new cigarettes (partly inspired by this [recent GQ article](https://www.gq.com/story/cal-newport-digital-minimalism))
+-   excess plastic and trash created through packaging goods, shipping them long distances ([article 1](https://www.bloomberg.com/opinion/articles/2018-09-17/amazon-amzn-boxes-are-choking-the-rest-of-us), [article 2](https://www.vice.com/en_us/article/xd573w/japans-excessive-packaging-fetish-299))
+-   the current supreme court gun control case in NY ([article](https://www.nytimes.com/2019/01/22/us/politics/supreme-court-guns-nyc-license.html))
+-   food waste created in American households
 
 We came up with interesting concepts for a few of these topics, but ultimately decided to create a low-tech (read: not electronic) object critiquing packaging and the online shopping experience. Yes, we realized that paper and plastic trash created this way is _not_ the biggest contributor to carbon emissions or pollution, but at least for this initial assignment, we think it's ok to engage in discussion about a small(er) problem.
 
