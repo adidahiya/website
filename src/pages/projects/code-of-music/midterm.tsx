@@ -224,7 +224,7 @@ export default class extends React.PureComponent<{}, IState> {
 
             if (this.state.isPlaying) {
                 const [_bar, _beat, sixteenth] = (
-                    Tone.Transport.position as Tone.kjUnit.BarsBeatsSixteenths
+                    Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
                 ).split(":");
                 if (parseInt(sixteenth, 10) === 0) {
                     lastBeatTimer = now;
