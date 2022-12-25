@@ -46,7 +46,12 @@ export default class extends React.PureComponent<{}, IState> {
 
         return (
             <Layout className={styles.container} title="Mono composition">
-                <Button loading={!buffersLoaded} text="play" intent="success" onClick={this.handleClick} />
+                <Button
+                    loading={!buffersLoaded}
+                    text="play"
+                    intent="success"
+                    onClick={this.handleClick}
+                />
             </Layout>
         );
     }

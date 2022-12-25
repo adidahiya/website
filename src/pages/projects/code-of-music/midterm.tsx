@@ -96,7 +96,9 @@ export default class extends React.PureComponent<{}, IState> {
             const shouldTriggerClave = this.paths.some((p) => p.isActive() && p.hue < 100);
             const shouldTriggerGlass = this.paths.some((p) => p.isActive() && p.hue > 150);
             const shouldTriggerWood = numActivePaths > 2;
-            const shouldTriggerSnare = this.paths.some((p) => p.isActive() && p.hue > 100 && p.hue < 200);
+            const shouldTriggerSnare = this.paths.some(
+                (p) => p.isActive() && p.hue > 100 && p.hue < 200,
+            );
 
             if (beat === 0) {
                 if (shouldTriggerWood) {
@@ -149,7 +151,8 @@ export default class extends React.PureComponent<{}, IState> {
             <Layout>
                 <h3>Rhythm Generator</h3>
                 <p>
-                    Code of Music midterm project (<Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
+                    Code of Music midterm project (
+                    <Link to="/blog/itp/code-of-music/midterm">blog post</Link>)
                 </p>
                 <Button
                     icon={this.state.isPlaying ? "stop" : "play"}
@@ -216,14 +219,22 @@ export default class extends React.PureComponent<{}, IState> {
             }
 
             if (this.state.isPlaying) {
-                const [_bar, _beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
+                const [_bar, _beat, sixteenth] = (
+                    Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
+                ).split(":");
                 if (parseInt(sixteenth, 10) === 0) {
                     lastBeatTimer = now;
                 }
 
                 // draw border pulse, it should be above any other layers in the image
                 const darken = Math.round(
-                    p.map(now - lastBeatTimer, 0, lengthOfSixteenth, 0, MAX_BACKGROUND_DARKEN_ON_BEAT),
+                    p.map(
+                        now - lastBeatTimer,
+                        0,
+                        lengthOfSixteenth,
+                        0,
+                        MAX_BACKGROUND_DARKEN_ON_BEAT,
+                    ),
                 );
                 // draw border
                 p.stroke(255 - darken);
@@ -336,11 +347,21 @@ class Particle {
 
     private setFill() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.fill(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
+        this.p.fill(
+            this.p.hue(this.color),
+            this.p.saturation(this.color),
+            this.p.brightness(this.color),
+            alpha,
+        );
     }
 
     private setStroke() {
         const alpha = this.p.map(this.lifespan, 0, MAX_LIFESPAN, 0, 128);
-        this.p.stroke(this.p.hue(this.color), this.p.saturation(this.color), this.p.brightness(this.color), alpha);
+        this.p.stroke(
+            this.p.hue(this.color),
+            this.p.saturation(this.color),
+            this.p.brightness(this.color),
+            alpha,
+        );
     }
 }

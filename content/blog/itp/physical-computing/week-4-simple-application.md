@@ -7,12 +7,12 @@ date: "2018-10-02"
 
 So far, we've covered the following in the class labs:
 
-- Series and parallel circuits
-- LEDs, resistors, variable resistors
-- Arduino digital I/O
-- Arduino analog I/O
-- Audio output with a piezo speaker
-- Servo motor control
+-   Series and parallel circuits
+-   LEDs, resistors, variable resistors
+-   Arduino digital I/O
+-   Arduino analog I/O
+-   Audio output with a piezo speaker
+-   Servo motor control
 
 While browsing the ER parts list, I noticed some IR & ultrasonic distance sensors.
 So, came up with a plan to make a simple [theremin](https://en.wikipedia.org/wiki/Theremin) using these sensors and a speaker.
@@ -24,7 +24,6 @@ Here's my initial quick sketch of the device:
 And here's my initial circuit diagram (digital input from the rangefinders and digital output to the speaker):
 
 ![theremin-circuit](theremin-circuit.jpg)
-
 
 ### Execution
 
@@ -56,7 +55,6 @@ One tricky part of this project was achieving tone and volume modulation of the 
 ```c
 toneAC(frequency, volume, length);
 ```
-
 
 ### Code
 

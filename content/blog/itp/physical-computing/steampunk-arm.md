@@ -13,13 +13,13 @@ Based on these ideas, we wanted to make the arm control some blinking lights, a 
 
 The main interactions we decided to use involve the following I/O:
 
-- Flex sensor controls the fan (via DC motor)
-- Accelerometer controls lights (via direct digital signals) and music playing in a web browser (via serial communication)
+-   Flex sensor controls the fan (via DC motor)
+-   Accelerometer controls lights (via direct digital signals) and music playing in a web browser (via serial communication)
 
 We prototyped these interactions on an Arduino Uno with jumper cables and a few online tutorials:
 
-- [DC motors](https://learn.adafruit.com/adafruit-arduino-lesson-13-dc-motors/breadboard-layout)
-- [ADXL345 accelerometer](http://codeyoung.blogspot.com/2009/11/adxl345-accelerometer-breakout-board.html)
+-   [DC motors](https://learn.adafruit.com/adafruit-arduino-lesson-13-dc-motors/breadboard-layout)
+-   [ADXL345 accelerometer](http://codeyoung.blogspot.com/2009/11/adxl345-accelerometer-breakout-board.html)
 
 ### Production
 

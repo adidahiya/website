@@ -11,22 +11,25 @@ export function handler(event, context, callback) {
         return;
     }
 
-    request({
-        uri: "https://api.foursquare.com/v2/users/self",
-        method: "GET",
-        qs: {
-            client_id: foursquare_client_id,
-            client_secret: foursquare_client_secret,
-            v: "201902013",
+    request(
+        {
+            uri: "https://api.foursquare.com/v2/users/self",
+            method: "GET",
+            qs: {
+                client_id: foursquare_client_id,
+                client_secret: foursquare_client_secret,
+                v: "201902013",
+            },
         },
-    }, (error, response, body) => {
-        if (error != null) {
-            callback(error);
-        } else {
-            callback(null, {
-                statusCode: 200,
-                body,
-            })
-        }
-    });
-};
+        (error, response, body) => {
+            if (error != null) {
+                callback(error);
+            } else {
+                callback(null, {
+                    statusCode: 200,
+                    body,
+                });
+            }
+        },
+    );
+}

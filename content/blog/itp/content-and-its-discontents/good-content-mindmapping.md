@@ -5,11 +5,10 @@ date: "2018-09-21"
 
 ### Reading
 
-- [_Where Do You Get Your Ideas From?_](http://richardcolby.net/writ2000/wp-content/uploads/2017/09/le-guin-1989-where-do-ideas-come-from-OCR.pdf) (Ursula Le Guin)
-- [_Where Great Ideas Come From_](https://vimeo.com/182093266) (David Lynch)
+-   [_Where Do You Get Your Ideas From?_](http://richardcolby.net/writ2000/wp-content/uploads/2017/09/le-guin-1989-where-do-ideas-come-from-OCR.pdf) (Ursula Le Guin)
+-   [_Where Great Ideas Come From_](https://vimeo.com/182093266) (David Lynch)
 
 <!-- ### Notes, responses -->
-
 
 ### Assignment
 

@@ -33,13 +33,9 @@ const kit = new Tone.Players({
 
 // set kit levels
 
-const drumLoop = createLoopWithPlayers(
-    kit,
-    "16n",
-    ({ bar, beat, sixteenth: six, trigger }) => {
-        // ...
-    },
-);
+const drumLoop = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
+    // ...
+});
 ```
 
 I also extracted some sounds from a [track I had produced earlier this year](https://soundcloud.com/adi-dahiya/esemplastic) and added them to the drum kit. Some of these were drum synths tuned to particular parameters and others were samples built into Ableton.

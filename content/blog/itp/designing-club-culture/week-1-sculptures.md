@@ -13,13 +13,11 @@ _New Orleans_ &mdash; Wynton Marsalis
 
 <iframe src="https://player.vimeo.com/video/359388066" width="540" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-
 _Purple Haze_ &mdash; Jimi Hendrix
 
 <iframe src="https://open.spotify.com/embed/track/0wJoRiX5K5BxlqZTolB2LD" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 <iframe src="https://player.vimeo.com/video/359391655" width="540" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
 
 _I Need Your Lovin'_ &mdash; Teena Marie
 

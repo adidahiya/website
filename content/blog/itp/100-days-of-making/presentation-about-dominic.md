@@ -17,12 +17,12 @@ audiovisual & interactive experiences
 
 ### communication protocols & tools
 
-- midi (+ mpe)
-- osc
-- ableton
-- processing
-- max
-- udp
+-   midi (+ mpe)
+-   osc
+-   ableton
+-   processing
+-   max
+-   udp
 
 ### playful
 
@@ -53,6 +53,6 @@ audiovisual & interactive experiences
 
 ### learnings
 
-- strengths & weaknesses of different protocols & environments
-- ideas for more interesting music sequencing & modulation sources
-- inspiration for live image processing
+-   strengths & weaknesses of different protocols & environments
+-   ideas for more interesting music sequencing & modulation sources
+-   inspiration for live image processing

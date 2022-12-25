@@ -58,7 +58,11 @@ export class P5Canvas extends React.Component<IP5Props> {
     public render() {
         const { width, height } = this.props;
         return (
-            <div className={styles.processingSketch} ref={(r) => (this.containerEl = r)} style={{ width, height }} />
+            <div
+                className={styles.processingSketch}
+                ref={(r) => (this.containerEl = r)}
+                style={{ width, height }}
+            />
         );
     }
 }

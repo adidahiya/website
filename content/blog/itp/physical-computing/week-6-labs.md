@@ -8,8 +8,8 @@ draft: true
 
 Resources / libraries
 
-- [p5.serialport.js](https://github.com/vanevery/p5.serialport)
-- [p5.serialcontrol](https://github.com/vanevery/p5.serialcontrol)
+-   [p5.serialport.js](https://github.com/vanevery/p5.serialport)
+-   [p5.serialcontrol](https://github.com/vanevery/p5.serialcontrol)
 
 Connecting the theremin to p5.js and producing sounds with tone.js
 

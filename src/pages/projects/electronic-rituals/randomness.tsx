@@ -127,7 +127,11 @@ export default class extends React.PureComponent {
                 lastOut[channelNum] = 0.0;
             }
 
-            const node = toneContext.rawContext.createScriptProcessor(bufferSize, NUM_CHANNELS, NUM_CHANNELS);
+            const node = toneContext.rawContext.createScriptProcessor(
+                bufferSize,
+                NUM_CHANNELS,
+                NUM_CHANNELS,
+            );
             node.onaudioprocess = (e) => {
                 for (let channelNum = 0; channelNum < NUM_CHANNELS; channelNum++) {
                     const output = e.outputBuffer.getChannelData(channelNum);

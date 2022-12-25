@@ -77,7 +77,9 @@ export default class extends React.PureComponent<{}, IState> {
         }, "4n");
         loop.start();
 
-        this.player = new Tone.Player("/sounds/Crake.mp3").connect(this.distortion).connect(this.delay);
+        this.player = new Tone.Player("/sounds/Crake.mp3")
+            .connect(this.distortion)
+            .connect(this.delay);
         this.player.volume.value = -10;
         this.player.sync();
         this.player.start();
@@ -88,7 +90,8 @@ export default class extends React.PureComponent<{}, IState> {
             <DefaultLayoutWithoutHeader>
                 <h3>Physical Computing</h3>
                 <p>
-                    Steampunk arm (<Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)
+                    Steampunk arm (
+                    <Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)
                 </p>
                 <button type="button" onClick={this.handlePlayToggle} style={{ marginBottom: 20 }}>
                     {this.state.isPlaying ? "Stop" : "Play"}
@@ -138,9 +141,13 @@ export default class extends React.PureComponent<{}, IState> {
 
                     let note: string;
                     if (pitch > MIN_PITCH && pitch < MAX_PITCH) {
-                        const freq = Math.round(this.p5.map(pitch, MIN_PITCH, MAX_PITCH, 200, 2000));
+                        const freq = Math.round(
+                            this.p5.map(pitch, MIN_PITCH, MAX_PITCH, 200, 2000),
+                        );
                         note = Tone.Frequency(freq).toNote();
-                        this.noise.volume.value = Math.round(this.p5.map(pitch, MIN_PITCH, MAX_PITCH, -20, 0));
+                        this.noise.volume.value = Math.round(
+                            this.p5.map(pitch, MIN_PITCH, MAX_PITCH, -20, 0),
+                        );
                     }
 
                     const MIN_ROLL = 0;

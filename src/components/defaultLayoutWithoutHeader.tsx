@@ -28,7 +28,11 @@ export default class extends React.Component<IProps> {
                 {({ location }) => {
                     return (
                         <div className={className}>
-                            <DefaultLayoutHelmet location={location} title={title} remoteScripts={remoteScripts} />
+                            <DefaultLayoutHelmet
+                                location={location}
+                                title={title}
+                                remoteScripts={remoteScripts}
+                            />
                             <div className={styles.body}>{this.props.children}</div>
                         </div>
                     );

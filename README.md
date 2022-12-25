@@ -6,8 +6,8 @@
 
 ### Prerequisites
 
-- Node 18+
-- PNPM 7+
+-   Node 18+
+-   PNPM 7+
 
 ### HMR development
 

@@ -1,4 +1,13 @@
-import { Button, ButtonGroup, Checkbox, Classes, Colors, FormGroup, HTMLSelect, Slider } from "@blueprintjs/core";
+import {
+    Button,
+    ButtonGroup,
+    Checkbox,
+    Classes,
+    Colors,
+    FormGroup,
+    HTMLSelect,
+    Slider,
+} from "@blueprintjs/core";
 import chroma from "chroma-js";
 import classNames from "classnames";
 import { debounce, flatMap, flatMapDeep, max, noop, range } from "lodash-es";
@@ -215,7 +224,10 @@ export default class extends React.PureComponent<{}, IState> {
         } = this.state;
 
         return (
-            <Layout title="dance floor MPC" className={classNames(Classes.DARK, styles.layoutContainer)}>
+            <Layout
+                title="dance floor MPC"
+                className={classNames(Classes.DARK, styles.layoutContainer)}
+            >
                 <h3>dance floor MPC</h3>
                 <div className={styles.transportControls}>
                     <FormGroup inline={true}>
@@ -286,7 +298,11 @@ export default class extends React.PureComponent<{}, IState> {
                     </FormGroup>
                 </div>
                 <div className={styles.timeline}>
-                    <TimelineSequence position={position} sequence={prevSequence} onStepClick={noop} />
+                    <TimelineSequence
+                        position={position}
+                        sequence={prevSequence}
+                        onStepClick={noop}
+                    />
                     <TimelineSequence
                         position={position}
                         sequence={currentSequence}
@@ -300,7 +316,9 @@ export default class extends React.PureComponent<{}, IState> {
                         options={AVAILABLE_SAMPLE_BANKS}
                         onChange={(evt) => {
                             const newSampleBank = evt.currentTarget.value;
-                            this.setState({ currentSampleBank: newSampleBank }, () => this.loadSampleBank());
+                            this.setState({ currentSampleBank: newSampleBank }, () =>
+                                this.loadSampleBank(),
+                            );
                         }}
                     />
                 </FormGroup>
@@ -400,7 +418,9 @@ export default class extends React.PureComponent<{}, IState> {
 
         // can only do this once component is mounted
         // it's used in this.handleSerialData
-        this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() => window.performance.now());
+        this.timeOfLastPadActivations = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
+            window.performance.now(),
+        );
 
         this.serial.on("data", this.handleSerialData);
         this.serial.on("error", (err: any) => console.log("error", err));
@@ -459,7 +479,10 @@ export default class extends React.PureComponent<{}, IState> {
                 // react to changes if necessary
                 changes.forEach((c, i) => {
                     // prevent thrashing
-                    if (isStepActive(c) && now > this.timeOfLastPadActivations[i] + this.padActivationDebounce) {
+                    if (
+                        isStepActive(c) &&
+                        now > this.timeOfLastPadActivations[i] + this.padActivationDebounce
+                    ) {
                         this.getPadClickHandler(i, isStepAccent(c))();
                         this.timeOfLastPadActivations[i] = window.performance.now();
                     }
@@ -560,7 +583,10 @@ export default class extends React.PureComponent<{}, IState> {
 
         // don't play samples in the same bank twice
         const padsPlayedDuringThisStep: number[] = [];
-        const playSequence = ({ padSequence, bankId }: { padSequence: string; bankId: string }, padIndex: number) => {
+        const playSequence = (
+            { padSequence, bankId }: { padSequence: string; bankId: string },
+            padIndex: number,
+        ) => {
             const seq = deserializeSeq(padSequence);
             if (isStepActive(seq[step]) && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
                 this.playSample(bankId, padIndex, isStepAccent(seq[step]));
@@ -570,9 +596,13 @@ export default class extends React.PureComponent<{}, IState> {
             }
         };
 
-        currentSequence.map((s) => ({ padSequence: s, bankId: currentSampleBank })).forEach(playSequence);
+        currentSequence
+            .map((s) => ({ padSequence: s, bankId: currentSampleBank }))
+            .forEach(playSequence);
         if (prevSequence != null && prevSampleBank != null) {
-            prevSequence.map((s) => ({ padSequence: s, bankId: prevSampleBank })).forEach(playSequence);
+            prevSequence
+                .map((s) => ({ padSequence: s, bankId: prevSampleBank }))
+                .forEach(playSequence);
         }
     };
 
@@ -664,11 +694,21 @@ export default class extends React.PureComponent<{}, IState> {
         });
     }
 
-    private playSample = (bankName: string, padIndex: number, accent: boolean, time?: Tone.Unit.Time) => {
+    private playSample = (
+        bankName: string,
+        padIndex: number,
+        accent: boolean,
+        time?: Tone.Unit.Time,
+    ) => {
         const padId = `${padIndex}`;
 
-        if (this.sampleBanks[bankName] == null || !this.sampleBanks[bankName].player(padId).loaded) {
-            console.log(`Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`);
+        if (
+            this.sampleBanks[bankName] == null ||
+            !this.sampleBanks[bankName].player(padId).loaded
+        ) {
+            console.log(
+                `Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`,
+            );
             return;
         }
 
@@ -767,11 +807,15 @@ export default class extends React.PureComponent<{}, IState> {
         // HACKHACK: hard coded index
         const KICK_PAD_INDEX = 6;
         const kickSeq = deserializeSeq(this.state.currentSequence[KICK_PAD_INDEX]);
-        const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every((i) => kickSeq[i] === 1);
+        const isShortcutEnabled = range(0, TOTAL_NUM_STEPS, SIXTEENTHS_PER_BEAT).every(
+            (i) => kickSeq[i] === 1,
+        );
 
         const steps = flatMap(
             range(NUM_BARS).map((bar) =>
-                range(BEATS_PER_BAR).map((beat) => getStepFromPosition({ bar, beat, sixteenth: 0 })),
+                range(BEATS_PER_BAR).map((beat) =>
+                    getStepFromPosition({ bar, beat, sixteenth: 0 }),
+                ),
             ),
         );
 
@@ -793,7 +837,9 @@ export default class extends React.PureComponent<{}, IState> {
         const steps = flatMapDeep(
             range(NUM_BARS).map((bar) =>
                 range(BEATS_PER_BAR).map((beat) =>
-                    range(SIXTEENTHS_PER_BEAT).map((sixteenth) => getStepFromPosition({ bar, beat, sixteenth })),
+                    range(SIXTEENTHS_PER_BEAT).map((sixteenth) =>
+                        getStepFromPosition({ bar, beat, sixteenth }),
+                    ),
                 ),
             ),
         ) as number[];
@@ -855,15 +901,21 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
         const { position } = this.props;
         const isCurrent = position.bar === bar && position.beat === beat;
         return (
-            <div className={classNames(styles.timelineBeat, { [styles.isCurrent]: isCurrent })} key={beat}>
-                {range(SIXTEENTHS_PER_BEAT).map((sixteenth) => this.renderStep(bar, beat, sixteenth))}
+            <div
+                className={classNames(styles.timelineBeat, { [styles.isCurrent]: isCurrent })}
+                key={beat}
+            >
+                {range(SIXTEENTHS_PER_BEAT).map((sixteenth) =>
+                    this.renderStep(bar, beat, sixteenth),
+                )}
             </div>
         );
     }
 
     private renderStep(bar: number, beat: number, sixteenth: number) {
         const { position, sequence } = this.props;
-        const isCurrent = position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
+        const isCurrent =
+            position.bar === bar && position.beat === beat && position.sixteenth === sixteenth;
         const step = getStepFromPosition({ bar, beat, sixteenth });
         let backgroundColor = DEFAULT_STEP_COLOR;
 
@@ -917,7 +969,11 @@ function isStepAccent(stepValue: string | number): boolean {
 }
 
 function getStepFromPosition(position: ITimelinePosition): number {
-    return position.bar * SIXTEENTHS_PER_BEAT * BEATS_PER_BAR + position.beat * BEATS_PER_BAR + position.sixteenth;
+    return (
+        position.bar * SIXTEENTHS_PER_BEAT * BEATS_PER_BAR +
+        position.beat * BEATS_PER_BAR +
+        position.sixteenth
+    );
 }
 
 function getPositionFromStep(step: number): ITimelinePosition {
@@ -929,7 +985,11 @@ function getPositionFromStep(step: number): ITimelinePosition {
     return { bar, beat, sixteenth };
 }
 
-function positionToBarsBeatsSixteenths({ bar, beat, sixteenth }: ITimelinePosition): Tone.Unit.BarsBeatsSixteenths {
+function positionToBarsBeatsSixteenths({
+    bar,
+    beat,
+    sixteenth,
+}: ITimelinePosition): Tone.Unit.BarsBeatsSixteenths {
     return `${bar}:${beat}:${sixteenth}`;
 }
 

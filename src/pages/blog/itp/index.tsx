@@ -7,7 +7,9 @@ const ITP_BLOG_ROOT = "/blog/itp/";
 
 export default ({ data }: any) => {
     const { edges } = data.allMarkdownRemark;
-    const blogPosts = edges.map((p: any) => p.node).filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
+    const blogPosts = edges
+        .map((p: any) => p.node)
+        .filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
     const categories: string[] = uniq(
         blogPosts.map((p: any) => p.fields.slug.substr(ITP_BLOG_ROOT.length).split("/")[0]),
     );
@@ -54,7 +56,10 @@ function filterBlogPosts(posts: any[], categoryName: string) {
 
 export const query = graphql`
     query {
-        allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { draft: { ne: true } } }) {
+        allMarkdownRemark(
+            sort: { frontmatter: { date: DESC } }
+            filter: { frontmatter: { draft: { ne: true } } }
+        ) {
             edges {
                 node {
                     frontmatter {

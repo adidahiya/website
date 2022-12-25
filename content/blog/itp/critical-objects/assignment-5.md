@@ -29,9 +29,9 @@ From here, I set out to get the data stream out of this software into my own. At
 
 Unfortunately, this is as far as I got in working with the technology in this project, as I was soon consumed by other ITP projects. I wanted to take this information about user gaze and create some kind of personal trainer, a little bit like the [Facebook Trainer from assignment 3](../assignment-3), with reference to productivity tools (like the StayFocused Chrome extension). From here, the critical object produced would use our design framework as follows:
 
-- Topic: body surveillance
-- Attribute: wearable
-- Device: self-control
-- Mood: absurdity
+-   Topic: body surveillance
+-   Attribute: wearable
+-   Device: self-control
+-   Mood: absurdity
 
 The trainer could act as an extension of something like iOS Screen Time, which limits the amount of time you spend in certain kinds of applications. It could deliver negative auditory feedback when someone picked up their phone too often to check for notifications/emails, when they didn't look someone in the eye during a conversation, and/or when it perceived them to be multi-tasking too much.

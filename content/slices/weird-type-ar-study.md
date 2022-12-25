@@ -8,13 +8,11 @@ AR can be used to create physical, visual experiences quickly, with common equip
 
 I want to share with you my experiences in AR in order to inspire creativity with the medium and gather feedback about how to build an engaging AR application. I am doing this to test the boundaries of the medium as a canvas for expression and play.
 
-
 ### Prerequisites
 
 iOS device, [Weird Type application](https://itunes.apple.com/us/app/weird-type/id1352785248?mt=8), a willingness to experiment.
 
 But first, let each piece run its course, mechanically (play with the app later).
-
 
 ## A series of interactive performance pieces
 

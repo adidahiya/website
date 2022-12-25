@@ -12,7 +12,9 @@ export const createLoopWithPlayers = (
     }) => void,
 ) => {
     return new Tone.Loop((time: number) => {
-        const [bar, beat, sixteenth] = (Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths).split(":");
+        const [bar, beat, sixteenth] = (
+            Tone.Transport.position as Tone.Unit.BarsBeatsSixteenths
+        ).split(":");
         const trigger = (playerName: string) => {
             const player = players.player(playerName);
             if (!player.loaded) {

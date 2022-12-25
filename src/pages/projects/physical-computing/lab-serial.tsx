@@ -15,7 +15,10 @@ const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 
 // tslint:disable no-console
 
-export default class extends React.PureComponent<{}, { isPlaying: boolean; pitch: Tone.Unit.Frequency }> {
+export default class extends React.PureComponent<
+    {},
+    { isPlaying: boolean; pitch: Tone.Unit.Frequency }
+> {
     public state = {
         isPlaying: false,
         pitch: "C4",

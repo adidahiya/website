@@ -27,7 +27,6 @@ Another video of the latest state of the UI is included later in this post, so k
 
 In preparation for tomorrow's user testing in Physical Computing, I made the switch and LED connections more robust (the LEDs were shorting sometimes during my Monday testing, and that would reset the microcontroller). You can see they're more responsive here, I can stand and jump on the tiles:
 
-
 <iframe src="https://player.vimeo.com/video/304527287?loop=1&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 I recorded some more testing to produce a video for [my winter show application](/slices/dance-floor-mpc):

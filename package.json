@@ -16,7 +16,7 @@
         "dist": "run-s clean build",
         "fix": "run-s fix:*",
         "fix:lint": "es-lint --fix",
-        "fix:format": "prettier --write './**/*.{ts,tsx,json}'",
+        "fix:format": "prettier --write './**/*.{js,md,ts,tsx,json}'",
         "serve-functions": "netlify dev --functions server/functions",
         "test": "echo \"No tests\" && exit 0"
     },

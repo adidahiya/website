@@ -56,7 +56,11 @@ export interface IDefaultLayoutHelmetProps {
     remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
 }
 
-export function DefaultLayoutHelmet({ location, remoteScripts = [], title }: IDefaultLayoutHelmetProps) {
+export function DefaultLayoutHelmet({
+    location,
+    remoteScripts = [],
+    title,
+}: IDefaultLayoutHelmetProps) {
     if (shouldRenderAnalytics(location)) {
         remoteScripts.push({
             async: true,

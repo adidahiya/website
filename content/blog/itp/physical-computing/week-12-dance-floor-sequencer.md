@@ -19,9 +19,9 @@ The [Akai MPC](https://en.wikipedia.org/wiki/Akai_MPC) set the standard for samp
 
 Some key ideas illustrated in the above sketch:
 
-- The floor contains a microcontroller, sensors for the sequencer "pads", and LED strip lighting. It sends and receives data from a laptop using async serial communication. The laptop is running a web interface which plays sounds using the tone.js library.
-- Each of the 16 tiles uses a plate contact sensor. This sensor involves two flat pieces of aluminum foil which come in contact as the user steps on that tile, completing a sub-circuit. These 16 sensor readings go into a 16-channel multiplexer before they go into the microcontroller.
-- The collaboration timeline is an additional physical interface which indicates the status of the current sequence as well as timing information for the sequence played by the previous user of the device.
+-   The floor contains a microcontroller, sensors for the sequencer "pads", and LED strip lighting. It sends and receives data from a laptop using async serial communication. The laptop is running a web interface which plays sounds using the tone.js library.
+-   Each of the 16 tiles uses a plate contact sensor. This sensor involves two flat pieces of aluminum foil which come in contact as the user steps on that tile, completing a sub-circuit. These 16 sensor readings go into a 16-channel multiplexer before they go into the microcontroller.
+-   The collaboration timeline is an additional physical interface which indicates the status of the current sequence as well as timing information for the sequence played by the previous user of the device.
 
 ## User collaboration
 
@@ -29,7 +29,7 @@ This device is designed for an installation setting where users interact with it
 
 There are still a few things left to figure out here:
 
-- After a beat is programmed, does it keep looping? How does it stop?
-- How does a user choose to play on top of an existing beat (duet) or start from scratch (solo)?
-- Can the tempo be changed? If so, how?
-- Can the sample bank be changed? If so, how?
+-   After a beat is programmed, does it keep looping? How does it stop?
+-   How does a user choose to play on top of an existing beat (duet) or start from scratch (solo)?
+-   Can the tempo be changed? If so, how?
+-   Can the sample bank be changed? If so, how?

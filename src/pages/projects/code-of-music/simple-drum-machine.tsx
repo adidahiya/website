@@ -18,8 +18,7 @@ function sketch(p: p5) {
 
     p.preload = () => {
         // HACKHACK
-        const loadSound = (path: string) =>
-            ((p as any) as p5.SoundFile).loadSound(withPrefix(path));
+        const loadSound = (path: string) => (p as any as p5.SoundFile).loadSound(withPrefix(path));
         sounds.hiHat = loadSound("sounds/hho.wav");
         sounds.punchySnare = loadSound("sounds/snare.wav");
         sounds.punchySnare.setVolume(0.7);

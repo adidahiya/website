@@ -5,7 +5,7 @@ date: "2018-09-21"
 
 ### Reading
 
-- (Optional) [A Tale of Two Clocks - Scheduling Web Audio with Precision](https://www.html5rocks.com/en/tutorials/audio/scheduling/)
+-   (Optional) [A Tale of Two Clocks - Scheduling Web Audio with Precision](https://www.html5rocks.com/en/tutorials/audio/scheduling/)
 
 ### Assignments
 
@@ -21,14 +21,14 @@ This track slaps. It's got some syncopation right off the bat which stays in the
 
 ![infinite-drum-machine](infinite-drum-machine.gif)
 
-- I really like this drum machine. Not only is it visually interesting to look at while your loop is playing, it's also intuitive to use. I like that it pauses playback when you start to move around one of the four sample selections (you need to be able to preview the new sound you're sampling).
-- The problem they're trying to solve here is real; organizing a large library of samples can be tedious and boring, so applying machine learning seems like a good fit. There are online communities like Splice and Beatport where musicians tag various samples, and ultimately I think this additional human-generated data can help to categorize sounds even better (e.g. with information about how a sound is typically used in a particular genre, not just its musical signature).
+-   I really like this drum machine. Not only is it visually interesting to look at while your loop is playing, it's also intuitive to use. I like that it pauses playback when you start to move around one of the four sample selections (you need to be able to preview the new sound you're sampling).
+-   The problem they're trying to solve here is real; organizing a large library of samples can be tedious and boring, so applying machine learning seems like a good fit. There are online communities like Splice and Beatport where musicians tag various samples, and ultimately I think this additional human-generated data can help to categorize sounds even better (e.g. with information about how a sound is typically used in a particular genre, not just its musical signature).
 
 [Chrome Music Lab - Rhythm](https://musiclab.chromeexperiments.com/Rhythm/)
 
 ![chrome-music-lab-rhythm](chrome-music-lab-rhythm.gif)
 
-- This one's pretty simple and cute. It has an approachable interface which invites you to lay down a simple drum beat. I can imagine this being nice for youth music education.
+-   This one's pretty simple and cute. It has an approachable interface which invites you to lay down a simple drum beat. I can imagine this being nice for youth music education.
 
 #### Design
 

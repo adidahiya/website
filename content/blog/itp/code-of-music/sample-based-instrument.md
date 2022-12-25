@@ -5,7 +5,7 @@ date: "2018-09-17"
 
 ### Reading
 
-- [_This Is Your Brain On Music_](http://bobcat.library.nyu.edu/primo-explore/fulldisplay?docid=nyu_aleph003069912&context=L&vid=NYU&lang=en_US&search_scope=all&adaptor=Local%20Search%20Engine&isFrbr=true&tab=all&query=any,contains,daniel%20levitin&sortby=date&facet=frbrgroupid,include,22427351&mode=basic&offset=0), Chapter 2: Foot tapping
+-   [_This Is Your Brain On Music_](http://bobcat.library.nyu.edu/primo-explore/fulldisplay?docid=nyu_aleph003069912&context=L&vid=NYU&lang=en_US&search_scope=all&adaptor=Local%20Search%20Engine&isFrbr=true&tab=all&query=any,contains,daniel%20levitin&sortby=date&facet=frbrgroupid,include,22427351&mode=basic&offset=0), Chapter 2: Foot tapping
 
 ### Assignment
 

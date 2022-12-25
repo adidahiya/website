@@ -11,9 +11,9 @@ Let me begin with the acknowledgement that technological interventions in the ni
 
 ### What doesn't work
 
-__Technologies which facilitate song requests__ by the audience deter exploration of new, experimental music. At its best, when treated as art form, the nightclub is a space for creative freedom & experimentation, marked by "the deviant, the dissident, the different" [3]. The DJ is not a jukebox; they are responsible for taking the audience on a sonic journey through rare, new music. This task becomes even more difficult with the inclusion of democratic voting systems in music selection.
+**Technologies which facilitate song requests** by the audience deter exploration of new, experimental music. At its best, when treated as art form, the nightclub is a space for creative freedom & experimentation, marked by "the deviant, the dissident, the different" [3]. The DJ is not a jukebox; they are responsible for taking the audience on a sonic journey through rare, new music. This task becomes even more difficult with the inclusion of democratic voting systems in music selection.
 
-__Live streaming as a method of remote party-going__ ultimately fails because of the "technical challenges of transmitting festive energies across media” [2]. At best, viewers on popular streaming sites like Boiler Room become eyewitnesses to cultural events. This is not necessarily a bad thing, but it points to the limitations of current attempts to make underground music culture accesible via mass media technologies.
+**Live streaming as a method of remote party-going** ultimately fails because of the "technical challenges of transmitting festive energies across media” [2]. At best, viewers on popular streaming sites like Boiler Room become eyewitnesses to cultural events. This is not necessarily a bad thing, but it points to the limitations of current attempts to make underground music culture accesible via mass media technologies.
 
 ## Proposal
 

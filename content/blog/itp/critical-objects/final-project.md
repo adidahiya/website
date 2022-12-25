@@ -11,9 +11,9 @@ Check out his post if you haven't yet. This post links to a few additional piece
 
 The code for our project lives in a few places:
 
-- Python and Processing code which runs on the Raspberry Pi lives in [this repo](https://github.com/adidahiya/edge_tpu_processing_demo) forked from Dan Oved, whose technical scaffolding related to his thesis project helped us a lot.
-- Code to train our custom image classification model lives [here](https://github.com/adidahiya/models). It works alongside the [Coral Edge TPU image classification retraining tutorial](https://coral.withgoogle.com/docs/edgetpu/retrain-classification/) and should be checked out into the Docker container where you do the training.
-- A few other scripts for prototypes used in this project are in [this folder of my critical-objects repo](https://github.com/adidahiya/critical-objects/tree/master/discriminating-oracle/face-recognition).
+-   Python and Processing code which runs on the Raspberry Pi lives in [this repo](https://github.com/adidahiya/edge_tpu_processing_demo) forked from Dan Oved, whose technical scaffolding related to his thesis project helped us a lot.
+-   Code to train our custom image classification model lives [here](https://github.com/adidahiya/models). It works alongside the [Coral Edge TPU image classification retraining tutorial](https://coral.withgoogle.com/docs/edgetpu/retrain-classification/) and should be checked out into the Docker container where you do the training.
+-   A few other scripts for prototypes used in this project are in [this folder of my critical-objects repo](https://github.com/adidahiya/critical-objects/tree/master/discriminating-oracle/face-recognition).
 
 This video documents when I first got the Coral Edge facial detection model running with Processing streaming Pi Camera images to Python:
 

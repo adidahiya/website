@@ -27,39 +27,43 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
             hh: "/sounds/electronic-hi-hat.ogg",
         }).toMaster();
 
-        const drumLoop1 = createLoopWithPlayers(kit, "16n", ({ bar, beat, sixteenth: six, trigger }) => {
-            if (beat === 0) {
-                if (six === 0 || six === 1 || six === 2) {
-                    trigger("kick");
-                }
-                if (six === 3) {
-                    trigger("snare");
-                }
-            } else if (beat === 1) {
-                if (six === 0) {
-                    trigger("kick");
-                }
-                if (six === 2) {
-                    trigger("snare");
-                }
-            } else if (beat === 2) {
-                if (six === 0) {
-                    trigger("kick");
-                }
-                if (six === 1) {
-                    if (bar > 0) {
+        const drumLoop1 = createLoopWithPlayers(
+            kit,
+            "16n",
+            ({ bar, beat, sixteenth: six, trigger }) => {
+                if (beat === 0) {
+                    if (six === 0 || six === 1 || six === 2) {
                         trigger("kick");
                     }
+                    if (six === 3) {
+                        trigger("snare");
+                    }
+                } else if (beat === 1) {
+                    if (six === 0) {
+                        trigger("kick");
+                    }
+                    if (six === 2) {
+                        trigger("snare");
+                    }
+                } else if (beat === 2) {
+                    if (six === 0) {
+                        trigger("kick");
+                    }
+                    if (six === 1) {
+                        if (bar > 0) {
+                            trigger("kick");
+                        }
+                    }
+                    if (six === 2) {
+                        trigger("snare");
+                    }
+                } else if (beat === 3) {
+                    if (six === 0) {
+                        trigger("snare");
+                    }
                 }
-                if (six === 2) {
-                    trigger("snare");
-                }
-            } else if (beat === 3) {
-                if (six === 0) {
-                    trigger("snare");
-                }
-            }
-        });
+            },
+        );
 
         const drumLoop2 = createLoopWithPlayers(kit, "16n", ({ bar, trigger }) => {
             if (bar > 1) {
@@ -79,7 +83,8 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
             <Layout>
                 <h3>Code of Music</h3>
                 <p>
-                    Week 2 rhythm sketch (<Link to="/blog/itp/code-of-music/rhythm">blog post</Link>,{" "}
+                    Week 2 rhythm sketch (<Link to="/blog/itp/code-of-music/rhythm">blog post</Link>
+                    ,{" "}
                     <a href="https://github.com/adidahiya/adidahiya.github.io/blob/develop/src/pages/projects/code-of-music/rhythm-sketch.tsx">
                         code
                     </a>
