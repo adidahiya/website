@@ -1,0 +1,7 @@
+/.cache
+/.netlify
+/functions
+/node_modules
+/public
+/static
+generated/
