@@ -1,6 +1,9 @@
-import { Button } from "@blueprintjs/core";
+/* eslint-disable max-classes-per-file */
+
+import { Button, H3 } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+
 import { LayoutWithSpotifyApi } from "../../../components";
 
 interface IProps {
@@ -23,6 +26,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
             const me = await spotifyApi.getMe();
             const topArtists = await spotifyApi.getMyTopArtists({
                 limit: 20,
+                // eslint-disable-next-line camelcase
                 time_range: "long_term",
             });
 
@@ -36,6 +40,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
                           public: false,
                           description: "Divining tunes",
                       });
+            // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
                 playlist: playlistFull,
                 topArtists,
@@ -65,7 +70,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
 
         return (
             <div style={{ maxWidth: 500, marginRight: 10 }}>
-                <h3>Your top artists</h3>
+                <H3>Your top artists</H3>
                 <ul>
                     {topArtists.items.map((a, i) => (
                         <li key={i}>
@@ -85,7 +90,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
 
         return (
             <div>
-                <h3>Playlist "{playlist.name}"</h3>
+                <H3>Playlist "{playlist.name}"</H3>
                 <p>{playlist.tracks.total} tracks</p>
                 <ul>
                     {playlist.tracks.items.map((t, i) => (

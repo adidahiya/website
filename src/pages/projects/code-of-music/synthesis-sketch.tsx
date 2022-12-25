@@ -1,7 +1,10 @@
-import { Button, FormGroup, Slider } from "@blueprintjs/core";
+/* eslint-disable react/jsx-no-bind */
+
+import { Button, FormGroup, H3, Slider } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
+
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, NormalRangeSlider } from "../../../components";
 import * as styles from "./synthesis-sketch.module.css";
@@ -15,6 +18,7 @@ interface IState {
     tempo: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
@@ -55,7 +59,7 @@ export default class extends React.PureComponent<{}, IState> {
                 baseFrequency: "A2",
                 octaves: 4,
             },
-        }).toMaster();
+        }).toDestination();
         this.monoSynth.volume.value = -10;
 
         const synthPart = new Tone.Part(
@@ -79,7 +83,7 @@ export default class extends React.PureComponent<{}, IState> {
             kick: "/sounds/kick.wav",
             hh: "/sounds/electronic-hi-hat.ogg",
             wood: "/sounds/wood.wav",
-        }).toMaster();
+        }).toDestination();
         kit.volume.value = -10;
         const drumLoop = createLoopWithPlayers(kit, "16n", ({ beat, sixteenth: six, trigger }) => {
             if (six === 0) {
@@ -112,7 +116,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <h3>Code of Music</h3>
+                <H3>Code of Music</H3>
                 <p>
                     Week 4 Synthesis (<Link to="/blog/itp/code-of-music/synthesis">blog post</Link>)
                 </p>

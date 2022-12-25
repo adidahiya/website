@@ -1,6 +1,7 @@
 import { Spinner, SpinnerSize } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+
 import DefaultLayoutWithoutHeader from "./defaultLayoutWithoutHeader";
 
 interface IProps {
@@ -35,12 +36,13 @@ export default class extends React.PureComponent<IProps, IState> {
 
             // Playback status updates
             player.addListener("player_state_changed", (state: any) => {
-                console.log(state);
+                console.info(state);
             });
 
             // Ready
+            // eslint-disable-next-line camelcase
             player.addListener("ready", ({ device_id }: any) => {
-                console.log("Ready with Device ID", device_id);
+                console.info("Ready with Device ID", device_id);
                 this.setState({
                     loading: false,
                     player,
@@ -49,8 +51,9 @@ export default class extends React.PureComponent<IProps, IState> {
             });
 
             // Not Ready
+            // eslint-disable-next-line camelcase
             player.addListener("not_ready", ({ device_id }: any) => {
-                console.log("Device ID has gone offline", device_id);
+                console.info("Device ID has gone offline", device_id);
             });
 
             // Connect to the player!
@@ -97,6 +100,7 @@ const DEV_TOKEN = process.env.spotify_access_token!;
 function createSpotifyPlayer() {
     /**
      * globally injected script :(
+     *
      * @see https://github.com/spotify/web-playback-sdk/issues/14
      */
     const SpotifyPlayer = (window as any).Spotify.Player;

@@ -18,7 +18,9 @@ export const createLoopWithPlayers = (
         const trigger = (playerName: string) => {
             const player = players.player(playerName);
             if (!player.loaded) {
-                console.log(`Player [${playerName}] not loaded yet or file format is unsupported`);
+                console.error(
+                    `Player [${playerName}] not loaded yet or file format is unsupported`,
+                );
                 return;
             }
             // delay by 100ms as suggested in https://github.com/Tonejs/Tone.js/wiki/Performance

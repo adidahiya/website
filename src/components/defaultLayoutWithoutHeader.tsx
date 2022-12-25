@@ -1,5 +1,6 @@
 import { Location as LocationProvider } from "@reach/router";
 import React from "react";
+
 import { initGoogleAnalytics } from "../common";
 import { DefaultLayoutHelmet } from "./defaultLayout";
 import * as styles from "./defaultLayout.module.css";

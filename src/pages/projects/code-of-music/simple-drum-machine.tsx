@@ -1,6 +1,8 @@
+import { H3 } from "@blueprintjs/core";
 import { Link, withPrefix } from "gatsby";
 import p5 from "p5";
 import React from "react";
+
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -79,7 +81,7 @@ function sketch(p: p5) {
 
 export default () => (
     <Layout>
-        <h3>Code of Music</h3>
+        <H3>Code of Music</H3>
         <p>
             Week 1 sample-based instrument (
             <Link to="/blog/itp/code-of-music/sample-based-instrument">blog post</Link>)

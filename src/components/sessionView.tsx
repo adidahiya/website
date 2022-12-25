@@ -1,8 +1,11 @@
+/* eslint-disable max-classes-per-file, no-console, react/jsx-no-bind */
+
 import { Classes, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
 import { mapValues } from "lodash-es";
 import React from "react";
 import * as Tone from "tone";
+
 import * as styles from "./sessionView.module.css";
 
 interface ISessionContext {
@@ -27,6 +30,7 @@ interface IState {
     steadySeqSliderValue: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.Component<{}, IState> {
     public state: IState = {
         padDroneSliderValue: 2,
@@ -48,7 +52,7 @@ export default class extends React.Component<{}, IState> {
         };
         // use individual Players so that we can control individual levels
         const simpleLoopPlayers = mapValues(simplePlayerUrls, (_url, name) =>
-            new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toMaster(),
+            new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toDestination(),
         );
         simpleLoopPlayers.clickyPerc.volume.value = 5;
         simpleLoopPlayers.rim.volume.value = 5;
@@ -97,11 +101,11 @@ export default class extends React.Component<{}, IState> {
 
         const brassHook1Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook1(loopEnd13m).mp3",
-        ).toMaster();
+        ).toDestination();
         brassHook1Player.volume.value = -3;
         const brassHook2Player = new Tone.Player(
             "/sounds/techno-landscape/instruments/BrassHook2(loopEnd38m).mp3",
-        ).toMaster();
+        ).toDestination();
         brassHook2Player.volume.value = -3;
         const brassHookLoops = [
             createLoop(brassHook1Player, "13m"),
@@ -126,7 +130,7 @@ export default class extends React.Component<{}, IState> {
             frequency: 10, // 2-10
             octaves: 5,
             baseFrequency: 500, // 500-1000
-        }).toMaster();
+        }).toDestination();
         padDrone1Player.connect(padDronePhaser);
         padDrone2Player.connect(padDronePhaser);
         padDrone3Player.connect(padDronePhaser);
@@ -176,7 +180,7 @@ export default class extends React.Component<{}, IState> {
             rolloff: -24,
             Q: 20,
             gain: 1,
-        }).toMaster();
+        }).toDestination();
         steadySeq1Player.connect(steadySeqFilter);
         steadySeq2Player.connect(steadySeqFilter);
         steadySeq3Player.connect(steadySeqFilter);
@@ -204,6 +208,7 @@ export default class extends React.Component<{}, IState> {
         );
 
         // HACKHACK deeply nested state :(
+        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState(
             {
                 sessionContext: {
@@ -297,10 +302,7 @@ export default class extends React.Component<{}, IState> {
     }
 }
 
-// tslint:disable-next-line:no-empty-interface
-interface IClipProps extends ISessionLoop {
-    // nothing
-}
+type IClipProps = ISessionLoop;
 
 interface IClipState {
     isPlaying: boolean;

@@ -1,14 +1,16 @@
+import { H4 } from "@blueprintjs/core";
 import { graphql, Link } from "gatsby";
 import React from "react";
+
 import { DefaultLayout, Timestamp } from "../components";
 
 export default ({ data, pageContext }: any) => {
     const posts = data.allMarkdownRemark.edges;
     return (
         <DefaultLayout>
-            <h4>
+            <H4>
                 <Link to="/blog/itp">ITP blog</Link> &middot; {pageContext.category}
-            </h4>
+            </H4>
             <br />
             <ul>
                 {posts.map(({ node: post }: any) => (

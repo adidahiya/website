@@ -29,7 +29,7 @@ const kit = new Tone.Players({
     dsClave: "/sounds/drum-synth-clave.m4a",
     dsGlass: "/sounds/drum-synth-glass.m4a",
     snareCombo: "/sounds/drum-snare-combo.m4a",
-}).toMaster();
+}).toDestination();
 
 // set kit levels
 
@@ -69,7 +69,7 @@ this.monoSynth = new Tone.MonoSynth({
         baseFrequency: "C2",
         octaves: 4,
     },
-}).toMaster();
+}).toDestination();
 ```
 
 ...which played a short looping part of F, A#, and C quarter notes:

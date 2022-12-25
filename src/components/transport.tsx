@@ -1,5 +1,6 @@
 import React from "react";
 import * as Tone from "tone";
+
 import * as styles from "./transport.module.css";
 
 interface IState {
@@ -10,6 +11,7 @@ interface IState {
     };
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.Component<{}, IState> {
     public state: IState = {
         position: {

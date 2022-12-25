@@ -1,6 +1,7 @@
 import { Button } from "@blueprintjs/core";
 import React from "react";
 import * as Tone from "tone";
+
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import * as styles from "./mono.module.css";
 
@@ -12,6 +13,7 @@ interface IState {
     buffersLoaded: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         buffersLoaded: false,
@@ -38,6 +40,7 @@ export default class extends React.PureComponent<{}, IState> {
         // TODO(adidahiya): figure out a way to bring back this dry/wet setting in Tone.js v14
         // this.convolver.wet.value = 0.8;
 
+        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({ buffersLoaded: true });
     }
 

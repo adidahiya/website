@@ -6,7 +6,7 @@ export function padStart(inputString: string | number, targetLength: number, pad
         inputString = `${inputString}`;
     }
 
-    // tslint:disable-next-line no-bitwise
+    // eslint-disable-next-line no-bitwise
     targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
     padString = String(typeof padString !== "undefined" ? padString : " ");
     if (inputString.length >= targetLength) {

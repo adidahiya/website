@@ -1,8 +1,10 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import { throttle } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import DefaultLayoutWithoutHeader from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -10,7 +12,7 @@ const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 
-// tslint:disable no-console
+/* eslint-disable no-console */
 
 interface IState {
     delayTime: Tone.Unit.Time;
@@ -20,6 +22,7 @@ interface IState {
     pitch: Tone.Unit.Frequency;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state = {
         delayTime: 0.25,
@@ -43,7 +46,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.serial = new (p5 as any).SerialPort();
 
         this.distortion = new Tone.Distortion(this.state.distortion);
-        this.delay = new Tone.FeedbackDelay(this.state.delayTime).toMaster();
+        this.delay = new Tone.FeedbackDelay(this.state.delayTime).toDestination();
 
         this.sineSynth = new Tone.Synth({
             oscillator: {
@@ -67,7 +70,7 @@ export default class extends React.PureComponent<{}, IState> {
             // HACKHACK(adidahiya): convertion from previous options for AutoFilter with min/max
             // of 800/15000, is this right? need to verify...
             octaves: 4.2,
-        }).toMaster();
+        }).toDestination();
         this.noise.connect(autoFilter);
         autoFilter.start();
 
@@ -88,7 +91,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <DefaultLayoutWithoutHeader>
-                <h3>Physical Computing</h3>
+                <H3>Physical Computing</H3>
                 <p>
                     Steampunk arm (
                     <Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)

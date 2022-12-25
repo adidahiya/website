@@ -1,5 +1,6 @@
-import { Button, EditableText, FormGroup } from "@blueprintjs/core";
+import { Button, EditableText, FormGroup, H3 } from "@blueprintjs/core";
 import React from "react";
+
 import { DefaultLayoutWithoutHeader } from "../../../components";
 import * as styles from "./automatic-writing.module.css";
 // import encouragingWords from "./corpora/encouraging_words.json";
@@ -10,6 +11,7 @@ interface IState {
     motivationText: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         hasStarted: false,
@@ -24,7 +26,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         return (
             <DefaultLayoutWithoutHeader>
-                <h3>automatic writer</h3>
+                <H3>automatic writer</H3>
                 <p>~~tap into your subconscious for three minutes~~</p>
                 <FormGroup>
                     <Button
@@ -62,6 +64,6 @@ export default class extends React.PureComponent<{}, IState> {
     };
 
     private handleTextChange = () => {
-        console.log("blah");
+        // console.log("blah");
     };
 }

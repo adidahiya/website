@@ -1,5 +1,6 @@
-import { Button, FormGroup, InputGroup, Intent } from "@blueprintjs/core";
+import { Button, FormGroup, H3, InputGroup, Intent } from "@blueprintjs/core";
 import React from "react";
+
 import { fetchNetlifyFunction } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 
@@ -8,6 +9,7 @@ interface State {
     formState: Intent | undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, State> {
     public state: State = {
         message: "",
@@ -20,7 +22,7 @@ export default class extends React.PureComponent<{}, State> {
         // TODO: use GET /.netlify/functions/isAdiWalking to determine boolean state
         return (
             <Layout title="walking ritual">
-                <h3>adi is walking around.</h3>
+                <H3>adi is walking around.</H3>
                 <br />
                 <p>
                     <em>current location</em>: washington square park.

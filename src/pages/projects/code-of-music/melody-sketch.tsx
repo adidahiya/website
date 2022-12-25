@@ -1,7 +1,9 @@
+import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
@@ -9,6 +11,7 @@ const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
 export default class extends React.PureComponent<
+    // eslint-disable-next-line @typescript-eslint/ban-types
     {},
     { isPlaying: boolean; scale: string[]; octaveToFilter: number }
 > {
@@ -34,7 +37,7 @@ export default class extends React.PureComponent<
                 sustain: 1.0,
                 release: 2,
             },
-        }).toMaster();
+        }).toDestination();
         this.synth.volume.value = -10;
 
         this.pattern = new Tone.Pattern(
@@ -62,7 +65,7 @@ export default class extends React.PureComponent<
     public render() {
         return (
             <Layout>
-                <h3>Code of Music</h3>
+                <H3>Code of Music</H3>
                 <p>
                     Week 3 melody sketch (<Link to="/blog/itp/code-of-music/melody">blog post</Link>
                     ,{" "}

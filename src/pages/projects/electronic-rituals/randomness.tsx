@@ -1,7 +1,8 @@
-import { Button, FormGroup } from "@blueprintjs/core";
+import { Button, FormGroup, H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
+
 import { DefaultLayoutWithoutHeader } from "../../../components";
 
 const NUM_CHANNELS = 2;
@@ -18,6 +19,7 @@ export default class extends React.PureComponent {
 
     public componentDidMount() {
         const noise = new Tone.Noise("brown");
+        // eslint-disable-next-line no-console
         console.log(noise);
 
         this.toneContext = new Tone.Context();
@@ -39,7 +41,7 @@ export default class extends React.PureComponent {
     public render() {
         return (
             <DefaultLayoutWithoutHeader>
-                <h3>random noise generator</h3>
+                <H3>random noise generator</H3>
                 <p>
                     <Link to="/blog/itp/electronic-rituals/meditation-5">blog post</Link>
                 </p>
@@ -115,7 +117,7 @@ export default class extends React.PureComponent {
         const brownNoise = new Tone.BufferSource(brown);
         brownNoise.loop = true;
         brownNoise.start(0);
-        brownNoise.toMaster();
+        brownNoise.toDestination();
         this.bufferSources.push(brownNoise);
     }
 
@@ -186,7 +188,7 @@ export default class extends React.PureComponent {
     };
 }
 
-// tslint:disable no-bitwise
+/* eslint-disable no-bitwise */
 
 // @ts-ignore
 function xorshift(seed: number) {

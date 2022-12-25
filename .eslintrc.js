@@ -4,6 +4,21 @@ const xtends = ["@blueprintjs/eslint-config"];
 const rules = {
     "header/header": "off",
     "import/no-default-export": "off",
+    "import/order": [
+        "error",
+        {
+            alphabetize: {
+                order: "asc",
+                caseInsensitive: true,
+            },
+            groups: [
+                ["builtin", "external", "internal"],
+                ["parent", "sibling", "index"],
+                ["unknown", "object"],
+            ],
+            "newlines-between": "always",
+        },
+    ],
     "react/display-name": "off",
 };
 
@@ -56,5 +71,8 @@ module.exports = {
         "coverage",
         "__snapshots__",
         "generated",
+        "public",
+        ".netlify",
+        "custom-typings",
     ],
 };

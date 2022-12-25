@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file, no-console, react/jsx-no-bind */
+
 import {
     Button,
     ButtonGroup,
@@ -5,6 +7,7 @@ import {
     Classes,
     Colors,
     FormGroup,
+    H3,
     HTMLSelect,
     Slider,
 } from "@blueprintjs/core";
@@ -14,6 +17,7 @@ import { debounce, flatMap, flatMapDeep, max, noop, range } from "lodash-es";
 import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
+
 import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import * as styles from "./dance-floor-sequencer.module.css";
@@ -68,8 +72,6 @@ const DEFAULT_STEP_COLOR = Colors.GRAY4;
 /** available sample banks */
 const AVAILABLE_SAMPLE_BANKS = ["808", "909", "yakiman"];
 
-// tslint:disable no-console
-
 interface ITimelinePosition {
     bar: number;
     beat: number;
@@ -112,6 +114,7 @@ interface IState {
     isSerialConnectionOpen: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
@@ -153,6 +156,7 @@ export default class extends React.PureComponent<{}, IState> {
             const latest = max(Object.keys(store.sequences).map((key) => parseInt(key, 10)));
             if (latest !== undefined) {
                 const latestSequence = store.sequences[latest];
+                // eslint-disable-next-line react/no-did-mount-set-state
                 this.setState({
                     prevSequence: latestSequence.sequence,
                     prevSampleBank: latestSequence.sampleBankId,
@@ -181,7 +185,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.metronomePlayers = new Tone.Players({
             loud: soundUrl("metronome-loud.wav"),
             soft: soundUrl("metronome-soft.wav"),
-        }).toMaster();
+        }).toDestination();
         // TODO: sync() each player to transport (but there doesn't seem to be a way to iterate over players automatically...)
         this.metronomePlayers.player("soft").volume.value = -10;
 
@@ -228,7 +232,7 @@ export default class extends React.PureComponent<{}, IState> {
                 title="dance floor MPC"
                 className={classNames(Classes.DARK, styles.layoutContainer)}
             >
-                <h3>dance floor MPC</h3>
+                <H3>dance floor MPC</H3>
                 <div className={styles.transportControls}>
                     <FormGroup inline={true}>
                         <Button
@@ -674,7 +678,7 @@ export default class extends React.PureComponent<{}, IState> {
                         console.log(`Loaded "${sampleBankId}" samples!`);
                         resolve();
                     },
-                ).toMaster();
+                ).toDestination();
             } else {
                 resolve();
             }

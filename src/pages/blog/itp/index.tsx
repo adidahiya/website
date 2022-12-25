@@ -1,6 +1,8 @@
+import { H3, H4 } from "@blueprintjs/core";
 import { graphql, Link } from "gatsby";
 import { uniq } from "lodash-es";
 import React from "react";
+
 import { DefaultLayout, Timestamp } from "../../../components";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
@@ -16,7 +18,7 @@ export default ({ data }: any) => {
 
     return (
         <DefaultLayout>
-            <h4>ITP blog</h4>
+            <H4>ITP blog</H4>
             <p>
                 {categories.map((c) => (
                     <Category key={c} name={c} blogPosts={blogPosts} />
@@ -30,9 +32,9 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
     const categoryBlogPosts = filterBlogPosts(props.blogPosts, props.name);
     return (
         <div className="blog-category">
-            <h3>
+            <H3>
                 <Link to={`/blog/itp/${props.name}`}>{props.name}</Link>
-            </h3>
+            </H3>
             <ul>
                 {categoryBlogPosts.map((p) => (
                     <PostItem key={p.fields.slug} post={p} />
