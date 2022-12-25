@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import twilio from "twilio";
 
 /**
@@ -22,7 +24,7 @@ export function handler(event, context, callback) {
             from: "+19082937178",
         })
         .then((responseMessage) => {
-            console.log(responseMessage.sid);
+            // console.log(responseMessage.sid);
             callback(null, {
                 statusCode: 200,
                 body: responseMessage.sid,

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import request from "request";
 
 /**

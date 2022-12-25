@@ -24,7 +24,7 @@ module.exports = {
     rules,
     overrides: [
         {
-            files: ["gatsby-*.js"],
+            files: ["gatsby-*.js", "server/**/*"],
             env: {
                 browser: false,
                 node: true,
