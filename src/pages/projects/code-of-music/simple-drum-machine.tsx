@@ -1,4 +1,3 @@
-import { H3 } from "@blueprintjs/core";
 import { Link, withPrefix } from "gatsby";
 import p5 from "p5";
 import React from "react";
@@ -81,7 +80,7 @@ function sketch(p: p5) {
 
 export default () => (
     <Layout>
-        <H3>Code of Music</H3>
+        <h3>Code of Music</h3>
         <p>
             Week 1 sample-based instrument (
             <Link to="/blog/itp/code-of-music/sample-based-instrument">blog post</Link>)

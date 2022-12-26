@@ -1,4 +1,3 @@
-import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
@@ -60,7 +59,7 @@ export default class extends React.PureComponent<
     public render() {
         return (
             <DefaultLayout>
-                <H3>Physical Computing</H3>
+                <h3>Physical Computing</h3>
                 <p>
                     Week 6 serial communication labs (
                     <Link to="/blog/itp/physical-computing/week-6-labs">blog post</Link>)

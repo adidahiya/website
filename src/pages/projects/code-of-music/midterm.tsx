@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
-import { Button, H3 } from "@blueprintjs/core";
+import { Button } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
@@ -153,7 +153,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <H3>Rhythm Generator</H3>
+                <h3>Rhythm Generator</h3>
                 <p>
                     Code of Music midterm project (
                     <Link to="/blog/itp/code-of-music/midterm">blog post</Link>)

@@ -1,4 +1,4 @@
-import { Button, FormGroup, H3 } from "@blueprintjs/core";
+import { Button, FormGroup } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
@@ -41,7 +41,7 @@ export default class extends React.PureComponent {
     public render() {
         return (
             <DefaultLayoutWithoutHeader>
-                <H3>random noise generator</H3>
+                <h3>random noise generator</h3>
                 <p>
                     <Link to="/blog/itp/electronic-rituals/meditation-5">blog post</Link>
                 </p>

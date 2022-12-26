@@ -1,4 +1,4 @@
-import { Button, EditableText, FormGroup, H3 } from "@blueprintjs/core";
+import { Button, EditableText, FormGroup } from "@blueprintjs/core";
 import React from "react";
 
 import { DefaultLayoutWithoutHeader } from "../../../components";
@@ -26,7 +26,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         return (
             <DefaultLayoutWithoutHeader>
-                <H3>automatic writer</H3>
+                <h3>automatic writer</h3>
                 <p>~~tap into your subconscious for three minutes~~</p>
                 <FormGroup>
                     <Button

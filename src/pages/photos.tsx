@@ -1,4 +1,3 @@
-import { H2, H3 } from "@blueprintjs/core";
 import React from "react";
 
 import DefaultLayout from "../components/defaultLayout";
@@ -13,11 +12,11 @@ const FlickrImg = ({ href, src }: { href: string; src: string }) => (
 export default () => (
     <DefaultLayout>
         <div className={styles.photos}>
-            <H2>selected photographs</H2>
+            <h2>selected photographs</h2>
             <p>
                 See more on <a href="https://www.flickr.com/photos/adidas006">flickr</a> &rarr;
             </p>
-            <H3>abstract</H3>
+            <h3>abstract</h3>
             <p>
                 {[
                     {
@@ -41,7 +40,7 @@ export default () => (
                 ))}
             </p>
 
-            <H3>landscapes, nature</H3>
+            <h3>landscapes, nature</h3>
             <p>
                 {[
                     {
@@ -88,7 +87,7 @@ export default () => (
                     <FlickrImg {...p} key={key} />
                 ))}
             </p>
-            <H3>people</H3>
+            <h3>people</h3>
             <p>
                 {[
                     {

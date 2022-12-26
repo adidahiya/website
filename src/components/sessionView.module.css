@@ -8,7 +8,7 @@
     width: 14%;
 }
 
-:global(.bp3-slider) {
+:global(.bp4-slider) {
     min-width: 100px;
 }
 

@@ -1,4 +1,3 @@
-import { H2 } from "@blueprintjs/core";
 import { graphql } from "gatsby";
 import React from "react";
 
@@ -9,7 +8,7 @@ export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
         <DefaultLayout>
-            <H2>{post.frontmatter.title}</H2>
+            <h2>{post.frontmatter.title}</h2>
             <div className={styles.container} dangerouslySetInnerHTML={{ __html: post.html }} />
         </DefaultLayout>
     );

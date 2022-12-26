@@ -66,15 +66,15 @@
     border-color: white;
 }
 
-/* need globals to override BP3 */
-:global(.tempo-swing-form-group .bp3-form-content) {
+/* need globals to override Blueprint */
+:global(.tempo-swing-form-group .bp4-form-content) {
     display: flex;
 }
 
-:global(.tempo-swing-form-group .bp3-slider:not(:last-child)) {
+:global(.tempo-swing-form-group .bp4-slider:not(:last-child)) {
     margin-right: 50px;
 }
 
-:global(.tempo-swing-form-group .bp3-slider:last-child) {
+:global(.tempo-swing-form-group .bp4-slider:last-child) {
     width: 150px;
 }

@@ -1,4 +1,4 @@
-import { Button, FormGroup, H3, InputGroup, Intent } from "@blueprintjs/core";
+import { Button, FormGroup, InputGroup, Intent } from "@blueprintjs/core";
 import React from "react";
 
 import { fetchNetlifyFunction } from "../../../common";
@@ -22,7 +22,7 @@ export default class extends React.PureComponent<{}, State> {
         // TODO: use GET /.netlify/functions/isAdiWalking to determine boolean state
         return (
             <Layout title="walking ritual">
-                <H3>adi is walking around.</H3>
+                <h3>adi is walking around.</h3>
                 <br />
                 <p>
                     <em>current location</em>: washington square park.

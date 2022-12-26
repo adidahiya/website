@@ -1,4 +1,3 @@
-import { H2, H4 } from "@blueprintjs/core";
 import { graphql, Link } from "gatsby";
 import React from "react";
 
@@ -10,11 +9,11 @@ export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
         <DefaultLayout>
-            <H4>
+            <h4>
                 <Link to="/blog/itp">ITP blog</Link> &middot;{" "}
                 <Link to={`/blog/itp/${post.fields.category}`}>{post.fields.category}</Link>
-            </H4>
-            <H2>{post.frontmatter.title}</H2>
+            </h4>
+            <h2>{post.frontmatter.title}</h2>
             <Timestamp date={post.frontmatter.date} />
             <div className={styles.postBody} dangerouslySetInnerHTML={{ __html: post.html }} />
         </DefaultLayout>

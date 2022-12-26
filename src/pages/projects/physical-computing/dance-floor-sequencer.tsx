@@ -7,7 +7,6 @@ import {
     Classes,
     Colors,
     FormGroup,
-    H3,
     HTMLSelect,
     Slider,
 } from "@blueprintjs/core";
@@ -232,8 +231,8 @@ export default class extends React.PureComponent<{}, IState> {
                 title="dance floor MPC"
                 className={classNames(Classes.DARK, styles.layoutContainer)}
             >
-                <H3>dance floor MPC</H3>
-                <div className={styles.transportControls}>
+                <h3>dance floor MPC</h3>
+                <div>
                     <FormGroup inline={true}>
                         <Button
                             icon={isPlaying ? "stop" : "play"}

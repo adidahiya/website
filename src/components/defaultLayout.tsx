@@ -1,4 +1,3 @@
-import { H1 } from "@blueprintjs/core";
 import { Location as LocationProvider } from "@reach/router";
 import { Link } from "gatsby";
 import React from "react";
@@ -13,9 +12,9 @@ import * as styles from "./defaultLayout.module.css";
 const Header = () => (
     <div className={styles.header}>
         <div>
-            <H1>
+            <h1>
                 <Link to="/">adi.🍕</Link>
-            </H1>
+            </h1>
         </div>
     </div>
 );

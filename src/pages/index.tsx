@@ -1,4 +1,3 @@
-import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 
@@ -8,7 +7,7 @@ import DefaultLayout from "../components/defaultLayout";
 
 export default () => (
     <DefaultLayout>
-        <H3>adi dahiya</H3>
+        <h3>adi dahiya</h3>
         <p>
             programmer &amp; artist based in Brooklyn, NY. <br />
             <a href="https://tisch.nyu.edu/itp" target="_blank">
@@ -16,12 +15,14 @@ export default () => (
             </a>{" "}
             alum.
         </p>
-        <H3>blog</H3>
+        <h3>blog</h3>
         <p>
             <Link to="/blog/itp/">ITP (2018&mdash;2020)</Link>
         </p>
-        <H3>portfolio</H3>
+        <h3>portfolio</h3>
         <p>
+            <Link to="/projects/2022/">creative projects (2022&mdash;present)</Link>
+            <br />
             <Link to="/projects/2018/">creative projects (2018&mdash;2020)</Link>
             <br />
             <Link to="/projects/blueprint/">blueprint (2015&mdash;2019)</Link>
@@ -30,11 +31,11 @@ export default () => (
             <br />
             <Link to="/photos/">selected photographs</Link>
         </p>
-        <H3>links</H3>
+        <h3>links</h3>
         <p>
-            <a href="https://www.instagram.com/comfortzone.wav">instagram</a>
+            <a href="https://www.instagram.com/calzone.wav">instagram</a>
             <br />
-            <a href="https://soundcloud.com/djcomfortzone">soundcloud</a>
+            <a href="https://soundcloud.com/taal-nyc">soundcloud</a>
             <br />
             <a href="https://twitter.com/adi_dahiya">twitter</a>
             <br />

@@ -1,4 +1,3 @@
-import { H3 } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import { throttle } from "lodash-es";
 import p5 from "p5";
@@ -91,7 +90,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <DefaultLayoutWithoutHeader>
-                <H3>Physical Computing</H3>
+                <h3>Physical Computing</h3>
                 <p>
                     Steampunk arm (
                     <Link to="/blog/itp/physical-computing/steampunk-arm">blog post</Link>)

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 
-import { Button, FormGroup, H3, Slider } from "@blueprintjs/core";
+import { Button, FormGroup, Slider } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
@@ -116,7 +116,7 @@ export default class extends React.PureComponent<{}, IState> {
     public render() {
         return (
             <Layout>
-                <H3>Code of Music</H3>
+                <h3>Code of Music</h3>
                 <p>
                     Week 4 Synthesis (<Link to="/blog/itp/code-of-music/synthesis">blog post</Link>)
                 </p>

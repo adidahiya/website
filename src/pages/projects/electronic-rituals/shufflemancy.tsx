@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
-import { Button, H3 } from "@blueprintjs/core";
+import { Button } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 
@@ -70,7 +70,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
 
         return (
             <div style={{ maxWidth: 500, marginRight: 10 }}>
-                <H3>Your top artists</H3>
+                <h3>Your top artists</h3>
                 <ul>
                     {topArtists.items.map((a, i) => (
                         <li key={i}>
@@ -90,7 +90,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
 
         return (
             <div>
-                <H3>Playlist "{playlist.name}"</H3>
+                <h3>Playlist "{playlist.name}"</h3>
                 <p>{playlist.tracks.total} tracks</p>
                 <ul>
                     {playlist.tracks.items.map((t, i) => (

@@ -2,6 +2,7 @@ const blueprintConfig = require("@blueprintjs/eslint-config");
 
 const xtends = ["@blueprintjs/eslint-config"];
 const rules = {
+    "@blueprintjs/html-components": "off",
     "header/header": "off",
     "import/no-default-export": "off",
     "import/order": [
