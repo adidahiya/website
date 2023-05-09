@@ -60,6 +60,6 @@ summary:hover {
     color: #136757;
 }
 
-/* use for images that would otherwise get stretched by remark when trying to make them full width (888px) */
+/* use for images that would otherwise get stretched by remark when trying to make them full width on desktop (888px) */
 :global(.centered-image) { margin: 0 auto 20px auto; }
 :global(.centered-image .gatsby-resp-image-wrapper) { height: 100% }

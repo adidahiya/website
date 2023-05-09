@@ -2,7 +2,11 @@
 title: Free water at the rave // liquid love
 ---
 
+Essay for [Rave Cafe](https://www.rave.cafe/) Zine 002, May 2023.
+
 _by: Aileen Amaya and Adi Dahiya_
+
+---
 
 6am, Sunday morning of Movement festival: we’re leaving one club, en route to the next. It’s been a sweaty night. Ready for more dancing.
 
@@ -40,7 +44,7 @@ Our years of raving have eventually led us to activism for the cause of free wat
 
 ![water-shrine-1](../projects/water-shrine/water-shrine-1.jpeg)
 
-<div class="centered-image" style="width: 666px; height: 888px">
+<div class="centered-image" style="max-width: 666px; aspect-ratio: 3 / 4">
     <img src="../projects/water-shrine/water-shrine-2.jpeg" />
 </div>
 
