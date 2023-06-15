@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as styles from "./timestamp.module.css";
+
 export interface ITimestampProps {
     date: string;
     small?: boolean;
@@ -7,7 +9,7 @@ export interface ITimestampProps {
 }
 
 export default ({ date, small, style }: ITimestampProps) => (
-    <p className="timestamp" style={{ color: "gray", display: "inline-block", ...style }}>
+    <p className={styles.timestamp} style={style}>
         {small ? <small>({date})</small> : date}
     </p>
 );

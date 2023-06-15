@@ -9,10 +9,10 @@ export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (
         <DefaultLayout>
-            <h4>
+            <h3>
                 <Link to="/blog/itp">ITP blog</Link> &middot;{" "}
                 <Link to={`/blog/itp/${post.fields.category}`}>{post.fields.category}</Link>
-            </h4>
+            </h3>
             <h2>{post.frontmatter.title}</h2>
             <Timestamp date={post.frontmatter.date} />
             <div className={styles.postBody} dangerouslySetInnerHTML={{ __html: post.html }} />

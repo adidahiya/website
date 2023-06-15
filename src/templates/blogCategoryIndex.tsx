@@ -7,9 +7,9 @@ export default ({ data, pageContext }: any) => {
     const posts = data.allMarkdownRemark.edges;
     return (
         <DefaultLayout>
-            <h4>
+            <h3>
                 <Link to="/blog/itp">ITP blog</Link> &middot; {pageContext.category}
-            </h4>
+            </h3>
             <br />
             <ul>
                 {posts.map(({ node: post }: any) => (
@@ -18,7 +18,7 @@ export default ({ data, pageContext }: any) => {
                         <Timestamp
                             date={post.frontmatter.date}
                             small={true}
-                            style={{ marginLeft: 20 }}
+                            style={{ marginLeft: "1rem" }}
                         />
                     </li>
                 ))}
