@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import favicon16 from "../assets/favicon-16.png";
 import favicon32 from "../assets/favicon-32.png";
 import favicon48 from "../assets/favicon-48.png";
-import { initGoogleAnalytics, isLegacyRoute, shouldRenderAnalytics } from "../common";
+import { isLegacyRoute } from "../common";
 import * as styles from "./defaultLayout.module.css";
 
 const Header = () => (
@@ -62,13 +62,6 @@ export function DefaultLayoutHelmet({
     remoteScripts = [],
     title,
 }: IDefaultLayoutHelmetProps) {
-    if (shouldRenderAnalytics(location)) {
-        remoteScripts.push({
-            async: true,
-            src: "https://www.googletagmanager.com/gtag/js?id=UA-126153749-1",
-        });
-    }
-
     const scripts = remoteScripts.map(({ async = false, src }, index) => (
         <script async={async} src={src} key={`script-${index}`} />
     ));
@@ -90,10 +83,6 @@ interface Props {
 }
 
 export default class extends React.Component<Props> {
-    public componentDidMount() {
-        initGoogleAnalytics(window.location);
-    }
-
     public render() {
         return (
             <LocationProvider>
