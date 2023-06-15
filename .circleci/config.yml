@@ -8,23 +8,23 @@ executors:
 aliases:
   - &restore-node-modules-cache
     name: Restore node_modules cache
-    key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+    key: v2-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
   - &restore-pnpm-store
     name: Restore pnpm store
-    key: v1-pnpm-store
+    key: v2-pnpm-store
 
   - &save-node-modules-cache
     name: Save node_modules cache
     paths:
       - node_modules
-    key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
+    key: v2-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
   - &save-pnpm-store
     name: Save pnpm store
     paths:
       - ~/.pnpm-store
-    key: v1-pnpm-store
+    key: v2-pnpm-store
 
 jobs:
   checkout-code:

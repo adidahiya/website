@@ -89,6 +89,7 @@
         "url": "https://github.com/adidahiya/website"
     },
     "engines": {
-        "node": ">=18"
+        "node": ">=18",
+        "pnpm": ">=8"
     }
 }
