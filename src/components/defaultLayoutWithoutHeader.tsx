@@ -1,7 +1,6 @@
 import { Location as LocationProvider } from "@reach/router";
 import React from "react";
 
-import { initGoogleAnalytics } from "../common";
 import { DefaultLayoutHelmet } from "./defaultLayout";
 import * as styles from "./defaultLayout.module.css";
 
@@ -18,10 +17,6 @@ interface IProps {
 }
 
 export default class extends React.Component<IProps> {
-    public componentDidMount() {
-        initGoogleAnalytics(window.location);
-    }
-
     public render() {
         const { className, remoteScripts, title } = this.props;
         return (
