@@ -26,6 +26,12 @@ aliases:
       - ~/.pnpm-store
     key: v2-pnpm-store
 
+  - &enable-pnpm
+    name: Install pnpm package manager
+    command: |
+      corepack enable --install-directory ~/bin
+      corepack prepare pnpm@latest-8 --activate
+
 jobs:
   checkout-code:
     executor: default-executor
@@ -33,11 +39,7 @@ jobs:
       - checkout
       - restore_cache: *restore-pnpm-store
       - restore_cache: *restore-node-modules-cache
-      - run:
-          name: Install pnpm package manager
-          command: |
-            corepack enable --install-directory ~/bin
-            corepack prepare pnpm@latest-8 --activate
+      - run: *enable-pnpm
       - run: pnpm install
       - run:
           name: Check if pnpm-lock.yml changed during install
@@ -52,6 +54,7 @@ jobs:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
+      - run: *enable-pnpm
       - run: pnpm build
       - persist_to_workspace:
           root: '.'
@@ -65,6 +68,7 @@ jobs:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
+      - run: *enable-pnpm
       - run:
           command: |
             case $CIRCLE_NODE_INDEX in \
