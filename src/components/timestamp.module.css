@@ -1,0 +1,10 @@
+.timestamp {
+    display: inline-block;
+    color: #2F343C /* Blueprint $dark-gray3 */
+}
+
+@media (prefers-color-scheme: dark) {
+    .timestamp {
+        color: #ABB3BF /* Blueprint $gray4 */
+    }
+}

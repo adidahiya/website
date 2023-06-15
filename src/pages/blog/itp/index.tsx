@@ -3,6 +3,7 @@ import { uniq } from "lodash-es";
 import React from "react";
 
 import { DefaultLayout, Timestamp } from "../../../components";
+import { blogCategory } from "./blogItp.module.css";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 
@@ -17,7 +18,7 @@ export default ({ data }: any) => {
 
     return (
         <DefaultLayout>
-            <h4>ITP blog</h4>
+            <h3>ITP blog</h3>
             <p>
                 {categories.map((c) => (
                     <Category key={c} name={c} blogPosts={blogPosts} />
@@ -30,7 +31,7 @@ export default ({ data }: any) => {
 const Category = (props: { name: string; blogPosts: any[] }) => {
     const categoryBlogPosts = filterBlogPosts(props.blogPosts, props.name);
     return (
-        <div className="blog-category">
+        <div className={blogCategory}>
             <h3>
                 <Link to={`/blog/itp/${props.name}`}>{props.name}</Link>
             </h3>
@@ -46,7 +47,7 @@ const Category = (props: { name: string; blogPosts: any[] }) => {
 const PostItem = ({ post }: { post: any }) => (
     <li>
         <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-        <Timestamp date={post.frontmatter.date} small={true} style={{ marginLeft: 20 }} />
+        <Timestamp date={post.frontmatter.date} small={true} style={{ marginLeft: "1rem" }} />
     </li>
 );
 
