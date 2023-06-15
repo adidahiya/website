@@ -33,6 +33,11 @@ jobs:
       - checkout
       - restore_cache: *restore-pnpm-store
       - restore_cache: *restore-node-modules-cache
+      - run:
+          name: Install pnpm package manager
+          command: |
+            corepack enable
+            corepack prepare pnpm@latest-8 --activate
       - run: pnpm install
       - run:
           name: Check if pnpm-lock.yml changed during install
