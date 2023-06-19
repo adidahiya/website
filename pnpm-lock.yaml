@@ -176,8 +176,8 @@ devDependencies:
     specifier: ^6.1.3
     version: 6.1.3(typescript@5.1.3)
   twilio:
-    specifier: ^4.11.2
-    version: 4.11.2
+    specifier: ^4.12.0
+    version: 4.12.0
   typescript:
     specifier: ~5.1.3
     version: 5.1.3
@@ -15751,8 +15751,8 @@ packages:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
     dev: true
 
-  /twilio@4.11.2:
-    resolution: {integrity: sha512-Lxms8EuB+8nozem4xUHFkNcimHYiGVEJEdYTkZLRcirLJXRte/vMEQyBnbZAtas3A3Zy42PLpfMrmeG9aEk+wA==}
+  /twilio@4.12.0:
+    resolution: {integrity: sha512-h04AQTL6Kcvvmj2ZmdQUNPmXvjaAHf123d6/v+XUBKQ66oifRklnGOTrBLF6jbWAKTfeDrL0KEH2MnAC6zhkZg==}
     engines: {node: '>=14.0'}
     dependencies:
       axios: 0.26.1
