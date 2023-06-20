@@ -79,7 +79,7 @@
         "react-typography": "^0.16.23",
         "request": "^2.88.2",
         "tslint": "^6.1.3",
-        "twilio": "^4.11.2",
+        "twilio": "^4.12.0",
         "typescript": "~5.1.3",
         "typography": "^0.16.21",
         "typography-theme-fairy-gates": "^0.16.19"
