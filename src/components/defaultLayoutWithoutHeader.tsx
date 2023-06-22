@@ -4,9 +4,7 @@ import React from "react";
 import { DefaultLayoutHelmet } from "./defaultLayout";
 import * as styles from "./defaultLayout.module.css";
 
-interface IProps {
-    className?: string;
-
+interface Props {
     children?: React.ReactNode;
 
     /** Page title */
@@ -16,21 +14,21 @@ interface IProps {
     remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
 }
 
-export default class extends React.Component<IProps> {
+export default class extends React.Component<Props> {
     public render() {
-        const { className, remoteScripts, title } = this.props;
+        const { remoteScripts, title } = this.props;
         return (
             <LocationProvider>
                 {({ location }) => {
                     return (
-                        <div className={className}>
+                        <>
                             <DefaultLayoutHelmet
                                 location={location}
                                 title={title}
                                 remoteScripts={remoteScripts}
                             />
                             <div className={styles.body}>{this.props.children}</div>
-                        </div>
+                        </>
                     );
                 }}
             </LocationProvider>
