@@ -1,10 +1,13 @@
-:global(html) { height: 100%; }
-:global(body) { height: 100%; }
-:global(#___gatsby) { height: 100%; }
-:global(#___gatsby > div) { height: 100%; }
+:global(html),
+:global(body),
+:global(#__gatsby),
+:global(#gatsby-focus-wrapper) {
+    min-height: 100vh;
+}
 
 .header {
-    margin-bottom: 1.45rem;
+    /* rely on body margin-top to create spacing */
+    margin-bottom: 0;
 }
 
 .header > div {
@@ -35,6 +38,7 @@
 
 .body {
     margin: 0 auto;
+    margin-top: 1.45rem;
     max-width: 920px;
     padding: 0 1rem 1.5rem;
 }

@@ -1,4 +1,5 @@
 import { Location as LocationProvider } from "@reach/router";
+import classNames from "classnames";
 import React from "react";
 
 import { DefaultLayoutHelmet } from "./defaultLayout";
@@ -6,6 +7,8 @@ import * as styles from "./defaultLayout.module.css";
 
 interface Props {
     children?: React.ReactNode;
+
+    className?: string;
 
     /** Page title */
     title?: string;
@@ -16,7 +19,7 @@ interface Props {
 
 export default class extends React.Component<Props> {
     public render() {
-        const { remoteScripts, title } = this.props;
+        const { className, remoteScripts, title } = this.props;
         return (
             <LocationProvider>
                 {({ location }) => {
@@ -27,7 +30,9 @@ export default class extends React.Component<Props> {
                                 title={title}
                                 remoteScripts={remoteScripts}
                             />
-                            <div className={styles.body}>{this.props.children}</div>
+                            <div className={classNames(styles.body, className)}>
+                                {this.props.children}
+                            </div>
                         </>
                     );
                 }}

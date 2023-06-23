@@ -4,11 +4,13 @@
 
 html {
     --background-normal: #FFFFFF;
-    --background-dark: #1C2127; /* Blueprint $dark-gray1 */
+    --background-dark: #060709;
     --text-color-normal: #1C2127; /* Blueprint $dark-gray1 */
     --text-color-dark: #F6F7F9; /* Blueprint $light-gray1 */
     --link-color-normal: #1D7324; /* Blueprint $forest1 */
     --link-color-dark: #62D96B; /* Blueprint $forest5 */
+    --divider-normal: #111418; /* Blueprint $black */
+    --divider-dark: #FFFFFF;
 }
 
 body {
@@ -45,6 +47,11 @@ ul {
     margin-bottom: 1rem;
 }
 
+hr {
+    background-color: var(--divider-normal);
+    opacity: 0.15;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background: var(--background-dark);
@@ -54,5 +61,10 @@ ul {
     a,
     a:hover {
         color: var(--link-color-dark);
+    }
+
+    hr {
+        background-color: var(--divider-dark);
+        opacity: 0.2;
     }
 }
