@@ -6,7 +6,7 @@
 }
 
 .header {
-    /* rely on body margin-top to create spacing */
+    /* rely on body padding-top to create spacing */
     margin-bottom: 0;
 }
 
@@ -38,7 +38,7 @@
 
 .body {
     margin: 0 auto;
-    margin-top: 1.45rem;
+    padding-top: 1.45rem;
     max-width: 920px;
     padding: 0 1rem 1.5rem;
 }
