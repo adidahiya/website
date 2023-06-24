@@ -15,21 +15,25 @@ export default () => (
             </a>{" "}
             alum.
         </p>
-        <h3>blog</h3>
-        <p>
-            <Link to="/blog/itp/">ITP (2018&mdash;2020)</Link>
-        </p>
         <h3>portfolio</h3>
         <p>
-            <Link to="/projects/2022/">creative projects (2022&mdash;present)</Link>
+            <Link to="/projects/lighting/">lighting design</Link>
             <br />
-            <Link to="/projects/2018/">creative projects (2018&mdash;2020)</Link>
+            <Link to="/projects/video/">video</Link>
             <br />
-            <Link to="/projects/blueprint/">blueprint (2015&mdash;2019)</Link>
+            <Link to="/projects/software/">software</Link>
             <br />
-            <Link to="/projects/2014/">creative projects (2012&mdash;2014)</Link>
+            <Link to="/photos/">photography</Link>
             <br />
-            <Link to="/photos/">selected photographs</Link>
+            <Link to="/projects/itp/">creative projects (ITP)</Link>
+            <br />
+            <Link to="/projects/upenn/">creative projects (UPenn)</Link>
+        </p>
+        <h3>blog posts & essays</h3>
+        <p>
+            <Link to="/slices/free-water/">free water at the rave // liquid love (2023)</Link>
+            <br />
+            <Link to="/blog/itp/">ITP blog (2018&mdash;2020)</Link>
         </p>
         <h3>links</h3>
         <p>

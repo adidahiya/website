@@ -1,6 +1,8 @@
 ---
-title: blueprint (2015-2020)
+title: software projects
 ---
+
+<h3 id="software">Blueprint (2015-present)</h3>
 
 I led the development of [Blueprint](https://blueprintjs.com/), [Palantir](https://www.palantir.com/)'s open source UI toolkit and design language. You can view its [GitHub repository here](https://github.com/palantir/blueprint). I helped design its APIs, abstractions, and interactions. I also engaged with the TypeScript and React open source community to continually improve the project.
 

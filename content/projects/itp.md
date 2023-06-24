@@ -1,8 +1,8 @@
 ---
-title: creative projects (2018-2020)
+title: creative projects (ITP)
 ---
 
-A selection of my projects at [ITP](https://tisch.nyu.edu/itp).
+A selection of my course projects at [ITP](https://tisch.nyu.edu/itp).
 
 -   [Digital Dance Hall](#ddh)
 -   [Aperture](#aperture)
@@ -18,7 +18,7 @@ A selection of my projects at [ITP](https://tisch.nyu.edu/itp).
 
 My ITP thesis completed during the COVID-19 pandemic: the first iteration of a new social video platform for internet dance parties. [More info here](https://digital-dance-hall.netlify.app/about/) and [here](/slices/digital-dance-hall/).
 
-`video({ title = "DDH", src = "https://digital-dance-hall.s3.amazonaws.com/assets/about-documentation.mp4", autoplay = true, width = "100%", height = "auto", muted = true, loop = true })`
+`video({ title = "DDH", src = "https://digital-dance-hall.s3.amazonaws.com/assets/about-documentation.mp4" })`
 
 <br /> <br />
 
@@ -42,7 +42,7 @@ Quadraphonic spatial audio installation with audioreactive visuals mapped onto L
 
 Generative abstract live video performance accompanied by an original musical score. Built using Max/MSP and Ableton Live.
 
-`video({ title = "untitled", src = "https://adi-dot-pizza.s3.amazonaws.com/video/untitled-lipp-snippet.mp4", autoplay = true, width = "100%", height = "auto", muted = true, loop = true })`
+`video({ title = "untitled", src = "../../static/video/abstract-video/untitled-lipp-snippet.mp4" })`
 
 <br /> <br />
 
