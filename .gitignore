@@ -7,3 +7,6 @@ public/
 .*.swp
 yarn-error.log
 /.netlify
+
+# Local Netlify folder
+.netlify
