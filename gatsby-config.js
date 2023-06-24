@@ -30,7 +30,13 @@ module.exports = {
                         options: {
                             parentTag: "div",
                             parentClass: "gatsby-remark-video",
-                            defaultAttributes: {},
+                            defaultAttributes: {
+                                width: "100%",
+                                height: "auto",
+                                autoplay: true,
+                                loop: true,
+                                muted: true,
+                            },
                         },
                     },
                 ],

@@ -99,14 +99,14 @@ We used [Lightstream](https://golightstream.com/) to mix together DJ audio and b
 
 With some additional virtual party hosting experience under my belt, I got back to building. I got the basics of a "virtual background" feature working by masking a user's body with [bodypix](https://github.com/tensorflow/tfjs-models/tree/master/body-pix):
 
-`video({ title = "Virtual background prototype", src = "/video/virtual-background-1.mp4", autoplay = true, width = "100%", height = "auto", muted = true, loop = true })`
+`video({ title = "Virtual background prototype", src = "/video/virtual-background-1.mp4" })`
 
 Then I added a flexible, responsive grid layout system for video streams:
 
-`video({ title = "Responsive video grid", src = "/video/responsive-grid-1.mp4", autoplay = true, width = "100%", height = "auto", muted = true, loop = true })`
+`video({ title = "Responsive video grid", src = "/video/responsive-grid-1.mp4" })`
 
 Also a "portrait" orientation for videos (zoomed in and cropped to the center of the frame) and a feature to select virtual backgrounds:
 
-`video({ title = "Portrait video and virtual background", src = "/video/portrait-and-vbackground.mp4", autoplay = true, width = "100%", height = "auto", muted = true, loop = true })`
+`video({ title = "Portrait video and virtual background", src = "/video/portrait-and-vbackground.mp4" })`
 
 Lastly, I added private chat rooms with a request / block system. With all these features I was ready to do a proper user test during the April 18 LunchboxNYC stream...
