@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default-executor:
     docker:
-      - image: cimg/node:18.12.1
+      - image: cimg/node:18.16.0
 
 aliases:
   - &restore-node-modules-cache
@@ -57,7 +57,7 @@ jobs:
       - run: *enable-pnpm
       - run: pnpm build
       - persist_to_workspace:
-          root: '.'
+          root: "."
           paths:
             - public
 
