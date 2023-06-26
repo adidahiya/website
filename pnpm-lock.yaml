@@ -137,8 +137,8 @@ devDependencies:
     specifier: ^6.11.0
     version: 6.11.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
   gatsby-remark-copy-linked-files:
-    specifier: ^6.10.0
-    version: 6.10.0(gatsby@5.11.0)
+    specifier: ^6.11.0
+    version: 6.11.0(gatsby@5.11.0)
   gatsby-remark-emoji:
     specifier: ^0.0.3
     version: 0.0.3
@@ -8782,8 +8782,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /gatsby-remark-copy-linked-files@6.10.0(gatsby@5.11.0):
-    resolution: {integrity: sha512-6t2paFX4l3MjrUHT5c0TNa7pJw+RFmI1LmfZgsK6Zpqr/lrdav5ancPq4mMk73E+JNtWAGWanGAEatZN33Cwbw==}
+  /gatsby-remark-copy-linked-files@6.11.0(gatsby@5.11.0):
+    resolution: {integrity: sha512-nuphHkHtimnBmMmFakXOHPGo91IdnFuqnbG2IplXzYqmUE4QDvO+SuByxGcxTk842I1WMMv3asvA1OSLNcovIg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       gatsby: ^5.0.0-next
