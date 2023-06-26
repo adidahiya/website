@@ -134,8 +134,8 @@ devDependencies:
     specifier: ^5.10.0
     version: 5.10.0(gatsby@5.11.0)(react-dom@18.2.0)(react-typography@0.16.23)(react@18.2.0)(typography@0.16.21)
   gatsby-react-router-scroll:
-    specifier: ^6.10.0
-    version: 6.10.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.11.0
+    version: 6.11.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
   gatsby-remark-copy-linked-files:
     specifier: ^6.10.0
     version: 6.10.0(gatsby@5.11.0)
@@ -8767,21 +8767,6 @@ packages:
       import-from: 4.0.0
       joi: 17.9.2
       mime: 3.0.0
-
-  /gatsby-react-router-scroll@6.10.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-jiI8Q2VDa2rAyK+NCuzCX23tYuCc6Me1kNOSMLDT6pto6x2+P/arnbNq+SL1G1u8u5bnijEwNm5fD/ivd6sqtg==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@gatsbyjs/reach-router': ^2.0.0
-      react: ^18.0.0 || ^0.0.0
-      react-dom: ^18.0.0 || ^0.0.0
-    dependencies:
-      '@babel/runtime': 7.22.5
-      '@gatsbyjs/reach-router': 2.0.1(react-dom@18.2.0)(react@18.2.0)
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
   /gatsby-react-router-scroll@6.11.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BZyTSo2sxbmkGY5m/CtRSM/Ui6lNc3JkOLzR6+iqnypbo5eR3r3lKapqDi0RJKze/FiP1Wt0DKfxLf7P5J3jcw==}
