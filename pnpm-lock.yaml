@@ -59,8 +59,8 @@ devDependencies:
     specifier: ^2.11.1
     version: 2.11.1(tslint@6.1.3)(typescript@5.1.3)
   '@blueprintjs/eslint-plugin':
-    specifier: ^2.9.1
-    version: 2.9.1(typescript@5.1.3)
+    specifier: ^3.0.1
+    version: 3.0.1(typescript@5.1.3)
   '@blueprintjs/node-build-scripts':
     specifier: ^7.1.3
     version: 7.1.3(@types/node@20.3.1)
@@ -1592,6 +1592,16 @@ packages:
 
   /@blueprintjs/eslint-plugin@2.9.1(typescript@5.1.3):
     resolution: {integrity: sha512-tNahTcWBJF5l/FtwDNH/HA6zllaHyXTfRYXp3BuGxK0vNpllw+0wiL9ulXmlRlVvSgTU+kfHx/KNdEV887F+lQ==}
+    dependencies:
+      '@typescript-eslint/utils': 5.59.11(eslint@8.42.0)(typescript@5.1.3)
+      eslint: 8.42.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /@blueprintjs/eslint-plugin@3.0.1(typescript@5.1.3):
+    resolution: {integrity: sha512-2Aoj5DBKzM0j45xe/sG17mxUEZ9yKOp+M+Whv3npGBkvoCmTzBj4oHHc30VURm5Yd2sKzb7RLWBhjpRPyE/7DQ==}
     dependencies:
       '@typescript-eslint/utils': 5.59.11(eslint@8.42.0)(typescript@5.1.3)
       eslint: 8.42.0
