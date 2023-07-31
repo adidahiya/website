@@ -56,8 +56,8 @@ dependencies:
 
 devDependencies:
   '@blueprintjs/eslint-config':
-    specifier: ^2.11.1
-    version: 2.11.1(tslint@6.1.3)(typescript@5.1.3)
+    specifier: ^3.1.0
+    version: 3.1.0(tslint@6.1.3)(typescript@5.1.3)
   '@blueprintjs/eslint-plugin':
     specifier: ^2.9.1
     version: 2.9.1(typescript@5.1.3)
@@ -1568,11 +1568,11 @@ packages:
       tslib: 2.5.3
     dev: false
 
-  /@blueprintjs/eslint-config@2.11.1(tslint@6.1.3)(typescript@5.1.3):
-    resolution: {integrity: sha512-BGbybWaRW4Yk/v3Y+DLUNipdUcR2PogIrBOQDuq0CNA80DmUBylnWzyqLiqQcWhKDEt2gxHFOqQiE7mXyEVYqw==}
+  /@blueprintjs/eslint-config@3.1.0(tslint@6.1.3)(typescript@5.1.3):
+    resolution: {integrity: sha512-P8FDTqlZnkx+Tcu9oPQtn9zVoYLBVtYO3x3481yJg31XhIEmBJTmQezt277gMtq/TrKXWFOM0Qvb6BlRMOkbiQ==}
     dependencies:
-      '@blueprintjs/eslint-plugin': 2.9.1(typescript@5.1.3)
-      '@blueprintjs/tslint-config': 3.3.2(tslint@6.1.3)(typescript@5.1.3)
+      '@blueprintjs/eslint-plugin': 3.0.1(typescript@5.1.3)
+      '@blueprintjs/tslint-config': 4.0.0(tslint@6.1.3)(typescript@5.1.3)
       '@typescript-eslint/eslint-plugin': 5.59.11(@typescript-eslint/parser@5.59.11)(eslint@8.42.0)(typescript@5.1.3)
       '@typescript-eslint/eslint-plugin-tslint': 5.59.11(eslint@8.42.0)(tslint@6.1.3)(typescript@5.1.3)
       '@typescript-eslint/parser': 5.59.11(eslint@8.42.0)(typescript@5.1.3)
@@ -1582,6 +1582,7 @@ packages:
       eslint-plugin-import: 2.26.0(@typescript-eslint/parser@5.59.11)(eslint@8.42.0)
       eslint-plugin-jsdoc: 46.2.6(eslint@8.42.0)
       eslint-plugin-react: 7.32.2(eslint@8.42.0)
+      eslint-plugin-react-hooks: 4.6.0(eslint@8.42.0)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -1592,6 +1593,16 @@ packages:
 
   /@blueprintjs/eslint-plugin@2.9.1(typescript@5.1.3):
     resolution: {integrity: sha512-tNahTcWBJF5l/FtwDNH/HA6zllaHyXTfRYXp3BuGxK0vNpllw+0wiL9ulXmlRlVvSgTU+kfHx/KNdEV887F+lQ==}
+    dependencies:
+      '@typescript-eslint/utils': 5.59.11(eslint@8.42.0)(typescript@5.1.3)
+      eslint: 8.42.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /@blueprintjs/eslint-plugin@3.0.1(typescript@5.1.3):
+    resolution: {integrity: sha512-2Aoj5DBKzM0j45xe/sG17mxUEZ9yKOp+M+Whv3npGBkvoCmTzBj4oHHc30VURm5Yd2sKzb7RLWBhjpRPyE/7DQ==}
     dependencies:
       '@typescript-eslint/utils': 5.59.11(eslint@8.42.0)(typescript@5.1.3)
       eslint: 8.42.0
@@ -1647,8 +1658,8 @@ packages:
       - supports-color
     dev: true
 
-  /@blueprintjs/tslint-config@3.3.2(tslint@6.1.3)(typescript@5.1.3):
-    resolution: {integrity: sha512-cJKBYuk0unpVz5O5N2nMedqzwpjQX7K387vTwFCRe4jZSa/Wdr/nnxVMG3oDwHAwxqCUchwtQh0AEesQV+QCKQ==}
+  /@blueprintjs/tslint-config@4.0.0(tslint@6.1.3)(typescript@5.1.3):
+    resolution: {integrity: sha512-Irie6koasDgWJHTUZLPaB54Iyo71C320RAST6DJ869n4uGE2A+R/bsC3ITX103PYXWifQlfxojL13XLzDarXGg==}
     peerDependencies:
       tslint: ^6.0.0
     dependencies:
