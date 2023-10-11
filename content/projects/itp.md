@@ -42,7 +42,7 @@ Quadraphonic spatial audio installation with audioreactive visuals mapped onto L
 
 Generative abstract live video performance accompanied by an original musical score. Built using Max/MSP and Ableton Live.
 
-`video({ title = "untitled", src = "../../static/video/abstract-video/untitled-lipp-snippet.mp4" })`
+`video({ title = "untitled", src = "/video/abstract-video/untitled-lipp-snippet.mp4" })`
 
 <br /> <br />
 

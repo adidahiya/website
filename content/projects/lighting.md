@@ -6,33 +6,33 @@ title: lighting design
 
 ![buena-onda](./lighting/buena-onda.jpeg)
 
-`video({ src = "../../static/video/lighting-design/buena-onda-1.mp4" })`
+`video({ src = "/video/lighting-design/buena-onda-1.mp4" })`
 
 <h3 id="shaker-mountain">Shaker Mountain Second Nature Stage (May 2023)</h3>
 
 ![shaker-mountain-ambient](./lighting/shaker-mountain-ambient.jpeg)
 
-`video({ src = "../../static/video/lighting-design/shaker-mountain-ambient.mp4" })`
+`video({ src = "/video/lighting-design/shaker-mountain-ambient.mp4" })`
 
 <h3 id="depth-perception">Depth Perception (March 2023)</h3>
 
 ![depth-perception](./lighting/depth-perception.jpeg)
 
-`video({ src = "../../static/video/lighting-design/depth-perception-1.mp4" })`
+`video({ src = "/video/lighting-design/depth-perception-1.mp4" })`
 
-`video({ src = "../../static/video/lighting-design/depth-perception-2.mp4" })`
+`video({ src = "/video/lighting-design/depth-perception-2.mp4" })`
 
 <h3 id="29-speedway">29 Speedway (January 2023)</h3>
 
 ![29-speedway](./lighting/29-speedway.jpeg)
 
-`video({ src = "../../static/video/lighting-design/29-speedway-1.mp4" })`
+`video({ src = "/video/lighting-design/29-speedway-1.mp4" })`
 
 <h3 id="sweet-sixteen">Sweet Sixteen (December 2022)</h3>
 
-`video({ src = "../../static/video/lighting-design/sweet-sixteen-1.mp4" })`
+`video({ src = "/video/lighting-design/sweet-sixteen-1.mp4" })`
 
-`video({ src = "../../static/video/lighting-design/sweet-sixteen-2.mp4" })`
+`video({ src = "/video/lighting-design/sweet-sixteen-2.mp4" })`
 
 <h3 id="water-shrine">Water Shrine (August 2022)</h3>
 
