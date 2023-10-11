@@ -8,12 +8,8 @@
     width: 14%;
 }
 
-:global(.bp4-slider) {
+:global(.bp5-slider) {
     min-width: 100px;
-}
-
-.clips {
-
 }
 
 .clip {
