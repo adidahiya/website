@@ -326,7 +326,12 @@ class Particle {
     public lifespan = MAX_LIFESPAN;
     private color: p5.Color;
 
-    constructor(private p: p5, position: IXYCoords, force: IXYCoords, hue: number) {
+    constructor(
+        private p: p5,
+        position: IXYCoords,
+        force: IXYCoords,
+        hue: number,
+    ) {
         this.p.colorMode(this.p.HSB, 255);
         this.position = p.createVector(position.x, position.y);
         this.velocity = p.createVector(force.x, force.y);
