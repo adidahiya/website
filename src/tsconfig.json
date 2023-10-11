@@ -1,5 +1,5 @@
 {
-    "version": "4.9.4",
+    "version": "5.2.2",
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "outDir": "./dist",
@@ -10,7 +10,7 @@
         "jsx": "react",
         "lib": ["dom", "es2015"],
         "module": "es2015",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,

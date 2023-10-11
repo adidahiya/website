@@ -67,14 +67,14 @@
 }
 
 /* need globals to override Blueprint */
-:global(.tempo-swing-form-group .bp4-form-content) {
+:global(.tempo-swing-form-group .bp5-form-content) {
     display: flex;
 }
 
-:global(.tempo-swing-form-group .bp4-slider:not(:last-child)) {
+:global(.tempo-swing-form-group .bp5-slider:not(:last-child)) {
     margin-right: 50px;
 }
 
-:global(.tempo-swing-form-group .bp4-slider:last-child) {
+:global(.tempo-swing-form-group .bp5-slider:last-child) {
     width: 150px;
 }

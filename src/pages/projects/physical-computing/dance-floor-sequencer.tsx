@@ -666,13 +666,18 @@ export default class extends React.PureComponent<{}, IState> {
         return new Promise<void>((resolve, _reject) => {
             if (this.sampleBanks[sampleBankId] == null) {
                 this.sampleBanks[sampleBankId] = new Tone.Players(
-                    range(PADS_WIDTH * PADS_HEIGHT).reduce((prev, i) => {
-                        const sampleFilename = `${this.samplePadMapping[i]}.wav`;
-                        return {
-                            ...prev,
-                            [`${i}`]: soundUrl(`sample-banks/${sampleBankId}/${sampleFilename}`),
-                        };
-                    }, {} as { [key: string]: string }),
+                    range(PADS_WIDTH * PADS_HEIGHT).reduce(
+                        (prev, i) => {
+                            const sampleFilename = `${this.samplePadMapping[i]}.wav`;
+                            return {
+                                ...prev,
+                                [`${i}`]: soundUrl(
+                                    `sample-banks/${sampleBankId}/${sampleFilename}`,
+                                ),
+                            };
+                        },
+                        {} as { [key: string]: string },
+                    ),
                     () => {
                         console.log(`Loaded "${sampleBankId}" samples!`);
                         resolve();

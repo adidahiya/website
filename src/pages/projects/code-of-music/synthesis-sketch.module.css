@@ -2,7 +2,7 @@
     display: flex;
 }
 
-:global(.inline-slider-panel .bp4-form-group) {
+:global(.inline-slider-panel .bp5-form-group) {
     /* BP3 does not account for decimal places in slider labels for this kind of layout */
     margin-right: 40px;
 }

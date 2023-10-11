@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default-executor:
     docker:
-      - image: cimg/node:18.16.0
+      - image: cimg/node:18.18
 
 aliases:
   - &restore-node-modules-cache
