@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@blueprintjs/core':
-    specifier: ^5.4.0
-    version: 5.4.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.5.0
+    version: 5.5.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
   '@blueprintjs/icons':
     specifier: ^5.2.0
     version: 5.2.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -1484,14 +1484,14 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  /@blueprintjs/colors@5.0.3:
-    resolution: {integrity: sha512-4hGandJDdeK2KSAzLAcweT/RtUDL2sZEYxm4qLdRR0oSIIbeFFn09BCUWNF+U3UXNfS4uWtnWNsuYCaMxpHuBg==}
+  /@blueprintjs/colors@5.0.4:
+    resolution: {integrity: sha512-dtAN7gOkuPPZRKIoafLXKVGj6MkpIrphMdoxT+bkaIPTVUWLtYPtpQSh08EH7IBI3zzTqfdqXee+U5lmyEfY5g==}
     dependencies:
       tslib: 2.5.3
     dev: false
 
-  /@blueprintjs/core@5.4.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-QQd3KSDxO1CpLEhK0saU9oIv494QTm81yZkEiU8E8OSl05FsVkYjJI8wJkbyOVjFwukr4hbpHoW/ma3ASSaVHA==}
+  /@blueprintjs/core@5.5.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-eojk0F39M0HvqBHhxWzuBVy5fAkBVmrw4rmicOw2xmidsjxv+GZ0VBFymL49mUE89jJYcHdA64mXr2xoEBUxpg==}
     hasBin: true
     peerDependencies:
       '@types/react': ^16.14.32 || 17 || 18
@@ -1501,8 +1501,8 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@blueprintjs/colors': 5.0.3
-      '@blueprintjs/icons': 5.2.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@blueprintjs/colors': 5.0.4
+      '@blueprintjs/icons': 5.2.1(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
       '@popperjs/core': 2.11.8
       '@types/react': 18.2.28
       classnames: 2.3.2
@@ -1549,6 +1549,24 @@ packages:
 
   /@blueprintjs/icons@5.2.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6WvQngorXClu3/g0ZA5U0+4iCZaK77MPWZWdo4JdodNcvZsC21OxxFOvkpVWv2uUWx2iI2D2x8khLUsLsWvohQ==}
+    peerDependencies:
+      '@types/react': ^16.14.32 || 17 || 18
+      react: ^16.8 || 17 || 18
+      react-dom: ^16.8 || 17 || 18
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 18.2.28
+      change-case: 4.1.2
+      classnames: 2.3.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.5.3
+    dev: false
+
+  /@blueprintjs/icons@5.2.1(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-JAkcDQks4wZoZAcfKeId4/S4I0cEiuNhFZ88Kc+RQkHNUGD78wuANNQvPKeN5j0QXjAxYZ3qMsxKOdJ9YwmZ/A==}
     peerDependencies:
       '@types/react': ^16.14.32 || 17 || 18
       react: ^16.8 || 17 || 18
