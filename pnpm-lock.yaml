@@ -59,8 +59,8 @@ devDependencies:
     specifier: ^4.3.1
     version: 4.3.1(tslint@6.1.3)(typescript@5.2.2)
   '@blueprintjs/eslint-plugin':
-    specifier: ^5.1.1
-    version: 5.1.1(typescript@5.2.2)
+    specifier: ^5.1.2
+    version: 5.1.2(typescript@5.2.2)
   '@blueprintjs/node-build-scripts':
     specifier: ^8.0.3
     version: 8.0.3
@@ -1517,7 +1517,7 @@ packages:
   /@blueprintjs/eslint-config@4.3.1(tslint@6.1.3)(typescript@5.2.2):
     resolution: {integrity: sha512-hrud74U0RalSo55F1F0xywb8r2Xd6W6IC1l5QhMdMNklouZZ3igw2APIdspCYQLIFkxxMI7gI7+4q1spmY8MAA==}
     dependencies:
-      '@blueprintjs/eslint-plugin': 5.1.1(typescript@5.2.2)
+      '@blueprintjs/eslint-plugin': 5.1.2(typescript@5.2.2)
       '@blueprintjs/tslint-config': 4.0.0(tslint@6.1.3)(typescript@5.2.2)
       '@typescript-eslint/eslint-plugin': 6.7.5(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)(typescript@5.2.2)
       '@typescript-eslint/eslint-plugin-tslint': 6.7.5(eslint@8.51.0)(tslint@6.1.3)(typescript@5.2.2)
@@ -1537,8 +1537,8 @@ packages:
       - typescript
     dev: true
 
-  /@blueprintjs/eslint-plugin@5.1.1(typescript@5.2.2):
-    resolution: {integrity: sha512-VTpZKfZNVwmrPhpUagD+l+oWuO6lviH20s8WpbkvJRub3z73P1mnuwe/2f58ELMNNq2G6FH/SfLU8K2emOlCnA==}
+  /@blueprintjs/eslint-plugin@5.1.2(typescript@5.2.2):
+    resolution: {integrity: sha512-Jc/FbXsrRLUmpYAd82dQwfl51ZJYi0NXRWEGeRGzkhIIRoorIUcYKV7lp0YLSvBrmyuJMsLxPaA3pDqGY4FLdQ==}
     dependencies:
       '@typescript-eslint/utils': 6.7.5(eslint@8.51.0)(typescript@5.2.2)
       eslint: 8.51.0
