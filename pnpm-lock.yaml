@@ -9,8 +9,8 @@ dependencies:
     specifier: ^5.4.0
     version: 5.4.0(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
   '@blueprintjs/icons':
-    specifier: ^5.2.0
-    version: 5.2.0(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.2.1
+    version: 5.2.1(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
   '@reach/router':
     specifier: ^1.3.4
     version: 1.3.4(react-dom@18.2.0)(react@18.2.0)
@@ -1511,7 +1511,7 @@ packages:
         optional: true
     dependencies:
       '@blueprintjs/colors': 5.0.3
-      '@blueprintjs/icons': 5.2.0(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
+      '@blueprintjs/icons': 5.2.1(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
       '@popperjs/core': 2.11.8
       '@types/react': 18.2.33
       classnames: 2.3.2
@@ -1556,8 +1556,8 @@ packages:
       - typescript
     dev: true
 
-  /@blueprintjs/icons@5.2.0(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-6WvQngorXClu3/g0ZA5U0+4iCZaK77MPWZWdo4JdodNcvZsC21OxxFOvkpVWv2uUWx2iI2D2x8khLUsLsWvohQ==}
+  /@blueprintjs/icons@5.2.1(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-JAkcDQks4wZoZAcfKeId4/S4I0cEiuNhFZ88Kc+RQkHNUGD78wuANNQvPKeN5j0QXjAxYZ3qMsxKOdJ9YwmZ/A==}
     peerDependencies:
       '@types/react': ^16.14.32 || 17 || 18
       react: ^16.8 || 17 || 18
