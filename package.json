@@ -69,7 +69,7 @@
         "gatsby-remark-copy-linked-files": "^6.12.0",
         "gatsby-remark-emoji": "^0.0.3",
         "gatsby-remark-images": "^7.12.1",
-        "gatsby-source-filesystem": "^5.12.0",
+        "gatsby-source-filesystem": "^5.12.1",
         "gatsby-transformer-remark": "^6.12.1",
         "gatsby-transformer-sharp": "^5.12.1",
         "netlify-cli": "^16.9.1",
