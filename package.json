@@ -39,7 +39,7 @@
         "whatwg-fetch": "^3.6.19"
     },
     "devDependencies": {
-        "@blueprintjs/eslint-config": "^4.3.1",
+        "@blueprintjs/eslint-config": "^5.0.2",
         "@blueprintjs/eslint-plugin": "^5.1.1",
         "@blueprintjs/node-build-scripts": "^8.0.3",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
