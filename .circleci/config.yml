@@ -6,25 +6,15 @@ executors:
       - image: cimg/node:20.8
 
 aliases:
-  - &save-node-modules-cache
-    name: Save node_modules cache
-    paths:
-      - node_modules
-    key: yarn-packages-{{ checksum "yarn.lock" }}
-
-  - &restore-node-modules-cache
-    name: Restore node_modules cache
-    key: yarn-packages-{{ checksum "yarn.lock" }}
-
   - &save-yarn-cache
-    name: Save yarnpkg cache
+    name: Save Yarn Berry cache
     paths:
-      - .yarn/cache
-    key: yarn-cache-v1
+      - ~/.yarn/berry/cache
+    key: yarn-berry-cache-v1
 
   - &restore-yarn-cache
-    name: Restore yarnpkg cache
-    key: yarn-cache-v1
+    name: Restore Yarn Berry cache
+    key: yarn-berry-cache-v1
 
 jobs:
   checkout-code:
@@ -32,13 +22,11 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore-yarn-cache
-      - restore_cache: *restore-node-modules-cache
       - run: sudo corepack enable
       - run: yarn
       - run:
           name: Check if lockfile changed during install
           command: git diff --exit-code
-      - save_cache: *save-node-modules-cache
       - save_cache: *save-yarn-cache
 
   build:
@@ -46,7 +34,7 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - restore_cache: *restore-node-modules-cache
+      - restore_cache: *restore-yarn-cache
       - attach_workspace: { at: "." }
       - run: sudo corepack enable
       - run: yarn build
@@ -60,7 +48,7 @@ jobs:
     parallelism: 3
     steps:
       - checkout
-      - restore_cache: *restore-node-modules-cache
+      - restore_cache: *restore-yarn-cache
       - attach_workspace: { at: "." }
       - run: sudo corepack enable
       - run:
