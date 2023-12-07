@@ -10,6 +10,7 @@ const NUM_CHANNELS = 2;
 export default class extends React.PureComponent {
     private toneContext?: Tone.Context;
     private bufferSources: Tone.ToneBufferSource[] = [];
+    // eslint-disable-next-line deprecation/deprecation
     private scriptProcessorNodes: ScriptProcessorNode[] = [];
 
     private mouseX = 0;
@@ -129,13 +130,16 @@ export default class extends React.PureComponent {
                 lastOut[channelNum] = 0.0;
             }
 
+            // eslint-disable-next-line deprecation/deprecation
             const node = toneContext.rawContext.createScriptProcessor(
                 bufferSize,
                 NUM_CHANNELS,
                 NUM_CHANNELS,
             );
+            // eslint-disable-next-line deprecation/deprecation
             node.onaudioprocess = (e) => {
                 for (let channelNum = 0; channelNum < NUM_CHANNELS; channelNum++) {
+                    // eslint-disable-next-line deprecation/deprecation
                     const output = e.outputBuffer.getChannelData(channelNum);
                     for (let i = 0; i < bufferSize; i++) {
                         const white = this.mouseAndDateBasedRandom() * 2 - 1;

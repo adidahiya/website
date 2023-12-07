@@ -17,9 +17,9 @@ import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
 
+import * as styles from "./dance-floor-sequencer.module.css";
 import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
-import * as styles from "./dance-floor-sequencer.module.css";
 
 /** USB port name for p5.serialport */
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
@@ -476,7 +476,7 @@ export default class extends React.PureComponent<{}, IState> {
                 console.log(trimmedData);
                 // interpret change data as numbers
                 const changes = trimmedData
-                    .substr("padChanges:".length)
+                    .substring("padChanges:".length)
                     .split("")
                     .map((s) => parseInt(s, 10));
                 // react to changes if necessary
@@ -492,7 +492,7 @@ export default class extends React.PureComponent<{}, IState> {
                 });
             } else if (trimmedData.startsWith("buttonStates:")) {
                 const buttonStates = trimmedData
-                    .substr("buttonStates:".length)
+                    .substring("buttonStates:".length)
                     .split("")
                     .map((s) => parseInt(s, 10));
 
