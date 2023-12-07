@@ -5,9 +5,9 @@ import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
 
+import * as styles from "./synthesis-sketch.module.css";
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, NormalRangeSlider } from "../../../components";
-import * as styles from "./synthesis-sketch.module.css";
 
 interface IState {
     isPlaying: boolean;

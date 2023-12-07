@@ -1,7 +1,7 @@
 import React from "react";
 
-import DefaultLayout from "../components/defaultLayout";
 import * as styles from "./photos.module.css";
+import DefaultLayout from "../components/defaultLayout";
 
 const FlickrImg = ({ href, src }: { href: string; src: string }) => (
     <a className={styles.linkNoDecoration} href={href}>

@@ -2,8 +2,8 @@ import { Button } from "@blueprintjs/core";
 import React from "react";
 import * as Tone from "tone";
 
-import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 import * as styles from "./mono.module.css";
+import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
 
 const soundUrl = (filename: string) => `/sounds/sound-in-space/${filename}`;
 const impulseResponseUrl = (name: string) =>

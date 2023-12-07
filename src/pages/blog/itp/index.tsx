@@ -2,8 +2,8 @@ import { graphql, Link } from "gatsby";
 import { uniq } from "lodash-es";
 import React from "react";
 
-import { DefaultLayout, Timestamp } from "../../../components";
 import * as styles from "./blogItp.module.css";
+import { DefaultLayout, Timestamp } from "../../../components";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 

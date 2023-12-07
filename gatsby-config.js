@@ -3,7 +3,6 @@ module.exports = {
         title: "adi.pizza",
     },
     plugins: [
-        "gatsby-plugin-pnpm",
         "gatsby-plugin-image",
         "gatsby-plugin-sharp",
         {
