@@ -7,16 +7,16 @@
 ### Prerequisites
 
 -   Node 18+
--   PNPM 7+
+-   Yarn 4+
 
 ### HMR development
 
 ```
-pnpm dev
+yarn dev
 ```
 
 ### Production build
 
 ```
-pnpm build
+yarn build
 ```

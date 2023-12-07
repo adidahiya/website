@@ -3,49 +3,43 @@ version: 2.1
 executors:
   default-executor:
     docker:
-      - image: cimg/node:18.18
+      - image: cimg/node:20.8
 
 aliases:
-  - &restore-node-modules-cache
-    name: Restore node_modules cache
-    key: v2-dependencies-{{ checksum "pnpm-lock.yaml" }}
-
-  - &restore-pnpm-store
-    name: Restore pnpm store
-    key: v2-pnpm-store
-
   - &save-node-modules-cache
     name: Save node_modules cache
     paths:
       - node_modules
-    key: v2-dependencies-{{ checksum "pnpm-lock.yaml" }}
+    key: yarn-packages-{{ checksum "yarn.lock" }}
 
-  - &save-pnpm-store
-    name: Save pnpm store
+  - &restore-node-modules-cache
+    name: Restore node_modules cache
+    key: yarn-packages-{{ checksum "yarn.lock" }}
+
+  - &save-yarn-cache
+    name: Save yarnpkg cache
     paths:
-      - ~/.pnpm-store
-    key: v2-pnpm-store
+      - .yarn/cache
+    key: yarn-cache-v1
 
-  - &enable-pnpm
-    name: Install pnpm package manager
-    command: |
-      corepack enable --install-directory ~/bin
-      corepack prepare pnpm@latest-8 --activate
+  - &restore-yarn-cache
+    name: Restore yarnpkg cache
+    key: yarn-cache-v1
 
 jobs:
   checkout-code:
     executor: default-executor
     steps:
       - checkout
-      - restore_cache: *restore-pnpm-store
+      - restore_cache: *restore-yarn-cache
       - restore_cache: *restore-node-modules-cache
-      - run: *enable-pnpm
-      - run: pnpm install
+      - run: sudo corepack enable
+      - run: yarn
       - run:
-          name: Check if pnpm-lock.yml changed during install
+          name: Check if lockfile changed during install
           command: git diff --exit-code
       - save_cache: *save-node-modules-cache
-      - save_cache: *save-pnpm-store
+      - save_cache: *save-yarn-cache
 
   build:
     executor: default-executor
@@ -54,8 +48,8 @@ jobs:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
-      - run: *enable-pnpm
-      - run: pnpm build
+      - run: sudo corepack enable
+      - run: yarn build
       - persist_to_workspace:
           root: "."
           paths:
@@ -68,18 +62,17 @@ jobs:
       - checkout
       - restore_cache: *restore-node-modules-cache
       - attach_workspace: { at: "." }
-      - run: *enable-pnpm
+      - run: sudo corepack enable
       - run:
           command: |
             case $CIRCLE_NODE_INDEX in \
-            0) pnpm check:types ;; \
-            1) pnpm check:lint ;; \
-            2) pnpm check:format ;; \
+            0) yarn check:types ;; \
+            1) yarn check:lint ;; \
+            2) yarn check:format ;; \
             esac
           when: always
 
 workflows:
-  version: 2
   build_check:
     jobs:
       - checkout-code
