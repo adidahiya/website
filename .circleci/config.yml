@@ -37,6 +37,7 @@ jobs:
       - restore_cache: *restore-yarn-cache
       - attach_workspace: { at: "." }
       - run: sudo corepack enable
+      - run: yarn
       - run: yarn build
       - persist_to_workspace:
           root: "."
@@ -51,6 +52,7 @@ jobs:
       - restore_cache: *restore-yarn-cache
       - attach_workspace: { at: "." }
       - run: sudo corepack enable
+      - run: yarn
       - run:
           command: |
             case $CIRCLE_NODE_INDEX in \
