@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import p5 from "p5";
+import type p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
 

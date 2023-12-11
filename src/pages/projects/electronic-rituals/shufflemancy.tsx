@@ -2,7 +2,7 @@
 
 import { Button } from "@blueprintjs/core";
 import React from "react";
-import SpotifyWebApi from "spotify-web-api-js";
+import type SpotifyWebApi from "spotify-web-api-js";
 
 import { LayoutWithSpotifyApi } from "../../../components";
 

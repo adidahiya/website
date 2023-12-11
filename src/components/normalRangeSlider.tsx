@@ -1,4 +1,4 @@
-import { Slider, SliderProps } from "@blueprintjs/core";
+import { Slider, type SliderProps } from "@blueprintjs/core";
 import * as React from "react";
 
 export default function NormalRangeSlider<P extends SliderProps>(props: P) {
