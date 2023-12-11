@@ -1,4 +1,4 @@
-import { Button, FormGroup, InputGroup, Intent } from "@blueprintjs/core";
+import { Button, FormGroup, InputGroup, type Intent } from "@blueprintjs/core";
 import React from "react";
 
 import { fetchNetlifyFunction } from "../../../common";
