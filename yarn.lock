@@ -1684,6 +1684,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@blueprintjs/eslint-plugin@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@blueprintjs/eslint-plugin@npm:6.0.3"
+  dependencies:
+    "@typescript-eslint/utils": "npm:^6.11.0"
+    eslint: "npm:^8.53.0"
+  checksum: 492b8afc0176d16764248cec8f1cf6517b8fa5d556f5e35ce9717b967d5035338d2584aec6a72a2416ff8c6910a1a09ea53e4aed06c6d1f07974c884349465f5
+  languageName: node
+  linkType: hard
+
 "@blueprintjs/icons@npm:^5.4.1":
   version: 5.4.1
   resolution: "@blueprintjs/icons@npm:5.4.1"
@@ -5916,7 +5926,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.13.2, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.7.4":
+"@typescript-eslint/utils@npm:6.13.2, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.11.0, @typescript-eslint/utils@npm:^6.7.4":
   version: 6.13.2
   resolution: "@typescript-eslint/utils@npm:6.13.2"
   dependencies:
@@ -11149,7 +11159,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.50.0, eslint@npm:^8.55.0":
+"eslint@npm:^8.50.0, eslint@npm:^8.53.0, eslint@npm:^8.55.0":
   version: 8.55.0
   resolution: "eslint@npm:8.55.0"
   dependencies:
@@ -24388,7 +24398,7 @@ __metadata:
   dependencies:
     "@blueprintjs/core": "npm:^5.7.1"
     "@blueprintjs/eslint-config": "npm:^4.3.2"
-    "@blueprintjs/eslint-plugin": "npm:^5.1.2"
+    "@blueprintjs/eslint-plugin": "npm:^6.0.3"
     "@blueprintjs/icons": "npm:^5.4.1"
     "@blueprintjs/node-build-scripts": "npm:^8.1.0"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
