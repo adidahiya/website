@@ -10,33 +10,33 @@ updates:
     reviewers:
       - "adidahiya"
     versioning-strategy: increase
-      gatsby:
-        patterns:
-          - "gatsby"
-          - "gatsby-*"
-      build-tooling:
-        patterns:
-          - "@pmmmwh/react-refresh-webpack-plugin"
-          - "@typescript-eslint/*"
-          - "@yarnpkg/*"
-          - "eslint-*"
-          - "eslint"
-          - "netflify-cli"
-          - "npm-run-all"
-          - "postcss-*"
-          - "postcss"
-          - "prettier"
-          - "sass"
-          - "styelint"
-          - "stylelint-*"
-          - "typescript"
-      blueprint:
-        patterns:
-          - "@blueprintjs/*"
-      types:
-        patterns:
-          - "@types/*"
-      react:
-        patterns:
-          - "react"
-          - "react-*"
+    gatsby:
+      patterns:
+        - "gatsby"
+        - "gatsby-*"
+    build-tooling:
+      patterns:
+        - "@pmmmwh/react-refresh-webpack-plugin"
+        - "@typescript-eslint/*"
+        - "@yarnpkg/*"
+        - "eslint-*"
+        - "eslint"
+        - "netflify-cli"
+        - "npm-run-all"
+        - "postcss-*"
+        - "postcss"
+        - "prettier"
+        - "sass"
+        - "styelint"
+        - "stylelint-*"
+        - "typescript"
+    blueprint:
+      patterns:
+        - "@blueprintjs/*"
+    types:
+      patterns:
+        - "@types/*"
+    react:
+      patterns:
+        - "react"
+        - "react-*"
