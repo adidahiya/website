@@ -2,6 +2,7 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+
 updates:
   - package-ecosystem: "npm"
     directory: "/"
@@ -10,33 +11,34 @@ updates:
     reviewers:
       - "adidahiya"
     versioning-strategy: increase
-    gatsby:
-      patterns:
-        - "gatsby"
-        - "gatsby-*"
-    build-tooling:
-      patterns:
-        - "@pmmmwh/react-refresh-webpack-plugin"
-        - "@typescript-eslint/*"
-        - "@yarnpkg/*"
-        - "eslint-*"
-        - "eslint"
-        - "netflify-cli"
-        - "npm-run-all"
-        - "postcss-*"
-        - "postcss"
-        - "prettier"
-        - "sass"
-        - "styelint"
-        - "stylelint-*"
-        - "typescript"
-    blueprint:
-      patterns:
-        - "@blueprintjs/*"
-    types:
-      patterns:
-        - "@types/*"
-    react:
-      patterns:
-        - "react"
-        - "react-*"
+    groups:
+      gatsby:
+        patterns:
+          - "gatsby"
+          - "gatsby-*"
+      build-tooling:
+        patterns:
+          - "@pmmmwh/react-refresh-webpack-plugin"
+          - "@typescript-eslint/*"
+          - "@yarnpkg/*"
+          - "eslint-*"
+          - "eslint"
+          - "netflify-cli"
+          - "npm-run-all"
+          - "postcss-*"
+          - "postcss"
+          - "prettier"
+          - "sass"
+          - "styelint"
+          - "stylelint-*"
+          - "typescript"
+      blueprint:
+        patterns:
+          - "@blueprintjs/*"
+      types:
+        patterns:
+          - "@types/*"
+      react:
+        patterns:
+          - "react"
+          - "react-*"
