@@ -41,7 +41,7 @@
     "devDependencies": {
         "@blueprintjs/eslint-config": "^4.3.2",
         "@blueprintjs/eslint-plugin": "^5.1.2",
-        "@blueprintjs/node-build-scripts": "^8.1.0",
+        "@blueprintjs/node-build-scripts": "^9.0.2",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
         "@stayradiated/gatsby-remark-video": "^2.4.0",
         "@types/chroma-js": "^2.4.3",
