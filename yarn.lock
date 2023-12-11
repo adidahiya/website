@@ -1619,21 +1619,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/colors@npm:^5.0.7":
-  version: 5.0.7
-  resolution: "@blueprintjs/colors@npm:5.0.7"
+"@blueprintjs/colors@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "@blueprintjs/colors@npm:5.0.8"
   dependencies:
     tslib: "npm:~2.6.2"
-  checksum: 176ebe4e818020cc81b06609365ff0bdbfbc395e9d40812ddf88eeec54827db7fb869d445c69e1431344b1b26388a26bce521f5fe2fd12242abb8f21575e63dd
+  checksum: 4373b64921e365bba679813666b7b3fd4e4ebf21dfb988d65c935d47228d95e8149431bc543743d0f7f74f19c7c6e1526a6dd2919408b3b68cfdd7b15875a991
   languageName: node
   linkType: hard
 
-"@blueprintjs/core@npm:^5.7.1":
-  version: 5.7.1
-  resolution: "@blueprintjs/core@npm:5.7.1"
+"@blueprintjs/core@npm:^5.7.2":
+  version: 5.7.2
+  resolution: "@blueprintjs/core@npm:5.7.2"
   dependencies:
-    "@blueprintjs/colors": "npm:^5.0.7"
-    "@blueprintjs/icons": "npm:^5.4.1"
+    "@blueprintjs/colors": "npm:^5.0.8"
+    "@blueprintjs/icons": "npm:^5.5.0"
     "@popperjs/core": "npm:^2.11.7"
     classnames: "npm:^2.3.1"
     normalize.css: "npm:^8.0.1"
@@ -1650,43 +1650,48 @@ __metadata:
   bin:
     upgrade-blueprint-2.0.0-rename: scripts/upgrade-blueprint-2.0.0-rename.sh
     upgrade-blueprint-3.0.0-rename: scripts/upgrade-blueprint-3.0.0-rename.sh
-  checksum: f337cb35aa4ef49d053b24c81a9e8878eab6fef7537494546e3a11a65ca2bf1ab805d533dd2f3dc7645f6d460315cbcbf9522058a4d7f76612baec0287881106
+  checksum: 6664cf3bec3872cf5e7e3abd93767f652a84c98e751a8323209dc4df5211ef6d26690f0c1f1a95e2f9a28415c75245568c802384422afceabf97b6a908719ae0
   languageName: node
   linkType: hard
 
-"@blueprintjs/eslint-config@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "@blueprintjs/eslint-config@npm:4.3.2"
+"@blueprintjs/eslint-config@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "@blueprintjs/eslint-config@npm:5.0.3"
   dependencies:
-    "@blueprintjs/eslint-plugin": "npm:^5.1.2"
-    "@blueprintjs/tslint-config": "npm:^4.0.1"
-    "@typescript-eslint/eslint-plugin": "npm:^6.7.4"
-    "@typescript-eslint/eslint-plugin-tslint": "npm:^6.7.4"
-    "@typescript-eslint/parser": "npm:^6.7.4"
-    eslint: "npm:^8.50.0"
+    "@blueprintjs/eslint-plugin": "npm:^6.0.3"
+    "@blueprintjs/tslint-config": "npm:^4.1.1"
+    "@typescript-eslint/eslint-plugin": "npm:^6.11.0"
+    "@typescript-eslint/eslint-plugin-tslint": "npm:^6.11.0"
+    "@typescript-eslint/parser": "npm:^6.11.0"
+    eslint: "npm:^8.53.0"
     eslint-plugin-deprecation: "npm:^2.0.0"
     eslint-plugin-header: "npm:^3.1.1"
     eslint-plugin-import: "npm:~2.26.0"
-    eslint-plugin-jsdoc: "npm:^46.5.0"
+    eslint-plugin-jsdoc: "npm:^46.9.0"
     eslint-plugin-react: "npm:^7.33.2"
     eslint-plugin-react-hooks: "npm:^4.6.0"
-  checksum: 902a0c200d7fff0c4246987f9332005dcf3f59ebf95a0f3d15fccd296d2ba7b9afe825084299139479de34bb641982eb07888e3cc27c88a0c5ec8d3d616b263f
+  peerDependencies:
+    typescript: ^5.2.2
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 7530f37efc14be3bb24f64e9523c3fbd5b119729d24ab369de0ddcc7090f6df404f9a8ffc730afc48ae73305f9c9c236b9afb7f60bf94df363098a682aa07260
   languageName: node
   linkType: hard
 
-"@blueprintjs/eslint-plugin@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "@blueprintjs/eslint-plugin@npm:5.1.2"
+"@blueprintjs/eslint-plugin@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@blueprintjs/eslint-plugin@npm:6.0.3"
   dependencies:
-    "@typescript-eslint/utils": "npm:^6.7.4"
-    eslint: "npm:^8.50.0"
-  checksum: a463329d6365eb33779dbbd6dd56caa97b51d8d2ca3e71184d0b743f1860861542a851ffa48026f4d858e3b60c19667327f7fee13a001c4832b3c142da7c3531
+    "@typescript-eslint/utils": "npm:^6.11.0"
+    eslint: "npm:^8.53.0"
+  checksum: 492b8afc0176d16764248cec8f1cf6517b8fa5d556f5e35ce9717b967d5035338d2584aec6a72a2416ff8c6910a1a09ea53e4aed06c6d1f07974c884349465f5
   languageName: node
   linkType: hard
 
-"@blueprintjs/icons@npm:^5.4.1":
-  version: 5.4.1
-  resolution: "@blueprintjs/icons@npm:5.4.1"
+"@blueprintjs/icons@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "@blueprintjs/icons@npm:5.5.0"
   dependencies:
     change-case: "npm:^4.1.2"
     classnames: "npm:^2.3.1"
@@ -1698,20 +1703,20 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: c11d2cf171425aa22a0c70d1618ebf21a245892628bc7f3a1d62feced3f2948e69931dffb6c1987ddba5065c28d9d7b9024bb329576e53da6263b8f6698bd412
+  checksum: 015a0c4470eacb9fe0e2a4d135d5258744752811506e71cdaee18292edeee91d72e206204cb90711fce089f86dae8d8314b9d0a9b13a3bc15902c158b40bd841
   languageName: node
   linkType: hard
 
-"@blueprintjs/node-build-scripts@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "@blueprintjs/node-build-scripts@npm:8.1.0"
+"@blueprintjs/node-build-scripts@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "@blueprintjs/node-build-scripts@npm:9.0.2"
   dependencies:
     autoprefixer: "npm:^10.4.16"
     chokidar: "npm:^3.5.3"
     cross-spawn: "npm:^7.0.3"
     css-select: "npm:^5.1.0"
     dom-serializer: "npm:^2.0.0"
-    eslint: "npm:^8.50.0"
+    eslint: "npm:^8.53.0"
     eslint-formatter-codeframe: "npm:^7.32.1"
     fs-extra: "npm:^11.1.1"
     glob: "npm:^10.3.10"
@@ -1723,8 +1728,8 @@ __metadata:
     postcss-discard-comments: "npm:^6.0.0"
     postcss-scss: "npm:^4.0.9"
     postcss-simple-vars: "npm:^7.0.1"
-    prettier: "npm:^3.0.3"
-    sass: "npm:^1.69.0"
+    prettier: "npm:^3.1.0"
+    sass: "npm:^1.69.5"
     source-map-js: "npm:^1.0.2"
     strip-css-comments: "npm:^5.0.0"
     stylelint: "npm:~14.16.1"
@@ -1733,17 +1738,17 @@ __metadata:
     typescript: "npm:~5.2.2"
     yargs: "npm:^17.7.2"
   bin:
-    assert-package-layout: assert-package-layout.mjs
-    css-dist: css-dist.sh
-    es-lint: es-lint.mjs
-    generate-css-variables: generate-css-variables.mjs
-    sass-compile: sass-compile.sh
-    sass-lint: sass-lint.mjs
-  checksum: 95f05adc2111de3925a8ef47eb6fd52df422a84db9b07e8fb341856621df5ce7bfdf55a0aa6fd6cb8a6618ddf5a2e8dc4e879fb3b5cb3f579af96cc9686f579d
+    assert-package-layout: ./assert-package-layout.mjs
+    css-dist: ./css-dist.mjs
+    es-lint: ./es-lint.mjs
+    generate-css-variables: ./generate-css-variables.mjs
+    sass-compile: ./sass-compile.mjs
+    sass-lint: ./sass-lint.mjs
+  checksum: 3a3334a7263c22023f7cb55583dcdc5f80a6b36a7404b56596238cba5804099600f290b5f90c3a150d83bdb31d690d12571316342c87453bf9122cc432d42970
   languageName: node
   linkType: hard
 
-"@blueprintjs/tslint-config@npm:^4.0.1":
+"@blueprintjs/tslint-config@npm:^4.1.1":
   version: 4.1.1
   resolution: "@blueprintjs/tslint-config@npm:4.1.1"
   dependencies:
@@ -5697,7 +5702,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin-tslint@npm:^6.13.2, @typescript-eslint/eslint-plugin-tslint@npm:^6.7.4":
+"@typescript-eslint/eslint-plugin-tslint@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/eslint-plugin-tslint@npm:6.14.0"
+  dependencies:
+    "@typescript-eslint/utils": "npm:6.14.0"
+  peerDependencies:
+    eslint: ^7.0.0 || ^8.0.0
+    tslint: ^5.0.0 || ^6.0.0
+    typescript: "*"
+  checksum: d51c78092ea176c17d4a80bf10091d1e02c32b8b53c960ebc55037d41676e74a34990e81e7934457da1d00c0475da18d1e8c0711fb3690b630dc2f802bc78060
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/eslint-plugin-tslint@npm:^6.13.2":
   version: 6.13.2
   resolution: "@typescript-eslint/eslint-plugin-tslint@npm:6.13.2"
   dependencies:
@@ -5734,7 +5752,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.13.2, @typescript-eslint/eslint-plugin@npm:^6.7.4":
+"@typescript-eslint/eslint-plugin@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:6.14.0"
+  dependencies:
+    "@eslint-community/regexpp": "npm:^4.5.1"
+    "@typescript-eslint/scope-manager": "npm:6.14.0"
+    "@typescript-eslint/type-utils": "npm:6.14.0"
+    "@typescript-eslint/utils": "npm:6.14.0"
+    "@typescript-eslint/visitor-keys": "npm:6.14.0"
+    debug: "npm:^4.3.4"
+    graphemer: "npm:^1.4.0"
+    ignore: "npm:^5.2.4"
+    natural-compare: "npm:^1.4.0"
+    semver: "npm:^7.5.4"
+    ts-api-utils: "npm:^1.0.1"
+  peerDependencies:
+    "@typescript-eslint/parser": ^6.0.0 || ^6.0.0-alpha
+    eslint: ^7.0.0 || ^8.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 6360efb0e142ed91de5e9bddcd041f769feeedd256332733be08f7a74c8ae637cbfb78c6b85d747c73231bbb95cef95ed2d2854ab7d43aebfbedb3a191f447f1
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/eslint-plugin@npm:^6.13.2":
   version: 6.13.2
   resolution: "@typescript-eslint/eslint-plugin@npm:6.13.2"
   dependencies:
@@ -5776,21 +5819,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.7.4":
-  version: 6.13.2
-  resolution: "@typescript-eslint/parser@npm:6.13.2"
+"@typescript-eslint/parser@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/parser@npm:6.14.0"
   dependencies:
-    "@typescript-eslint/scope-manager": "npm:6.13.2"
-    "@typescript-eslint/types": "npm:6.13.2"
-    "@typescript-eslint/typescript-estree": "npm:6.13.2"
-    "@typescript-eslint/visitor-keys": "npm:6.13.2"
+    "@typescript-eslint/scope-manager": "npm:6.14.0"
+    "@typescript-eslint/types": "npm:6.14.0"
+    "@typescript-eslint/typescript-estree": "npm:6.14.0"
+    "@typescript-eslint/visitor-keys": "npm:6.14.0"
     debug: "npm:^4.3.4"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 2c62b8cd8a37eb2ea59cd00e559f51a9f57af746e2040e872af3c58ddd3f4071ad7b7009789bdeb0e0d4ee0343bfe96ee77288020f3ae22d08e1674203f5e156
+  checksum: 0344f7f640374e7e5a5b50e9c90fbd161611b3f455132e541ef9116eef7bd3acf364db64bd38d4b6b4fe148414494620c9df660f8ddce036019c38ae8e146585
   languageName: node
   linkType: hard
 
@@ -5811,6 +5854,16 @@ __metadata:
     "@typescript-eslint/types": "npm:6.13.2"
     "@typescript-eslint/visitor-keys": "npm:6.13.2"
   checksum: 9b159e5bb10dfb5953e71488200b4126378fc7e987ce7d90946aea9ec40cd66c7ada92399657c5d9794189b764ca6f4eb38a8dcb9e4c5aa50ab6000a39636b9c
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/scope-manager@npm:6.14.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/scope-manager@npm:6.14.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:6.14.0"
+    "@typescript-eslint/visitor-keys": "npm:6.14.0"
+  checksum: 8c59a215af3d7d24d8d0b21c28a858263de471650829f288a941e0eb8af8a054798da5c7594b7f39370219718270c18464b5edb96f451457e5f080a33ba57c2c
   languageName: node
   linkType: hard
 
@@ -5848,6 +5901,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/type-utils@npm:6.14.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/type-utils@npm:6.14.0"
+  dependencies:
+    "@typescript-eslint/typescript-estree": "npm:6.14.0"
+    "@typescript-eslint/utils": "npm:6.14.0"
+    debug: "npm:^4.3.4"
+    ts-api-utils: "npm:^1.0.1"
+  peerDependencies:
+    eslint: ^7.0.0 || ^8.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 836a6e84be5a245b07c76968c98e2f3bae064767dde720080fe8f33e226188510778dbca4199b7e42ef675ec3fd6d0ab522ec1c77d6e2a9b50e8e275fe7c72c9
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/types@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/types@npm:5.62.0"
@@ -5859,6 +5929,13 @@ __metadata:
   version: 6.13.2
   resolution: "@typescript-eslint/types@npm:6.13.2"
   checksum: 029918ca5b1442bb4bc435773504ce32191e2c3e2fde8d4176bb6513f03e3dfa2aa9724b2d22b1640656d666b97f7a7ebfeaf67b881d5e07250828fa83e3ebe8
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:6.14.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/types@npm:6.14.0"
+  checksum: d59306a7a441982a4dcee7d775928fd5086aba9331f7a238f915723a0dc785df0e43af562a30a7c2f1b056a1e49fd64863a8d2450d31706193add0ade87334a4
   languageName: node
   linkType: hard
 
@@ -5898,6 +5975,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/typescript-estree@npm:6.14.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/typescript-estree@npm:6.14.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:6.14.0"
+    "@typescript-eslint/visitor-keys": "npm:6.14.0"
+    debug: "npm:^4.3.4"
+    globby: "npm:^11.1.0"
+    is-glob: "npm:^4.0.3"
+    semver: "npm:^7.5.4"
+    ts-api-utils: "npm:^1.0.1"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 767c3309987b8ad053a2403605a9bd7c4eb3283dece864a741a7531a1c28eea4d85acaa4613141b64e194f9f6c4cbc5bc762c9b9f3a67c6202aa8cbb18b180d2
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/utils@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/utils@npm:5.62.0"
@@ -5916,7 +6011,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.13.2, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.7.4":
+"@typescript-eslint/utils@npm:6.13.2, @typescript-eslint/utils@npm:^6.0.0":
   version: 6.13.2
   resolution: "@typescript-eslint/utils@npm:6.13.2"
   dependencies:
@@ -5930,6 +6025,23 @@ __metadata:
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
   checksum: 84969be91e7949868eaaa289288c9d71927f0e427b572501b0991d8d62b40a4234f7287c35b35d276ccbb53e9ea5457b8250fcf4941e60e6b9ba4065fbfba416
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:6.14.0, @typescript-eslint/utils@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/utils@npm:6.14.0"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.4.0"
+    "@types/json-schema": "npm:^7.0.12"
+    "@types/semver": "npm:^7.5.0"
+    "@typescript-eslint/scope-manager": "npm:6.14.0"
+    "@typescript-eslint/types": "npm:6.14.0"
+    "@typescript-eslint/typescript-estree": "npm:6.14.0"
+    semver: "npm:^7.5.4"
+  peerDependencies:
+    eslint: ^7.0.0 || ^8.0.0
+  checksum: 72689b2897b89e1bd1c71c1c2ae436d0ccfbcfffabf3be4378de74ad8138b2ecdbeeda7c1720e2f1754569e773f2fc7216f704335e1e56c38c7601ee1d190aeb
   languageName: node
   linkType: hard
 
@@ -5950,6 +6062,16 @@ __metadata:
     "@typescript-eslint/types": "npm:6.13.2"
     eslint-visitor-keys: "npm:^3.4.1"
   checksum: c173bc1fcc42c3075a5ee094e7f3bf0279d98315c25ff49e20d02d79022b1d0402accfa113b070afb4d52a6f6d180594b67baa8b6a784eabdf82b54dd1ff454c
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:6.14.0":
+  version: 6.14.0
+  resolution: "@typescript-eslint/visitor-keys@npm:6.14.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:6.14.0"
+    eslint-visitor-keys: "npm:^3.4.1"
+  checksum: 0e2363f9f1986ebdb41507c54a666fa1c336eb6beb383dc342a10844d3c42c89067b21c3f158851fa6f0825e1e451a5470b5454fde70a6fc33b4b0259462d954
   languageName: node
   linkType: hard
 
@@ -10933,7 +11055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^46.5.0, eslint-plugin-jsdoc@npm:^46.9.0":
+"eslint-plugin-jsdoc@npm:^46.9.0":
   version: 46.9.0
   resolution: "eslint-plugin-jsdoc@npm:46.9.0"
   dependencies:
@@ -11149,7 +11271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.50.0, eslint@npm:^8.55.0":
+"eslint@npm:^8.53.0, eslint@npm:^8.55.0":
   version: 8.55.0
   resolution: "eslint@npm:8.55.0"
   dependencies:
@@ -19751,12 +19873,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.3":
-  version: 3.1.0
-  resolution: "prettier@npm:3.1.0"
+"prettier@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: a45ea70aa97fde162ea4c4aba3dfc7859aa6a732a1db34458d9535dc3c2c16d3bc3fb5689e6cd76aa835562555303b02d9449fd2e15af3b73c8053557e25c5b6
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
   languageName: node
   linkType: hard
 
@@ -21214,7 +21336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.69.0":
+"sass@npm:^1.69.5":
   version: 1.69.5
   resolution: "sass@npm:1.69.5"
   dependencies:
@@ -24386,11 +24508,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "website@workspace:."
   dependencies:
-    "@blueprintjs/core": "npm:^5.7.1"
-    "@blueprintjs/eslint-config": "npm:^4.3.2"
-    "@blueprintjs/eslint-plugin": "npm:^5.1.2"
-    "@blueprintjs/icons": "npm:^5.4.1"
-    "@blueprintjs/node-build-scripts": "npm:^8.1.0"
+    "@blueprintjs/core": "npm:^5.7.2"
+    "@blueprintjs/eslint-config": "npm:^5.0.3"
+    "@blueprintjs/eslint-plugin": "npm:^6.0.3"
+    "@blueprintjs/icons": "npm:^5.5.0"
+    "@blueprintjs/node-build-scripts": "npm:^9.0.2"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
     "@reach/router": "npm:^1.3.4"
     "@stayradiated/gatsby-remark-video": "npm:^2.4.0"
