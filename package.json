@@ -36,7 +36,7 @@
         "spotify-web-api-js": "^1.5.2",
         "tone": "^14.8.49",
         "tslib": "~2.6.2",
-        "whatwg-fetch": "^3.6.19"
+        "whatwg-fetch": "^3.6.20"
     },
     "devDependencies": {
         "@blueprintjs/eslint-config": "^5.0.3",
