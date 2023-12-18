@@ -23209,9 +23209,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"twilio@npm:^4.19.3":
-  version: 4.19.3
-  resolution: "twilio@npm:4.19.3"
+"twilio@npm:^4.20.0":
+  version: 4.20.0
+  resolution: "twilio@npm:4.20.0"
   dependencies:
     axios: "npm:^1.6.0"
     dayjs: "npm:^1.11.9"
@@ -23221,7 +23221,7 @@ __metadata:
     scmp: "npm:^2.1.0"
     url-parse: "npm:^1.5.9"
     xmlbuilder: "npm:^13.0.2"
-  checksum: 8962c4d99f200225f934f80eeb5fe4ec65e26714de0557bb5ed9edca4ac28659b74d5013ca1e418c730d47300cc9379ceb3433ecde150b9643c2a6aa2810aa91
+  checksum: deb4d76a103619437292590d81db165826c1b02eab1d10ecd01d5456d1f384df9b71657b58b6611fb2b7e20f110933ca744b6137e4f33401978f74d62f78f05a
   languageName: node
   linkType: hard
 
@@ -24422,7 +24422,7 @@ __metadata:
     tone: "npm:^14.8.49"
     tslib: "npm:~2.6.2"
     tslint: "npm:^6.1.3"
-    twilio: "npm:^4.19.3"
+    twilio: "npm:^4.20.0"
     typescript: "npm:~5.3.3"
     typography: "npm:^0.16.24"
     typography-theme-fairy-gates: "npm:^0.16.19"
