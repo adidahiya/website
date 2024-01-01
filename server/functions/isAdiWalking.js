@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 
-import request from "request";
+import ky from "ky";
 
 /**
  * Tells you whether Adi is on a walk right now.
  */
-export function handler(event, context, callback) {
+export async function handler() {
     const { foursquare_client_id, foursquare_client_secret } = process.env;
 
     if (foursquare_client_id == null || foursquare_client_secret == null) {
@@ -13,25 +13,24 @@ export function handler(event, context, callback) {
         return;
     }
 
-    request(
-        {
-            uri: "https://api.foursquare.com/v2/users/self",
-            method: "GET",
-            qs: {
-                client_id: foursquare_client_id,
-                client_secret: foursquare_client_secret,
-                v: "201902013",
-            },
+    const response = await ky.get("https://api.foursquare.com/v2/users/self", {
+        searchParams: {
+            client_id: foursquare_client_id,
+            client_secret: foursquare_client_secret,
+            v: "201902013",
         },
-        (error, response, body) => {
-            if (error != null) {
-                callback(error);
-            } else {
-                callback(null, {
-                    statusCode: 200,
-                    body,
-                });
-            }
-        },
-    );
+    });
+
+    if (response.ok) {
+        const body = await response.json();
+        return {
+            statusCode: 200,
+            body: JSON.stringify(body),
+        };
+    } else {
+        return {
+            statusCode: 500,
+            body: "Foursquare API call failed",
+        };
+    }
 }
