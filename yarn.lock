@@ -18785,7 +18785,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.2.2, prettier@npm:^3.1.1":
+"prettier@npm:3.2.4":
+  version: 3.2.4
+  resolution: "prettier@npm:3.2.4"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 88dfeb78ac6096522c9a5b81f1413d875f568420d9bb6a5e5103527912519b993f2bcdcac311fcff5718d5869671d44e4f85827d3626f3a6ce32b9abc65d88e0
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.1.1":
   version: 3.2.2
   resolution: "prettier@npm:3.2.2"
   bin:
@@ -23411,7 +23420,7 @@ __metadata:
     npm-run-all: "npm:^4.1.5"
     null-loader: "npm:^4.0.1"
     p5: "npm:^1.9.0"
-    prettier: "npm:3.2.2"
+    prettier: "npm:3.2.4"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-helmet: "npm:^6.1.0"
