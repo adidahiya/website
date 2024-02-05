@@ -1586,7 +1586,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:7.23.5, @babel/types@npm:^7.0.0, @babel/types@npm:^7.0.0-beta.49, @babel/types@npm:^7.16.8, @babel/types@npm:^7.20.7, @babel/types@npm:^7.22.15, @babel/types@npm:^7.22.19, @babel/types@npm:^7.22.5, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.4, @babel/types@npm:^7.23.5, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
+"@babel/types@npm:7.23.6":
+  version: 7.23.6
+  resolution: "@babel/types@npm:7.23.6"
+  dependencies:
+    "@babel/helper-string-parser": "npm:^7.23.4"
+    "@babel/helper-validator-identifier": "npm:^7.22.20"
+    to-fast-properties: "npm:^2.0.0"
+  checksum: 42cefce8a68bd09bb5828b4764aa5586c53c60128ac2ac012e23858e1c179347a4aac9c66fc577994fbf57595227611c5ec8270bf0cfc94ff033bbfac0550b70
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.0.0-beta.49, @babel/types@npm:^7.16.8, @babel/types@npm:^7.20.7, @babel/types@npm:^7.22.15, @babel/types@npm:^7.22.19, @babel/types@npm:^7.22.5, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.4, @babel/types@npm:^7.23.5, @babel/types@npm:^7.4.4, @babel/types@npm:^7.8.3":
   version: 7.23.5
   resolution: "@babel/types@npm:7.23.5"
   dependencies:
@@ -1892,23 +1903,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/android-arm64@npm:0.19.9"
-  conditions: os=android & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@esbuild/android-arm@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/android-arm@npm:0.19.11"
-  conditions: os=android & cpu=arm
-  languageName: node
-  linkType: hard
-
-"@esbuild/android-arm@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/android-arm@npm:0.19.9"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
@@ -1920,23 +1917,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/android-x64@npm:0.19.9"
-  conditions: os=android & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/darwin-arm64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/darwin-arm64@npm:0.19.11"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/darwin-arm64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/darwin-arm64@npm:0.19.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -1948,23 +1931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/darwin-x64@npm:0.19.9"
-  conditions: os=darwin & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/freebsd-arm64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/freebsd-arm64@npm:0.19.11"
-  conditions: os=freebsd & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/freebsd-arm64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/freebsd-arm64@npm:0.19.9"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -1976,23 +1945,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/freebsd-x64@npm:0.19.9"
-  conditions: os=freebsd & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-arm64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/linux-arm64@npm:0.19.11"
-  conditions: os=linux & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-arm64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-arm64@npm:0.19.9"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -2004,23 +1959,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-arm@npm:0.19.9"
-  conditions: os=linux & cpu=arm
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-ia32@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/linux-ia32@npm:0.19.11"
-  conditions: os=linux & cpu=ia32
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-ia32@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-ia32@npm:0.19.9"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
@@ -2032,23 +1973,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-loong64@npm:0.19.9"
-  conditions: os=linux & cpu=loong64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-mips64el@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/linux-mips64el@npm:0.19.11"
-  conditions: os=linux & cpu=mips64el
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-mips64el@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-mips64el@npm:0.19.9"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
@@ -2060,23 +1987,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-ppc64@npm:0.19.9"
-  conditions: os=linux & cpu=ppc64
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-riscv64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/linux-riscv64@npm:0.19.11"
-  conditions: os=linux & cpu=riscv64
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-riscv64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-riscv64@npm:0.19.9"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
@@ -2088,23 +2001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-s390x@npm:0.19.9"
-  conditions: os=linux & cpu=s390x
-  languageName: node
-  linkType: hard
-
 "@esbuild/linux-x64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/linux-x64@npm:0.19.11"
-  conditions: os=linux & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@esbuild/linux-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/linux-x64@npm:0.19.9"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -2116,23 +2015,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/netbsd-x64@npm:0.19.9"
-  conditions: os=netbsd & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/openbsd-x64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/openbsd-x64@npm:0.19.11"
-  conditions: os=openbsd & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@esbuild/openbsd-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/openbsd-x64@npm:0.19.9"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -2144,23 +2029,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/sunos-x64@npm:0.19.9"
-  conditions: os=sunos & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@esbuild/win32-arm64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/win32-arm64@npm:0.19.11"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@esbuild/win32-arm64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/win32-arm64@npm:0.19.9"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -2172,23 +2043,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/win32-ia32@npm:0.19.9"
-  conditions: os=win32 & cpu=ia32
-  languageName: node
-  linkType: hard
-
 "@esbuild/win32-x64@npm:0.19.11":
   version: 0.19.11
   resolution: "@esbuild/win32-x64@npm:0.19.11"
-  conditions: os=win32 & cpu=x64
-  languageName: node
-  linkType: hard
-
-"@esbuild/win32-x64@npm:0.19.9":
-  version: 0.19.9
-  resolution: "@esbuild/win32-x64@npm:0.19.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2974,9 +2831,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/build-info@npm:7.11.5":
-  version: 7.11.5
-  resolution: "@netlify/build-info@npm:7.11.5"
+"@netlify/build-info@npm:7.12.0":
+  version: 7.12.0
+  resolution: "@netlify/build-info@npm:7.12.0"
   dependencies:
     "@bugsnag/js": "npm:^7.20.0"
     dot-prop: "npm:^7.2.0"
@@ -2989,26 +2846,26 @@ __metadata:
     yargs: "npm:^17.6.0"
   bin:
     build-info: bin.js
-  checksum: 9b610f396f2604591f3b3286b022b78392a25d26ee2ba4c016e8bad36f61aec4518963830975312395746c114842f98659adf976f1913df67cebada065502712
+  checksum: d6c831a9746d95f9e738d6b219ed898f3096c8be57b7bb387175912aa450d3efc9f43e234ac55b656be2dbb513cdb52c93d93ed03038dd98065819ff79546ece
   languageName: node
   linkType: hard
 
-"@netlify/build@npm:29.32.1":
-  version: 29.32.1
-  resolution: "@netlify/build@npm:29.32.1"
+"@netlify/build@npm:29.33.4":
+  version: 29.33.4
+  resolution: "@netlify/build@npm:29.33.4"
   dependencies:
     "@bugsnag/js": "npm:^7.0.0"
     "@netlify/blobs": "npm:^6.4.2"
     "@netlify/cache-utils": "npm:^5.1.5"
-    "@netlify/config": "npm:^20.10.2"
-    "@netlify/edge-bundler": "npm:11.2.0"
+    "@netlify/config": "npm:^20.10.3"
+    "@netlify/edge-bundler": "npm:11.2.2"
     "@netlify/framework-info": "npm:^9.8.10"
-    "@netlify/functions-utils": "npm:^5.2.46"
+    "@netlify/functions-utils": "npm:^5.2.49"
     "@netlify/git-utils": "npm:^5.1.1"
     "@netlify/opentelemetry-utils": "npm:^1.0.1"
     "@netlify/plugins-list": "npm:^6.73.0"
     "@netlify/run-utils": "npm:^5.1.1"
-    "@netlify/zip-it-and-ship-it": "npm:9.28.2"
+    "@netlify/zip-it-and-ship-it": "npm:9.29.0"
     "@opentelemetry/api": "npm:~1.6.0"
     "@sindresorhus/slugify": "npm:^2.0.0"
     ansi-escapes: "npm:^6.0.0"
@@ -3062,7 +2919,7 @@ __metadata:
       optional: true
   bin:
     netlify-build: bin.js
-  checksum: 5d6c52c4ae6c4ceaa2743e7e65d5744feedb82f3ffd8754295bb1cbd535b57467c606583a073f4a2b9b4f5abc17b4cccdde53bb7ec1ed297d135a7c6574f1b58
+  checksum: ae0478acc0264a528475758ca6d91a6296567914795adaed45147186202de6c5d021044ee4060bf8b032d6f216fd55710e349c91f6cae3c337fbed2e67a97dc3
   languageName: node
   linkType: hard
 
@@ -3082,9 +2939,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/config@npm:20.10.2, @netlify/config@npm:^20.10.2":
-  version: 20.10.2
-  resolution: "@netlify/config@npm:20.10.2"
+"@netlify/config@npm:20.10.3":
+  version: 20.10.3
+  resolution: "@netlify/config@npm:20.10.3"
   dependencies:
     chalk: "npm:^5.0.0"
     cron-parser: "npm:^4.1.0"
@@ -3099,7 +2956,7 @@ __metadata:
     is-plain-obj: "npm:^4.0.0"
     js-yaml: "npm:^4.0.0"
     map-obj: "npm:^5.0.0"
-    netlify: "npm:^13.1.13"
+    netlify: "npm:^13.1.14"
     netlify-headers-parser: "npm:^7.1.3"
     netlify-redirect-parser: "npm:^14.2.1"
     node-fetch: "npm:^3.3.1"
@@ -3112,13 +2969,47 @@ __metadata:
     yargs: "npm:^17.6.0"
   bin:
     netlify-config: bin.js
-  checksum: 9b96402bacc0817b54f005100ecd2a6771d93dfbbc00efea96d726cbb51b9092b24d4c5f53eae1cfdb7dfb59bc420d59992c274754290af57d146bf620a0278b
+  checksum: 4f425ee4a9d93238981ee369300493d2af2fe14dff073eca8e5960c7776e044ed31f62d317d854ae756325a8e63618e6ab56c19beb0655bbd40fd9642b0ec4e8
   languageName: node
   linkType: hard
 
-"@netlify/edge-bundler@npm:11.2.0":
-  version: 11.2.0
-  resolution: "@netlify/edge-bundler@npm:11.2.0"
+"@netlify/config@npm:^20.10.3":
+  version: 20.11.0
+  resolution: "@netlify/config@npm:20.11.0"
+  dependencies:
+    chalk: "npm:^5.0.0"
+    cron-parser: "npm:^4.1.0"
+    deepmerge: "npm:^4.2.2"
+    dot-prop: "npm:^7.0.0"
+    execa: "npm:^6.0.0"
+    fast-safe-stringify: "npm:^2.0.7"
+    figures: "npm:^5.0.0"
+    filter-obj: "npm:^5.0.0"
+    find-up: "npm:^6.0.0"
+    indent-string: "npm:^5.0.0"
+    is-plain-obj: "npm:^4.0.0"
+    js-yaml: "npm:^4.0.0"
+    map-obj: "npm:^5.0.0"
+    netlify: "npm:^13.1.14"
+    netlify-headers-parser: "npm:^7.1.3"
+    netlify-redirect-parser: "npm:^14.2.1"
+    node-fetch: "npm:^3.3.1"
+    omit.js: "npm:^2.0.2"
+    p-locate: "npm:^6.0.0"
+    path-type: "npm:^5.0.0"
+    toml: "npm:^3.0.0"
+    tomlify-j0.4: "npm:^3.0.0"
+    validate-npm-package-name: "npm:^4.0.0"
+    yargs: "npm:^17.6.0"
+  bin:
+    netlify-config: bin.js
+  checksum: dbdf3efe8c19f3639c31d495489274e2565d5f7e1aae01625167af7d6b26cd8c13dc29d6b1976cb19301d26ceaa4a8f945480b34d1406472d5a7f0406a34c81c
+  languageName: node
+  linkType: hard
+
+"@netlify/edge-bundler@npm:11.2.2":
+  version: 11.2.2
+  resolution: "@netlify/edge-bundler@npm:11.2.2"
   dependencies:
     "@import-maps/resolve": "npm:^1.0.1"
     "@vercel/nft": "npm:^0.26.0"
@@ -3144,7 +3035,7 @@ __metadata:
     tmp-promise: "npm:^3.0.3"
     urlpattern-polyfill: "npm:8.0.2"
     uuid: "npm:^9.0.0"
-  checksum: 221517f457f2f3ff9ad0ed85f32c731616a0ad2cb2f1857fd7d21cea6639cd2b6dbe8e5ef29b3a15fba522cb2764e906d3adf6625856cb6376a34d9ef2fcbb77
+  checksum: 479e1454e8d3316fb17684e4e63f45c189dbb2c0eeb8555f2d92f092eb59e08526d394baa9908a20a86aa0a5369c5722066a9b24f9c645b8c4dc335845a65105
   languageName: node
   linkType: hard
 
@@ -3166,14 +3057,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/functions-utils@npm:^5.2.46":
-  version: 5.2.46
-  resolution: "@netlify/functions-utils@npm:5.2.46"
+"@netlify/functions-utils@npm:^5.2.49":
+  version: 5.2.49
+  resolution: "@netlify/functions-utils@npm:5.2.49"
   dependencies:
-    "@netlify/zip-it-and-ship-it": "npm:9.28.2"
+    "@netlify/zip-it-and-ship-it": "npm:9.29.0"
     cpy: "npm:^9.0.0"
     path-exists: "npm:^5.0.0"
-  checksum: 4c75620626090edd1826d8bcc5c1af6f8191d5086c8d84c393e8fd93e5fcb93d82c75a60c332e436c31a2a01b44e3bf2fc494d188cb4f3df2fce34dba6621d2b
+  checksum: 99940788bb8e5b26cb3ec08f5a550e7c97f5ae04be08ebe53d3ceb4bf21d825eceb6be9fee5caa396d128644231e03f9b116ae06fce12c887fcf0eef3ed97cec
   languageName: node
   linkType: hard
 
@@ -3350,10 +3241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/open-api@npm:^2.26.1":
-  version: 2.26.1
-  resolution: "@netlify/open-api@npm:2.26.1"
-  checksum: d20aa454be0cb0ec10b2db3ddf9d058724c2a51b59cd3a968c6fc61c04ebcf7aaf07e174a6802b41942a12ae038d2e9574cbd399c70477881cff06b62d78b0c2
+"@netlify/open-api@npm:^2.28.0":
+  version: 2.28.0
+  resolution: "@netlify/open-api@npm:2.28.0"
+  checksum: 626b8bd583c339d4239079ff482c91d83f0123a8fb28cc67e2ace6f400c711746d9b637d7b1feb9b7739a9159aad0a6e250ca1155c654e4f4cc2546a3d41f8be
   languageName: node
   linkType: hard
 
@@ -3382,30 +3273,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/serverless-functions-api@npm:^1.13.0":
-  version: 1.13.0
-  resolution: "@netlify/serverless-functions-api@npm:1.13.0"
+"@netlify/serverless-functions-api@npm:^1.13.1":
+  version: 1.13.1
+  resolution: "@netlify/serverless-functions-api@npm:1.13.1"
   dependencies:
     "@netlify/node-cookies": "npm:^0.1.0"
     urlpattern-polyfill: "npm:8.0.2"
-  checksum: 2a2c08d925eed05d59db8f645b5ce31aba7984769136df55bf2bc7e9fd5b8af4753f41a4e7bd672af5a75b130f923155f17d62c14f18917e3aa416f1685968f4
+  checksum: d8bd2be9c29e9a9941a127574cbed8cc2fa245e3143d2d3065ea44e022c9beaf83bb543126c6168217f9b923ec460ca9e388af67523c08af9dad2ac7b637aeb8
   languageName: node
   linkType: hard
 
-"@netlify/zip-it-and-ship-it@npm:9.28.2":
-  version: 9.28.2
-  resolution: "@netlify/zip-it-and-ship-it@npm:9.28.2"
+"@netlify/zip-it-and-ship-it@npm:9.29.0":
+  version: 9.29.0
+  resolution: "@netlify/zip-it-and-ship-it@npm:9.29.0"
   dependencies:
     "@babel/parser": "npm:^7.22.5"
-    "@babel/types": "npm:7.23.5"
+    "@babel/types": "npm:7.23.6"
     "@netlify/binary-info": "npm:^1.0.0"
-    "@netlify/serverless-functions-api": "npm:^1.13.0"
+    "@netlify/serverless-functions-api": "npm:^1.13.1"
     "@vercel/nft": "npm:^0.23.0"
     archiver: "npm:^6.0.0"
     common-path-prefix: "npm:^3.0.0"
     cp-file: "npm:^10.0.0"
     es-module-lexer: "npm:^1.0.0"
-    esbuild: "npm:0.19.9"
+    esbuild: "npm:0.19.11"
     execa: "npm:^6.0.0"
     fast-glob: "npm:^3.3.2"
     filter-obj: "npm:^5.0.0"
@@ -3431,7 +3322,7 @@ __metadata:
     yargs: "npm:^17.0.0"
   bin:
     zip-it-and-ship-it: dist/bin.js
-  checksum: 8b545a813ad75c968987dd4bd35c1883bf72764e56cd3ab512905589e2b15bc12ea8536bac438ba2a454e5d74b12f1b7c301bb42c4a68c9160525b904b9ae25a
+  checksum: 8fffec70cad80366015cc117466f2f5ce8c3dc5dc822e9d7804880029724aaad20d378256ce35f5dac4e060b099939501dd17da324443fc1bbf520c191b95593
   languageName: node
   linkType: hard
 
@@ -9848,83 +9739,6 @@ __metadata:
   bin:
     esbuild: bin/esbuild
   checksum: 0fd913124089e26d30ec30f73b94d4ef9607935251df3253f869106980a5d4c78aa517738c8746abe6e933262e91a77d31427ce468ed8fc7fe498a20f7f92fbc
-  languageName: node
-  linkType: hard
-
-"esbuild@npm:0.19.9":
-  version: 0.19.9
-  resolution: "esbuild@npm:0.19.9"
-  dependencies:
-    "@esbuild/android-arm": "npm:0.19.9"
-    "@esbuild/android-arm64": "npm:0.19.9"
-    "@esbuild/android-x64": "npm:0.19.9"
-    "@esbuild/darwin-arm64": "npm:0.19.9"
-    "@esbuild/darwin-x64": "npm:0.19.9"
-    "@esbuild/freebsd-arm64": "npm:0.19.9"
-    "@esbuild/freebsd-x64": "npm:0.19.9"
-    "@esbuild/linux-arm": "npm:0.19.9"
-    "@esbuild/linux-arm64": "npm:0.19.9"
-    "@esbuild/linux-ia32": "npm:0.19.9"
-    "@esbuild/linux-loong64": "npm:0.19.9"
-    "@esbuild/linux-mips64el": "npm:0.19.9"
-    "@esbuild/linux-ppc64": "npm:0.19.9"
-    "@esbuild/linux-riscv64": "npm:0.19.9"
-    "@esbuild/linux-s390x": "npm:0.19.9"
-    "@esbuild/linux-x64": "npm:0.19.9"
-    "@esbuild/netbsd-x64": "npm:0.19.9"
-    "@esbuild/openbsd-x64": "npm:0.19.9"
-    "@esbuild/sunos-x64": "npm:0.19.9"
-    "@esbuild/win32-arm64": "npm:0.19.9"
-    "@esbuild/win32-ia32": "npm:0.19.9"
-    "@esbuild/win32-x64": "npm:0.19.9"
-  dependenciesMeta:
-    "@esbuild/android-arm":
-      optional: true
-    "@esbuild/android-arm64":
-      optional: true
-    "@esbuild/android-x64":
-      optional: true
-    "@esbuild/darwin-arm64":
-      optional: true
-    "@esbuild/darwin-x64":
-      optional: true
-    "@esbuild/freebsd-arm64":
-      optional: true
-    "@esbuild/freebsd-x64":
-      optional: true
-    "@esbuild/linux-arm":
-      optional: true
-    "@esbuild/linux-arm64":
-      optional: true
-    "@esbuild/linux-ia32":
-      optional: true
-    "@esbuild/linux-loong64":
-      optional: true
-    "@esbuild/linux-mips64el":
-      optional: true
-    "@esbuild/linux-ppc64":
-      optional: true
-    "@esbuild/linux-riscv64":
-      optional: true
-    "@esbuild/linux-s390x":
-      optional: true
-    "@esbuild/linux-x64":
-      optional: true
-    "@esbuild/netbsd-x64":
-      optional: true
-    "@esbuild/openbsd-x64":
-      optional: true
-    "@esbuild/sunos-x64":
-      optional: true
-    "@esbuild/win32-arm64":
-      optional: true
-    "@esbuild/win32-ia32":
-      optional: true
-    "@esbuild/win32-x64":
-      optional: true
-  bin:
-    esbuild: bin/esbuild
-  checksum: 85cf167596f52ec5cde47ec27013d49f04e3052e6b00cd4534095cd74a776955040b03b326d54a9588921dc631f76b97ebda76b52bb5152f3ef4a45cfba81dca
   languageName: node
   linkType: hard
 
@@ -16597,19 +16411,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"netlify-cli@npm:^17.15.1":
-  version: 17.15.1
-  resolution: "netlify-cli@npm:17.15.1"
+"netlify-cli@npm:^17.15.7":
+  version: 17.15.7
+  resolution: "netlify-cli@npm:17.15.7"
   dependencies:
     "@bugsnag/js": "npm:7.20.2"
     "@fastify/static": "npm:6.10.2"
     "@netlify/blobs": "npm:6.4.2"
-    "@netlify/build": "npm:29.32.1"
-    "@netlify/build-info": "npm:7.11.5"
-    "@netlify/config": "npm:20.10.2"
-    "@netlify/edge-bundler": "npm:11.2.0"
+    "@netlify/build": "npm:29.33.4"
+    "@netlify/build-info": "npm:7.12.0"
+    "@netlify/config": "npm:20.10.3"
+    "@netlify/edge-bundler": "npm:11.2.2"
     "@netlify/local-functions-proxy": "npm:1.1.1"
-    "@netlify/zip-it-and-ship-it": "npm:9.28.2"
+    "@netlify/zip-it-and-ship-it": "npm:9.29.0"
     "@octokit/rest": "npm:19.0.13"
     ansi-escapes: "npm:6.2.0"
     ansi-styles: "npm:6.2.1"
@@ -16674,7 +16488,7 @@ __metadata:
     log-symbols: "npm:5.1.0"
     log-update: "npm:5.0.1"
     multiparty: "npm:4.2.3"
-    netlify: "npm:13.1.13"
+    netlify: "npm:13.1.14"
     netlify-headers-parser: "npm:7.1.3"
     netlify-redirect-parser: "npm:14.2.1"
     netlify-redirector: "npm:0.5.0"
@@ -16714,7 +16528,7 @@ __metadata:
   bin:
     netlify: bin/run.js
     ntl: bin/run.js
-  checksum: 1a51ae492da3119fd1241709cd6cf38d8e62e365821753ff53ebbdd207b691710b7d7b52fa40d781ac10d1a5afa7ceb4e08bb2ff936b8e095a1728906572fc3e
+  checksum: d7c2bb181d024e301678a4b3ae1e8f271a00d4e98160347857dfa05f23be1389b1433c70466ae91aa5b4077485b65236d2e6a52120b1596b58a1627f523b7f84
   languageName: node
   linkType: hard
 
@@ -16752,18 +16566,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"netlify@npm:13.1.13, netlify@npm:^13.1.13":
-  version: 13.1.13
-  resolution: "netlify@npm:13.1.13"
+"netlify@npm:13.1.14, netlify@npm:^13.1.14":
+  version: 13.1.14
+  resolution: "netlify@npm:13.1.14"
   dependencies:
-    "@netlify/open-api": "npm:^2.26.1"
+    "@netlify/open-api": "npm:^2.28.0"
     lodash-es: "npm:^4.17.21"
     micro-api-client: "npm:^3.3.0"
     node-fetch: "npm:^3.0.0"
     omit.js: "npm:^2.0.2"
     p-wait-for: "npm:^4.0.0"
     qs: "npm:^6.9.6"
-  checksum: 6ea99287b456fa43c21e24298a5fdbafa7f55ec718e4c3f7170a28a9adc26f2d132a03541c5367cc934aa3ddd45b3a180afb4ce896f11508eed1f011d08e55dc
+  checksum: 01276205c5914073558fa758ab975090aec04f576ee4cbaa7327458f04bd96b28191fee08ac68fae3ad9a34a42aa3764180743b5c66edb31633eff371bc5cd5d
   languageName: node
   linkType: hard
 
@@ -23521,7 +23335,7 @@ __metadata:
     gatsby-transformer-sharp: "npm:^5.13.0"
     ky: "npm:^1.2.0"
     lodash-es: "npm:^4.17.21"
-    netlify-cli: "npm:^17.15.1"
+    netlify-cli: "npm:^17.15.7"
     npm-run-all: "npm:^4.1.5"
     null-loader: "npm:^4.0.1"
     p5: "npm:^1.9.0"
