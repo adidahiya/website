@@ -14655,10 +14655,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ky@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "ky@npm:1.2.0"
-  checksum: 10c0/4bd9475c2f07e43c81eff1e4dd1d672f63869370b4ba741ca7060446bf4e2716f99801344dcae65f550c2a5eeac5221c65319571923666257efc7aa66d527268
+"ky@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "ky@npm:1.2.3"
+  checksum: 10c0/fdf8dd37211529d6ba21e2fc79690eb6ddaea9f778e1e6ffbd190839c6183aa13fcfb0a28ead60aa677531a2a4d406a8e976b3406ccb33524a499e3620232209
   languageName: node
   linkType: hard
 
@@ -23345,7 +23345,7 @@ __metadata:
     gatsby-source-filesystem: "npm:^5.13.1"
     gatsby-transformer-remark: "npm:^6.13.1"
     gatsby-transformer-sharp: "npm:^5.13.1"
-    ky: "npm:^1.2.0"
+    ky: "npm:^1.2.3"
     lodash-es: "npm:^4.17.21"
     netlify-cli: "npm:^17.16.3"
     npm-run-all: "npm:^4.1.5"
