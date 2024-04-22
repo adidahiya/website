@@ -4366,10 +4366,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dat.gui@npm:^0.7.12":
-  version: 0.7.12
-  resolution: "@types/dat.gui@npm:0.7.12"
-  checksum: 10c0/34fd1063f3a7be1e0dfe4da40ada9159814c04e456d133009018690f1fc4738732d3e80c9a4e8c862722bd82dcfd9fb3b9445f00857dc2846ededbbd6d5a4e62
+"@types/dat.gui@npm:^0.7.13":
+  version: 0.7.13
+  resolution: "@types/dat.gui@npm:0.7.13"
+  checksum: 10c0/070ab25cea25988d5a1b7550b1af2959039e1ca82a8a975c59ed553b4d68e775f62ba6fb9893bedddf44201d593792f615b2e840814977263843dfd7da818d08
   languageName: node
   linkType: hard
 
@@ -4582,12 +4582,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:^20.11.19":
+"@types/node@npm:*, @types/node@npm:>=10.0.0":
   version: 20.11.19
   resolution: "@types/node@npm:20.11.19"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/f451ef0a1d78f29c57bad7b77e49ebec945f2a6d0d7a89851d7e185ee9fe7ad94d651c0dfbcb7858c9fa791310c8b40a881e2260f56bd3c1b7e7ae92723373ae
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.12.7":
+  version: 20.12.7
+  resolution: "@types/node@npm:20.12.7"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10c0/dce80d63a3b91892b321af823d624995c61e39c6a223cc0ac481a44d337640cc46931d33efb3beeed75f5c85c3bda1d97cef4c5cd4ec333caf5dee59cff6eca0
   languageName: node
   linkType: hard
 
@@ -4642,12 +4651,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.2.19":
-  version: 18.2.19
-  resolution: "@types/react-dom@npm:18.2.19"
+"@types/react-dom@npm:^18.2.25":
+  version: 18.2.25
+  resolution: "@types/react-dom@npm:18.2.25"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10c0/88d7c6daa4659f661d0c97985d9fca492f24b421a34bb614dcd94c343aed7bea121463149e97fb01ecaa693be17b7d1542cf71ddb1705f3889a81eb2639a88aa
+  checksum: 10c0/87604407eca6884c5b4d4657cb511dc5ba28ea1cfa5d0ce1fc2d659a7ad1b64ae85dcda60e3f010641f9a52a6a60dfcaa6be3b0d0de9d624475052a13dae01f4
   languageName: node
   linkType: hard
 
@@ -4681,7 +4690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.56":
+"@types/react@npm:*":
   version: 18.2.56
   resolution: "@types/react@npm:18.2.56"
   dependencies:
@@ -4689,6 +4698,16 @@ __metadata:
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/a6dab9569799538a9e01d340a721ef1a6f5532bd11cae8d8ab9af00dab2edcafaa00950f7bf2f9ae5bbb1839d890e9ac6eb1ea1186200894b7178dde7b503269
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.79":
+  version: 18.2.79
+  resolution: "@types/react@npm:18.2.79"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/c8a8a005d8830a48cc1ef93c3510c4935a2a03e5557dbecaa8f1038450cbfcb18eb206fa7fba7077d54b8da21faeb25577e897a333392770a7797f625b62c78a
   languageName: node
   linkType: hard
 
@@ -23305,12 +23324,12 @@ __metadata:
     "@reach/router": "npm:^1.3.4"
     "@stayradiated/gatsby-remark-video": "npm:^2.4.0"
     "@types/chroma-js": "npm:^2.4.4"
-    "@types/dat.gui": "npm:^0.7.12"
+    "@types/dat.gui": "npm:^0.7.13"
     "@types/lodash-es": "npm:^4.17.12"
-    "@types/node": "npm:^20.11.19"
+    "@types/node": "npm:^20.12.7"
     "@types/reach__router": "npm:^1.3.15"
-    "@types/react": "npm:^18.2.56"
-    "@types/react-dom": "npm:^18.2.19"
+    "@types/react": "npm:^18.2.79"
+    "@types/react-dom": "npm:^18.2.25"
     "@types/react-helmet": "npm:^6.1.11"
     "@types/react-router-dom": "npm:^5.3.3"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.1"
