@@ -17282,6 +17282,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-addon-api@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "node-addon-api@npm:8.0.0"
+  dependencies:
+    node-gyp: "npm:latest"
+  checksum: 10c0/20eb231362cc07c62d9839164473744d985be5d82685214f3750d990d9f61ef366e0ba112a766c925d640ed29b2a500b83568e895dc2444dcd5db01e615aac2b
+  languageName: node
+  linkType: hard
+
 "node-domexception@npm:^1.0.0":
   version: 1.0.0
   resolution: "node-domexception@npm:1.0.0"
@@ -23830,6 +23839,7 @@ __metadata:
     ky: "npm:^1.2.0"
     lodash-es: "npm:^4.17.21"
     netlify-cli: "npm:^17.29.0"
+    node-addon-api: "npm:^8.0.0"
     npm-run-all: "npm:^4.1.5"
     null-loader: "npm:^4.0.1"
     p5: "npm:^1.9.0"
