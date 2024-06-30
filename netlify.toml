@@ -1,3 +1,6 @@
 [build]
     functions = "./functions"
     environment = { NODE_VERSION = "20" }
+[build.environment]
+    YARN_VERSION = "4.1.0"
+    YARN_FLAGS = "--no-ignore-optional"
