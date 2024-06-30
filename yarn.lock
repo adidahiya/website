@@ -1548,12 +1548,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
-  version: 7.23.5
-  resolution: "@babel/runtime@npm:7.23.5"
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.24.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+  version: 7.24.7
+  resolution: "@babel/runtime@npm:7.24.7"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
-  checksum: 10c0/ca679cc91bb7e424bc2db87bb58cc3b06ade916b9adb21fbbdc43e54cdaacb3eea201ceba2a0464b11d2eb65b9fe6a6ffcf4d7521fa52994f19be96f1af14788
+  checksum: 10c0/b6fa3ec61a53402f3c1d75f4d808f48b35e0dfae0ec8e2bb5c6fc79fb95935da75766e0ca534d0f1c84871f6ae0d2ebdd950727cfadb745a2cdbef13faef5513
   languageName: node
   linkType: hard
 
@@ -1597,21 +1597,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/colors@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@blueprintjs/colors@npm:5.1.0"
+"@blueprintjs/colors@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@blueprintjs/colors@npm:5.1.1"
   dependencies:
     tslib: "npm:~2.6.2"
-  checksum: 10c0/0509ee0b0ea1b44910575bb8abf129096fc8bd4ce7e65d86896319624d66e60966779dcef1dc3d5254e2836a11d253794b33e095a748f47675cb079feae1446a
+  checksum: 10c0/213c00ddc8720896451ec41de5e339e9f3acee9f3657e83f71daa4277a7bb7facb3fd96ef0b8793fcbac860731d662ee8a60528a161742c604ad4d2fe25872ba
   languageName: node
   linkType: hard
 
-"@blueprintjs/core@npm:^5.9.1":
-  version: 5.9.1
-  resolution: "@blueprintjs/core@npm:5.9.1"
+"@blueprintjs/core@npm:^5.10.4":
+  version: 5.10.4
+  resolution: "@blueprintjs/core@npm:5.10.4"
   dependencies:
-    "@blueprintjs/colors": "npm:^5.1.0"
-    "@blueprintjs/icons": "npm:^5.7.1"
+    "@blueprintjs/colors": "npm:^5.1.1"
+    "@blueprintjs/icons": "npm:^5.10.0"
     "@popperjs/core": "npm:^2.11.8"
     classnames: "npm:^2.3.1"
     normalize.css: "npm:^8.0.1"
@@ -1630,7 +1630,7 @@ __metadata:
   bin:
     upgrade-blueprint-2.0.0-rename: scripts/upgrade-blueprint-2.0.0-rename.sh
     upgrade-blueprint-3.0.0-rename: scripts/upgrade-blueprint-3.0.0-rename.sh
-  checksum: 10c0/d0916ac1b5e16f15947f4cd27ecbaa7627a8301e11fcac91aca94acf0142991534dbe6f34be7424614db70dd479504876e727a2350bf7d8e3a40da474227b4b8
+  checksum: 10c0/3c136e0167adc32442368d0a12dbb7cf57ad5dfa07715bd8280df45d0357380bb9368325073ae7560d3edaf5e6c687496a51e500d13e8e10d406f7329ec64b78
   languageName: node
   linkType: hard
 
@@ -1669,9 +1669,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/icons@npm:^5.7.1":
-  version: 5.7.1
-  resolution: "@blueprintjs/icons@npm:5.7.1"
+"@blueprintjs/icons@npm:^5.10.0":
+  version: 5.10.0
+  resolution: "@blueprintjs/icons@npm:5.10.0"
   dependencies:
     change-case: "npm:^4.1.2"
     classnames: "npm:^2.3.1"
@@ -1683,7 +1683,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/7458122f8627e588254d1f415c61ba706dcd744a06387ad0c659a8f9c7ba4fd8bc78a60226aea2d1b387a2e97f5e73ba46ed1a778bfbe059e27d4ad94556a177
+  checksum: 10c0/6de8ca760bd39ab79ac6217305ed54f389a40a761eb6a29a1f3079a76c99b6274572107567da7c277bdd1d4d5188a7e10f20c907770e25d17de8c1b9c8d94c9a
   languageName: node
   linkType: hard
 
@@ -6787,13 +6787,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"automation-events@npm:^6.0.13":
-  version: 6.0.13
-  resolution: "automation-events@npm:6.0.13"
+"automation-events@npm:^7.0.5":
+  version: 7.0.5
+  resolution: "automation-events@npm:7.0.5"
   dependencies:
-    "@babel/runtime": "npm:^7.23.5"
+    "@babel/runtime": "npm:^7.24.5"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/4d1f97596e0ec28cc02165de8ce3cf068288b4009740abe46382e3720a71242c695598ffd9c9e733598ba17c87f77452f0fa8dd37b34127398d897638f098a8a
+  checksum: 10c0/fc7ef47262275caff5c3d8af305a573ed596d01efb6fb8869b8a2a1db20d9abb80dc2338bcd11f647d60e993978884328ae98164fc7e4dd4378aea39994e2b61
   languageName: node
   linkType: hard
 
@@ -17840,10 +17840,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p5@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "p5@npm:1.9.0"
-  checksum: 10c0/e2bed00c38aa2719c639ef4491c53800fea77024db7d3764f0db67d16d8236becfa59840f806bd0a9944a256e28c9a5f9ac790f15659461c9d3650446fbee9c7
+"p5@npm:^1.9.4":
+  version: 1.9.4
+  resolution: "p5@npm:1.9.4"
+  checksum: 10c0/ce874b7b3b73ff0028f7a2ccd6d38c09850dd2312e29e0cdbfeb920213ba68928839b303d40107c84ceff7a857c284cd7edb674add0fd1af31de063875d7b241
   languageName: node
   linkType: hard
 
@@ -21103,14 +21103,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"standardized-audio-context@npm:^25.3.29":
-  version: 25.3.60
-  resolution: "standardized-audio-context@npm:25.3.60"
+"standardized-audio-context@npm:^25.3.70":
+  version: 25.3.72
+  resolution: "standardized-audio-context@npm:25.3.72"
   dependencies:
-    "@babel/runtime": "npm:^7.23.5"
-    automation-events: "npm:^6.0.13"
+    "@babel/runtime": "npm:^7.24.5"
+    automation-events: "npm:^7.0.5"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/7994fe5e0f32007f8a04b1bd8f53082bb811fe9d7479fd26c8b4a73b658887b873d5c2f7f6e9a58ddd17d7040bab2606530c4b763e002b1a42106df54eba0b2d
+  checksum: 10c0/a1d65fcfba014302f5cfdbff7af63f8958175215d49d4783b6a1919a6775e1897e6a3fd190ad656dba1dcb43b123c72215e089eee800f10e25895995ca3eb841
   languageName: node
   linkType: hard
 
@@ -22105,13 +22105,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tone@npm:^14.8.49":
-  version: 14.8.49
-  resolution: "tone@npm:14.8.49"
+"tone@npm:^14.9.17":
+  version: 14.9.17
+  resolution: "tone@npm:14.9.17"
   dependencies:
-    standardized-audio-context: "npm:^25.3.29"
+    standardized-audio-context: "npm:^25.3.70"
     tslib: "npm:^2.3.1"
-  checksum: 10c0/08b1b9b9ff15f214be25511ecbddf9d3bfea3496b77bbb3ad6bdad9c2b3ba0397233024a6744664f2b17736dad1e5d8be5aad632cd1ebe4d5813e496026fcecf
+  checksum: 10c0/81ef07af0c4f3f365c3fe4e1f0feb207f586bcb9ffde428527c49d68928abde10834fbadc19baacccb15cede24bc1c6f7b98841d548d7f4efdb44f7d7a5b03d8
   languageName: node
   linkType: hard
 
@@ -23380,10 +23380,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "website@workspace:."
   dependencies:
-    "@blueprintjs/core": "npm:^5.9.1"
+    "@blueprintjs/core": "npm:^5.10.4"
     "@blueprintjs/eslint-config": "npm:^6.0.1"
     "@blueprintjs/eslint-plugin": "npm:^6.1.1"
-    "@blueprintjs/icons": "npm:^5.7.1"
+    "@blueprintjs/icons": "npm:^5.10.0"
     "@blueprintjs/node-build-scripts": "npm:^9.2.0"
     "@gatsbyjs/reach-router": "npm:^2.0.1"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.11"
@@ -23437,7 +23437,7 @@ __metadata:
     node-addon-api: "npm:^8.0.0"
     npm-run-all: "npm:^4.1.5"
     null-loader: "npm:^4.0.1"
-    p5: "npm:^1.9.0"
+    p5: "npm:^1.9.4"
     prettier: "npm:3.2.5"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -23445,7 +23445,7 @@ __metadata:
     react-refresh: "npm:^0.14.0"
     react-typography: "npm:^0.16.23"
     spotify-web-api-js: "npm:^1.5.2"
-    tone: "npm:^14.8.49"
+    tone: "npm:^14.9.17"
     tslib: "npm:~2.6.2"
     tslint: "npm:^6.1.3"
     twilio: "npm:^4.22.0"
