@@ -1,4 +1,7 @@
+const netlifyAdapter = require("gatsby-adapter-netlify");
+
 module.exports = {
+    adapter: netlifyAdapter(),
     siteMetadata: {
         title: "adi.pizza",
     },

@@ -3224,6 +3224,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@netlify/config@npm:^20.10.0":
+  version: 20.16.0
+  resolution: "@netlify/config@npm:20.16.0"
+  dependencies:
+    "@iarna/toml": "npm:^2.2.5"
+    chalk: "npm:^5.0.0"
+    cron-parser: "npm:^4.1.0"
+    deepmerge: "npm:^4.2.2"
+    dot-prop: "npm:^7.0.0"
+    execa: "npm:^6.0.0"
+    fast-safe-stringify: "npm:^2.0.7"
+    figures: "npm:^5.0.0"
+    filter-obj: "npm:^5.0.0"
+    find-up: "npm:^6.0.0"
+    indent-string: "npm:^5.0.0"
+    is-plain-obj: "npm:^4.0.0"
+    js-yaml: "npm:^4.0.0"
+    map-obj: "npm:^5.0.0"
+    netlify: "npm:^13.1.20"
+    netlify-headers-parser: "npm:^7.1.4"
+    netlify-redirect-parser: "npm:^14.3.0"
+    node-fetch: "npm:^3.3.1"
+    omit.js: "npm:^2.0.2"
+    p-locate: "npm:^6.0.0"
+    path-type: "npm:^5.0.0"
+    tomlify-j0.4: "npm:^3.0.0"
+    validate-npm-package-name: "npm:^4.0.0"
+    yargs: "npm:^17.6.0"
+  bin:
+    netlify-config: bin.js
+  checksum: 10c0/901f54a2d9f34d5c643df2c71344d3a88ffa233400c639a384c1ae9c2340b52491d2d399c18c844f9807cd21eea446860d4b0bfec8497e30e65025eaa637cffd
+  languageName: node
+  linkType: hard
+
 "@netlify/edge-bundler@npm:12.0.1":
   version: 12.0.1
   resolution: "@netlify/edge-bundler@npm:12.0.1"
@@ -3288,6 +3322,15 @@ __metadata:
     cpy: "npm:^9.0.0"
     path-exists: "npm:^5.0.0"
   checksum: 10c0/36cf2313854078b662fc6fa35e922615b37a726d988b38b605a025ad4cadc677e4d6749b404d9af3998e7211f291280c0797bc782f12d5e89eb045da94f3325c
+  languageName: node
+  linkType: hard
+
+"@netlify/functions@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@netlify/functions@npm:1.6.0"
+  dependencies:
+    is-promise: "npm:^4.0.0"
+  checksum: 10c0/cdff462e92c49eef6260bb60eabc8f18f8d558126105f9383b26c6c795f04e5c2bd9fbc1de7406bf1059855e356ae788bc13fb0e80195546331c404864135462
   languageName: node
   linkType: hard
 
@@ -3464,7 +3507,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/open-api@npm:^2.33.0":
+"@netlify/open-api@npm:^2.33.0, @netlify/open-api@npm:^2.33.1":
   version: 2.33.1
   resolution: "@netlify/open-api@npm:2.33.1"
   checksum: 10c0/0bd583d1bd01e937c8bb6398db8b389f677ef5558c3e8a9ba64fa58aa414aeac80ed5da03ca9353f6b86512b491540f1692f1929f6ac85f05a24f181f69253eb
@@ -12118,6 +12161,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-adapter-netlify@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "gatsby-adapter-netlify@npm:1.1.6"
+  dependencies:
+    "@babel/runtime": "npm:^7.20.13"
+    "@netlify/cache-utils": "npm:^5.1.5"
+    "@netlify/config": "npm:^20.10.0"
+    "@netlify/functions": "npm:^1.6.0"
+    cookie: "npm:^0.5.0"
+    fastq: "npm:^1.15.0"
+    fs-extra: "npm:^11.1.1"
+    gatsby-core-utils: "npm:^4.13.1"
+  peerDependencies:
+    gatsby: ^5.10.0-alpha
+  checksum: 10c0/1f7495136c47478dc24b7c67a5810193cc15bb71479b4679f22be30f7ad86ee20dc8e5703f3b21ebbab6538ea178224e858dbdc3a0e2b3029fafa88178209c4e
+  languageName: node
+  linkType: hard
+
 "gatsby-cli@npm:^5.13.2":
   version: 5.13.2
   resolution: "gatsby-cli@npm:5.13.2"
@@ -14616,6 +14677,13 @@ __metadata:
   version: 2.2.2
   resolution: "is-promise@npm:2.2.2"
   checksum: 10c0/2dba959812380e45b3df0fb12e7cb4d4528c989c7abb03ececb1d1fd6ab1cbfee956ca9daa587b9db1d8ac3c1e5738cf217bdb3dfd99df8c691be4c00ae09069
+  languageName: node
+  linkType: hard
+
+"is-promise@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "is-promise@npm:4.0.0"
+  checksum: 10c0/ebd5c672d73db781ab33ccb155fb9969d6028e37414d609b115cc534654c91ccd061821d5b987eefaa97cf4c62f0b909bb2f04db88306de26e91bfe8ddc01503
   languageName: node
   linkType: hard
 
@@ -17212,6 +17280,21 @@ __metadata:
     p-wait-for: "npm:^4.0.0"
     qs: "npm:^6.9.6"
   checksum: 10c0/038ed78fbdcf2c8d3f90f4146708ec047269dcfcfd19d0f12f4acc9fcc7f2599187a03c83f05b101c2369b691db046afcf180ca624fb2513cdfe7222201394b2
+  languageName: node
+  linkType: hard
+
+"netlify@npm:^13.1.20":
+  version: 13.1.20
+  resolution: "netlify@npm:13.1.20"
+  dependencies:
+    "@netlify/open-api": "npm:^2.33.1"
+    lodash-es: "npm:^4.17.21"
+    micro-api-client: "npm:^3.3.0"
+    node-fetch: "npm:^3.0.0"
+    omit.js: "npm:^2.0.2"
+    p-wait-for: "npm:^4.0.0"
+    qs: "npm:^6.9.6"
+  checksum: 10c0/96548ef38dfb4ec4f47536fc1b63afb10c52148aee80ee0597c8141a7e78c53ed8d3adc2b5ccf31c84481975ef3fd67b62df27094bd3b0fb5740f14a60d5e3aa
   languageName: node
   linkType: hard
 
@@ -23821,6 +23904,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.33.2"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     gatsby: "npm:^5.13.3"
+    gatsby-adapter-netlify: "npm:^1.1.6"
     gatsby-link: "npm:^5.13.1"
     gatsby-plugin-catch-links: "npm:^5.13.1"
     gatsby-plugin-google-gtag: "npm:^5.13.1"
