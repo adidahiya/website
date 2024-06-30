@@ -3,4 +3,3 @@
 [build.environment]
     NODE_VERSION = "20"
     YARN_VERSION = "4.1.0"
-    YARN_FLAGS = "--no-ignore-optional"
