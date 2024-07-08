@@ -1606,9 +1606,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/core@npm:^5.10.4":
-  version: 5.10.4
-  resolution: "@blueprintjs/core@npm:5.10.4"
+"@blueprintjs/core@npm:^5.10.5":
+  version: 5.10.5
+  resolution: "@blueprintjs/core@npm:5.10.5"
   dependencies:
     "@blueprintjs/colors": "npm:^5.1.1"
     "@blueprintjs/icons": "npm:^5.10.0"
@@ -1630,7 +1630,7 @@ __metadata:
   bin:
     upgrade-blueprint-2.0.0-rename: scripts/upgrade-blueprint-2.0.0-rename.sh
     upgrade-blueprint-3.0.0-rename: scripts/upgrade-blueprint-3.0.0-rename.sh
-  checksum: 10c0/3c136e0167adc32442368d0a12dbb7cf57ad5dfa07715bd8280df45d0357380bb9368325073ae7560d3edaf5e6c687496a51e500d13e8e10d406f7329ec64b78
+  checksum: 10c0/e0994709bf1c155209e439e9828541961601a8a8076752d59d4333c983afed529f929bae41a922b9a286c8e678303a96056fb63edd7cb5b7d577f3ccd2575c73
   languageName: node
   linkType: hard
 
@@ -23158,7 +23158,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "website@workspace:."
   dependencies:
-    "@blueprintjs/core": "npm:^5.10.4"
+    "@blueprintjs/core": "npm:^5.10.5"
     "@blueprintjs/eslint-config": "npm:^6.0.2"
     "@blueprintjs/eslint-plugin": "npm:^6.1.2"
     "@blueprintjs/icons": "npm:^5.10.0"
