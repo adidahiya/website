@@ -11736,9 +11736,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-adapter-netlify@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "gatsby-adapter-netlify@npm:1.1.6"
+"gatsby-adapter-netlify@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "gatsby-adapter-netlify@npm:1.1.7"
   dependencies:
     "@babel/runtime": "npm:^7.20.13"
     "@netlify/cache-utils": "npm:^5.1.5"
@@ -11750,7 +11750,7 @@ __metadata:
     gatsby-core-utils: "npm:^4.13.1"
   peerDependencies:
     gatsby: ^5.10.0-alpha
-  checksum: 10c0/1f7495136c47478dc24b7c67a5810193cc15bb71479b4679f22be30f7ad86ee20dc8e5703f3b21ebbab6538ea178224e858dbdc3a0e2b3029fafa88178209c4e
+  checksum: 10c0/08bb073fc2bdc43fb1a01c944e64cd825d35319bcf0ed0d9798ff3c5f656f8243b69a0fe94922d5426bdae1e27d9ebb5629914eff79f9b68e977399dec2dfb00
   languageName: node
   linkType: hard
 
@@ -12252,9 +12252,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^5.13.6":
-  version: 5.13.6
-  resolution: "gatsby@npm:5.13.6"
+"gatsby@npm:^5.13.7":
+  version: 5.13.7
+  resolution: "gatsby@npm:5.13.7"
   dependencies:
     "@babel/code-frame": "npm:^7.18.6"
     "@babel/core": "npm:^7.20.12"
@@ -12432,7 +12432,7 @@ __metadata:
       optional: true
   bin:
     gatsby: ./cli.js
-  checksum: 10c0/3790121391201edf68285a120bd48625c4f878d03fcff76e9f3badca2902c093dbae56032bc0d0bc82427682c66274ade283eafc537946a6e783943f0d6272d9
+  checksum: 10c0/8e5a206e2d2b035e68aaece92e76785a8034256cf778812c0b13f1d2fa6b96652fba225abe852fd6d3659174a5bdee091b5782e8fecbc8cd85df9a334838ba7e
   languageName: node
   linkType: hard
 
@@ -23356,8 +23356,8 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.1.3"
     eslint-plugin-react: "npm:^7.34.3"
     eslint-plugin-react-hooks: "npm:^4.6.2"
-    gatsby: "npm:^5.13.6"
-    gatsby-adapter-netlify: "npm:^1.1.6"
+    gatsby: "npm:^5.13.7"
+    gatsby-adapter-netlify: "npm:^1.1.7"
     gatsby-link: "npm:^5.13.1"
     gatsby-plugin-catch-links: "npm:^5.13.1"
     gatsby-plugin-google-gtag: "npm:^5.13.1"
