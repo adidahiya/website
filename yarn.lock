@@ -1624,12 +1624,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/core@npm:^5.10.5":
-  version: 5.10.5
-  resolution: "@blueprintjs/core@npm:5.10.5"
+"@blueprintjs/core@npm:^5.11.0":
+  version: 5.11.0
+  resolution: "@blueprintjs/core@npm:5.11.0"
   dependencies:
     "@blueprintjs/colors": "npm:^5.1.1"
-    "@blueprintjs/icons": "npm:^5.10.0"
+    "@blueprintjs/icons": "npm:^5.11.0"
     "@popperjs/core": "npm:^2.11.8"
     classnames: "npm:^2.3.1"
     normalize.css: "npm:^8.0.1"
@@ -1648,15 +1648,15 @@ __metadata:
   bin:
     upgrade-blueprint-2.0.0-rename: scripts/upgrade-blueprint-2.0.0-rename.sh
     upgrade-blueprint-3.0.0-rename: scripts/upgrade-blueprint-3.0.0-rename.sh
-  checksum: 10c0/e0994709bf1c155209e439e9828541961601a8a8076752d59d4333c983afed529f929bae41a922b9a286c8e678303a96056fb63edd7cb5b7d577f3ccd2575c73
+  checksum: 10c0/1edf56800c103d21e4aba6333170c49bd6e6dfd109526b1ca3e8f526f9cd3baf5f4f8cb7bfb76a420a0602072f51298f2bb8fecedd5228adf01f8d23da4366d2
   languageName: node
   linkType: hard
 
-"@blueprintjs/eslint-config@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@blueprintjs/eslint-config@npm:6.0.2"
+"@blueprintjs/eslint-config@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@blueprintjs/eslint-config@npm:6.0.3"
   dependencies:
-    "@blueprintjs/eslint-plugin": "npm:^6.1.2"
+    "@blueprintjs/eslint-plugin": "npm:^6.1.3"
     "@blueprintjs/tslint-config": "npm:^4.1.4"
     "@typescript-eslint/eslint-plugin": "npm:^6.19.1"
     "@typescript-eslint/eslint-plugin-tslint": "npm:^6.19.1"
@@ -1673,23 +1673,23 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/6c0671c53e92eef19d363dd243ecc064bfa7903a67b410100a2edd5b5a1fe9be724d927b6680886de31ffca18cc9628239ae07c2c9df57dc6c8f464ef7c0850c
+  checksum: 10c0/1b7b7050c5826e84b209cc2d60bc504c2c074b047a9bb621617eab5f8927271239c87fba5d01dc50c2e0f8ed42b8a9356563051a68f71431e9491f41caf87ebc
   languageName: node
   linkType: hard
 
-"@blueprintjs/eslint-plugin@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "@blueprintjs/eslint-plugin@npm:6.1.2"
+"@blueprintjs/eslint-plugin@npm:^6.1.3":
+  version: 6.1.3
+  resolution: "@blueprintjs/eslint-plugin@npm:6.1.3"
   dependencies:
-    "@typescript-eslint/utils": "npm:^6.19.1"
+    "@typescript-eslint/utils": "npm:^6.19.1 || ^7.0.0"
     eslint: "npm:^8.56.0"
-  checksum: 10c0/d9b0634fe377cbc428c7efbdec790ead165ca8735b0f1db5e64ec7ba516738a5e2c53ee46c966b5fcf7e024157fa0abe0b76175cb92848ecb6dfd3a9ed31430d
+  checksum: 10c0/70c8cdce377b0f31ceaaa3816e46c24b844821ac0378a07bc24e7f97e9d3cd59e8682493fd41e8c79c7b613c9824195c676c8702318c8802ac3fbde5f459471c
   languageName: node
   linkType: hard
 
-"@blueprintjs/icons@npm:^5.10.0":
-  version: 5.10.0
-  resolution: "@blueprintjs/icons@npm:5.10.0"
+"@blueprintjs/icons@npm:^5.11.0":
+  version: 5.11.0
+  resolution: "@blueprintjs/icons@npm:5.11.0"
   dependencies:
     change-case: "npm:^4.1.2"
     classnames: "npm:^2.3.1"
@@ -1701,7 +1701,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/6de8ca760bd39ab79ac6217305ed54f389a40a761eb6a29a1f3079a76c99b6274572107567da7c277bdd1d4d5188a7e10f20c907770e25d17de8c1b9c8d94c9a
+  checksum: 10c0/196a69afaf53241255b543f487761a563820c849ca4e7889052e904a6ae47f600df1e0722b40c5e651fb1d64ad575bca46aef3aae643897a43874fa9576f25b8
   languageName: node
   linkType: hard
 
@@ -5288,6 +5288,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/scope-manager@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@typescript-eslint/scope-manager@npm:7.17.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:7.17.0"
+    "@typescript-eslint/visitor-keys": "npm:7.17.0"
+  checksum: 10c0/e1a693e19dc855fe6d04b46c6c205019bfc937eda5f8b255393f8267ebddd282165568336e37b04aab544b155a807784b9c4a92129dfc7c1eef5a9e9fe052685
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/type-utils@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/type-utils@npm:5.62.0"
@@ -5371,6 +5381,13 @@ __metadata:
   version: 7.16.1
   resolution: "@typescript-eslint/types@npm:7.16.1"
   checksum: 10c0/5ab7bfcac81adb01672057270d0273da98dcf50d2add5819b4787b5973f6624d11ad33d6fb495f80fe628fefa3a5ed319b433ed57e9121e444cfc002e1e48625
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@typescript-eslint/types@npm:7.17.0"
+  checksum: 10c0/8f734294d432b37c534f17eb2befdfe43b76874d09118d6adf7e308e5a586e9e11b7021abe4f6692a6e6226de58a15b3cfe1300939556ce1c908d9af627b7400
   languageName: node
   linkType: hard
 
@@ -5475,6 +5492,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/typescript-estree@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@typescript-eslint/typescript-estree@npm:7.17.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:7.17.0"
+    "@typescript-eslint/visitor-keys": "npm:7.17.0"
+    debug: "npm:^4.3.4"
+    globby: "npm:^11.1.0"
+    is-glob: "npm:^4.0.3"
+    minimatch: "npm:^9.0.4"
+    semver: "npm:^7.6.0"
+    ts-api-utils: "npm:^1.3.0"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/10967823ce00c9f8cd4a8b56bed3524c098e38cc0e27aaa49ffd8fad4e671c00226bf0330ba858948750b88dc55527ebeb62c74be8a30bac18a106d6c033ab59
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/utils@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/utils@npm:5.62.0"
@@ -5493,7 +5529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.21.0, @typescript-eslint/utils@npm:^6.0.0, @typescript-eslint/utils@npm:^6.19.1":
+"@typescript-eslint/utils@npm:6.21.0, @typescript-eslint/utils@npm:^6.0.0":
   version: 6.21.0
   resolution: "@typescript-eslint/utils@npm:6.21.0"
   dependencies:
@@ -5538,6 +5574,20 @@ __metadata:
   peerDependencies:
     eslint: ^8.56.0
   checksum: 10c0/22fbf17eec064d1e67f2a4bf512f62d5369a22fe11226f043cbeb0fe79cd18006b04f933e5025f4e5c2f82047248dac52cc97199e495ad17d564084210099d17
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:^6.19.1 || ^7.0.0":
+  version: 7.17.0
+  resolution: "@typescript-eslint/utils@npm:7.17.0"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.4.0"
+    "@typescript-eslint/scope-manager": "npm:7.17.0"
+    "@typescript-eslint/types": "npm:7.17.0"
+    "@typescript-eslint/typescript-estree": "npm:7.17.0"
+  peerDependencies:
+    eslint: ^8.56.0
+  checksum: 10c0/1f3e22820b3ab3e47809c45e576614ad4a965f5c8634856eca5c70981386b9351a77fb172ba32345e7c5667479cf9526c673699dd38dccd0616ad6db21704e72
   languageName: node
   linkType: hard
 
@@ -5602,6 +5652,16 @@ __metadata:
     "@typescript-eslint/types": "npm:7.16.1"
     eslint-visitor-keys: "npm:^3.4.3"
   checksum: 10c0/060bc6770ba3ea271c6a844501f4dfee1b8842a0c405e60d2a258466b1b4e66086234a3fddac8745bb1a39a89eab29afeaf16133ad925bd426ac8fdb13fb7f94
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@typescript-eslint/visitor-keys@npm:7.17.0"
+  dependencies:
+    "@typescript-eslint/types": "npm:7.17.0"
+    eslint-visitor-keys: "npm:^3.4.3"
+  checksum: 10c0/fa6b339d51fc3710288bb2ffaa46d639551d77965cc42c36f96c4f43aed663ff12972e8a28652a280f6ce20b7a92dc2aea14b2b4049012799be2fc2d3cbb2c60
   languageName: node
   linkType: hard
 
@@ -23596,10 +23656,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "website@workspace:."
   dependencies:
-    "@blueprintjs/core": "npm:^5.10.5"
-    "@blueprintjs/eslint-config": "npm:^6.0.2"
-    "@blueprintjs/eslint-plugin": "npm:^6.1.2"
-    "@blueprintjs/icons": "npm:^5.10.0"
+    "@blueprintjs/core": "npm:^5.11.0"
+    "@blueprintjs/eslint-config": "npm:^6.0.3"
+    "@blueprintjs/eslint-plugin": "npm:^6.1.3"
+    "@blueprintjs/icons": "npm:^5.11.0"
     "@blueprintjs/node-build-scripts": "npm:^9.2.1"
     "@gatsbyjs/reach-router": "npm:^2.0.1"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:^0.5.15"
