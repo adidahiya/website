@@ -96,7 +96,7 @@
         "typescript": "~5.5.4",
         "typography": "^0.16.24",
         "typography-theme-fairy-gates": "^0.16.19",
-        "webpack": "^5.93.0"
+        "webpack": "^5.94.0"
     },
     "repository": {
         "type": "git",
