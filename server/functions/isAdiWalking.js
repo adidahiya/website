@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import ky from "ky";
 
 /**
@@ -9,8 +7,10 @@ export async function handler() {
     const { foursquare_client_id, foursquare_client_secret } = process.env;
 
     if (foursquare_client_id == null || foursquare_client_secret == null) {
-        callback(new Error("Could not find foursquare API keys"));
-        return;
+        return {
+            statusCode: 500,
+            body: "Could not find foursquare API keys",
+        };
     }
 
     const response = await ky.get("https://api.foursquare.com/v2/users/self", {

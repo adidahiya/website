@@ -14,7 +14,7 @@ interface Props {
     title?: string;
 
     /** Additional scripts to load from the web. Use this sparingly... */
-    remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
+    remoteScripts?: Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">[];
 }
 
 export default class extends React.Component<Props> {

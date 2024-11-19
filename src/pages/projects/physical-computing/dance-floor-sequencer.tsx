@@ -1,4 +1,5 @@
-/* eslint-disable max-classes-per-file, no-console, react/jsx-no-bind */
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-misused-promises, @typescript-eslint/no-floating-promises */
 
 import {
     Button,
@@ -17,9 +18,9 @@ import p5 from "p5";
 import React from "react";
 import * as Tone from "tone";
 
-import * as styles from "./dance-floor-sequencer.module.css";
 import { padStart } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
+import * as styles from "./dance-floor-sequencer.module.css";
 
 /** USB port name for p5.serialport */
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem14101";
@@ -55,7 +56,7 @@ const EMPTY_SEQUENCE = range(PADS_WIDTH * PADS_HEIGHT).map(() =>
 );
 
 /** Pad colors for the sequence timeline */
-const PAD_COLORS: { [i: number]: string } = {
+const PAD_COLORS: Record<number, string> = {
     0: Colors.VERMILION5,
     1: Colors.VIOLET5,
     2: Colors.LIME4,
@@ -88,14 +89,15 @@ type SampleBankId = string;
 
 /** gets serialized to localStorage */
 interface ISequencerStore {
-    sequences: {
-        [epochTime: string]: {
+    sequences: Record<
+        string,
+        {
             sampleBankId: SampleBankId;
             sequence: Sequence;
             // currently not used for playback of non-current sequences, but stored
             tempo: number;
-        };
-    };
+        }
+    >;
 }
 
 interface IState {
@@ -113,7 +115,7 @@ interface IState {
     isSerialConnectionOpen: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
@@ -137,25 +139,25 @@ export default class extends React.PureComponent<{}, IState> {
     // TODO: typings for p5.serial
     private serial: any;
     private transportEvent?: Tone.ToneEvent;
-    private readonly parts: Array<Tone.Part | Tone.Loop> = [];
+    private readonly parts: (Tone.Part | Tone.Loop)[] = [];
     private metronomePlayers?: Tone.Players;
-    private sampleBanks: { [bankName: string]: Tone.Players } = {};
+    private sampleBanks: Partial<Record<string, Tone.Players>> = {};
 
     /** queue of events to proces on the next transport step */
-    private playersToRestoreVolume: Array<{
+    private playersToRestoreVolume: {
         sampleBankId: string;
         padId: string;
         oldVolume: Tone.Unit.Decibels;
-    }> = [];
+    }[] = [];
 
-    public async componentDidMount() {
+    public componentDidMount() {
         const savedSequences = localStorage.getItem(LS_KEY);
         if (savedSequences != null) {
             const store: ISequencerStore = JSON.parse(savedSequences);
             const latest = max(Object.keys(store.sequences).map((key) => parseInt(key, 10)));
             if (latest !== undefined) {
                 const latestSequence = store.sequences[latest];
-                // eslint-disable-next-line react/no-did-mount-set-state
+
                 this.setState({
                     prevSequence: latestSequence.sequence,
                     prevSampleBank: latestSequence.sampleBankId,
@@ -390,8 +392,8 @@ export default class extends React.PureComponent<{}, IState> {
 
         // restore volumes for accents
         for (const { sampleBankId, padId, oldVolume } of this.playersToRestoreVolume) {
-            const player = this.sampleBanks[sampleBankId].player(padId);
-            if (player.loaded) {
+            const player = this.sampleBanks[sampleBankId]?.player(padId);
+            if (player?.loaded) {
                 player.volume.value = oldVolume;
             }
         }
@@ -413,7 +415,9 @@ export default class extends React.PureComponent<{}, IState> {
     private padActivationDebounce = 200; // milliseconds
 
     private bindSerialEventHandlers() {
-        this.serial.on("connected", () => console.log("connected"));
+        this.serial.on("connected", () => {
+            console.log("connected");
+        });
         this.serial.on("open", () => {
             console.log("open");
             this.setState({ isSerialConnectionOpen: true });
@@ -426,7 +430,9 @@ export default class extends React.PureComponent<{}, IState> {
         );
 
         this.serial.on("data", this.handleSerialData);
-        this.serial.on("error", (err: any) => console.log("error", err));
+        this.serial.on("error", (err: any) => {
+            console.log("error", err);
+        });
         this.serial.on("close", () => {
             console.log("closed");
             this.setState({ isSerialConnectionOpen: false });
@@ -465,7 +471,7 @@ export default class extends React.PureComponent<{}, IState> {
     }, 500);
 
     private handleSerialData = () => {
-        const data: string = this.serial.readLine();
+        const data: string | undefined = this.serial.readLine();
         const now = window.performance.now();
 
         if (data != null && data.trim() !== "") {
@@ -548,7 +554,7 @@ export default class extends React.PureComponent<{}, IState> {
     private getPadClickHandler =
         (padIndex: number, accent = false) =>
         (evt?: React.MouseEvent<HTMLDivElement>) => {
-            if (NEUTRAL_PADS.indexOf(padIndex) >= 0) {
+            if (NEUTRAL_PADS.includes(padIndex)) {
                 // ignore interaction
                 return;
             }
@@ -591,7 +597,7 @@ export default class extends React.PureComponent<{}, IState> {
             padIndex: number,
         ) => {
             const seq = deserializeSeq(padSequence);
-            if (isStepActive(seq[step]) && padsPlayedDuringThisStep.indexOf(padIndex) === -1) {
+            if (isStepActive(seq[step]) && !padsPlayedDuringThisStep.includes(padIndex)) {
                 this.playSample(bankId, padIndex, isStepAccent(seq[step]));
                 if (currentSampleBank === prevSampleBank) {
                     padsPlayedDuringThisStep.push(padIndex);
@@ -623,7 +629,7 @@ export default class extends React.PureComponent<{}, IState> {
         const seq = deserializeSeq(currentSequence[padIndex]);
         for (const step of steps) {
             const isCurrentStepActive = seq[step] === 1;
-            const isActivating = forceActivate || !isCurrentStepActive;
+            const isActivating = forceActivate ?? !isCurrentStepActive;
             if (isActivating && accent) {
                 seq[step] = 2;
             } else if (isActivating) {
@@ -649,7 +655,7 @@ export default class extends React.PureComponent<{}, IState> {
         this.setState({ position });
     };
 
-    private samplePadMapping: { [key: number]: string } = {
+    private samplePadMapping: Record<number, string> = {
         0: "perc-1",
         1: "perc-2",
         2: "perc-3",
@@ -666,18 +672,13 @@ export default class extends React.PureComponent<{}, IState> {
         return new Promise<void>((resolve, _reject) => {
             if (this.sampleBanks[sampleBankId] == null) {
                 this.sampleBanks[sampleBankId] = new Tone.Players(
-                    range(PADS_WIDTH * PADS_HEIGHT).reduce(
-                        (prev, i) => {
-                            const sampleFilename = `${this.samplePadMapping[i]}.wav`;
-                            return {
-                                ...prev,
-                                [`${i}`]: soundUrl(
-                                    `sample-banks/${sampleBankId}/${sampleFilename}`,
-                                ),
-                            };
-                        },
-                        {} as { [key: string]: string },
-                    ),
+                    range(PADS_WIDTH * PADS_HEIGHT).reduce<Record<string, string>>((prev, i) => {
+                        const sampleFilename = `${this.samplePadMapping[i]}.wav`;
+                        return {
+                            ...prev,
+                            [`${i}`]: soundUrl(`sample-banks/${sampleBankId}/${sampleFilename}`),
+                        };
+                    }, {}),
                     () => {
                         console.log(`Loaded "${sampleBankId}" samples!`);
                         resolve();
@@ -710,17 +711,17 @@ export default class extends React.PureComponent<{}, IState> {
     ) => {
         const padId = `${padIndex}`;
 
-        if (
-            this.sampleBanks[bankName] == null ||
-            !this.sampleBanks[bankName].player(padId).loaded
-        ) {
+        if (!this.sampleBanks[bankName]?.player(padId).loaded) {
             console.log(
                 `Bank ${bankName} pad ${padIndex} not loaded yet or file format is unsupported`,
             );
             return;
         }
 
-        const player = this.sampleBanks[bankName].player(padId);
+        const player = this.sampleBanks[bankName]?.player(padId);
+        if (player == null) {
+            return;
+        }
 
         if (time !== undefined) {
             const position = Tone.Time(time).toBarsBeatsSixteenths();
@@ -746,7 +747,7 @@ export default class extends React.PureComponent<{}, IState> {
         }
 
         // play it!
-        player.start(time === undefined ? "+0.1" : time);
+        player.start(time ?? "+0.1");
 
         // window.performance.mark("played sample!");
     };
@@ -850,7 +851,7 @@ export default class extends React.PureComponent<{}, IState> {
                     ),
                 ),
             ),
-        ) as number[];
+        );
 
         this.updateCurrentSequence({
             padIndex: HH_PAD_INDEX,
@@ -949,13 +950,15 @@ class TimelineSequence extends React.PureComponent<ITimelineSequenceProps> {
                 className={styles.timelineSixteenth}
                 style={{ backgroundColor }}
                 key={sixteenth}
-                onClick={() => this.props.onStepClick({ bar, beat, sixteenth })}
+                onClick={() => {
+                    this.props.onStepClick({ bar, beat, sixteenth });
+                }}
             />
         );
     }
 }
 
-type IPadSequence = Array<0 | 1 | 2>;
+type IPadSequence = (0 | 1 | 2)[];
 
 function serializeSeq(seq: IPadSequence): string {
     return seq.join("");

@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file, no-console, react/jsx-no-bind */
-
 import { Classes, Slider } from "@blueprintjs/core";
 import classNames from "classnames";
 import { mapValues } from "lodash-es";
@@ -9,12 +7,13 @@ import * as Tone from "tone";
 import * as styles from "./sessionView.module.css";
 
 interface ISessionContext {
-    tracks: {
-        [trackName: string]: {
+    tracks: Record<
+        string,
+        {
             clips: ISessionLoop[];
             slider?: () => React.ReactNode;
-        };
-    };
+        }
+    >;
 }
 
 interface ISessionLoop {
@@ -30,7 +29,7 @@ interface IState {
     steadySeqSliderValue: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.Component<{}, IState> {
     public state: IState = {
         padDroneSliderValue: 2,
@@ -52,7 +51,7 @@ export default class extends React.Component<{}, IState> {
         };
         // use individual Players so that we can control individual levels
         const simpleLoopPlayers = mapValues(simplePlayerUrls, (_url, name) =>
-            new Tone.Player((simplePlayerUrls as { [key: string]: string })[name]).toDestination(),
+            new Tone.Player((simplePlayerUrls as Record<string, string>)[name]).toDestination(),
         );
         simpleLoopPlayers.clickyPerc.volume.value = 5;
         simpleLoopPlayers.rim.volume.value = 5;
@@ -208,7 +207,7 @@ export default class extends React.Component<{}, IState> {
         );
 
         // HACKHACK deeply nested state :(
-        // eslint-disable-next-line react/no-did-mount-set-state
+
         this.setState(
             {
                 sessionContext: {
@@ -279,10 +278,12 @@ export default class extends React.Component<{}, IState> {
         );
     }
 
-    public maybeRenderSlider(track: any) {
+    public maybeRenderSlider(track: { slider?: () => React.ReactNode }) {
         if (typeof track.slider === "function") {
             return track.slider();
         }
+
+        return null;
     }
 
     public componentWillUnmount() {
@@ -328,7 +329,9 @@ class Clip extends React.PureComponent<IClipProps, IClipState> {
     private handleClick = () => {
         const { player, toggle } = this.props;
         toggle();
-        setTimeout(() => this.setState({ isPlaying: player.loop === true }));
+        setTimeout(() => {
+            this.setState({ isPlaying: player.loop });
+        });
     };
 }
 

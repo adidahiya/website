@@ -10,7 +10,7 @@ export default () => (
         <h3>adi dahiya</h3>
         <p>
             programmer &amp; artist based in Brooklyn, NY. <br />
-            <a href="https://tisch.nyu.edu/itp" target="_blank">
+            <a href="https://tisch.nyu.edu/itp" target="_blank" rel="noreferrer">
                 NYU ITP
             </a>{" "}
             alum.

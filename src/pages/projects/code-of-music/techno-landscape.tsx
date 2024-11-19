@@ -11,13 +11,13 @@ interface IState {
     isPlaying: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state = {
         isPlaying: false,
     };
 
-    private parts: Array<Tone.Part | Tone.Loop> = [];
+    private parts: (Tone.Part | Tone.Loop)[] = [];
 
     public componentDidMount() {
         Tone.Transport.bpm.value = 120;

@@ -5,6 +5,7 @@ import * as styles from "./p5Canvas.module.css";
 
 if (typeof window !== "undefined") {
     // require("p5/lib/addons/p5.sound");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("../../static/lib/p5.serialport");
 }
 
@@ -38,8 +39,8 @@ export class P5Canvas extends React.Component<IP5Props> {
         if (this.containerEl != null) {
             const { width, height } = this.props;
 
-            // @ts-ignore
-            const instance = new p5((p: p5) => {
+            // @ts-expect-error - we don't use the instance
+            const _instance = new p5((p: p5) => {
                 this.props.sketch(p);
                 if (width != null && height != null) {
                     // inject some setup code

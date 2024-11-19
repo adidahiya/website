@@ -1,13 +1,11 @@
-/* eslint-disable react/jsx-no-bind */
-
 import { Button, FormGroup, Slider } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
 import * as Tone from "tone";
 
-import * as styles from "./synthesis-sketch.module.css";
 import { createLoopWithPlayers } from "../../../common";
 import { DefaultLayoutWithoutHeader as Layout, NormalRangeSlider } from "../../../components";
+import * as styles from "./synthesis-sketch.module.css";
 
 interface IState {
     isPlaying: boolean;
@@ -18,7 +16,7 @@ interface IState {
     tempo: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         isPlaying: false,
@@ -30,7 +28,7 @@ export default class extends React.PureComponent<{}, IState> {
     };
 
     private monoSynth!: Tone.MonoSynth;
-    private parts: Array<Tone.Part | Tone.Loop> = [];
+    private parts: (Tone.Part | Tone.Loop)[] = [];
 
     public componentDidMount() {
         Tone.Transport.bpm.value = this.state.tempo;

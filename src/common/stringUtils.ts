@@ -3,10 +3,9 @@
  */
 export function padStart(inputString: string | number, targetLength: number, padString: string) {
     if (typeof inputString === "number") {
-        inputString = `${inputString}`;
+        inputString = inputString.toString();
     }
 
-    // eslint-disable-next-line no-bitwise
     targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
     padString = String(typeof padString !== "undefined" ? padString : " ");
     if (inputString.length >= targetLength) {

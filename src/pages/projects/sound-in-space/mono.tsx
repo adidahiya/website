@@ -2,8 +2,8 @@ import { Button } from "@blueprintjs/core";
 import React from "react";
 import * as Tone from "tone";
 
-import * as styles from "./mono.module.css";
 import { DefaultLayoutWithoutHeader as Layout } from "../../../components";
+import * as styles from "./mono.module.css";
 
 const soundUrl = (filename: string) => `/sounds/sound-in-space/${filename}`;
 const impulseResponseUrl = (name: string) =>
@@ -13,7 +13,7 @@ interface IState {
     buffersLoaded: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         buffersLoaded: false,
@@ -23,6 +23,7 @@ export default class extends React.PureComponent<{}, IState> {
     private sampleBuffer2?: Tone.ToneAudioBuffer;
     private convolver?: Tone.Convolver;
 
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     public async componentDidMount() {
         const lowBoost = new Tone.Filter(200, "lowshelf");
         lowBoost.gain.value = 10;
@@ -40,7 +41,6 @@ export default class extends React.PureComponent<{}, IState> {
         // TODO(adidahiya): figure out a way to bring back this dry/wet setting in Tone.js v14
         // this.convolver.wet.value = 0.8;
 
-        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({ buffersLoaded: true });
     }
 
@@ -70,10 +70,10 @@ export default class extends React.PureComponent<{}, IState> {
         const now = Tone.now();
 
         intervals.forEach((interval, i) => {
-            const source = new Tone.BufferSource(this.sampleBuffer!).connect(this.convolver!);
+            const source = new Tone.BufferSource(this.sampleBuffer).connect(this.convolver!);
             source.fadeOut = "1n";
 
-            const source2 = new Tone.BufferSource(this.sampleBuffer2!).connect(this.convolver!);
+            const source2 = new Tone.BufferSource(this.sampleBuffer2).connect(this.convolver!);
             source2.fadeOut = "1n";
 
             const startTime = now + i / 4;

@@ -1,8 +1,8 @@
 import { Button, EditableText, FormGroup } from "@blueprintjs/core";
 import React from "react";
 
-import * as styles from "./automatic-writing.module.css";
 import { DefaultLayoutWithoutHeader } from "../../../components";
+import * as styles from "./automatic-writing.module.css";
 // import encouragingWords from "./corpora/encouraging_words.json";
 
 interface IState {
@@ -11,7 +11,7 @@ interface IState {
     motivationText: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state: IState = {
         hasStarted: false,

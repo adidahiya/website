@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
+
 import { Spinner, SpinnerSize } from "@blueprintjs/core";
 import React from "react";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -21,6 +23,7 @@ export default class extends React.PureComponent<IProps, IState> {
         loading: true,
     };
 
+    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
     public async componentDidMount() {
         try {
             await getWebPlaybackSDKPromise();
@@ -28,7 +31,9 @@ export default class extends React.PureComponent<IProps, IState> {
             const api = createSpotifyApi();
 
             // Error handling
-            const handleError = ({ message }: any) => console.error(message);
+            const handleError = ({ message }: any) => {
+                console.error(message);
+            };
             player.addListener("initialization_error", handleError);
             player.addListener("authentication_error", handleError);
             player.addListener("account_error", handleError);
@@ -40,7 +45,7 @@ export default class extends React.PureComponent<IProps, IState> {
             });
 
             // Ready
-            // eslint-disable-next-line camelcase
+
             player.addListener("ready", ({ device_id }: any) => {
                 console.info("Ready with Device ID", device_id);
                 this.setState({
@@ -51,7 +56,7 @@ export default class extends React.PureComponent<IProps, IState> {
             });
 
             // Not Ready
-            // eslint-disable-next-line camelcase
+
             player.addListener("not_ready", ({ device_id }: any) => {
                 console.info("Device ID has gone offline", device_id);
             });
@@ -83,6 +88,7 @@ function getWebPlaybackSDKPromise() {
     return new Promise<void>((resolve, reject) => {
         const timeout = setTimeout(() => {
             console.error("Spotify web playback SDK did not initialize after 10 seconds");
+            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
             reject();
         }, 10000);
 

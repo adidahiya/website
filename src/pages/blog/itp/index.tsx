@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
+
 import { graphql, Link } from "gatsby";
 import { uniq } from "lodash-es";
 import React from "react";
 
-import * as styles from "./blogItp.module.css";
 import { DefaultLayout, Timestamp } from "../../../components";
+import * as styles from "./blogItp.module.css";
 
 const ITP_BLOG_ROOT = "/blog/itp/";
 
@@ -11,7 +13,7 @@ export default ({ data }: any) => {
     const { edges } = data.allMarkdownRemark;
     const blogPosts = edges
         .map((p: any) => p.node)
-        .filter((p: any) => p.fields.slug.indexOf(ITP_BLOG_ROOT) === 0);
+        .filter((p: any) => p.fields.slug.startsWith(ITP_BLOG_ROOT));
     const categories: string[] = uniq(
         blogPosts.map((p: any) => p.fields.slug.substr(ITP_BLOG_ROOT.length).split("/")[0]),
     );

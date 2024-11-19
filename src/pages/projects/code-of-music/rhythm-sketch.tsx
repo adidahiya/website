@@ -10,13 +10,14 @@ import { P5Canvas } from "../../../components/p5Canvas";
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo: number }> {
     public state = {
         isPlaying: false,
         tempo: 110,
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private loops: any[] = [];
 
     public componentDidMount() {
@@ -114,12 +115,14 @@ export default class extends React.PureComponent<{}, { isPlaying: boolean; tempo
         if (Tone.Transport.state === "started") {
             Tone.Transport.stop();
             for (const loop of this.loops) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                 loop.stop();
             }
             this.setState({ isPlaying: false });
         } else {
             Tone.Transport.start();
             for (const loop of this.loops) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                 loop.start();
             }
             this.setState({ isPlaying: true });

@@ -3,7 +3,7 @@
 const { createFilePath } = require("gatsby-source-filesystem");
 const path = require("path");
 
-exports.onCreateWebpackConfig = ({ actions, getConfig, stage }) => {
+exports.onCreateWebpackConfig = ({ actions, stage }) => {
     if (stage === "build-html") {
         actions.setWebpackConfig({
             module: {
@@ -48,7 +48,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         graphql(`
             {
                 allDirectory {
@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
         `).then(({ data }) => {
             for (const { node } of data.allDirectory.edges) {
                 const { relativePath } = node;
-                const match = relativePath.match(/^blog\/itp\/([\w\-]*)$/);
+                const match = relativePath.match(/^blog\/itp\/([\w-]*)$/);
 
                 if (match != null) {
                     const category = match[1];

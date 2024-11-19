@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call */
+
 import { Link } from "gatsby";
 import p5 from "p5";
 import React from "react";
@@ -7,6 +9,7 @@ import DefaultLayout from "../../../components/defaultLayout";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 if (typeof window !== "undefined") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("../../../../static/lib/p5.serialport");
 }
 
@@ -14,10 +17,8 @@ const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 const ARDUINO_PORT_NAME = "/dev/cu.usbmodem1411";
 
-/* eslint-disable no-console */
-
 export default class extends React.PureComponent<
-    // eslint-disable-next-line @typescript-eslint/ban-types
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     {},
     { isPlaying: boolean; pitch: Tone.Unit.Frequency }
 > {
@@ -31,7 +32,7 @@ export default class extends React.PureComponent<
     private hasStarted = false;
     private p5!: p5;
 
-    public async componentDidMount() {
+    public componentDidMount() {
         this.serial = new (p5 as any).SerialPort();
         this.synth = new Tone.Synth({
             oscillator: {
@@ -86,15 +87,19 @@ export default class extends React.PureComponent<
     };
 
     private bindSerialEventHandlers() {
-        this.serial.on("connected", () => console.log("connected"));
-        this.serial.on("open", () => console.log("open"));
+        this.serial.on("connected", () => {
+            console.log("connected");
+        });
+        this.serial.on("open", () => {
+            console.log("open");
+        });
         this.serial.on("data", () => {
             // const data = Number(this.serial.readLine());
             const data = this.serial.readLine();
             // console.log(data);
             if (data != null && data.trim() !== "") {
                 // console.log(data);
-                const matches = data.match(/(.*)\,\ (.*)/);
+                const matches = data.match(/(.*), (.*)/);
                 if (matches != null && matches.length === 3) {
                     const duration1 = parseInt(matches[1], 10);
                     const mappedPitch = this.p5.map(duration1, 0, 10, 200, 2000);
@@ -104,8 +109,12 @@ export default class extends React.PureComponent<
                 }
             }
         });
-        this.serial.on("error", (err: any) => console.log("error", err));
-        this.serial.on("close", () => console.log("closed"));
+        this.serial.on("error", (err: any) => {
+            console.log("error", err);
+        });
+        this.serial.on("close", () => {
+            console.log("closed");
+        });
     }
 
     private handlePlayToggle = () => {
