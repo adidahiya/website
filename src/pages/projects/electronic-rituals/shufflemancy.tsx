@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-misused-promises */
 
 import { Button } from "@blueprintjs/core";
 import React from "react";
@@ -26,7 +26,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
             const me = await spotifyApi.getMe();
             const topArtists = await spotifyApi.getMyTopArtists({
                 limit: 20,
-                // eslint-disable-next-line camelcase
+
                 time_range: "long_term",
             });
 
@@ -40,7 +40,7 @@ class Shufflemancy extends React.PureComponent<IProps, IState> {
                           public: false,
                           description: "Divining tunes",
                       });
-            // eslint-disable-next-line react/no-did-mount-set-state
+
             this.setState({
                 playlist: playlistFull,
                 topArtists,

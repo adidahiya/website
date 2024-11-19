@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call */
+
 import { Link, withPrefix } from "gatsby";
 import type p5 from "p5";
 import React from "react";
@@ -6,7 +8,8 @@ import Layout from "../../../components/defaultLayoutWithoutHeader";
 import { P5Canvas } from "../../../components/p5Canvas";
 
 // HACKHACK: for some reason this module is getting loaded on other pages..?
-if (typeof window !== "undefined" && window.location.pathname.indexOf("simple-drum-machine") > 0) {
+if (typeof window !== "undefined" && window.location.pathname.includes("simple-drum-machine")) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("p5/lib/addons/p5.sound");
 }
 
@@ -47,7 +50,7 @@ function sketch(p: p5) {
             const [x, y] = rects[sound];
             if (sounds[sound].isPlaying()) {
                 const progress = sounds[sound].currentTime() / sounds[sound].duration();
-                p.fill("rgba(249,172,0," + progress + ")");
+                p.fill("rgba(249,172,0," + progress.toString() + ")");
                 p.rect(x, y, CANVAS_WIDTH * progress, BAR_WIDTH);
             }
         }

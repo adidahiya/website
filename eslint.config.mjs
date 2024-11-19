@@ -32,6 +32,7 @@ export default tseslint.config(
         },
         rules: {
             ...eslintCommentsPlugin.configs.recommended.rules,
+            "eslint-comments/disable-enable-pair": "off",
             "@typescript-eslint/consistent-type-exports": [
                 "error",
                 {
@@ -51,6 +52,7 @@ export default tseslint.config(
                 "error",
                 { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
             ],
+            "@typescript-eslint/restrict-template-expressions": "off",
             "simple-import-sort/imports": "error",
             "simple-import-sort/exports": "error",
         },
@@ -83,6 +85,8 @@ export default tseslint.config(
             "@typescript-eslint/lines-between-class-members": "off",
             // unnecessary with TypeScript
             "react/prop-types": "off",
+            "react/display-name": "off",
+            "react/no-unescaped-entities": "off",
         },
         settings: {
             react: {
@@ -99,6 +103,8 @@ export default tseslint.config(
             globals: globals.nodeBuiltin,
         },
         rules: {
+            "@typescript-eslint/no-require-imports": "off",
+            "no-undef": "off",
             "prefer-object-spread": "off",
             "import/no-extraneous-dependencies": [
                 "error",
@@ -119,6 +125,9 @@ export default tseslint.config(
             "**/generated",
             "**/public",
             "**/custom-typings",
+            "**/.yarn",
+            "**/*.pnp.*",
+            "**/.cache",
         ],
     },
 );

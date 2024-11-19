@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-
 import { Button } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import p5 from "p5";
@@ -18,14 +16,14 @@ interface IState {
     isPlaying: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, IState> {
     public state = {
         isPlaying: false,
     };
 
     private monoSynth!: Tone.MonoSynth;
-    private parts: Array<Tone.Part | Tone.Loop> = [];
+    private parts: (Tone.Part | Tone.Loop)[] = [];
     private paths: ParticlePath[] = [];
 
     public componentDidMount() {
@@ -259,6 +257,7 @@ export default class extends React.PureComponent<{}, IState> {
             this.paths.push(new ParticlePath(p));
 
             const numActivePaths = this.paths.filter((path) => path.isActive()).length;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (this.monoSynth != null && numActivePaths > 3) {
                 this.monoSynth.filter.Q.value = p.map(numActivePaths, 2, 16, 1, 8);
             } else {
@@ -299,7 +298,9 @@ class ParticlePath {
     }
 
     public update() {
-        this.particles.forEach((p) => p.update());
+        this.particles.forEach((p) => {
+            p.update();
+        });
     }
 
     public display() {

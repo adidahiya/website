@@ -9,7 +9,7 @@ interface State {
     formState: Intent | undefined;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, State> {
     public state: State = {
         message: "",
@@ -59,12 +59,11 @@ export default class extends React.PureComponent<{}, State> {
         });
     };
 
-    private handleSubmit = async () => {
-        const { message } = this.state;
-        if (message == null) {
-            return;
-        }
+    private handleSubmit = () => {
+        void this.sendMessage(this.state.message);
+    };
 
+    private sendMessage = async (message: string) => {
         try {
             await fetchNetlifyFunction("sendAdiMessage", {
                 method: "POST",
@@ -74,7 +73,7 @@ export default class extends React.PureComponent<{}, State> {
             this.setState({
                 formState: "success",
             });
-        } catch (e) {
+        } catch {
             this.setState({
                 formState: "danger",
             });

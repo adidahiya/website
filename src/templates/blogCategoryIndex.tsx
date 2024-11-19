@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call */
+
 import { graphql, Link } from "gatsby";
 import React from "react";
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { Button, FormGroup } from "@blueprintjs/core";
 import { Link } from "gatsby";
 import React from "react";
@@ -20,7 +22,7 @@ export default class extends React.PureComponent {
 
     public componentDidMount() {
         const noise = new Tone.Noise("brown");
-        // eslint-disable-next-line no-console
+
         console.log(noise);
 
         this.toneContext = new Tone.Context();
@@ -173,7 +175,7 @@ export default class extends React.PureComponent {
         return (((m + (d % 100)) * this.dateState) % 100) / 100;
     };
 
-    // @ts-ignore
+    // @ts-expect-error
     private mouseRatioBasedRandom = () => {
         const xRatio = this.mouseX / this.windowWidth;
         const yRatio = this.mouseY / this.windowHeight;
@@ -184,7 +186,7 @@ export default class extends React.PureComponent {
         // return (((xRatio + yRatio) * this.mouseRandomState) % 100) / 100;
     };
 
-    // @ts-ignore
+    // @ts-expect-error
     private mouseRatio = () => {
         const xRatio = this.mouseX / this.windowWidth;
         const yRatio = this.mouseY / this.windowHeight;
@@ -192,10 +194,8 @@ export default class extends React.PureComponent {
     };
 }
 
-/* eslint-disable no-bitwise */
-
-// @ts-ignore
-function xorshift(seed: number) {
+// @ts-expect-error
+function _xorshift(seed: number) {
     // let state = 1;
     let state = seed;
     return () => {
@@ -210,8 +210,8 @@ function xorshift(seed: number) {
     };
 }
 
-// @ts-ignore
-function generateWhiteNoiseBuffer(audioContext: AudioContext) {
+// @ts-expect-error
+function _generateWhiteNoiseBuffer(audioContext: AudioContext) {
     const bufferSize = 2 * audioContext.sampleRate;
     const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
     const output = noiseBuffer.getChannelData(0);

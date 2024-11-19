@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
+
 import { Link } from "gatsby";
 import type p5 from "p5";
 import React from "react";
@@ -10,7 +12,7 @@ const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
 export default class extends React.PureComponent<
-    // eslint-disable-next-line @typescript-eslint/ban-types
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     {},
     { isPlaying: boolean; scale: string[]; octaveToFilter: number }
 > {
@@ -93,7 +95,7 @@ export default class extends React.PureComponent<
     };
 
     private sketch = (p: p5) => {
-        let notesInCanvas: Array<{ x: number; y: number; triggered: number; color: string }> = [];
+        let notesInCanvas: { x: number; y: number; triggered: number; color: string }[] = [];
 
         p.setup = () => {
             // noop
@@ -149,7 +151,8 @@ export default class extends React.PureComponent<
 }
 
 const minorBluesScale = ["C2", "Eb2", "F2", "Gb2", "G2", "Bb3"];
-function getMinorBluesScaleWithHarmonies(octaveToFilter: number = 0) {
+function getMinorBluesScaleWithHarmonies(octaveToFilter = 0) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (Tone == null) {
         return minorBluesScale;
     }
@@ -157,14 +160,14 @@ function getMinorBluesScaleWithHarmonies(octaveToFilter: number = 0) {
     const octave = octaveToFilter.toString();
 
     return minorBluesScale
-        .reduce(
+        .reduce<Tone.FrequencyClass[]>(
             (harmonies, note) => harmonies.concat(Tone.Frequency(note).harmonize([0, 12, 24, 36])),
-            [] as Tone.FrequencyClass[],
+            [],
         )
         .map((freq: any) => freq.toNote())
         .filter((note: string) => {
             // console.log(note, octaveToFilter);
             const octavePlusOne = (octaveToFilter + 1).toString();
-            return note.indexOf(octave) === -1 && note.indexOf(octavePlusOne) === -1;
+            return !note.includes(octave) && !note.includes(octavePlusOne);
         });
 }

@@ -1,10 +1,12 @@
+import "./markdown.module.css";
+
 import { graphql, Link } from "gatsby";
 import React from "react";
 
-import * as styles from "./blogPost.module.css";
 import { DefaultLayout, Timestamp } from "../components";
-import "./markdown.module.css";
+import * as styles from "./blogPost.module.css";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (

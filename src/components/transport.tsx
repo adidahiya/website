@@ -11,7 +11,7 @@ interface IState {
     };
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.Component<{}, IState> {
     public state: IState = {
         position: {

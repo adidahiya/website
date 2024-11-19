@@ -1,9 +1,10 @@
 import { graphql } from "gatsby";
 import React from "react";
 
-import * as styles from "./markdown.module.css";
 import DefaultLayout from "../components/defaultLayout";
+import * as styles from "./markdown.module.css";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default ({ data }: any) => {
     const post = data.markdownRemark;
     return (

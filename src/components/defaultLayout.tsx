@@ -3,11 +3,11 @@ import { Link } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import * as styles from "./defaultLayout.module.css";
 import favicon16 from "../assets/favicon-16.png";
 import favicon32 from "../assets/favicon-32.png";
 import favicon48 from "../assets/favicon-48.png";
 import { isLegacyRoute } from "../common";
+import * as styles from "./defaultLayout.module.css";
 
 const Header = () => (
     <div className={styles.header}>
@@ -54,7 +54,7 @@ export interface IDefaultLayoutHelmetProps {
     location: Location;
 
     /** Additional scripts to load from the web. Use this sparingly... */
-    remoteScripts?: Array<Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">>;
+    remoteScripts?: Pick<React.ScriptHTMLAttributes<HTMLScriptElement>, "src" | "async">[];
 }
 
 export function DefaultLayoutHelmet({
@@ -63,12 +63,12 @@ export function DefaultLayoutHelmet({
     title,
 }: IDefaultLayoutHelmetProps) {
     const scripts = remoteScripts.map(({ async = false, src }, index) => (
-        <script async={async} src={src} key={`script-${index}`} />
+        <script async={async} src={src} key={`script-${index.toString()}`} />
     ));
 
     return (
         <Helmet
-            title={title || "Adi's website"}
+            title={title ?? "Adi's website"}
             link={LINK_TAGS}
             meta={isLegacyRoute(location) ? META_TAGS_WITH_REDIRECT : META_TAGS}
         >
@@ -76,6 +76,7 @@ export function DefaultLayoutHelmet({
         </Helmet>
     );
 }
+DefaultLayoutHelmet.displayName = "DefaultLayoutHelmet";
 
 interface Props {
     children?: React.ReactNode;

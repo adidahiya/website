@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
+
 import { Link } from "gatsby";
 import type p5 from "p5";
 import React from "react";
@@ -9,23 +11,21 @@ import { P5Canvas } from "../../../components/p5Canvas";
 const CANVAS_WIDTH = 888;
 const CANVAS_HEIGHT = 400;
 
-/* eslint-disable no-underscore-dangle */
-
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default class extends React.PureComponent<{}, { isDronePlaying: boolean }> {
     public state = {
         isDronePlaying: false,
     };
 
-    private poly!: Tone.PolySynth<Tone.Synth>;
+    private poly!: Tone.PolySynth;
     private droneSynth!: Tone.Synth;
     private loop!: Tone.Loop;
-    private notesToDraw: Array<{
+    private notesToDraw: {
         x: number;
         y: number;
         time: number;
         note: Tone.Unit.Frequency;
-    }> = [];
+    }[] = [];
 
     public componentDidMount() {
         // do Tone setup
@@ -33,7 +33,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
 
         this.poly = new Tone.PolySynth({ voice: Tone.Synth, maxPolyphony: 2 }).toDestination();
         this.poly.volume.value = -10;
-        // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+        // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
         for (const v of this.poly._voices) {
             v.portamento = 100;
         }
@@ -123,7 +123,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
             }
 
             this.poly.triggerAttack(notes);
-            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
             frequencies = this.poly._voices.map((v) => v.frequency.value);
             this.notesToDraw.push({
                 x: p.random(0, CANVAS_WIDTH),
@@ -133,7 +133,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
             });
 
             // pitch bend
-            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
             for (const v of this.poly._voices) {
                 const { value } = v.frequency;
                 v.frequency.rampTo(Tone.Frequency(value).transpose(2));
@@ -151,7 +151,7 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
 
             // reset pitch bend
             let i = 0;
-            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
             for (const v of this.poly._voices) {
                 v.frequency.rampTo(frequencies[i]);
                 i++;
@@ -163,10 +163,10 @@ export default class extends React.PureComponent<{}, { isDronePlaying: boolean }
     private handleMeasure = (time: Tone.Unit.Time) => {
         let note: Tone.Unit.Frequency = "C2";
         if (this.notesToDraw.length > 1) {
-            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
-            // eslint-disable-next-line no-console
+            // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
+
             console.log(this.poly._voices.map((v) => v.frequency.value));
-            // @ts-ignore -- HACKHACK(adidahiya): need to update for Tone.js v14
+            // @ts-expect-error -- HACKHACK(adidahiya): need to update for Tone.js v14
             note = this.poly._voices[0].frequency.value;
         }
         this.droneSynth.triggerAttackRelease(note, "1m", time, 0.5);
