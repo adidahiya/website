@@ -1597,21 +1597,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blueprintjs/colors@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "@blueprintjs/colors@npm:5.1.1"
+"@blueprintjs/colors@npm:^5.1.3":
+  version: 5.1.3
+  resolution: "@blueprintjs/colors@npm:5.1.3"
   dependencies:
     tslib: "npm:~2.6.2"
-  checksum: 10c0/213c00ddc8720896451ec41de5e339e9f3acee9f3657e83f71daa4277a7bb7facb3fd96ef0b8793fcbac860731d662ee8a60528a161742c604ad4d2fe25872ba
+  checksum: 10c0/8a703de339bd88c22d67ddaa3fcc420ad59fbebd06a78ff1ef809a116427681b013757e24f0f77028a89ae5181ba36575d0980d4f0411d0a4fae8591a19c2d49
   languageName: node
   linkType: hard
 
-"@blueprintjs/core@npm:^5.11.0":
-  version: 5.11.0
-  resolution: "@blueprintjs/core@npm:5.11.0"
+"@blueprintjs/core@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@blueprintjs/core@npm:5.15.0"
   dependencies:
-    "@blueprintjs/colors": "npm:^5.1.1"
-    "@blueprintjs/icons": "npm:^5.11.0"
+    "@blueprintjs/colors": "npm:^5.1.3"
+    "@blueprintjs/icons": "npm:^5.14.0"
     "@popperjs/core": "npm:^2.11.8"
     classnames: "npm:^2.3.1"
     normalize.css: "npm:^8.0.1"
@@ -1630,13 +1630,13 @@ __metadata:
   bin:
     upgrade-blueprint-2.0.0-rename: scripts/upgrade-blueprint-2.0.0-rename.sh
     upgrade-blueprint-3.0.0-rename: scripts/upgrade-blueprint-3.0.0-rename.sh
-  checksum: 10c0/1edf56800c103d21e4aba6333170c49bd6e6dfd109526b1ca3e8f526f9cd3baf5f4f8cb7bfb76a420a0602072f51298f2bb8fecedd5228adf01f8d23da4366d2
+  checksum: 10c0/353276ae6a5cd0adfda63384d7adc116387f79064d15f08321e4a70fa05b1aaf1393ecb3f5f53dbd410eb4fd31ab480a845986099360cfff9fb65d93312f5d21
   languageName: node
   linkType: hard
 
-"@blueprintjs/icons@npm:^5.11.0":
-  version: 5.11.0
-  resolution: "@blueprintjs/icons@npm:5.11.0"
+"@blueprintjs/icons@npm:^5.14.0":
+  version: 5.14.0
+  resolution: "@blueprintjs/icons@npm:5.14.0"
   dependencies:
     change-case: "npm:^4.1.2"
     classnames: "npm:^2.3.1"
@@ -1648,7 +1648,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/196a69afaf53241255b543f487761a563820c849ca4e7889052e904a6ae47f600df1e0722b40c5e651fb1d64ad575bca46aef3aae643897a43874fa9576f25b8
+  checksum: 10c0/7abc5a959ab133dc8cf51f23b2266fd351584507faff1e2ca48e5ced21f696e09a9bddf8aed1134682acc921ac591edc28ec3f497cbd95d4ecaf7c2438a7a39c
   languageName: node
   linkType: hard
 
@@ -17418,10 +17418,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p5@npm:^1.10.0":
-  version: 1.10.0
-  resolution: "p5@npm:1.10.0"
-  checksum: 10c0/18de903cabb12b85f49608c03c59f89f0c8f1d15cd9b4b0e58f79678b29dc53a5a8b35cfbe9c8f7f6d361b2c1386b9fa57ef30ae7bcbd5a4f877d246c2e90041
+"p5@npm:^1.11.1":
+  version: 1.11.1
+  resolution: "p5@npm:1.11.1"
+  checksum: 10c0/77178d75e7150c1d2f5c8cebca1f978c102299908efc188a8712c56431f492e1cba845d57331d0374c9fdb9069bffddb046046ea365b29be5aba83938576875d
   languageName: node
   linkType: hard
 
@@ -22925,8 +22925,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "website@workspace:."
   dependencies:
-    "@blueprintjs/core": "npm:^5.11.0"
-    "@blueprintjs/icons": "npm:^5.11.0"
+    "@blueprintjs/core": "npm:^5.15.0"
+    "@blueprintjs/icons": "npm:^5.14.0"
     "@blueprintjs/node-build-scripts": "npm:^9.2.2"
     "@eslint/compat": "npm:^1.2.3"
     "@eslint/js": "npm:^9.15.0"
@@ -22980,7 +22980,7 @@ __metadata:
     node-addon-api: "npm:^8.2.2"
     npm-run-all: "npm:^4.1.5"
     null-loader: "npm:^4.0.1"
-    p5: "npm:^1.10.0"
+    p5: "npm:^1.11.1"
     prettier: "npm:3.3.3"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
