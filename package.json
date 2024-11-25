@@ -89,7 +89,7 @@
         "prettier": "3.3.3",
         "react-refresh": "^0.14.2",
         "react-typography": "^0.16.23",
-        "twilio": "^5.2.2",
+        "twilio": "^5.3.6",
         "typescript": "~5.4.5",
         "typescript-eslint": "^8.15.0",
         "typography": "^0.16.24",
