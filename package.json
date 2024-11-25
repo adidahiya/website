@@ -90,7 +90,7 @@
         "react-refresh": "^0.14.2",
         "react-typography": "^0.16.23",
         "twilio": "^5.3.6",
-        "typescript": "~5.4.5",
+        "typescript": "~5.7.2",
         "typescript-eslint": "^8.15.0",
         "typography": "^0.16.24",
         "typography-theme-fairy-gates": "^0.16.19",
