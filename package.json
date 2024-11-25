@@ -36,7 +36,7 @@
         "react-helmet": "^6.1.0",
         "spotify-web-api-js": "^1.5.2",
         "tone": "^14.9.17",
-        "tslib": "~2.6.3",
+        "tslib": "~2.8.1",
         "whatwg-fetch": "^3.6.20"
     },
     "devDependencies": {
