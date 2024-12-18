@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "@blueprintjs/node-build-scripts": "^9.2.4",
-        "@eslint/compat": "^1.2.3",
+        "@eslint/compat": "^1.2.4",
         "@eslint/js": "^9.15.0",
         "@gatsbyjs/reach-router": "^2.0.1",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
