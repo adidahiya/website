@@ -91,7 +91,7 @@
         "react-typography": "^0.16.23",
         "twilio": "^5.3.6",
         "typescript": "~5.4.5",
-        "typescript-eslint": "^8.15.0",
+        "typescript-eslint": "^8.18.1",
         "typography": "^0.16.24",
         "typography-theme-fairy-gates": "^0.16.19",
         "webpack": "^5.96.1"
