@@ -94,7 +94,7 @@
         "typescript-eslint": "^8.18.2",
         "typography": "^0.16.24",
         "typography-theme-fairy-gates": "^0.16.19",
-        "webpack": "^5.96.1"
+        "webpack": "^5.99.5"
     },
     "repository": {
         "type": "git",
