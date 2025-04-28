@@ -21611,13 +21611,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tone@npm:^14.9.17":
-  version: 14.9.17
-  resolution: "tone@npm:14.9.17"
+"tone@npm:^15.1.22":
+  version: 15.1.22
+  resolution: "tone@npm:15.1.22"
   dependencies:
     standardized-audio-context: "npm:^25.3.70"
     tslib: "npm:^2.3.1"
-  checksum: 10c0/81ef07af0c4f3f365c3fe4e1f0feb207f586bcb9ffde428527c49d68928abde10834fbadc19baacccb15cede24bc1c6f7b98841d548d7f4efdb44f7d7a5b03d8
+  checksum: 10c0/dd11cd2b0645fec5e188919ace1494deeae30f10775b493e2a4ab44e1be0bf3087dce6c0db78da91f88eddf2fd5f1430a3cc52e2d2d5f76076efe949aa056e64
   languageName: node
   linkType: hard
 
@@ -22931,7 +22931,7 @@ __metadata:
     react-refresh: "npm:^0.14.2"
     react-typography: "npm:^0.16.23"
     spotify-web-api-js: "npm:^1.5.2"
-    tone: "npm:^14.9.17"
+    tone: "npm:^15.1.22"
     tslib: "npm:~2.8.1"
     twilio: "npm:^5.3.6"
     typescript: "npm:~5.4.5"
