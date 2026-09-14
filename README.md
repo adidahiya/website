@@ -6,8 +6,8 @@
 
 ### Prerequisites
 
--   Node 18+
--   Yarn 4+
+-   Node 24 LTS (the exact version is pinned in `.nvmrc`)
+-   Corepack, enabled with `corepack enable`, to provision the pinned Yarn version
 
 ### HMR development
 
@@ -19,4 +19,10 @@ yarn dev
 
 ```
 yarn build
+```
+
+### Verification
+
+```
+yarn verify
 ```

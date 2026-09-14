@@ -3,18 +3,18 @@ version: 2.1
 executors:
   default-executor:
     docker:
-      - image: cimg/node:20.11
+      - image: cimg/node:24.21.0
 
 aliases:
   - &save-yarn-cache
     name: Save Yarn Berry cache
     paths:
       - ~/.yarn/berry/cache
-    key: yarn-berry-cache-v1
+    key: yarn-berry-cache-v2-{{ checksum "yarn.lock" }}
 
   - &restore-yarn-cache
     name: Restore Yarn Berry cache
-    key: yarn-berry-cache-v1
+    key: yarn-berry-cache-v2-{{ checksum "yarn.lock" }}
 
 jobs:
   checkout-code:
@@ -23,7 +23,7 @@ jobs:
       - checkout
       - restore_cache: *restore-yarn-cache
       - run: sudo corepack enable
-      - run: yarn
+      - run: yarn install --immutable
       - run:
           name: Check if lockfile changed during install
           command: git diff --exit-code
@@ -35,14 +35,10 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore-yarn-cache
-      - attach_workspace: { at: "." }
       - run: sudo corepack enable
-      - run: yarn
-      - run: yarn build
-      - persist_to_workspace:
-          root: "."
-          paths:
-            - public
+      - run: yarn install --immutable
+      - run: yarn dist
+      - run: yarn test:smoke
 
   check:
     executor: default-executor
@@ -50,9 +46,8 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore-yarn-cache
-      - attach_workspace: { at: "." }
       - run: sudo corepack enable
-      - run: yarn
+      - run: yarn install --immutable
       - run:
           command: |
             case $CIRCLE_NODE_INDEX in \
