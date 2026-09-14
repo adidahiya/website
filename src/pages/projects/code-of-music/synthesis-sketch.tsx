@@ -62,7 +62,7 @@ export default class extends React.PureComponent<{}, IState> {
 
         const synthPart = new Tone.Part(
             (time: Tone.Unit.Time, note: string) => {
-                this.monoSynth.triggerAttackRelease(note as Tone.Unit.Note, "8n", time);
+                this.monoSynth.triggerAttackRelease(note, "8n", time);
             },
             [
                 ["0:0:0", "A2"],

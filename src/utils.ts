@@ -3,7 +3,6 @@
 export function slugify(text: string) {
     return (
         text
-            .toString()
             .toLowerCase()
             // Replace spaces with -
             .replace(/\s+/g, "-")

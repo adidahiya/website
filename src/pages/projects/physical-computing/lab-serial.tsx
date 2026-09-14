@@ -97,10 +97,10 @@ export default class extends React.PureComponent<
             // const data = Number(this.serial.readLine());
             const data = this.serial.readLine();
             // console.log(data);
-            if (data != null && data.trim() !== "") {
+            if (data?.trim()) {
                 // console.log(data);
                 const matches = data.match(/(.*), (.*)/);
-                if (matches != null && matches.length === 3) {
+                if (matches?.length === 3) {
                     const duration1 = parseInt(matches[1], 10);
                     const mappedPitch = this.p5.map(duration1, 0, 10, 200, 2000);
                     this.setState({

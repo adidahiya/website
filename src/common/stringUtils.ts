@@ -7,14 +7,13 @@ export function padStart(inputString: string | number, targetLength: number, pad
     }
 
     targetLength = targetLength >> 0; // truncate if number, or convert non-number to 0;
-    padString = String(typeof padString !== "undefined" ? padString : " ");
     if (inputString.length >= targetLength) {
-        return String(inputString);
+        return inputString;
     } else {
         targetLength = targetLength - inputString.length;
         if (targetLength > padString.length) {
             padString += padString.repeat(targetLength / padString.length); // append to original to ensure we are longer than needed
         }
-        return padString.slice(0, targetLength) + String(inputString);
+        return padString.slice(0, targetLength) + inputString;
     }
 }

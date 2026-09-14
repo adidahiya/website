@@ -135,10 +135,10 @@ export default class extends React.PureComponent<{}, IState> {
             //     return;
             // }
 
-            if (data != null && data.trim() !== "") {
+            if (data?.trim()) {
                 // expecing data of the form "pitch, roll"
                 const matches = data.match(/(.*), (.*)/);
-                if (matches != null && matches.length === 3) {
+                if (matches?.length === 3) {
                     const pitch = parseInt(matches[1], 10);
                     const roll = parseInt(matches[2], 10);
 

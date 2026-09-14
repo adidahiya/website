@@ -58,7 +58,7 @@ export default class extends React.PureComponent<{}, IState> {
             (time: Tone.Unit.Time, note: string) => {
                 const shouldTrigger = this.paths.filter((p) => p.isActive()).length > 1;
                 if (shouldTrigger) {
-                    this.monoSynth.triggerAttackRelease(note as Tone.Unit.Note, "8n", time);
+                    this.monoSynth.triggerAttackRelease(note, "8n", time);
                 }
             },
             [
