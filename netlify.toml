@@ -1,5 +1,2 @@
 [build]
     functions = "./functions"
-[build.environment]
-    NODE_VERSION = "20"
-    YARN_VERSION = "4.1.0"

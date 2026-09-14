@@ -11,14 +11,16 @@
         "check:lint": "eslint .",
         "check:format": "prettier --check './**/*.{js,md,ts,tsx,json,yaml,yml}'",
         "check:types": "tsc --pretty --noEmit --project src",
-        "clean": "rm -rf public/* .cache/*",
+        "clean": "rm -rf public .cache",
         "dev": "gatsby develop --port 9000",
         "dist": "run-s clean build",
         "fix": "run-s 'fix:*'",
         "fix:lint": "eslint --fix .",
         "fix:format": "prettier --write './**/*.{js,md,ts,tsx,json,yaml,yml}'",
         "serve-functions": "netlify dev --functions server/functions",
-        "test": "echo \"No tests\" && exit 0"
+        "test": "node --test",
+        "test:smoke": "node --test test/smoke.test.mjs",
+        "verify": "run-s check dist test"
     },
     "dependencies": {
         "@blueprintjs/core": "^5.16.2",
@@ -27,7 +29,7 @@
         "chroma-js": "^2.6.0",
         "classnames": "^2.5.1",
         "dat.gui": "^0.7.9",
-        "gatsby": "^5.14.1",
+        "gatsby": "^5.16.1",
         "gatsby-adapter-netlify": "^1.2.0",
         "lodash-es": "^4.17.21",
         "p5": "^1.11.1",
@@ -101,7 +103,7 @@
         "url": "https://github.com/adidahiya/website"
     },
     "engines": {
-        "node": ">=20.11"
+        "node": ">=24 <25"
     },
     "packageManager": "yarn@4.5.3"
 }
