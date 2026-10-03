@@ -10,11 +10,12 @@ export default () => (
         <h3>adi dahiya</h3>
         <p>
             technologist &amp; artist based in California. <br />
-            currently design engineering at <a href="https://replit.com/">replit</a>. <br/>
+            currently design engineering at <a href="https://replit.com/">replit</a>. <br />
             previously new media studies at{" "}
             <a href="https://tisch.nyu.edu/itp" target="_blank" rel="noreferrer">
                 NYU ITP
-            </a>.
+            </a>
+            .
         </p>
         <h3>portfolio</h3>
         <p>
