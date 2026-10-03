@@ -9,11 +9,12 @@ export default () => (
     <DefaultLayout>
         <h3>adi dahiya</h3>
         <p>
-            programmer &amp; artist based in Brooklyn, NY. <br />
+            technologist &amp; artist based in California. <br />
+            currently design engineering at <a href="https://replit.com/">replit</a>. <br/>
+            previously new media studies at{" "}
             <a href="https://tisch.nyu.edu/itp" target="_blank" rel="noreferrer">
                 NYU ITP
-            </a>{" "}
-            alum.
+            </a>.
         </p>
         <h3>portfolio</h3>
         <p>
